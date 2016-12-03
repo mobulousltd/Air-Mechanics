@@ -1,0 +1,75 @@
+{
+  "project_info": {
+    "project_number": "327670184042",
+    "firebase_url": "https://airmechanics-147007.firebaseio.com",
+    "project_id": "airmechanics-147007",
+    "storage_bucket": "airmechanics-147007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327670184042:android:e6ca5738193d44a6",
+        "android_client_info": {
+          "package_name": "mobulous12.airmechanics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327670184042-tfmb370oajssl3f0rgnjdtdckkn075sg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "D4CA3B9500483CF3CABA7CF0F098BDDD7E926F36"
+          }
+        },
+        {
+          "client_id": "327670184042-p01c2g0r7g5koha2c65n2r9h2efsab8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "344905515302EC7512C2AAC05562DD3D7B183494"
+          }
+        },
+        {
+          "client_id": "327670184042-geehth4s6rjn1jhatt3h4i9najr9c9t5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "C1EA600B16F2D0F51A95C570BC1AEA86773058D0"
+          }
+        },
+        {
+          "client_id": "327670184042-92sv3c5p3kiqu8g4fnare8jjthipls22.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "327670184042-jq0u6prkt56v0r6p6ci30llrsijq6ktl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4O1pqu7xZbRdHpTfaRJEWZSJciyJChdw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327670184042-92sv3c5p3kiqu8g4fnare8jjthipls22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

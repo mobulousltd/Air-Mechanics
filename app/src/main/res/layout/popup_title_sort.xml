@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/_9sdp"
+        >
+
+        <TextView
+            app:font="@{`medium`}"
+            android:id="@+id/textView_titleSortList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_your_list"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:padding="@dimen/_3sdp"
+
+            />
+
+    </LinearLayout>
+</layout>

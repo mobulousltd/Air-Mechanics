@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/left_image.png",
+        "source": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/left_image.png"
+    },
+    {
+        "merged": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/right_image.png",
+        "source": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/right_image.png"
+    },
+    {
+        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/right_image.png",
+        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/right_image.png"
+    },
+    {
+        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/drawable-ldpi-v4/left_image.png",
+        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/drawable-ldpi-v4/left_image.png"
+    }
+]

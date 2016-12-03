@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/relativeRoot_SortYourList"
+
+        >
+
+
+        <View
+            android:id="@+id/line_sort"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/line_gray"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup_Sorting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp">
+
+            <RadioButton
+                android:id="@+id/radio1_byDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/text_gray"
+                android:text="@string/by_distance"
+                android:button="@drawable/selected_unselected_sort_filter"
+                />
+
+            <RadioButton
+                android:id="@+id/radio2_byRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp"
+                android:button="@drawable/selected_unselected_sort_filter"
+                android:text="@string/by_rating" />
+
+            <RadioButton
+                android:id="@+id/radio3_byPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/text_gray"
+                android:button="@drawable/selected_unselected_sort_filter"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/by_price" />
+        </RadioGroup>
+
+        <View
+            android:id="@+id/line2_sort"
+            android:layout_below="@+id/radioGroup_Sorting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/line_gray"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+
+</layout>

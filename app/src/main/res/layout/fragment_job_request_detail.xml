@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:visibility="invisible"
+        android:id="@+id/ll_jobrequestdetail"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:cardElevation="@dimen/_3sdp"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_7sdp"
+                android:background="@drawable/drawable_job_request">
+
+                <TextView
+                    android:id="@+id/textView_title_job_request_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_toLeftOf="@+id/textView_date_job_request_detail"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_date_job_request_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_alignTop="@+id/textView_title_job_request_detail"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_description_job_request_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView_title_job_request_detail"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardElevation="@dimen/_3sdp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                >
+
+                <TextView
+                    android:id="@+id/textView_price_job_request_detail"
+                    android:text="@string/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_weight="0.3"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@color/price_job_request_detail"
+                    android:gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/editText_price_dynamic_job_request_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.7"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@null"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:hint="@string/price"
+                    />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            app:font="@{`semibold`}"
+            android:id="@+id/btn_send_job_request_detail"
+            android:text="@string/send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@drawable/sign_in_button"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sp_18"
+            />
+
+    </LinearLayout>
+
+</layout>

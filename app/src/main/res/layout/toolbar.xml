@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/home_header_color">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView_left_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back"/>
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/title_toolbar"
+                android:text="Bill"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:gravity="center_horizontal"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageView_left_toolbar"
+                android:layout_toLeftOf="@+id/imageView_right_toolbar"
+                />
+
+            <ImageView
+                android:id="@+id/imageView_right_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/booking"
+                android:visibility="invisible"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+</layout>

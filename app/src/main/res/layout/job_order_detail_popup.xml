@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/root_jod_popup"
+    >
+
+
+    <View
+        android:id="@+id/line_jod_popup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup_jod_popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <RadioButton
+            android:id="@+id/radio1_completed_jod_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/text_gray"
+            android:text="@string/completed"
+            android:button="@drawable/selected_unselected_sort_filter"
+            />
+
+        <RadioButton
+            android:id="@+id/radio2_inprogress_jod_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_gray"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            android:button="@drawable/selected_unselected_sort_filter"
+            android:text="@string/in_progress" />
+
+        <RadioButton
+            android:id="@+id/radio3_pending_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/text_gray"
+            android:button="@drawable/selected_unselected_sort_filter"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/pending" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/line2_jod_popup"
+        android:layout_below="@+id/radioGroup_jod_popup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/line_gray"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

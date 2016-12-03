@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_22sdp"
+            android:background="@drawable/profile">
+
+            <mobulous12.airmechanics.utils.CircularImageView
+                android:id="@+id/circularImageView_profileSP"
+                android:src="@drawable/default_profile_pic"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:elevation="@dimen/_1sdp"/>
+
+            <TextView
+                android:id="@+id/textView_userName_ProfileSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                android:text="@string/dummy_name"
+                android:layout_marginTop="@dimen/_7sdp"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/main_root_ProfileSP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp">
+
+                <!--NAME-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+                    <EditText
+                        android:inputType="textCapWords"
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/editText_name_profileSP"
+                        android:hint="@string/dummy_name"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:background="@null"
+                        android:theme="@style/MyEditTextTheme"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+
+
+                <!--CONTACT NUMBER -->
+
+                <RelativeLayout
+                    android:padding="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView_contactTextProfileSP"
+                        android:layout_centerVertical="true"
+                        android:text="@string/contact_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13" />
+
+                    <!--<LinearLayout-->
+                    <!--android:gravity="end"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<TextView-->
+                    <!--android:id="@+id/editText_contactNumber_profileSP"-->
+                    <!--android:hint="@string/dummy_number"-->
+                    <!--android:inputType="number"-->
+                    <!--android:imeOptions="actionNext"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColorHint="@color/line_gray"-->
+                    <!--android:textSize="@dimen/sp_13"-->
+                    <!--android:background="@null"-->
+                    <!--android:theme="@style/MyEditTextTheme"/>-->
+                    <!--<LinearLayout-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:visibility="visible"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_marginLeft="@dimen/_4sdp"-->
+                    <!--android:id="@+id/ll_changeContactsp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<TextView-->
+                    <!--android:layout_marginRight="@dimen/_9sdp"-->
+                    <!--android:text="Change"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/text_gray"-->
+                    <!--android:textSize="@dimen/sp_13"/>-->
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/profile_right_arrow"-->
+                    <!--android:tint="@color/blue"/>-->
+                    <!--</LinearLayout>-->
+
+                    <!--</LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_toEndOf="@+id/textView_contactTextProfileSP"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/linear_setContactSP"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="end"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:gravity="end"
+                                android:id="@+id/tv_contactNumSP"
+                                android:layout_gravity="center_vertical"
+                                android:hint="@string/not_available"
+                                android:textColorHint="@color/line_gray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/sp_13"/>
+
+                            <LinearLayout
+                                android:id="@+id/ll_ContactSP"
+                                android:layout_marginLeft="@dimen/_4sdp"
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginRight="@dimen/_7sdp"
+                                    android:text="Change"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/text_gray"
+                                    android:textSize="@dimen/sp_13"/>
+                                <ImageView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/profile_right_arrow"
+                                    android:tint="@color/blue"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+
+
+                <!--EMAIL-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+                    <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/editText_email_profileSP"
+                        android:hint="@string/dummy_email"
+                        android:inputType="textEmailAddress"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:background="@null"
+                        android:theme="@style/MyEditTextTheme"/>
+
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+                <!--ADDRESS-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="@string/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+
+                    <TextView
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/tv_address_profileSP"
+                        android:hint="@string/dummy_address"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:background="@null"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+                <LinearLayout
+                    android:id="@+id/ll_changepasssp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_10sdp">
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:text="@string/change_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:textSize="@dimen/sp_13"/>
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/profile_right_arrow"
+                            android:tint="@color/blue"/>
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="@color/line_gray"/>
+                </LinearLayout>
+
+                <!--categories-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="@string/categories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+
+                    <TextView
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/tv_categoriesSP"
+                        android:hint="@string/dummy_address"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:background="@null"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+
+
+                <!--open-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="Work Timings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:gravity="right">
+
+                        <TextView
+                            android:text="10:00"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:id="@+id/textView_openText_profileSP"
+                            android:textColorHint="@color/line_gray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_13"
+                            android:layout_weight="1"
+                            android:hint="@string/not_available"
+                            android:gravity="end"/>
+
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/to"
+                            android:gravity="end"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_gray"
+                            android:textSize="@dimen/sp_13"/>
+
+
+                        <TextView
+                            android:text="10:00"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:id="@+id/textView_closeText_profileSP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_13"
+                            android:layout_weight="1"
+                            android:textColorHint="@color/line_gray"
+                            android:hint="@string/not_available"
+                            android:gravity="end"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+
+                <!--min-charges-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="@string/minchrge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+
+                    <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/et_minCharge_profileSP"
+                        android:hint="@string/not_available"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:background="@null"
+                        android:theme="@style/MyEditTextTheme"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+                <!--speciality-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="@string/speciality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+
+                    <TextView
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/tv_specialitySP"
+                        android:hint="@string/dummy_address"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:background="@null"
+                        />
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+
+
+
+
+                <!--service area-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:text="@string/service_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+                    <TextView
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/tv_serviceArea_spProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/not_available"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+
+                <!--employess-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/employees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13" />
+                    <EditText
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/editText_employees_profileSP"
+                        android:hint="@string/not_available"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:background="@null"
+                        android:theme="@style/MyEditTextTheme"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+
+                <!--working days-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/working_days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13"/>
+
+                    <TextView
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/tv_workdays_spProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/not_available"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:gravity="end"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

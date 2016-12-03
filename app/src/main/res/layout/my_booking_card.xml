@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--PAGE STARTS-->
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_1_completedFrag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_3sdp">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/background_service_provider_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <mobulous12.airmechanics.utils.CircularImageView
+                    android:id="@+id/circularImageView_myBooking"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:src="@drawable/garage_image"
+                    android:padding="@dimen/_3sdp"/>
+
+                <!--pending Frag job orders  details layout-->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+
+                            android:id="@+id/textView_myBookingName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_toLeftOf="@+id/textView_jobOrderAmount_1"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16"
+                            android:layout_marginRight="@dimen/_14sdp"
+                            android:layout_marginLeft="@dimen/_2sdp"
+                            android:id="@+id/textView_myBookingAmount"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/calendar"/>
+                                <TextView
+                                    android:layout_marginLeft="@dimen/_6sdp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/gray"
+                                    android:id="@+id/textView_myBookingDate" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/watch"/>
+
+
+
+                                <TextView
+                                    android:layout_marginLeft="@dimen/_6sdp"
+                                    android:layout_gravity="center_vertical"
+                                    android:id="@+id/textView_myBookingTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/gray"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_14sdp"
+                            android:layout_marginLeft="@dimen/_2sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow_myjob_order"
+                            android:tint="@color/black"
+                            android:id="@+id/imageView_myBookingRightArrow"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView_bookingStatus"
+                style="@style/Base.Widget.AppCompat.ButtonBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/booking_completed_color"
+                android:gravity="start"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_16sdp"
+                android:padding="@dimen/dp_7"
+                android:text="@string/completed_tab"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+
+                />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+</layout>

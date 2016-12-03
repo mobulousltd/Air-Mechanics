@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:background="@color/semitransparent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/background_service_provider_card"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="@dimen/_7sdp"
+                app:font="@{`semibold`}"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="@string/categories"
+                android:textSize="@dimen/_16sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--<TextView-->
+             <!--android:padding="@dimen/_1sdp"-->
+                <!--app:font="@{`regular`}"-->
+                <!--android:gravity="center"-->
+                <!--android:background="@color/gray"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="Please choose any one of these"-->
+                <!--android:textSize="@dimen/_9sdp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+            <View
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                >
+
+            <CheckBox
+                android:id="@+id/chBox_twoV"
+                android:text="@string/two_wheeler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_9sdp"
+                android:textSize="@dimen/_12sdp"
+                android:button="@drawable/selector_check_uncheck"
+                />
+
+                <CheckBox
+
+                    android:id="@+id/chBox_lightV"
+                    android:text="@string/light_weight_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_9sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:button="@drawable/selector_check_uncheck"
+                    />
+
+                <CheckBox
+                    android:id="@+id/chBox_heavyV"
+                    android:text="@string/heavy_weight_vehicle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_9sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:button="@drawable/selector_check_uncheck"
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/categories_cancel"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_8sdp"
+                    app:font="@{`semibold`}"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="@string/cancel"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:background="@color/gray"
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/categories_done"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_8sdp"
+                    app:font="@{`semibold`}"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="Done"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

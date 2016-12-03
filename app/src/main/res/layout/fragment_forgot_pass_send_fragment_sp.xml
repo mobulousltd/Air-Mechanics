@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textView_titleSendNew_ForgotPass"
+                android:layout_width="match_parent"
+                android:background="@color/booking_completed_color"
+                android:layout_height="wrap_content"
+                android:text="@string/success_send_code"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_20"
+                android:padding="@dimen/_10sdp"/>
+
+
+            <View
+                android:id="@+id/line_sendcode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:background="@color/line_gray"
+                android:layout_margin="@dimen/_2sdp"
+                />
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textView_codeSendNewPassSuccess"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Password will be send to your Mail."
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+
+                />
+
+            <Button
+                app:font="@{`semibold`}"
+                android:layout_margin="@dimen/_4sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/popup_ok"
+                android:textColor="@color/white"
+                android:background="@drawable/sign_in_button"
+                android:id="@+id/button_okForgotPassFragSP"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

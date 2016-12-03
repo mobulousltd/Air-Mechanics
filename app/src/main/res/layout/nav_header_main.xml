@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relative_upper_nav_Home"
+        android:background="@drawable/background"
+        android:padding="@dimen/_5sdp"
+        >
+        <mobulous12.airmechanics.utils.CircularImageView
+        android:id="@+id/circularImageView_profilePic_Home"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:src="@drawable/default_profile_pic" />
+
+        <TextView
+        android:id="@+id/textView_userName_Home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circularImageView_profilePic_Home"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/dummy_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_below="@+id/relative_upper_nav_Home">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/linearlayout_myProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--Contactnumber image and text-->
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/myprofile"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:id="@+id/textView_myProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:ems="10"
+                        android:text="@string/profile_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/linearlayout_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView_booking"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/booking" />
+
+                    <TextView
+                        android:id="@+id/textView_booking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:text="@string/booking_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                    <ImageView
+                        android:id="@+id/imageView_booking_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.48"
+                        android:src="@drawable/side_menu_right_arrow"
+                        android:tint="@color/gray"
+                        />
+                </LinearLayout>
+                <!--My Bookings-->
+                <LinearLayout
+                    android:id="@+id/linearlayout_myBooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+                        android:id="@+id/imageView_myBooking"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/booking"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:id="@+id/textView_myBooking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_booking_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+            <!--New Job Requests-->
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_newJobReq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+                        android:id="@+id/imageView_newJobReq"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/booking"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:id="@+id/textView_newJobReq"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/new_job_requests"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_job_rejected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+                        android:id="@+id/imageView_job_rejected"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/booking"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:id="@+id/textView_job_rejected"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rejected_requests"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_favorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <!--Contactnumber image and text-->
+                    <ImageView
+                        android:id="@+id/imageView_favorite"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/gray"
+                        app:srcCompat="@drawable/favorite" />
+
+                    <TextView
+                        android:id="@+id/textView_favorite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:ems="10"
+                        android:text="@string/favorites_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView_notification"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/notification" />
+
+                    <TextView
+                        android:id="@+id/textView_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:ems="10"
+                        android:text="@string/notifications_home"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView_plan"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/plan" />
+
+                    <TextView
+                        android:id="@+id/textView_plan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:enabled="false"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:text="@string/plan_home"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16" />
+
+                    <ImageView
+                        android:id="@+id/imageView_plan_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.46"
+                        android:src="@drawable/side_menu_right_arrow"
+                        android:tint="@color/gray"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_myPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        app:srcCompat="@drawable/plan"
+                        android:layout_gravity="center"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_plan_home"
+                        android:gravity="start"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_subscriptionPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/subscription"
+                        android:layout_gravity="center"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subscription_plan_home"
+                        android:gravity="start"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearlayout_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/about" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/about_us_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView_share"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/share" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/share_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView_settings"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/settings" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/settings_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+                <!--<LinearLayout-->
+                <!--android:id="@+id/linearlayout_logout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="@dimen/_10sdp"-->
+
+                <!--android:layout_below="@+id/linearlayout_share"-->
+                <!--android:weightSum="2"-->
+                <!--android:layout_marginBottom="@dimen/_20sdp"-->
+
+                <!--&gt;-->
+
+
+                <!--<ImageView-->
+                <!--android:id="@+id/imageView_logout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginLeft="@dimen/_5sdp"-->
+                <!--android:layout_marginStart="@dimen/_5sdp"-->
+                <!--android:layout_weight="0.54"-->
+
+                <!--app:srcCompat="@drawable/logout" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/textView_logout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_weight="1.46"-->
+                <!--android:ems="10"-->
+                <!--android:text="@string/logout_home"-->
+                <!--android:textColor="@color/text_gray"-->
+                <!--android:layout_marginLeft="@dimen/_15sdp"-->
+                <!--android:textSize="@dimen/sp_16"-->
+
+                <!--/>-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--AIRMECHANIKS INFO-->
+                <LinearLayout
+                    android:padding="@dimen/_10sdp"
+                    android:id="@+id/ll_airInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/info" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:text="AirMechaniks Info"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                    <ImageView
+                        android:id="@+id/imageView_airInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.48"
+                        android:src="@drawable/side_menu_right_arrow"
+                        android:tint="@color/gray"
+                        />
+                </LinearLayout>
+                <!--AboutUs info-->
+                <LinearLayout
+                    android:id="@+id/ll_aboutUsInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/about"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about_us_home"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <!--contactUs info-->
+                <LinearLayout
+                    android:id="@+id/ll_contactUsInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/contact_us"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact_us_homesp"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <!--T_C info-->
+                <LinearLayout
+                    android:id="@+id/ll_TCInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp">
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/t_c"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"/>
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tc_homesp"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/sp_16" />
+                </LinearLayout>
+
+                <!--SIGNIN AS CUSTOMER-->
+                <LinearLayout
+                    android:id="@+id/ll_customerLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                  >
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/default_profile_pic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="SignIn as Customer"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+                <!--SIGNIN AS SERVICE PROVIDER-->
+                <LinearLayout
+                    android:id="@+id/ll_serviceProLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical"
+                        android:tint="@color/text_gray"
+                        app:srcCompat="@drawable/default_profile_pic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="SignIn as Service Provider"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textSize="@dimen/sp_16" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+
+
+</layout>

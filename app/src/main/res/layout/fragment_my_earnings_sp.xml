@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/cardView_myEarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_3sdp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/relativelayout_headingMyEarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/myearnings_color">
+
+
+                <!--Card Buttons-->
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_nameMyEarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:padding="@dimen/dp_7"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="@string/customername_earning"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+
+                    />
+
+
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_amountMyEarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textView_nameMyEarning"
+                    android:layout_alignBottom="@+id/textView_nameMyEarning"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/amount_myplan"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_detailsEarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_calenderMyEarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/myplan_calendar"/>
+
+
+                <TextView
+                    android:id="@+id/textView_dateEarning"
+                    android:layout_toEndOf="@+id/imageView_calenderMyEarning"
+                    android:layout_toRightOf="@+id/imageView_calenderMyEarning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/expirydate_myplan"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_9sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+
+                >
+
+                <TextView
+                    app:font="@{`light`}"
+                    android:id="@+id/descrip1_earning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/descrip1_earning"
+                    android:layout_marginBottom="@dimen/_1sdp"
+                    />
+
+                <TextView
+                    app:font="@{`light`}"
+                    android:id="@+id/descrip2_earning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/descrip2_earning"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+</layout>

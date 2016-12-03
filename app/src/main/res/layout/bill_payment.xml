@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/imageView_bill_payment"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/profile"
+            android:padding="@dimen/_20sdp"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView_bill"
+            android:layout_below="@+id/imageView_bill_payment">
+
+            <LinearLayout
+                android:id="@+id/linear_bill_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/imageView_bill_payment">
+
+                <RelativeLayout
+                    android:id="@+id/root_type_of_vechile"
+                    android:layout_below="@+id/root_logo_booking_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_type_of_vechile"
+                        android:text="@string/type_of_vechile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:id="@+id/imageView_type_of_vechile_billPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_type_of_vechile_dynamic"
+                    android:text="@string/car"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+
+                <RelativeLayout
+                    android:id="@+id/root_description_bill_payment"
+                    android:layout_below="@+id/root_logo_booking_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_description_billPayment"
+                        android:text="@string/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:id="@+id/imageView_rightArrow_description_billPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_description_dynamic_billPayment"
+                    android:text="@string/description_myplan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+
+                <RelativeLayout
+                    android:id="@+id/root_total_price"
+                    android:layout_below="@+id/root_logo_booking_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_total_price"
+                        android:text="@string/total_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:id="@+id/imageView_total_price_billPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_total_price_dynamic"
+                    android:text="@string/total_price_dummy_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            app:font="@{`semibold`}"
+            android:id="@+id/button_rate_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/home_header_color"
+            android:text="@string/rate_us"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            />
+
+
+
+    </RelativeLayout>
+</layout>

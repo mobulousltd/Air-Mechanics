@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:background="@color/semitransparent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/background_service_provider_card"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:padding="@dimen/_10sdp"
+                app:font="@{`semibold`}"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="@string/service_area"
+                android:textSize="@dimen/_16sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_22sdp"
+                android:layout_marginRight="@dimen/_22sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/radioupto5"
+                    android:checked="false"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="@string/uptofive"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/radius_selector_drawable"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp" />
+                <RadioButton
+                    android:id="@+id/radioupto10"
+                    android:checked="false"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="@string/uptoten"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/radius_selector_drawable"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp" />
+                <RadioButton
+                    android:id="@+id/radioupto20"
+                    android:checked="false"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="@string/upto20"
+                    android:layout_margin="@dimen/_3sdp"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/radius_selector_drawable"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_32sdp" />
+            </RadioGroup>
+            <View
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"/>
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/radius_cancel"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_8sdp"
+                    app:font="@{`semibold`}"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="@string/cancel"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <View
+                    android:background="@color/gray"
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/radius_done"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_8sdp"
+                    app:font="@{`semibold`}"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:text="Done"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

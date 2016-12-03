@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardElevation="@dimen/_3sdp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
+
+
+        <RelativeLayout
+            android:id="@+id/relative_root_newJobRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_7sdp"
+            android:background="@drawable/drawable_job_request">
+
+            <TextView
+                android:layout_toLeftOf="@+id/tv_date_newJobRequest"
+                android:id="@+id/tv_title_newJobRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                />
+
+            <TextView
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:id="@+id/tv_date_newJobRequest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="15-09-2016"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sp_14"
+                android:layout_alignTop="@+id/tv_title_newJobRequest"
+                />
+
+            <TextView
+                android:id="@+id/tv_descrip_newJobRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title_newJobRequest"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_marginLeft="@dimen/_30sdp"
+                />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</layout>

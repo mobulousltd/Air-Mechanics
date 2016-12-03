@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
+
+
+        <!--Header-->
+
+        <RelativeLayout
+            android:id="@+id/header_favoritesFrag"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#60000000">
+
+            <ImageView
+                android:id="@+id/back_favoritesFrag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:padding="@dimen/dp_20"
+                android:src="@drawable/back" />
+
+            <TextView
+                app:font="@{`medium`}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/headername_favourites"
+                android:textSize="@dimen/sp_20"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/headername_favoritesFrag" />
+
+        </RelativeLayout
+            >
+
+
+        <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:scrollIndicators="right"
+            android:scrollbarThumbVertical="@color/scrollbar_color"
+            android:scrollbarSize="@dimen/_2sdp"
+            android:id="@+id/recyclerView_myFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/footer_favorites"
+            android:layout_below="@+id/header_favoritesFrag"
+            android:layout_marginTop="@dimen/_3sdp"
+            />
+
+
+        <!--FOOTER-->
+
+        <RelativeLayout
+            android:id="@+id/footer_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#60000000"
+            android:padding="@dimen/_6sdp"
+            android:layout_alignParentBottom="true">
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textView_sortingFavorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/sorting_serviceprovider"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:layout_toLeftOf="@+id/verticalLine"
+                android:layout_toStartOf="@+id/verticalLine" />
+
+
+
+            <TextView
+                android:id="@+id/verticalLine"
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/white"
+                android:textAlignment="center"
+                android:padding="@dimen/_5sdp"
+
+                />
+
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textView_filterFavorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/filter_serviceprovider"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/verticalLine"
+                android:layout_toEndOf="@+id/verticalLine" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

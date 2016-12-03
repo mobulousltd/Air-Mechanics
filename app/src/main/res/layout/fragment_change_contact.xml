@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        android:orientation="vertical">
+
+
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:id="@+id/relt_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:gravity="center"
+                android:padding="@dimen/_15sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:layout_marginTop="@dimen/_7sdp"/>
+
+
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/linear_newContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/imageView_newContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/contact"
+                android:padding="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_7sdp"
+
+
+             />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+               >
+
+            <EditText
+                android:layout_gravity="center_vertical"
+                android:id="@+id/editText_newContact"
+                app:font="@{`regular`}"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:hint="@string/new_contact"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/hint_text_color"
+                android:textSize="@dimen/sp_14"
+                android:background="@null"
+                android:maxLines="1"
+                android:theme="@style/MyEditTextTheme"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/line_gray"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            app:font="@{`semibold`}"
+            android:id="@+id/submit_newContact"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sign_in_button"
+            android:textSize="@dimen/sp_16"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_35sdp"/>
+    </LinearLayout>
+
+
+</layout>

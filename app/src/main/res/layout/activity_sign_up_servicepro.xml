@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:id="@+id/root_activity_sign_up_servicepro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
+
+
+        <!--&lt;!&ndash;BACK BUTTON&ndash;&gt;-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/root_back_signUp_servicePro"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginTop="@dimen/_12sdp"-->
+            <!--android:padding="@dimen/_2sdp">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/textView_back_signUp_servicePro"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginLeft="11dp"-->
+                <!--android:layout_marginStart="11dp"-->
+                <!--android:layout_toEndOf="@+id/imageView_back_signUp_servicePro"-->
+                <!--android:layout_toRightOf="@+id/imageView_back_signUp_servicePro"-->
+                <!--android:padding="@dimen/_1sdp"-->
+                <!--android:text="@string/back"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/sp_16" />-->
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView_back_signUp_servicePro"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:src="@drawable/back" />-->
+        <!--</RelativeLayout>-->
+
+        <!--&lt;!&ndash;PROFILE IMAGE&ndash;&gt;-->
+        <!--<mobulous12.airmechanics.utils.CircularImageView-->
+            <!--android:id="@+id/circularImageView_profile_pic_signUp_servicePro"-->
+            <!--android:layout_width="@dimen/_90sdp"-->
+            <!--android:layout_height="@dimen/_90sdp"-->
+            <!--android:layout_below="@+id/root_back_signUp_servicePro"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="@dimen/_4sdp"-->
+            <!--android:src="@drawable/profile_pic" />-->
+
+        <!--<ScrollView-->
+            <!--android:id="@+id/scrollView_signUp_servicePro"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/circularImageView_profile_pic_signUp_servicePro"-->
+
+            <!--&gt;-->
+
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+
+                <!--&gt;-->
+
+                <!--&lt;!&ndash;FULL NAME&ndash;&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_fullName_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_20sdp"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_fullName_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/user"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_fullName_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/full_name"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="textPersonName|textCapSentences"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+                <!--&lt;!&ndash;Company name&ndash;&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_compName_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/linear_fullName_sp"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--&gt;-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_companyName_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/company_name"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_companyName_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/company_name"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="textEmailAddress"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+
+                <!--&lt;!&ndash;EMAIL&ndash;&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_email_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/linear_compName_sp"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--&gt;-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_email_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/email"-->
+                        <!--android:layout_gravity="center"/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_email_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/email"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="textEmailAddress"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"/>-->
+                <!--</LinearLayout>-->
+
+                <!--&lt;!&ndash;PASSWORD&ndash;&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_password_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/linear_email_sp"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--&gt;-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_password_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/password"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginLeft="@dimen/_5sdp"-->
+                        <!--/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_password_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/Password"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="textPassword"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+                <!--&lt;!&ndash;CONFIRM PASSWORD&ndash;&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_confirmPassword_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/linear_password_sp"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+
+                    <!--&gt;-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_confirmPassword_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/password"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginLeft="@dimen/_5sdp"-->
+                        <!--/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_confirmPassword_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/confirm_password"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="textPassword"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+                <!--&lt;!&ndash;CONTACT NUMBER&ndash;&gt;-->
+
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_contactNumber_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/linear_confirmPassword_sp"-->
+                    <!--&gt;-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_contactNumber_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/contact"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginLeft="@dimen/_3sdp"-->
+                        <!--/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_contactNumber_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/contact_number"-->
+                        <!--android:imeOptions="actionNext"-->
+                        <!--android:inputType="numberSigned"-->
+                        <!--android:maxLength="10"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+                <!--&lt;!&ndash;ADDRESS&ndash;&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_address_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_10sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/linear_contactNumber_sp"-->
+                    <!--&gt;-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_address_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/location"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginLeft="@dimen/_5sdp"-->
+                        <!--/>-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText_address_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:hint="@string/address"-->
+                        <!--android:imeOptions="actionDone"-->
+                        <!--android:inputType="textPostalAddress|textCapSentences"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textColorHint="#dbdbdb"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:theme="@style/MyEditTextTheme"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+
+                <!--&lt;!&ndash;Attach docs&ndash;&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/linear_attachDocs_sp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/_28sdp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_below="@id/linear_address_sp"-->
+                    <!--&gt;-->
+
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageView_attachDocs_servicePro"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/attache"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginLeft="@dimen/_3sdp"-->
+                        <!--/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView_attachDocs_servicePro"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                        <!--android:padding="@dimen/_9sdp"-->
+                        <!--android:text="@string/attach_documents"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--/>-->
+                <!--</LinearLayout>-->
+
+
+                <!--&lt;!&ndash;SIGN IN BUTTON&ndash;&gt;-->
+
+                <!--<Button-->
+                    <!--app:font="@{`semibold`}"-->
+                    <!--android:id="@+id/button_signIn_servicePro_SignUpActivity"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/linear_attachDocs_sp"-->
+                    <!--android:layout_marginLeft="@dimen/_30sdp"-->
+                    <!--android:layout_marginRight="@dimen/_30sdp"-->
+                    <!--android:layout_marginTop="@dimen/_18sdp"-->
+                    <!--android:layout_marginBottom="@dimen/_18sdp"-->
+                    <!--android:background="@drawable/sign_in_button"-->
+                    <!--android:text="@string/sign_up"-->
+                    <!--android:textAllCaps="false"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="@dimen/sp_18" />-->
+
+            <!--</RelativeLayout>-->
+        <!--</ScrollView>-->
+
+    </RelativeLayout>
+
+
+</layout>

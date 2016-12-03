@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:background="@drawable/bg"
+        >
+
+        <TextView
+            android:id="@+id/textView_resend_code"
+            android:text="@string/resend_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/editText_resend_code"
+            android:layout_below="@+id/textView_resend_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Resend Code"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/sp_16"/>
+
+        <LinearLayout
+            android:layout_below="@+id/editText_resend_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginTop="@dimen/_44sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_4sdp">
+
+            <Button
+                android:id="@+id/button_resend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/resend"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:background="@drawable/sign_in_button"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                />
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:background="@drawable/cancel_button"
+                android:inputType="text"
+                android:layout_weight="1"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_4sdp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_upper_monthlySubscriptionPlan"
+            android:layout_marginBottom="@dimen/_15sdp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativelayout_headingMonthlySubscriptionPlan"
+                android:background="@color/monthly_orange_color"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                >
+
+                <!--Card Buttons-->
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_durationMonthlySubscriptionPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:paddingTop="@dimen/dp_7"
+                    android:paddingBottom="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_7"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:text="@string/duration_myplan"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+
+                    />
+
+
+                <TextView
+
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_monthlyAmountSubscriptionPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="$"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:layout_alignBaseline="@+id/textView_durationMonthlySubscriptionPlan"
+                    android:layout_alignBottom="@+id/textView_durationMonthlySubscriptionPlan"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:background="@drawable/box"
+                android:id="@+id/relative_upper_allDetailsSubscriptionPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativelayout_headingMonthlySubscriptionPlan"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                >
+
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/benefits_myplan"
+                    android:textSize="@dimen/sp_17"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/benifits_gray"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:id="@+id/textView1_benefitsHeadingSubcriptionPlan"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    app:font="@{`light`}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description_myplan"
+                    android:textSize="@dimen/sp_15"
+                    android:padding="@dimen/_1sdp"
+                    android:textColor="@color/gray"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_alignLeft="@+id/textView1_benefitsHeadingSubcriptionPlan"
+                    android:layout_below="@+id/textView1_benefitsHeadingSubcriptionPlan"
+                    android:id="@+id/textView_upper_descriptionSubscriptionPlan"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    />
+
+                <Button
+                    app:font="@{`semibold`}"
+                    android:id="@+id/button_buyNow_monthlysubscription"
+                    android:text="@string/buy_now_subscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:textAllCaps="false"
+                    android:layout_below="@+id/textView_upper_descriptionSubscriptionPlan"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_70sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/buy_now" />
+
+
+
+
+
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_lower_annualSubscriptionPlan"
+            android:layout_marginBottom="@dimen/_15sdp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativelayout_headingAnnualSubscriptionPlan"
+                android:background="@color/annual_pink_color"
+                android:layout_marginLeft="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                >
+
+                <!--Card Buttons-->
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_durationAnnualSubscriptionPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:paddingTop="@dimen/dp_7"
+                    android:paddingBottom="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_7"
+                    android:paddingLeft="@dimen/_8sdp"
+                    android:text="@string/duration_annual_subscription"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    />
+
+
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:id="@+id/textView_annualyAmountSubscriptionPlan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:text="$"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_20"
+                    android:layout_alignBaseline="@+id/textView_durationAnnualSubscriptionPlan"
+                    android:layout_alignBottom="@+id/textView_durationAnnualSubscriptionPlan"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:background="@drawable/box"
+                android:id="@+id/relative_lower_allDetailsSubscriptionPlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativelayout_headingAnnualSubscriptionPlan"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                >
+
+                <TextView
+                    app:font="@{`roboto`}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/benefits_myplan"
+                    android:textSize="@dimen/sp_17"
+                    android:textColor="@color/benifits_gray"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:id="@+id/textView2_benefitsHeadingSubcriptionPlan"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description_myplan"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/gray"
+                    android:layout_marginBottom="@dimen/_4sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_alignStart="@+id/textView2_benefitsHeadingSubcriptionPlan"
+                    android:layout_alignLeft="@+id/textView2_benefitsHeadingSubcriptionPlan"
+                    android:layout_below="@+id/textView2_benefitsHeadingSubcriptionPlan"
+                    android:id="@+id/textView_lower_descriptionSubscriptionPlan"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    />
+
+                <Button
+                    app:font="@{`semibold`}"
+                    android:id="@+id/button_buyNow_annualSubscription"
+                    android:text="@string/buy_now_subscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:textAllCaps="false"
+                    android:layout_below="@+id/textView_lower_descriptionSubscriptionPlan"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_70sdp"
+                    android:layout_marginRight="@dimen/_70sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/buy_now" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

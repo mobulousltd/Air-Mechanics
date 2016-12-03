@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="colorPrimary">#272727</color>
+    <color name="colorPrimaryDark">#151515</color>
+    <color name="colorAccent">#616161</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#2773EC</color>
+
+    <color name="q_submit_button">#4768f3</color>
+    <color name="quote_bluecolor">#6583ff</color>
+
+    <color name="fb_blue">#315E93</color>
+    <color name="cancel_red">#E30015</color>
+    <color name="bordercolour">#CC000000</color>
+    <color name="home_screen_toolbar_color">#6583FF</color>
+    <color name="dodgerblue">#2773EC</color>
+    <color name="resend_button_color">#E30015</color>
+    <color name="raj_auto_garage_background_color">#FEBD00</color>
+    <color name="circle_selected_color">#7CE147</color>
+    <color name="circle_unselected_color">#666666</color>
+    <color name="ask_for_quote_color">#4a6cf8</color>
+    <color name="myearnings_color">#FF913B</color>
+    <color name="review1_color">#65d52a</color>
+    <color name="info_color">#616161</color>
+    <color name="hint_text_color">#dbdbdb</color>
+    <color name="gray">#616161</color>
+    <color name="benifits_gray">#777777</color>
+    <color name="text_gray">#464545</color>
+    <color name="line_gray">#9e9e9e</color>
+    <color name="booking_pending_color">#ff1919</color>
+    <color name="rejected_color">#FF0008</color>
+    <color name="booking_completed_color">#6bd036</color>
+    <color name="booking_inprogress_color">#e5bb26</color>
+    <color name="annual_pink_color">#E274EF</color>
+    <color name="monthly_orange_color">#DFA332</color>
+    <color name="black_tansparent_header">#60000000</color>
+    <color name="black_tansparent_header_80">#80000000</color>
+    <color name="home_header_color">#518BF9</color>
+    <color name="accept_color">#6DE24B</color>
+    <color name="price_job_request_detail">#E1E1E1</color>
+    <color name="tab_selectedColor">#6583FF</color>
+    <color name="tab_unselectedColor">#6583FF</color>
+    <color name="semitransparent">#77000000</color>
+    <color name="scrollbar_color">#D3D3D3</color>#99000000
+    <color name="backcolor">#F6F6F6</color>
+
+</resources>

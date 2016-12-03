@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/activity_map_to_pick_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!--Header-->
+
+        <RelativeLayout
+            android:id="@+id/header_pickAddress"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/home_header_color">
+
+            <ImageView
+                android:id="@+id/back_pickAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:id="@+id/headername_pickAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/pick_location"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                app:font="@{`medium`}" />
+
+        </RelativeLayout>
+
+
+        <fragment
+
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+            <fragment
+                android:id="@+id/address_map"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/footer_mapToPickAddress" />
+
+            <!--FOOTER-->
+            <RelativeLayout
+                android:id="@+id/footer_mapToPickAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/textView_Cancel_mapToPickAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/verticalLine"
+                    android:layout_toStartOf="@+id/verticalLine"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/popup_cancel"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_19"
+                    app:font="@{`medium`}" />
+
+
+                <TextView
+                    android:id="@+id/verticalLine"
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:textAlignment="center"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/textView_Done_mapToPickAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/verticalLine"
+                    android:layout_toRightOf="@+id/verticalLine"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/popup_done"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/sp_19"
+                    app:font="@{`medium`}" />
+            </RelativeLayout>
+
+
+            <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:src="@drawable/search"-->
+
+            <!--android:tint="#000000"-->
+            <!--android:layout_marginLeft="@dimen/fab_margin"-->
+            <!--android:layout_marginRight="@dimen/fab_margin"-->
+            <!--android:layout_marginBottom="36dp"-->
+            <!--android:layout_marginEnd="34dp"-->
+            <!--android:layout_above="@+id/footer_mapToPickAddress"-->
+            <!--android:layout_alignParentEnd="true" />-->
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

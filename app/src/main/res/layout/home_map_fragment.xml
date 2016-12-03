@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/search_cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_3sdp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_search_home"
+                android:hint="Search by keyword"
+                android:textColor="@color/gray"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="@dimen/_10sdp"
+                android:background="@null"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/sp_13"
+                android:singleLine="true"
+                android:maxLength="30"
+                android:imeOptions="actionDone"
+                />
+        </android.support.v7.widget.CardView>
+        <fragment
+            android:layout_below="@+id/search_cardView"
+            android:id="@+id/home_map"
+            class ="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</layout>

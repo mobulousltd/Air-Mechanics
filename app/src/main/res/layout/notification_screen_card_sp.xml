@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/_3sdp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_4sdp">
+
+        <RelativeLayout
+            android:id="@+id/root_noti_screen_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_7sdp"
+            >
+
+            <ImageView
+                android:id="@+id/imageView_notificationScreen_sp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/logo"
+
+                />
+
+            <LinearLayout
+                android:layout_toRightOf="@+id/imageView_notificationScreen_sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                >
+
+                <TextView
+                    android:id="@+id/textView_content_notificationScreen_sp"
+                    android:textColor="@color/text_gray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_2sdp"
+                    android:textSize="@dimen/sp_14"
+                    android:text="New Job request received from Himanshu."/>
+
+                <TextView
+                    android:id="@+id/textView_time_notificationScreen_sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/sp_11"
+                    android:padding="@dimen/_2sdp"
+                    android:text="5 hours ago"
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>

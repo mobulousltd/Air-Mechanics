@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/root_infoWindow"
+            android:paddingBottom="@dimen/dp_18"
+            android:background="@drawable/map_box"
+            android:layout_width="@dimen/dp_285"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dp_3"
+                android:layout_marginRight="@dimen/dp_3"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rootLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/yellow_corner"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/title_customInfoWindow"
+                        android:text="@string/raj_auto_garage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp"
+                        android:padding="@dimen/_5sdp" />
+
+                    <ImageView
+                        android:id="@+id/imageView_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/arrow"
+                        android:padding="@dimen/dp_9"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <mobulous12.airmechanics.utils.CircularImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/circularImageView_profile_pic_info_window"
+                        android:src="@drawable/default_profile_pic"
+                        android:layout_margin="@dimen/dp_4"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"/>
+
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/dp_5"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/star1"
+                                android:src="@drawable/gray_star"
+                                android:padding="@dimen/_2sdp"
+                                android:layout_below="@+id/rootLayout"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/circularImageView_profile_pic_info_window"                            />
+
+                            <ImageView
+                                android:id="@+id/star2"
+                                android:src="@drawable/gray_star"
+                                android:padding="@dimen/_2sdp"
+                                android:layout_below="@+id/rootLayout"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/imageView_star1"/>
+
+                            <ImageView
+                                android:id="@+id/star3"
+                                android:src="@drawable/gray_star"
+                                android:padding="@dimen/_2sdp"
+                                android:layout_below="@+id/rootLayout"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/imageView_star2"/>
+
+                            <ImageView
+                                android:id="@+id/star4"
+                                android:src="@drawable/gray_star"
+                                android:padding="@dimen/_2sdp"
+                                android:layout_below="@+id/rootLayout"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/imageView_star3"/>
+
+                            <ImageView
+                                android:id="@+id/star5"
+                                android:src="@drawable/gray_star"
+                                android:padding="@dimen/_2sdp"
+                                android:layout_below="@+id/rootLayout"
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_15sdp"
+                                android:layout_toRightOf="@+id/imageView_star4"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:paddingLeft="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/garage_owner_deals_in_two_wheeler"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_12"/>
+                            <TextView
+                                android:singleLine="true"
+                                android:paddingLeft="@dimen/_2sdp"
+                                android:layout_marginRight="@dimen/_1sdp"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:id="@+id/tv_category"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_12"/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:paddingLeft="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:layout_marginBottom="@dimen/dp_5"
+                            android:id="@+id/tv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/location"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_12"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,310 @@
+<resources>
+    <string name="app_name">Air Mechaniks</string>
+    <string name="facebook_app_id">351818138542893</string>
+    <string name="google_map_api_key">AIzaSyDL-ZmfUYiNqTEigGOCbpYrN3n2riM19Sk</string>
+    <!--<string name="google_map_api_key">AIzaSyCoY2j3qox9P9Np34fTN3tublxIS1DfLgc</string>-->
+
+    <string name="settings">Settings</string>
+    <string name="gpsdisabled">Gps is still disabled.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_show_service_provider">Show Service Providers</string>
+    <string name="action_show_myJob_Orders">Show My Job Orders</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+
+    <!--Headers ** CASE NAME**-->
+    <string name="headername_forgotpassword">Forgot Password</string>
+    <string name="headername_verification">Verification</string>
+    <string name="headername_serviceprovider">Service Provider</string>
+    <string name="headername_profile">Profile</string>
+    <string name="headername_home">Home</string>
+    <string name="headername_favourites">Favourites</string>
+    <string name="headername_notifications">Notifications</string>
+    <string name="headername_myplan">My Plan</string>
+    <string name="headername_subscriptionplan">Subscription Plan</string>
+    <string name="headername_change_password">Change Password</string>
+    <string name="headername_my_bookings">My Bookings</string>
+    <string name="headername_billpayment">Bill</string>
+    <string name="headername_rate_service">Rate Your Service Provider</string>
+    <string name="headername_booking_detail">Booking Detail</string>
+    <string name="headername_rejected">Rejected</string>
+    <string name="headername_yourjobs">Your Jobs</string>
+    <string name="headername_changecontact">Update Contact Number</string>
+    <string name="new_contact">New Contact Number</string>
+
+
+    <!--*************Login In page**-->
+    <string name="contact_number">Contact Number</string>
+    <string name="password">Password</string>
+    <string name="Password">Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="signin_ButtonText">Sign In</string>
+    <string name="newUser_text">New User?</string>
+    <string name="createAccount_text"> Create an Account</string>
+    <string name="skip_text">Skip</string>
+    <string name="full_name">Full Name</string>
+
+
+    <!--*************ForgotPassword page**-->
+    <string name="enterRegisteredContactEmail_text">Enter Registered Contact Number/Email and click Send button.</string>
+    <string name="enterEmailContact">Enter Email/Contact Number</string>
+    <string name="sendButtonText">Send</string>
+    <string name="cancelButtonText">Cancel</string>
+
+    <!--*************VERIFICATION page**-->
+    <string name="verification_code_text">Enter Verification code that you have received on your mobile number.</string>
+    <string name="enter_verification_code">Enter Verification code</string>
+    <string name="send">Send</string>
+    <string name="if_you_don_t_get_the_verification_code_please_click_resend">If you don\'t get the verification code please click resend</string>
+    <string name="resend">Resend</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="cancel">Cancel</string>
+
+
+    <!--************* Role selection page **-->
+
+    <string name="sign_in">Sign In</string>
+    <string name="customer">Customer</string>
+    <string name="service_provider">Service Provider</string>
+
+    <!--INfo window page and ServiceProvider-card-->
+    <string name="back">Back</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="address">Address</string>
+    <string name="raj_auto_garage">Raj Auto Garage</string>
+
+    <string name="garage_owner_deals_in_two_wheeler">Garage Owner : Deals in </string>
+
+    <string name="location">Noida</string>
+
+    <!--*************HOME page**-->
+    <string name="home">Home</string>
+    <string name="search_by_keyword">Search by Keyword</string>
+    <string name="service_provider_detail">Service Provider Detail</string>
+
+    <string name="profile_home">Profile</string>
+    <string name="booking_home">Booking</string>
+    <string name="my_booking_home">My Bookings</string>
+    <string name="favorites_home">Favourites</string>
+    <string name="notifications_home">Notifications</string>
+    <string name="settings_home">Settings</string>
+    <string name="plan_home">Plan</string>
+    <string name="my_plan_home">My Plan</string>
+    <string name="subscription_plan_home">Subscription Plan</string>
+    <string name="about_us_home">About Us</string>
+    <string name="share_home">Share</string>
+    <string name="logout_home">Logout</string>
+
+
+    <string name="myjoborders_homesp">My Job Orders</string>
+    <string name="earnings_homesp">My Earnings</string>
+    <string name="contact_us_homesp">Contact Us</string>
+    <string name="tc_homesp">T&amp;C</string>
+
+
+    <!--*************Service proders list page**-->
+    <string name="ask_for_quote">Ask For Quote</string>
+    <string name="review">Review</string>
+    <string name="rating">01</string>
+    <string name="price_with_dollar">Price $20</string>
+    <string name="filter_serviceprovider">Filter</string>
+    <string name="sorting_serviceprovider">Sorting</string>
+    <string name="speciality_serviceprovider">Light Weight and Heavy Weight Vehicles</string>
+    <string name="description_serviceprovider">We take good care of engines to everything ,from light weight vehicle to heavy weight vehicle.We are available 24x7</string>
+
+    <string name="M">M</string>
+    <string name="T">T</string>
+    <string name="W">W</string>
+    <string name="F">F</string>
+    <string name="S">S</string>
+
+    <!--Pop ups-->
+    <string name="sort_your_list">Sort your List</string>
+    <string name="success_send_code">Success!</string>
+    <string name="by_distance">By Distance</string>
+    <string name="by_rating">By Rating</string>
+    <string name="by_price">By Price</string>
+    <string name="popup_cancel">CANCEL</string>
+    <string name="popup_done">DONE</string>
+    <string name="popup_ok">OK</string>
+    <string name="popup_resend">RESEND</string>
+
+    <string name="filter_option">Filter Option</string>
+    <string name="two_wheeler">Two Wheeler</string>
+    <string name="light_weight_vehicle">Light Weight Vehicle</string>
+    <string name="heavy_weight_vehicle">Heavy Weight Vehicle</string>
+
+    <!-- My bookings Fragment-->
+    <string name="my_bookings_fragment">My Booking</string>
+    <string name="booking_name">Car Repair</string>
+    <string name="booking_date">9 September,2016</string>
+    <string name="booking_amount">$200</string>
+
+    <string name="booking_time_bracket_open">(</string>
+    <string name="booking_time_bracket_close">)</string>
+    <string name="booking_time">(5:01pm)</string>
+    <string name="booking_status_pending">Pending</string>
+    <string name="booking_status_completed">Completed!</string>
+    <string name="booking_status_inprogress">InProgress</string>
+
+    <!--My plan and subscription -->
+
+    <string name="duration_myplan">Monthly</string>
+    <string name="amount_myplan">$200</string>
+    <string name="amount_annual">$800</string>
+    <string name="expirydate_text_myplan">Expiry Date</string>
+    <string name="expirydate_myplan">7 December,2017</string>
+    <string name="benefits_myplan">Benefits</string>
+    <string name="description_myplan">Loren Ipsum is very good printing company using high-tech technologies.Loren Ipsum has been industry\'s standard since 1990s.</string>
+    <string name="duration_annual_subscription">Annual</string>
+    <string name="buy_now_subscription">Buy Now</string>
+
+
+    <!--MY profile-->
+    <string name="name">Name</string>
+    <string name="user_name">Sameer Gaba</string>
+    <string name="dummy_name">Not Available</string>
+    <string name="not_available">Not Available</string>
+    <string name="dummy_number">Not Available</string>
+    <string name="dummy_email">Not Available</string>
+    <string name="dummy_address">Not Available</string>
+    <string name="change_password">Change Password</string>
+    <string name="app_notification">App Notification</string>
+    <string name="open_time">10:00AM To 8:00PM</string>
+    <string name="open">Open</string>
+    <string name="open_timing">Opening Time</string>
+    <string name="close_timing">Closing Timing</string>
+    <string name="service_area">Service Area Radius</string>
+    <string name="employees">Employees</string>
+    <string name="number_employees">35 Employees</string>
+    <string name="working_days">Working Days</string>
+    <string name="work_days">Mon,Tue,Wed,Thur,Fri</string>
+    <string name="Mon">Mon</string>
+    <string name="Tue">Tue</string>
+    <string name="Wed">Wed</string>
+    <string name="Thur">Thur</string>
+    <string name="Fri">Fri</string>
+    <string name="s_area">Upto 20km and above</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_10_km">10 KM</string>
+    <string name="categories">Categories</string>
+    <string name="work_hours">Work Hours</string>
+    <string name="speciality">Speciality</string>
+    <string name="description">Description</string>
+    <string name="reviews">Reviews</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="submit">Submit</string>
+
+
+    <!--Booking details-->
+    <string name="service_type">Service Type</string>
+    <string name="service_provider_detail_dummy_text">Service Provider Detail Dummy Text</string>
+    <string name="car_repair">Car Repair</string>
+    <string name="servicetype_car_repair">Minimum Charges $50</string>
+    <string name="service_provider_address_dummy_text">Service Provider Address Dummy Text</string>
+    <string name="service_provider_address">Service Provider Address</string>
+    <string name="rating_text">Rating</string>
+    <string name="mobulous_address">H-35, H-Block, Sector-63, Noida(U.P)</string>
+    <string name="ratings">Ratings</string>
+    <string name="write_your_review_here">Write your review here</string>
+    <string name="type_of_vechile">Type of Vehicle</string>
+    <string name="car">Car</string>
+    <string name="total_price">Total Price</string>
+    <string name="total_price_dummy_text">$200</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="payment">Payment</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="rejected_quote_request">Rejected</string>
+    <string name="accept_quote">Accept</string>
+    <string name="reject_quote">Reject</string>
+    <string name="jobtimer_accept_reject_quote">Job will expire in&#160;</string>
+
+    <string name="description_accept_reject_quote">An overheating engine can be more than frustating.Figure out why engine is getting hot.Mind this season. </string>
+    <string name="company_name">Company Name</string>
+    <string name="attach_documents">Attach documents</string>
+    <string name="quote">Quote</string>
+    <string name="title">Title</string>
+    <string name="to">To</string>
+    <string name="headername_myjoborders">My Job Orders</string>
+
+    <string-array name="spinner_dummy_array">
+        <item>09:00 am</item>
+        <item>10:25 am</item>
+        <item>11:55 am</item>
+        <item>01:12 pm</item>
+        <item>02:35 pm</item>
+        <item>03:42 pm</item>
+    </string-array>
+
+    <string name="pending_tab">Pending</string>
+    <string name="inprogress_tab">InProgress</string>
+    <string name="completed_tab">Completed</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="quote_submit_request_sent">Your Request is Sent to Service Provider Successfully!</string>
+    <string name="title_activity_home_service_pro">HomeActivityServicePro</string>
+    <string name="price">Price</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!--my earnings-->
+    <string name="customername_earning">Satyam</string>
+    <string name="descrip1_earning">Kumarswamy Layout,</string>
+    <string name="descrip2_earning">Banglore.</string>
+    <string name="completed">Completed</string>
+    <string name="in_progress">InProgress</string>
+    <string name="pending">Pending</string>
+
+
+    <string name="enter_price_here">Enter Price Here...</string>
+    <string name="job_order_detail">Job Order Detail</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="dummy_customer_details">Dummy Customer Details</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="change_job">Change Job</string>
+    <string name="change_the_status">Change the Status</string>
+    <string name="loading"> Loading ...</string>
+    <string name="push_notification">Push Notifications</string>
+    <string name="pick_location">Address</string>
+    <string name="uptofive">Upto 5 Km</string>
+    <string name="uptoten">Upto 10 Km</string>
+    <string name="upto20">Upto 20 Km and Above</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="minchrge">Minimum Charge</string>
+    <string name="accepttitle">Accept/Reject Detail</string>
+    <string name="new_job_requests">New Job Requests</string>
+    <string name="rejected_requests">Rejected Requests</string>
+    <string name="category_type">Category Type</string>
+    <string name="request_detail">Request Detail</string>
+    <string name="nopending">No Pending Job Orders to show.</string>
+    <string name="noprogress">No In-Progress Job Orders to show.</string>
+    <string name="nocomplete">No Completed Job Orders to show.</string>
+    <string name="norequest">No new job request for you.</string>
+
+
+</resources>

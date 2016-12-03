@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/linearLayout_calender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/calendar_date_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="January"
+                android:padding="@dimen/_4sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/header"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/home_header_color"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:padding="@dimen/_3sdp" >-->
+            <!--<ImageView-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_margin="@dimen/_2sdp"-->
+            <!--android:id="@+id/prev_button"-->
+            <!--android:tint="@color/white"-->
+            <!--android:src="@drawable/quote_left_arrow"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+            <!--<FrameLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--&gt;-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/calendar_date_display"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--android:text="January"-->
+            <!--android:padding="@dimen/_4sdp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/sp_18"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--</FrameLayout>-->
+            <!--<ImageView-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_margin="@dimen/_2sdp"-->
+            <!--android:id="@+id/next_button"-->
+            <!--android:tint="@color/white"-->
+            <!--android:src="@drawable/quote_right_arrow"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="6dp" >
+
+                <TextView
+                    android:id="@+id/TextView_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Mon"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Tue"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Wed"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_thur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Thur"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Fri"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+                <TextView
+                    android:id="@+id/TextView_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Sat"
+                    android:padding="@dimen/_2sdp"
+                    android:textColor="@color/home_header_color" />
+
+            </TableRow>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#dfdfdf"
+                android:padding="2dp" />
+
+
+            <mobulous12.airmechanics.utils.ExpandableGridView
+                android:id="@+id/calendar_grid"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:cacheColorHint="#80000000"
+                android:gravity="center"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="7"
+                android:padding="@dimen/dp_2"
+                android:stretchMode="columnWidth"
+                android:textAlignment="gravity"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

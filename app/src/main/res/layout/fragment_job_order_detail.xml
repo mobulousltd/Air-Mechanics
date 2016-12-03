@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/header_jOD"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/home_header_color">
+            <ImageView
+                android:id="@+id/back_jOD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/back" />
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textView_serviceProviderDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:text="@string/job_order_detail"
+                android:textSize="@dimen/sp_20"
+                android:textColor="@color/white"
+                />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_below="@+id/header_jOD"
+            android:id="@+id/imageView_jOD"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/profile"
+            android:padding="@dimen/_20sdp"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView_jOD"
+            android:layout_below="@+id/imageView_jOD"
+            android:layout_above="@+id/linear_button_jod">
+
+            <LinearLayout
+                android:id="@+id/linear_jOD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/imageView_jOD">
+
+                <!--CATEGORY TYPE-->
+                <RelativeLayout
+                    android:id="@+id/root_service_type_jOD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_service_type_jOD"
+                        android:text="@string/category_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView_service_type_jOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_service_type_dynamic_jOD"
+                    android:text="@string/car_repair"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+
+                <!--CUSTOMER DETAIL-->
+                <RelativeLayout
+                    android:id="@+id/root_customer_details_jOD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_customer_details_jOD"
+                        android:text="@string/customer_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView_rightArrow_customer_details_jOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_customer_details_dynamic_jOD"
+                    android:text="@string/dummy_customer_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+
+                <!--CUSTOMER ADDRESS-->
+                <RelativeLayout
+                    android:id="@+id/root_customer_address_jOD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_customer_address_jOD"
+                        android:text="@string/customer_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView_customer_address_jOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_customer_address_dynamic_jOD"
+                    android:text="@string/dummy_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+                <!--REQUEST DETAIL-->
+                <RelativeLayout
+                    android:id="@+id/root_request_detail_jOD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView_request_detail_jOD"
+                        android:text="@string/request_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_16"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView_request_detail_jOD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/greyright_arrow"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView_request_detail_dynamic_jOD"
+                    android:text="@string/dummy_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/_10sdp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/gray"
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/linear_button_jod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            >
+
+            <Button
+                app:font="@{`semibold`}"
+                android:id="@+id/button_change_job_jOD"
+                android:layout_width="@dimen/sp_0"
+                android:layout_height="wrap_content"
+                android:background="@color/fb_blue"
+                android:text="@string/change_job"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:layout_weight="1"
+                />
+
+            <Button
+                app:font="@{`semibold`}"
+                android:id="@+id/button_cancel_jOD"
+                android:layout_width="@dimen/sp_0"
+                android:layout_height="wrap_content"
+                android:background="@color/home_header_color"
+                android:text="@string/cancel"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

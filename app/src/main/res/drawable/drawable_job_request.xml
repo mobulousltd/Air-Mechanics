@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/department_background_drawable">
+
+    </item>
+
+    <item>
+        <rotate
+            android:drawable="@drawable/drawable_dialog_background"
+            android:fromDegrees="135"
+            android:pivotX="10%"
+
+            android:pivotY="1%"
+            android:toDegrees="0">
+            <shape android:shape="rectangle">
+                <solid android:color="@color/home_header_color" />
+                <corners
+                    android:bottomLeftRadius="@dimen/dp_15"
+                    android:bottomRightRadius="@dimen/dp_15"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp"></corners>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

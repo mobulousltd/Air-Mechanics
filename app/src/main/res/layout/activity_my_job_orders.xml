@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/activity_my_job_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!--Header-->
+
+        <RelativeLayout
+            android:id="@+id/header_myJobOrders"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/home_header_color">
+
+            <ImageView
+                android:id="@+id/back_myJobOrdersActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back"
+                android:padding="@dimen/_10sdp"
+                />
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/textview_headername_myJobOrders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/headername_myjoborders"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20" />
+
+        </RelativeLayout>
+
+        <!--<android.support.design.widget.TabLayout-->
+
+            <!--android:id="@+id/tablayout_myJobOrders"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/header_myJobOrders"-->
+            <!--android:background="@color/home_header_color"-->
+            <!--app:tabIndicatorColor="#243962"-->
+            <!--app:tabIndicatorHeight="3dp"-->
+            <!--app:tabSelectedTextColor="#ffffff"-->
+            <!--app:tabTextColor="#ffffff"-->
+            <!--app:tabMaxWidth="0dp"-->
+            <!--app:tabGravity="fill"-->
+            <!--app:tabMode="fixed"-->
+            <!--&gt;-->
+        <android.support.design.widget.TabLayout
+
+            android:id="@+id/tablayout_myJobOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/home_header_color"
+            style="@style/TabLayout1"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            app:tabGravity="fill"
+            app:tabMode="fixed">
+
+            <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Pending"-->
+
+            <!--/>-->
+
+
+            <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="InProgress"-->
+            <!--/>-->
+
+            <!--<android.support.design.widget.TabItem-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Completed"/>-->
+
+
+        </android.support.design.widget.TabLayout>
+
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_below="@+id/tablayout_myJobOrders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </LinearLayout>
+
+</layout>

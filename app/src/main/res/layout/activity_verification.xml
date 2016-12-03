@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+        android:orientation="vertical">
+
+        <!--Header-->
+
+        <RelativeLayout
+            android:id="@+id/header_verification"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#60000000">
+
+            <ImageView
+                android:id="@+id/back_VerificationActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/headername_verification"
+                android:textSize="@dimen/sp_20"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/headername_verification" />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/activity_verification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <ImageView
+                android:id="@+id/imageView_info"
+                android:src="@drawable/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:layout_marginLeft="@dimen/_16sdp"/>
+
+            <TextView
+                android:id="@+id/textView_verification_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imageView_info"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:text="@string/verification_code_text"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                />
+
+            <EditText
+                android:id="@+id/editText_verification_code"
+                android:hint="@string/enter_verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:layout_below="@+id/textView_verification_code"
+                android:layout_alignLeft="@+id/textView_verification_code"
+                android:layout_alignStart="@+id/textView_verification_code"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:maxLength="4"
+                android:textColor="@color/white"
+                android:textColorHint="#dbdbdb"
+                android:textSize="@dimen/sp_16"
+                android:theme="@style/MyEditTextTheme"
+
+                />
+
+            <Button
+                app:font="@{`semibold`}"
+                android:id="@+id/button_Send_VerificationActivity"
+                android:text="@string/send"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText_verification_code"
+                android:background="@drawable/sign_in_button"
+                android:layout_margin="@dimen/_25sdp"
+                android:textSize="@dimen/sp_18"/>
+
+            <TextView
+                android:id="@+id/textView_dont_get_verification_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button_Send_VerificationActivity"
+                android:text="@string/if_you_don_t_get_the_verification_code_please_click_resend"
+
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                />
+
+            <Button
+                app:font="@{`semibold`}"
+                android:text="@string/resend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:layout_below="@+id/textView_dont_get_verification_code"
+                android:background="@drawable/resend_button"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/_25sdp"
+                android:textSize="@dimen/sp_18"
+                android:id="@+id/button_Resend_VerificationActivity"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

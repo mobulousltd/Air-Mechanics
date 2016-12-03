@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<ScrollView-->
+        <!--android:background="@drawable/bg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <RelativeLayout
+            android:background="@drawable/bg"
+            android:id="@+id/root_activity_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear_skipToHome"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_alignParentTop="true"
+                android:padding="@dimen/_5sdp"
+                android:layout_alignRight="@+id/textView_ForgotPassword"
+                android:layout_alignEnd="@+id/textView_ForgotPassword">
+
+                <!--Skip Text-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/skip_text"
+                    android:textColor="@color/white"
+                    android:id="@+id/textView_Skip"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/_3sdp"
+                    android:gravity="center"
+                    android:layout_gravity="start"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+
+                    />
+
+                <!--Skip arrow Image-->
+                <ImageView
+                    android:id="@+id/imageView_skipArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/right_arrow"
+
+                    />
+
+            </LinearLayout>
+
+
+            <!--MAIN Logo-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:id="@+id/imageView_logo"
+                android:padding="@dimen/_5sdp"
+                android:layout_below="@+id/linear_skipToHome"
+                android:layout_centerHorizontal="true" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:id="@+id/linearlayout_ContactNumber"
+                android:orientation="horizontal"
+                android:layout_below="@+id/imageView_logo"
+
+                >
+
+                <!--Contactnumber image and text-->
+                <ImageView
+                    android:id="@+id/imageView_Contact"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    app:srcCompat="@drawable/conatct"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                   />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:hint="@string/contact_number"
+                    android:maxLines="1"
+                    app:font="@{`regular`}"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/white"
+                    android:textColorHint="#dbdbdb"
+                    android:id="@+id/editText_Contact"
+                    android:textSize="@dimen/sp_16"
+                    android:theme="@style/MyEditTextTheme"
+
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_11sdp"
+                android:id="@+id/linearlayout_Password"
+                android:orientation="horizontal"
+                android:layout_below="@+id/linearlayout_ContactNumber"
+                >
+
+                <!--password image and text-->
+                <ImageView
+                    android:id="@+id/imageView_password"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    app:srcCompat="@drawable/password"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    app:font="@{`regular`}"
+                    android:layout_gravity="center"
+                    android:hint="@string/password"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:textColor="@color/white"
+                    android:textColorHint="#dbdbdb"
+                    android:id="@+id/editText_Password"
+                    android:textSize="@dimen/sp_16"
+                    android:theme="@style/MyEditTextTheme"
+
+                    />
+
+            </LinearLayout>
+
+
+            <!--forgot_password-->
+            <TextView
+                android:text="@string/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearlayout_Password"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:id="@+id/textView_ForgotPassword"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                />
+
+            <!--SIGN IN BUTTON -->
+            <Button
+                app:font="@{`semibold`}"
+                android:id="@+id/button_SignIn"
+                android:text="@string/signin_ButtonText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="@dimen/sp_18"
+                android:layout_below="@+id/textView_ForgotPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_36sdp"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_32sdp"
+                android:background="@drawable/sign_in_button" />
+
+            <!--Social media images /buttons-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fb"
+                android:id="@+id/imageView_Fb"
+                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_alignTop="@+id/imageView_G_plus"
+                android:layout_alignLeft="@+id/linearlayout_newSignUp"
+                android:layout_alignStart="@+id/linearlayout_newSignUp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/g_plus"
+                android:id="@+id/imageView_G_plus"
+                android:layout_marginRight="@dimen/_34sdp"
+                android:layout_marginEnd="@dimen/_34sdp"
+                android:layout_below="@+id/button_SignIn"
+                android:layout_alignRight="@+id/linearlayout_newSignUp"
+                android:layout_alignEnd="@+id/linearlayout_newSignUp" />
+
+
+
+
+            <!--New User ** Sign-Up** TextView-->
+
+            <LinearLayout
+                android:id="@+id/linearlayout_newSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:padding="@dimen/_3sdp"
+                android:layout_below="@+id/imageView_G_plus"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:text="@string/newUser_text"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_SignUp"
+                    android:textSize="@dimen/sp_16"
+                    android:padding="@dimen/_1sdp"
+                    app:font="@{`regular`}"
+                    />
+                <TextView
+                    android:text="@string/createAccount_text"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView_createAccount"
+                    android:textSize="@dimen/sp_16"
+                    app:font="@{`semibold`}"
+                    android:padding="@dimen/_1sdp"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+    <!--</ScrollView>-->
+
+</layout>

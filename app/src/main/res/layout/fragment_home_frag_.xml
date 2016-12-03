@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <mobulous12.airmechanics.utils.CircularImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/garage_image"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:id="@+id/circleImageView" />
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:padding="@dimen/_5sdp"
+                android:hint="@string/not_available"
+                android:id="@+id/textView_name_homeSP" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/black"
+                android:padding="@dimen/_5sdp"
+                android:hint="@string/not_available"
+                android:id="@+id/textView_address_homeSP" />
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/home_header_color"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_3sdp" >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:id="@+id/prev_button"
+                    android:tint="@color/white"
+                    android:src="@drawable/quote_left_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/calendar_date_display"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="January"
+                        android:padding="@dimen/_4sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_18"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:id="@+id/next_button"
+                    android:tint="@color/white"
+                    android:src="@drawable/quote_right_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <mobulous12.airmechanics.utils.CalendarView
+                android:id="@+id/homefragment_calview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </mobulous12.airmechanics.utils.CalendarView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
