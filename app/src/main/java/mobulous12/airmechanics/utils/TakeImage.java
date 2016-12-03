@@ -103,6 +103,12 @@ public class TakeImage extends Activity
 					{
 						marshMallowPermission.requestPermissionForExternalCameraStorage();
 					}
+					else
+					{
+						Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+						cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageFileUri);
+						startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+					}
 				}
 				else
 				{
