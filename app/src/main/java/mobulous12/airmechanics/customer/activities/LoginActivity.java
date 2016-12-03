@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         root_activity_login = (RelativeLayout) findViewById(R.id.root_activity_login);
         button_SignIn = (Button) findViewById(R.id.button_SignIn);
         linear_skipToHome = (LinearLayout) findViewById(R.id.linear_skipToHome);
-        Toast.makeText(LoginActivity.this, "Test 2", Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Test 4", Toast.LENGTH_SHORT).show();
         linearlayout_newSignUp = (LinearLayout) findViewById(R.id.linearlayout_newSignUp);
         editText_Contact = (EditText) findViewById(R.id.editText_Contact);
         editText_Password = (EditText) findViewById(R.id.editText_Password);
