@@ -46,6 +46,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
 {
     AddressResultReceiver mResultReceiver;
     private static final int REQUEST_CODE_LOCATION = 000;
+    private static final int REQUEST_GPS = 010;
     GoogleApiClient mGoogleApiClient;
     LocationRequest mLocationRequest; AlertDialog.Builder builder;AlertDialog alert;
     Location mLastLocation;
@@ -69,15 +70,16 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        if (!new NetworkConnectionCheck(getApplicationContext()).isConnect())
-        {
-            Toast.makeText(getApplicationContext(), "Internet Disconnected", Toast.LENGTH_SHORT).show();
-            handler.postDelayed(runnable, 1000);
-        }
-        else
-        {
-            loadGoogleApi();
-        }
+        handler.postDelayed(runnable, 1000);
+//        if (!new NetworkConnectionCheck(getApplicationContext()).isConnect())
+//        {
+//            Toast.makeText(getApplicationContext(), "Internet Disconnected", Toast.LENGTH_SHORT).show();
+//            handler.postDelayed(runnable, 1000);
+//        }
+//        else
+//        {
+//            loadGoogleApi();
+//        }
     }
     public void loadGoogleApi()
     {
@@ -227,7 +229,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.settings), new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), 01);
+                        startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_GPS);
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -382,6 +384,30 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
 
 //        handler.postDelayed(runnable, 1000);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        loadGoogleApi();
+        if(resultCode==RESULT_OK)
+        {
+
+//            if(requestCode==REQUEST_GPS)
+//            {
+//                if(data!=null)
+//                {
+//                    Log.i("Location", ""+data.getDataString());
+//                }
+//            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        handler.removeCallbacks(runnable);
+        finish();
+    }
     class AddressResultReceiver extends ResultReceiver
     {
         public AddressResultReceiver(Handler handler) {
@@ -410,10 +436,5 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        handler.removeCallbacks(runnable);
-        finish();
-    }
+
 }
