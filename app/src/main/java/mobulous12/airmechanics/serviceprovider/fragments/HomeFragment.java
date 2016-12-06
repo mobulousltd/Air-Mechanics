@@ -94,7 +94,6 @@ public class HomeFragment extends Fragment implements ApiListener {
         //profile username and address
         textView_name_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
         textView_address_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
-        //profile image
         AQuery aQuery = new AQuery(profileImage);
         if (!SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.IMAGE).isEmpty())
         {

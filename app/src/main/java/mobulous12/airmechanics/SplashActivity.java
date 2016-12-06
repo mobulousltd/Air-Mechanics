@@ -380,6 +380,7 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
         super.onResume();
         loadGoogleApi();
     }
+
     class AddressResultReceiver extends ResultReceiver
     {
         public AddressResultReceiver(Handler handler) {
@@ -407,7 +408,6 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
             }
         }
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

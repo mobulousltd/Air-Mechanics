@@ -12,7 +12,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-feature android:name="android.hardware.location.gps" />
 
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -26,7 +27,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashTestAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,20 +80,18 @@
             android:name=".serviceprovider.activities.SignUpServiceProActivity"
             android:screenOrientation="portrait"
             android:theme="@style/QuoteTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden|adjustPan"/>
+            android:windowSoftInputMode="adjustResize|stateHidden|adjustPan" />
         <activity
             android:name=".serviceprovider.activities.HomeActivityServicePro"
             android:screenOrientation="portrait"
             android:theme="@style/QuoteTheme"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".serviceprovider.activities.BillPaymentActivitySp"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".serviceprovider.activities.JobOrderDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".utils.TakeImage" />
         <activity android:name="eu.janmuller.android.simplecropimage.CropImage" />
         <activity
@@ -110,10 +109,10 @@
             android:value="44b5915daf7330d0de425de1d6bc82af9e2d242a" />
 
         <activity
-            android:theme="@style/AppTheme"
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -133,6 +132,7 @@
             android:name=".addressfetcher.GeocodeAddressIntentService"
             android:exported="false" />
 
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>
