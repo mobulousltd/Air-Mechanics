@@ -43,6 +43,7 @@ import mobulous12.airmechanics.utils.NetworkConnectionCheck;
 public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener,
         ResultCallback<LocationSettingsResult>
 {
+    boolean loadhome=false;
     protected GoogleApiClient mGoogleApiClient;
     protected LocationRequest locationRequest;
     int REQUEST_CHECK_SETTINGS = 100;
@@ -75,6 +76,7 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
 
     private void loadHome()
     {
+        loadhome=true;
         Intent intent = new Intent(SplashTestAct.this, GeocodeAddressIntentService.class);
         intent.putExtra(Constants.RECEIVER, mResultReceiver);
         intent.putExtra(Constants.FETCH_TYPE_EXTRA, Constants.USE_ADDRESS_LOCATION);
@@ -184,6 +186,15 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        if(mGoogleApiClient!=null)
+//        {
+//            mGoogleApiClient.disconnect();
+//        }
+    }
+
     //Google api client connection start
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -213,6 +224,10 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
             Log.i("Location Changed", ""+mLastLocation.getLatitude()+":"+mLastLocation.getLongitude());
             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LATITUDE, "" + mLastLocation.getLatitude());
             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LONGITUDE, "" + mLastLocation.getLongitude());
+            if(!loadhome)
+            {
+                loadHome();
+            }
         }
         else
         {
