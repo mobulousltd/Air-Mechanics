@@ -52,7 +52,6 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
         findViewById(R.id.textView_Done_mapToPickAddress).setOnClickListener(this);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.address_map);
         mapFragment.getMapAsync(this);
-        //  search in placeautocompletefrag
         PlaceAutocompleteFragment placeAutocompleteFrag = (PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         placeAutocompleteFrag.setOnPlaceSelectedListener(new PlaceSelectionListener()
         {
@@ -85,7 +84,6 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
         markerOptions.title(address);
         Marker marker=mgoogleMap.addMarker(markerOptions);
         marker.setDraggable(true);
-
     }
 
     @Override
@@ -159,12 +157,10 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
             mgoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
                 @Override
                 public void onMarkerDragStart(Marker marker) {
-
                 }
 
                 @Override
                 public void onMarkerDrag(Marker marker) {
-
                 }
 
                 @Override

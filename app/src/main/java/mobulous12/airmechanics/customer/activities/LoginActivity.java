@@ -303,8 +303,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             break;
             case R.id.linear_skipToHome:
-//               Toast.makeText(this,"This functionality is under implementation.",Toast.LENGTH_LONG).show();
-
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                 Intent in=new Intent(this, HomeActivity.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -501,9 +499,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-
-            }
+                e.printStackTrace();}
     }
 
     @Override

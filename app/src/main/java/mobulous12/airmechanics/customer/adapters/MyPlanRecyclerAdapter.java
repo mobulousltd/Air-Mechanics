@@ -55,7 +55,6 @@ public class MyPlanRecyclerAdapter extends RecyclerView.Adapter<MyPlanRecyclerAd
             holder.myPlanDuration.setText(planBean.getPlanName());
             holder.rootHeadingMyPlan.setBackgroundColor(context.getResources().getColor(R.color.annual_pink_color));
         }
-
         holder.myPlanAmount.setText("$"+planBean.getPlanAmount());
         holder.expiryDate.setText(planBean.getExpiryDate());
         holder.descriptionMyPlan.setText(planBean.getDescription());
@@ -81,7 +80,6 @@ public class MyPlanRecyclerAdapter extends RecyclerView.Adapter<MyPlanRecyclerAd
         public MyPlanViewHolder(View itemView) {
             super(itemView);
 
-
             myPlanDuration = (TextView) itemView.findViewById(R.id.textView_durationMyPlan);
             myPlanAmount = (TextView) itemView.findViewById(R.id.textView_amountMyPlan);
             expiryDateText = (TextView) itemView.findViewById(R.id.textView_expirydateTextMyPlan);
@@ -89,13 +87,6 @@ public class MyPlanRecyclerAdapter extends RecyclerView.Adapter<MyPlanRecyclerAd
             benefitHeading = (TextView) itemView.findViewById(R.id.textView_benefitsHeadingMyPlan);
             descriptionMyPlan = (TextView) itemView.findViewById(R.id.textView_descriptionMyPlan);
             rootHeadingMyPlan = (RelativeLayout) itemView.findViewById(R.id.relativelayout_headingMyPlan);
-
-//            Font.setFontRobotoRegular(myPlanDuration, (AppCompatActivity)context);
-//            Font.setFontRobotoRegular(myPlanAmount, (AppCompatActivity)context);
-//            Font.setFontTextView(expiryDateText, (AppCompatActivity)context);
-//            Font.setFontTextView(expiryDate, (AppCompatActivity)context);
-//            Font.setFontRobotoRegular(benefitHeading, (AppCompatActivity)context);
-//            Font.setFontRalewayLight(descriptionMyPlan, (AppCompatActivity)context);
         }
     }
 }

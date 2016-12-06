@@ -9,13 +9,11 @@ import android.os.Parcelable;
 
 public class PlanBean implements Parcelable {
 
-    String planId,planName,expiryDate,planAmount,credits,remainingPoints,description, validity;
+    String planId,planName,expiryDate,planAmount,credits,remainingPoints,description, validity, pointspent;
 
 
     public PlanBean()
-    {
-
-    }
+    {}
 
     protected PlanBean(Parcel in) {
         planId = in.readString();
@@ -26,6 +24,7 @@ public class PlanBean implements Parcelable {
         remainingPoints = in.readString();
         description = in.readString();
         validity = in.readString();
+        pointspent = in.readString();
     }
 
     @Override
@@ -38,6 +37,7 @@ public class PlanBean implements Parcelable {
         dest.writeString(remainingPoints);
         dest.writeString(description);
         dest.writeString(validity);
+        dest.writeString(pointspent);
     }
 
     @Override
@@ -56,6 +56,14 @@ public class PlanBean implements Parcelable {
             return new PlanBean[size];
         }
     };
+
+    public String getPointspent() {
+        return pointspent;
+    }
+
+    public void setPointspent(String pointspent) {
+        this.pointspent = pointspent;
+    }
 
     public String getValidity() {
         return validity;

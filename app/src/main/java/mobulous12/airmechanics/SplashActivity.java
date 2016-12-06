@@ -379,8 +379,6 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
     protected void onResume() {
         super.onResume();
         loadGoogleApi();
-
-//        handler.postDelayed(runnable, 1000);
     }
     class AddressResultReceiver extends ResultReceiver
     {

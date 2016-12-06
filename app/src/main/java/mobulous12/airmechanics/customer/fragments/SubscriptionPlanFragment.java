@@ -107,7 +107,6 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.headername_subscriptionplan));
             ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
         }
-
 //
 //        recyclerView_subscriptionPlan = (RecyclerView) view.findViewById(R.id.recyclerView_subscriptionPlan);
 //        subsPlanRecyclerAdapter = new SubscriptionPlanRecyclerAdapter(getActivity());

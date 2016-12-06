@@ -35,9 +35,6 @@ import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MyPlanFragment extends Fragment implements ApiListener {
 
     private RecyclerView recyclerView_myPlan;
@@ -103,44 +100,30 @@ public class MyPlanFragment extends Fragment implements ApiListener {
     }
 
     @Override
-    public void myServerResponse(JSONObject jsonObject)
-    {
-        try{
-            if(jsonObject !=null)
-            {
-                if(jsonObject.getString("status").equalsIgnoreCase("SUCCESS"))
-                {
-                    if(jsonObject.getString("requestKey").equalsIgnoreCase("myplan"))
-                    {
-                        JSONObject jsonObject1=jsonObject.getJSONObject("response");
+    public void myServerResponse(JSONObject jsonObject) {
+        try {
+            if (jsonObject != null) {
+                if (jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) {
+                    if (jsonObject.getString("requestKey").equalsIgnoreCase("myplan")) {
+                        JSONObject jsonObject1 = jsonObject.getJSONObject("response");
                         PlanBean planBean = new PlanBean();
                         planBean.setPlanId(jsonObject1.getString("palnid"));
                         planBean.setPlanAmount(jsonObject1.getString("rate"));
                         planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
-                        if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
-                        {
-                            if(jsonObject1.getString("validity").equalsIgnoreCase("1 months"))
-                            {
+                        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN)) {
+                            if (jsonObject1.getString("validity").equalsIgnoreCase("1 months")) {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_myplan));
-                            }
-                            else
-                            {
+                            } else {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
                             }
                             planBean.setRemainingPoints(jsonObject1.getString("remainingpoin"));
-                            planBean.setDescription("You have "+planBean.getRemainingPoints()+" credits.");
-                        }
-                        else
-                        {
-                            if(jsonObject1.getString("planname").equalsIgnoreCase("Yearly"))
-                            {
+                            planBean.setDescription("You have " + planBean.getRemainingPoints() + " credits.");
+                        } else {
+                            if (jsonObject1.getString("planname").equalsIgnoreCase("Yearly")) {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
-                            }
-                            else
-                            {
+                            } else {
                                 planBean.setPlanName(jsonObject1.getString("planname"));
                             }
-
                             planBean.setDescription(getActivity().getString(R.string.description_myplan));
                         }
 
@@ -151,30 +134,18 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                         recyclerView_myPlan.setAdapter(myPlanRecyclerAdapter);
                         recyclerView_myPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
-                }
-                else {
-                    Log.v("JSON_Response", ""+jsonObject.toString());
+                } else {
+                    Log.v("JSON_Response", "" + jsonObject.toString());
                 }
 
 
             }
 
-           }
-
-
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -185,8 +156,6 @@ public class MyPlanFragment extends Fragment implements ApiListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -195,12 +164,6 @@ public class MyPlanFragment extends Fragment implements ApiListener {
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_show_service_provider).setVisible(false);
-//        if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN)) {
-//
-//            menu.findItem(R.id.action_show_service_provider).setVisible(false);
-//        }else {
-//            menu.findItem(R.id.action_show_myJob_Orders).setVisible(false);
-//        }
     }
 
 

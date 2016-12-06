@@ -49,19 +49,11 @@ import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback , ApiListener, GoogleMap.InfoWindowAdapter{
     GoogleMap googlemap;
     HashMap<Marker, ServiceProviderBean> sphashmap=new HashMap<Marker, ServiceProviderBean>( );
     private View view;
     private EditText et_search;
-
-    public HomeMapFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,8 +79,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 if (parent != null) parent.removeView(view);
                 HomeMapFragmentBinding binding=DataBindingUtil.inflate(inflater, R.layout.home_map_fragment, container, false);
                 view = binding.getRoot();
-//                view = inflater.inflate(R.layout.home_map_fragment, container, false);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
@@ -97,18 +90,13 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         ((HomeActivity) getActivity()).setNavigationIcon();
         ((HomeActivity) getActivity()).toolbarVisible();
 
-
         et_search = (EditText) view.findViewById(R.id.editText_search_home);
         et_search.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf"));
-
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.home_map);
         mapFragment.getMapAsync(this);
         serviceProviderList();
         return view;
     }
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
