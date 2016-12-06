@@ -27,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import mobulous12.airmechanics.addressfetcher.Constants;
@@ -36,30 +37,16 @@ import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 
 public class MapActivityToPickAddress extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
-    private TextView cancel_pickAddress,done_pickAddress;
     AddressResultReceiver mResultReceiver;
     private final String TAG ="PICKADDRESS";
     private String address = "", selectedLat = "", selectedLong = "";
-    private LatLng latLng;
     private String addressText = "";
-    private ImageView backArrow_PickAddress;
-    private TextView headername_PickAddress;
-    private static final int mapRequest = 111;
-    private TextView locationTextView;
-    private TextView attributionsTextView;
-    private FloatingActionButton fab;
     private GoogleMap mgoogleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DataBindingUtil.setContentView(this, R.layout.activity_map_to_pick_address);
-//   for Header
-        headername_PickAddress = (TextView) findViewById(R.id.headername_pickAddress);
-//   for footer
-//        fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(this);
-
         findViewById(R.id.textView_Cancel_mapToPickAddress).setOnClickListener(this);
         findViewById(R.id.back_pickAddress).setOnClickListener(this);
         findViewById(R.id.textView_Done_mapToPickAddress).setOnClickListener(this);
@@ -76,11 +63,10 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
             }
 
             @Override
-            public void onError(Status status) {
-                // TODO: Handle the error.
+            public void onError(Status status)
+            {
                 Log.i(TAG, "An error occurred: " + status);
-                Toast.makeText(getApplicationContext(), "Place selection failed: " + status.getStatusMessage(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Place selection failed: " + status.getStatusMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,13 +83,9 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title(address);
-        mgoogleMap.addMarker(markerOptions);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(latLng)
-                .zoom(15)
-                .build();
-        mgoogleMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(cameraPosition));
+        Marker marker=mgoogleMap.addMarker(markerOptions);
+        marker.setDraggable(true);
+
     }
 
     @Override
@@ -113,27 +95,19 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
             case R.id.back_pickAddress:
                 finish();
                 break;
-
             case R.id.textView_Cancel_mapToPickAddress:
                 finish();
                 break;
-
-
-//            case R.id.fab:
-//             inSearchAddress();
-//                break;
-
             case R.id.textView_Done_mapToPickAddress:
-
                 Intent in = new Intent();
-                if (addressText != null && !addressText.isEmpty()) {
+                if (addressText != null && !addressText.isEmpty())
+                {
                     in.putExtra("lat",selectedLat);
                     in.putExtra("long",selectedLong);
                     in.putExtra("address", addressText);
                 }
                 setResult(RESULT_OK, in);
                 finish();
-
                 break;
         }
 
@@ -158,16 +132,19 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
             {
                 latLng = new LatLng(Double.parseDouble(getIntent().getStringExtra("lat")),Double.parseDouble(getIntent().getStringExtra("lng")));
             }
-           else {
-
+           else
+            {
                 latLng=new LatLng(Double.parseDouble(SharedPreferenceWriter.getInstance(MapActivityToPickAddress.this).getString(SPreferenceKey.LATITUDE))
                         , Double.parseDouble(SharedPreferenceWriter.getInstance(MapActivityToPickAddress.this).getString(SPreferenceKey.LONGITUDE)));
             }
             addMarker(latLng,getIntent().getStringExtra("address"));
-
-//
-//            addMarker(latLng, SharedPreferenceWriter.getInstance(MapActivityToPickAddress.this).getString(SPreferenceKey.ADDRESS));
-            googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)
+                    .zoom(15)
+                    .build();
+            mgoogleMap.animateCamera(CameraUpdateFactory
+                    .newCameraPosition(cameraPosition));
+            mgoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng)
                 {
@@ -179,6 +156,28 @@ public class MapActivityToPickAddress extends AppCompatActivity implements OnMap
                     startService(intent);
                 }
             });
+            mgoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+                @Override
+                public void onMarkerDragStart(Marker marker) {
+
+                }
+
+                @Override
+                public void onMarkerDrag(Marker marker) {
+
+                }
+
+                @Override
+                public void onMarkerDragEnd(Marker marker) {
+                    Intent intent = new Intent(MapActivityToPickAddress.this, GeocodeAddressIntentService.class);
+                    intent.putExtra(Constants.RECEIVER, mResultReceiver);
+                    intent.putExtra(Constants.FETCH_TYPE_EXTRA, Constants.USE_ADDRESS_LOCATION);
+                    intent.putExtra(Constants.LOCATION_LATITUDE_DATA_EXTRA, marker.getPosition().latitude);
+                    intent.putExtra(Constants.LOCATION_LONGITUDE_DATA_EXTRA, marker.getPosition().longitude);
+                    startService(intent);
+                }
+            });
+
         }
     }
 

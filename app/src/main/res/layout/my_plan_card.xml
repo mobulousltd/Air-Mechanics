@@ -110,7 +110,7 @@
 
             <TextView
                 app:font="@{`roboto`}"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/benefits_myplan"
                 android:textSize="@dimen/sp_17"
@@ -126,9 +126,9 @@
 
             <TextView
                 app:font="@{`light`}"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/description_myplan"
+                android:text="escription_myplan"
                 android:textSize="@dimen/sp_15"
                 android:padding="@dimen/_2sdp"
                 android:textColor="@color/gray"

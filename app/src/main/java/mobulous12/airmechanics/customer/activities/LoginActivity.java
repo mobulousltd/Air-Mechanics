@@ -95,7 +95,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         root_activity_login = (RelativeLayout) findViewById(R.id.root_activity_login);
         button_SignIn = (Button) findViewById(R.id.button_SignIn);
         linear_skipToHome = (LinearLayout) findViewById(R.id.linear_skipToHome);
-        Toast.makeText(LoginActivity.this, "Test 5", Toast.LENGTH_SHORT).show();
         linearlayout_newSignUp = (LinearLayout) findViewById(R.id.linearlayout_newSignUp);
         editText_Contact = (EditText) findViewById(R.id.editText_Contact);
         editText_Password = (EditText) findViewById(R.id.editText_Password);
@@ -455,6 +454,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             else
                             {
+                                SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);
                                 Intent intent=new Intent(this, HomeActivityServicePro.class);

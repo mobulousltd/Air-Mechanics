@@ -9,7 +9,13 @@ import android.os.Parcelable;
 
 public class PlanBean implements Parcelable {
 
-    String planId,planName,expiryDate,planAmount,credits,remainingPoints,description;
+    String planId,planName,expiryDate,planAmount,credits,remainingPoints,description, validity;
+
+
+    public PlanBean()
+    {
+
+    }
 
     protected PlanBean(Parcel in) {
         planId = in.readString();
@@ -19,10 +25,24 @@ public class PlanBean implements Parcelable {
         credits = in.readString();
         remainingPoints = in.readString();
         description = in.readString();
+        validity = in.readString();
     }
-    public PlanBean()
-    {
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(planId);
+        dest.writeString(planName);
+        dest.writeString(expiryDate);
+        dest.writeString(planAmount);
+        dest.writeString(credits);
+        dest.writeString(remainingPoints);
+        dest.writeString(description);
+        dest.writeString(validity);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<PlanBean> CREATOR = new Creator<PlanBean>() {
@@ -36,6 +56,14 @@ public class PlanBean implements Parcelable {
             return new PlanBean[size];
         }
     };
+
+    public String getValidity() {
+        return validity;
+    }
+
+    public void setValidity(String validity) {
+        this.validity = validity;
+    }
 
     public String getCredits() {
         return credits;
@@ -93,19 +121,4 @@ public class PlanBean implements Parcelable {
         this.remainingPoints = remainingPoints;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(planId);
-        dest.writeString(planName);
-        dest.writeString(expiryDate);
-        dest.writeString(planAmount);
-        dest.writeString(credits);
-        dest.writeString(remainingPoints);
-        dest.writeString(description);
-    }
 }

@@ -43,7 +43,7 @@ public class MyPlanFragment extends Fragment implements ApiListener {
     private RecyclerView recyclerView_myPlan;
     private MyPlanRecyclerAdapter myPlanRecyclerAdapter;
     private View view;
-    private ArrayList<PlanBean> planBeanArrayList;
+    private ArrayList<PlanBean> planBeanArrayList=new ArrayList<>();
 
     public MyPlanFragment() {
         // Required empty public constructor
@@ -60,17 +60,12 @@ public class MyPlanFragment extends Fragment implements ApiListener {
     {
         FragmentMyPlanBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_my_plan, container, false);
         view=binding.getRoot();
-
         /*Recycler view*/
         recyclerView_myPlan = (RecyclerView) view.findViewById(R.id.recyclerView_myPlan);
-
         if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
         {
             ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_myplan));
             ((HomeActivity)getActivity()).setNavigationIcon();
-
-            /*  Hitting Customer Myplan Service  */
-            customerMyPlanServiceHit();
         }
         else
         {
@@ -78,19 +73,27 @@ public class MyPlanFragment extends Fragment implements ApiListener {
             ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
 
         }
+        myPlanServiceHit();
 
         return view;
     }
 
 //    /*Services*/
-    private void customerMyPlanServiceHit()
+    private void myPlanServiceHit()
     {
         MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
         entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         entityBuilder.addTextBody("token",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
 
         ServiceBean serviceBean = new ServiceBean();
-        serviceBean.setMethodName("Consumers/myplan");
+        if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+        {
+            serviceBean.setMethodName("Consumers/myplan");
+        }
+        else
+        {
+            serviceBean.setMethodName("Services/myplan");
+        }
         serviceBean.setActivity(getActivity());
         serviceBean.setApilistener(MyPlanFragment.this);
 
@@ -109,40 +112,45 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                 {
                     if(jsonObject.getString("requestKey").equalsIgnoreCase("myplan"))
                     {
-                        JSONArray responseArr = jsonObject.getJSONArray("response");
-
-//                     customer
+                        JSONObject jsonObject1=jsonObject.getJSONObject("response");
+                        PlanBean planBean = new PlanBean();
+                        planBean.setPlanId(jsonObject1.getString("palnid"));
+                        planBean.setPlanAmount(jsonObject1.getString("rate"));
+                        planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
                         if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
                         {
-                            planBeanArrayList = new ArrayList<PlanBean>();
-                            for (int i = 0; i < responseArr.length(); i++)
+                            if(jsonObject1.getString("validity").equalsIgnoreCase("1 months"))
                             {
-                                JSONObject j_obj = responseArr.getJSONObject(i);
-                                PlanBean planBean = new PlanBean();
-
-                                planBean.setPlanId(j_obj.getString("palnid"));
-                                planBean.setPlanAmount(j_obj.getString("sr_val"));
-                                planBean.setRemainingPoints(j_obj.getString("remainingpoin"));
-                                planBean.setExpiryDate(j_obj.getString("expiryDate"));
-                                planBean.setCredits(j_obj.getString("creadits"));
-
-                                planBeanArrayList.add(planBean);
-
+                                planBean.setPlanName(getActivity().getString(R.string.duration_myplan));
                             }
-
-                       /*Recycler view and Adapter*/
-                            myPlanRecyclerAdapter = new MyPlanRecyclerAdapter(getActivity(), planBeanArrayList);
-                            recyclerView_myPlan.setAdapter(myPlanRecyclerAdapter);
-                            recyclerView_myPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            else
+                            {
+                                planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
+                            }
+                            planBean.setRemainingPoints(jsonObject1.getString("remainingpoin"));
+                            planBean.setDescription("You have "+planBean.getRemainingPoints()+" credits.");
                         }
-            //  service provider
                         else
                         {
+                            if(jsonObject1.getString("planname").equalsIgnoreCase("Yearly"))
+                            {
+                                planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
+                            }
+                            else
+                            {
+                                planBean.setPlanName(jsonObject1.getString("planname"));
+                            }
 
+                            planBean.setDescription(getActivity().getString(R.string.description_myplan));
                         }
 
-                    }
+                        planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
+                        planBeanArrayList.add(planBean);
 
+                        myPlanRecyclerAdapter = new MyPlanRecyclerAdapter(getActivity(), planBeanArrayList);
+                        recyclerView_myPlan.setAdapter(myPlanRecyclerAdapter);
+                        recyclerView_myPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    }
                 }
                 else {
                     Log.v("JSON_Response", ""+jsonObject.toString());

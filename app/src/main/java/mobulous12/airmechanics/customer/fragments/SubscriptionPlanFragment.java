@@ -23,7 +23,10 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.beans.PlanBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.customer.adapters.SubscriptionPlanRecyclerAdapter;
 import mobulous12.airmechanics.databinding.FragmentSubscriptionPlanBinding;
@@ -42,6 +45,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 public class SubscriptionPlanFragment extends Fragment implements ApiListener, View.OnClickListener {
 
 
+    ArrayList<PlanBean> arrayList;
     RecyclerView recyclerView_subscriptionPlan;
     SubscriptionPlanRecyclerAdapter subsPlanRecyclerAdapter;
     private View view;
@@ -59,7 +63,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     private TextView annualSubscription_description;
     private Button btn_AnnualSubscription_BuyNow;
 
-    private String id = "";
+    private String id = "", annualid="", monthlyid="";
     //////////////////////
 
 
@@ -92,18 +96,16 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             annualSubscription_description = (TextView) view.findViewById(R.id.textView_lower_descriptionSubscriptionPlan);
         btn_AnnualSubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_annualSubscription);
 
+        subscriptionPlanListServicehit();
         if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
         {
             ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_subscriptionplan));
             ((HomeActivity)getActivity()).setNavigationIcon();
-
-            customerSubsPlanServiceHit();
         }
         else
         {
             ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.headername_subscriptionplan));
             ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
-            spSubsPlanServiceHit();
         }
 
 //
@@ -118,7 +120,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     }
 
 /*  Services*/
-    private void customerSubsPlanServiceHit()
+    private void subscriptionPlanListServicehit()
     {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -126,29 +128,21 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setActivity(getActivity());
-        serviceBean.setMethodName("Consumers/plans_list");
+        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+        {
+            serviceBean.setMethodName("Consumers/plans_list");
+        }
+        else
+        {
+            serviceBean.setMethodName("Services/plans_list");
+        }
         serviceBean.setApilistener(SubscriptionPlanFragment.this);
 
         CustomHandler customHandler = new CustomHandler(serviceBean);
         customHandler.makeMultipartRequest(multipartEntityBuilder);
     }
 
-    private void spSubsPlanServiceHit()
-    {
-        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-        multipartEntityBuilder.addTextBody("token",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
-
-        ServiceBean serviceBean = new ServiceBean();
-        serviceBean.setActivity(getActivity());
-        serviceBean.setMethodName("Services/plans_list");
-        serviceBean.setApilistener(SubscriptionPlanFragment.this);
-
-        CustomHandler customHandler = new CustomHandler(serviceBean);
-        customHandler.makeMultipartRequest(multipartEntityBuilder);
-    }
-
-    private void customerPlanPurchaseServiceHit()
+    private void planPurchaseServiceHit()
     {
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -157,28 +151,21 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setActivity(getActivity());
-        serviceBean.setMethodName("Consumers/planpurchase");
+        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+        {
+            serviceBean.setMethodName("Consumers/planpurchase");
+        }
+        else
+        {
+            serviceBean.setMethodName("Services/planPurchase");
+        }
         serviceBean.setApilistener(SubscriptionPlanFragment.this);
 
         CustomHandler customHandler = new CustomHandler(serviceBean);
         customHandler.makeMultipartRequest(multipartEntityBuilder);
     }
 
-    private void spPlanPurchaseServiceHit()
-    {
-        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
-        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
-        multipartEntityBuilder.addTextBody("planId",id);
 
-        ServiceBean serviceBean = new ServiceBean();
-        serviceBean.setActivity(getActivity());
-        serviceBean.setMethodName("Services/planPurchase");
-        serviceBean.setApilistener(SubscriptionPlanFragment.this);
-
-        CustomHandler customHandler = new CustomHandler(serviceBean);
-        customHandler.makeMultipartRequest(multipartEntityBuilder);
-    }
 
     @Override
     public void myServerResponse(JSONObject jsonObject)
@@ -195,24 +182,22 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                         if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
                         {
 
+                            arrayList=new ArrayList<PlanBean>();
                             for(int i = 0;i<responseArr.length();i++)
                             {
                                 JSONObject j_obj = responseArr.getJSONObject(i);
-                                String amount =j_obj.getString("payamount");
-                                String credits = j_obj.getString("creadits");
-                                String duration = j_obj.getString("validity");
-                                if(i == 0)
+                                if(j_obj.getString("validity").equalsIgnoreCase("1 months"))
                                 {
+                                    monthlyid=j_obj.getString("id");
                                     monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
-                                    monthlySubscriptionAmount.setText("$"+amount);
-                                    id = j_obj.getString("id");
+                                    monthlySubscriptionAmount.setText("$"+j_obj.getString("payamount"));
                                     btn_MonthlySubscription_BuyNow.setOnClickListener(this);
 
                                 }
                                 else {
+                                    annualid=j_obj.getString("id");
                                     annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
-                                    annualSubscriptionAmount.setText("$"+amount);
-                                    id = j_obj.getString("id");
+                                    annualSubscriptionAmount.setText("$"+j_obj.getString("payamount"));
                                     btn_AnnualSubscription_BuyNow.setOnClickListener(this);
                                 }
                             }
@@ -228,17 +213,17 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                     String description = object.getString("description");
                                     if (i == 0)
                                     {
+                                        monthlyid=object.getString("id");
                                         monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
                                         monthlySubscriptionAmount.setText("$"+rate);
                                         monthlySubscription_description.setText(description);
-                                        id = object.getString("id");
                                         btn_MonthlySubscription_BuyNow.setOnClickListener(this);
                                     }
                                     else {
+                                        annualid=object.getString("id");
                                         annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
                                         annualSubscriptionAmount.setText("$"+rate);
                                         annualSubscription_description.setText(description);
-                                        id = object.getString("id");
                                         btn_AnnualSubscription_BuyNow.setOnClickListener(this);
                                     }
                                 }
@@ -298,28 +283,13 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
         {
             case R.id.button_buyNow_monthlysubscription:
 
-                if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
-                {
-//              HITTING Customer's PLAN Puschase SERVICE
-                    customerPlanPurchaseServiceHit();
-                }
-                else {
-//             HITTING ServiceProviders's PLAN Puschase SERVICE
-                    spPlanPurchaseServiceHit();
-                }
+                id=monthlyid;
+                planPurchaseServiceHit();
                 break;
 
             case R.id.button_buyNow_annualSubscription:
-
-                if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
-                {
-//              HITTING Customer's PLAN Puschase SERVICE
-                    customerPlanPurchaseServiceHit();
-                }
-                else {
-//             HITTING ServiceProviders's PLAN Puschase SERVICE
-                    spPlanPurchaseServiceHit();
-                }
+                id=annualid;
+                planPurchaseServiceHit();
                 break;
         }
 

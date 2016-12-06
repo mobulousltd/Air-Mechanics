@@ -46,18 +46,19 @@ public class MyPlanRecyclerAdapter extends RecyclerView.Adapter<MyPlanRecyclerAd
     public void onBindViewHolder(MyPlanViewHolder holder, int position)
     {
         final PlanBean planBean = planBeanArrayList.get(position);
-        if(planBean.getPlanId().equalsIgnoreCase("1"))
+        if(planBean.getPlanName().equalsIgnoreCase("Monthly"))
         {
-            holder.myPlanDuration.setText(context.getString(R.string.duration_myplan));
+            holder.myPlanDuration.setText(planBean.getPlanName());
             holder.rootHeadingMyPlan.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
         }
         else {
-            holder.myPlanDuration.setText(context.getString(R.string.duration_annual_subscription));
+            holder.myPlanDuration.setText(planBean.getPlanName());
             holder.rootHeadingMyPlan.setBackgroundColor(context.getResources().getColor(R.color.annual_pink_color));
         }
 
         holder.myPlanAmount.setText("$"+planBean.getPlanAmount());
         holder.expiryDate.setText(planBean.getExpiryDate());
+        holder.descriptionMyPlan.setText(planBean.getDescription());
 
     }
 
