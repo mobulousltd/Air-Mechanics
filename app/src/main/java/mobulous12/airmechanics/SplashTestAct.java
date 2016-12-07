@@ -210,7 +210,6 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
 
         result.setResultCallback(this);
     }
-
     @Override
     public void onConnectionSuspended(int i) {
 
@@ -249,31 +248,29 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
     //implement resultCallback
     // overridden method called OnResult for gps result
     @Override
-    public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
+    public void onResult(@NonNull LocationSettingsResult locationSettingsResult)
+    {
         final Status status = locationSettingsResult.getStatus();
-        switch (status.getStatusCode()) {
-            case LocationSettingsStatusCodes.SUCCESS:
-                // NO need to show the dialog;
+        switch (status.getStatusCode())
+        {
+            case LocationSettingsStatusCodes.SUCCESS:// GPS is already enabled no need of dialog
                 loadLoaction();
                 break;
-
-            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                //  Location settings are not satisfied. Show the user a dialog
-                try {
-                    // Show the dialog by calling startResolutionForResult(), and check the result
-                    // in onActivityResult().
+            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED://  Location settings are not satisfied. Show the user a dialog
+                try
+                {
+                    // Show the dialog by calling startResolutionForResult(), and check the result in onActivityResult().
                     status.startResolutionForResult(SplashTestAct.this, REQUEST_CHECK_SETTINGS);
-                } catch (IntentSender.SendIntentException e) {
-                    //failed to show
+                }
+                catch (IntentSender.SendIntentException e)
+                {
+                    e.printStackTrace();
                 }
                 break;
-
-            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                // Location settings are unavailable so not possible to show any dialog now
+            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE: // Location settings are unavailable so not possible to show any dialog now
                 break;
         }
     }
-
 
 
     //GPS permission start
@@ -349,14 +346,7 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
         if (requestCode == REQUEST_CHECK_SETTINGS) {
 
             if (resultCode == RESULT_OK) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        loadLoaction();
-                        SPLASH_TIME_OUT=100;
-                    }
-                }, 3000);
+                loadLoaction();
                 Toast.makeText(getApplicationContext(), "GPS is enabled now.", Toast.LENGTH_LONG).show();
             } else {
 
