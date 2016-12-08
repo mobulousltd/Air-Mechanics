@@ -204,7 +204,11 @@ public class HomeActivityServicePro extends AppCompatActivity
                 startActivity(intent);
             }
         }
-
+        if(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.COMPANYNAME).isEmpty())
+        {
+            Toast.makeText(HomeActivityServicePro.this, "Please fill your Company Details...to continue", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, new ProfileFragment_SP(), "profileFragSP").addToBackStack("profileSP").commit();
+        }
 
     } //on create ENDS here
 

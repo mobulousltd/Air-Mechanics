@@ -7,10 +7,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
+import android.location.Address;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Looper;
+import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -60,6 +62,8 @@ import java.util.logging.Handler;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.RoleSelectionActivity;
+import mobulous12.airmechanics.addressfetcher.Constants;
+import mobulous12.airmechanics.addressfetcher.GeocodeAddressIntentService;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
@@ -84,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     public ProgressDialog mProgressDialog;
+    AddressResultReceiver mResultReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +141,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.imageView_Fb).setOnClickListener(this);
         findViewById(R.id.imageView_G_plus).setOnClickListener(this);
 
+        mResultReceiver = new AddressResultReceiver(null);
         linearlayout_newSignUp.setOnClickListener(this);
+        Intent intent = new Intent(LoginActivity.this, GeocodeAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        intent.putExtra(Constants.FETCH_TYPE_EXTRA, Constants.USE_ADDRESS_LOCATION);
+        intent.putExtra(Constants.LOCATION_LATITUDE_DATA_EXTRA, Double.parseDouble(SharedPreferenceWriter.getInstance(LoginActivity.this).getString(SPreferenceKey.LATITUDE)));
+        intent.putExtra(Constants.LOCATION_LONGITUDE_DATA_EXTRA, Double.parseDouble(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE)));
+        startService(intent);
     }
 
 
@@ -375,6 +387,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //services
     private void checksocialmediaServiceMedia() {
+        String add=SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.ADDRESS);
+        String city=SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.CITY);
+        String lng=SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE);
         MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
         multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartbuilder.addTextBody("email", email);
@@ -382,8 +397,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         multipartbuilder.addTextBody("fb_id", fbid);
         multipartbuilder.addTextBody("name", name);
         multipartbuilder.addTextBody("image", image);
-        multipartbuilder.addTextBody("address", "H-35, Sector-63");
-        multipartbuilder.addTextBody("city", "noida");
+        multipartbuilder.addTextBody("address", add);
+        multipartbuilder.addTextBody("city", city);
         multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LATITUDE));
         multipartbuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
         multipartbuilder.addTextBody("deviceToken", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.DEVICETOKEN));
@@ -521,5 +536,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, false);
         startActivity(in1);
         finish();
+    }
+    class AddressResultReceiver extends ResultReceiver
+    {
+        public AddressResultReceiver(android.os.Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, final Bundle resultData) {
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                final Address address = resultData.getParcelable(Constants.RESULT_ADDRESS);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SharedPreferenceWriter.getInstance(LoginActivity.this).writeStringValue(SPreferenceKey.ADDRESS, resultData.getString(Constants.RESULT_DATA_KEY));
+                        SharedPreferenceWriter.getInstance(LoginActivity.this).writeStringValue(SPreferenceKey.CITY, resultData.getString(Constants.CTIY));
+                        Log.i("Results", ""+resultData.getString(Constants.CTIY)+" "+resultData.getString(Constants.RESULT_DATA_KEY));
+                    }
+                });
+            }
+            else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+        }
     }
 }

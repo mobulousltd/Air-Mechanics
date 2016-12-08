@@ -176,7 +176,6 @@ public class HomeFragment extends Fragment implements ApiListener {
 
         // HITTING HOME SERVICE
         homeScreenServiceHit();
-
         return view;
     }
 

@@ -166,7 +166,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         profileBean.setContactno(editText_contact_number.getText().toString().trim());
         profileBean.setAddress(textView_address1.getText().toString().trim());
         profileBean.setImagePath(picpath);
-        profileBean.setCity("Sector-63, Noida");
+        profileBean.setCity(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.CITY));
         profileBean.setCountry_code("91");
         return profileBean;
     }

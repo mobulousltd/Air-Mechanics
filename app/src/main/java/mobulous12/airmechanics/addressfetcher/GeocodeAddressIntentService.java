@@ -68,7 +68,7 @@ public class GeocodeAddressIntentService extends IntentService {
                 errorMessage = "Not Found";
                 Log.e(TAG, errorMessage);
             }
-            deliverResultToReceiver(Constants.FAILURE_RESULT, errorMessage, null);
+            deliverResultToReceiver(Constants.FAILURE_RESULT, errorMessage, null, null);
         } else {
             for(Address address : addresses) {
                 String outputAddress = "";
@@ -92,21 +92,26 @@ public class GeocodeAddressIntentService extends IntentService {
                     addre=addre+", "+address.getAddressLine(i);
                 }
             }
-
+            String city=address.getLocality();
+            if(city==null)
+            {
+                city=address.getFeatureName();
+            }
             Log.i("Address", ""+address);
             Log.i("Address", ""+addre);
             Log.i(TAG, "Address Found");
-            deliverResultToReceiver(Constants.SUCCESS_RESULT, addre, address);
+            deliverResultToReceiver(Constants.SUCCESS_RESULT, addre, address, city);
 //            deliverResultToReceiver(Constants.SUCCESS_RESULT,
 //                    TextUtils.join(System.getProperty("user.home"), addressFragments),
 //                    address);
         }
     }
 
-    private void deliverResultToReceiver(int resultCode, String message, Address address) {
+    private void deliverResultToReceiver(int resultCode, String message, Address address, String city) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constants.RESULT_ADDRESS, address);
         bundle.putString(Constants.RESULT_DATA_KEY, message);
+        bundle.putString(Constants.CTIY, city);
         resultReceiver.send(resultCode, bundle);
     }
 

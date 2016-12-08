@@ -377,6 +377,8 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
                     @Override
                     public void run() {
                         SharedPreferenceWriter.getInstance(SplashTestAct.this).writeStringValue(SPreferenceKey.ADDRESS, resultData.getString(Constants.RESULT_DATA_KEY));
+                        SharedPreferenceWriter.getInstance(SplashTestAct.this).writeStringValue(SPreferenceKey.CITY, resultData.getString(Constants.CTIY));
+                        Log.i("Results", ""+resultData.getString(Constants.CTIY)+" "+resultData.getString(Constants.RESULT_DATA_KEY));
                     }
                 });
             }

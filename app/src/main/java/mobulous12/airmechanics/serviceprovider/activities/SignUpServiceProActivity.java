@@ -179,7 +179,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                     profileBean.setContactno(editText_contactNumber_SP.getText().toString().trim());
                     profileBean.setAddress(textview_address_servicePro.getText().toString().trim());
                     profileBean.setImagePath(profilepic);
-                    profileBean.setCity("Sector-63, Noida");
+                    profileBean.setCity(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.CITY));
                     profileBean.setCountry_code("+91");
                     profileBean.setFrom(textview_open_sp.getText().toString());
                     profileBean.setTo(textview_close_sp.getText().toString());

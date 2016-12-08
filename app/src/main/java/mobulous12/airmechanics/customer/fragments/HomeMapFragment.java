@@ -23,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -216,9 +217,23 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     sphashmap.put(googlemap.addMarker(markerOptions), serviceproviderbean);
                 }
             }
-            googlemap.setInfoWindowAdapter(new MyInfoWindowAdapter(getActivity(), sphashmap));
-            LatLngBounds bounds = builder.build();
-            googlemap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 200, 200, 5));
+            if(sphashmap.size()==0)
+            {
+                LatLng latLng = new LatLng(Double.parseDouble(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE)),
+                        Double.parseDouble(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE)));
+                CameraPosition cameraPosition = new CameraPosition.Builder()
+                        .target(latLng)
+                        .zoom(15)
+                        .build();
+                googlemap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            }
+            else
+            {
+                googlemap.setInfoWindowAdapter(new MyInfoWindowAdapter(getActivity(), sphashmap));
+                LatLngBounds bounds = builder.build();
+                googlemap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 200, 200, 5));
+            }
+
 
         }
         catch (Exception e)

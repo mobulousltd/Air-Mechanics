@@ -395,6 +395,8 @@ public class SplashActivity extends AppCompatActivity implements GoogleApiClient
                     @Override
                     public void run() {
                         SharedPreferenceWriter.getInstance(SplashActivity.this).writeStringValue(SPreferenceKey.ADDRESS, resultData.getString(Constants.RESULT_DATA_KEY));
+                        SharedPreferenceWriter.getInstance(SplashActivity.this).writeStringValue(SPreferenceKey.CITY, resultData.getString(Constants.CTIY));
+                        Log.i("Results", ""+resultData.getString(Constants.CTIY)+" "+resultData.getString(Constants.RESULT_DATA_KEY));
                     }
                 });
             }
