@@ -27,7 +27,6 @@ public class NetworkConnectionCheck
                     {
                         return true;
                     }
-
         }
         return false;
     }

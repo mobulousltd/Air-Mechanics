@@ -1,18 +1,26 @@
 [
     {
-        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/main.xml",
-        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/main.xml"
+        "merged": "/home/mobulous11/Desktop/Air-Mechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/main.xml",
+        "source": "/home/mobulous11/Desktop/Air-Mechanics/CropLib/build/intermediates/bundles/debug/res/layout/main.xml"
     },
     {
-        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/cropimage.xml",
-        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/cropimage.xml"
+        "merged": "/home/mobulous11/Desktop/Air-Mechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/cropimage.xml",
+        "source": "/home/mobulous11/Desktop/Air-Mechanics/CropLib/build/intermediates/bundles/debug/res/layout/cropimage.xml"
     },
     {
         "merged": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/main.xml",
         "source": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/main.xml"
     },
     {
+        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/cropimage.xml",
+        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/cropimage.xml"
+    },
+    {
         "merged": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/cropimage.xml",
         "source": "/home/mobulous2/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/cropimage.xml"
+    },
+    {
+        "merged": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/res/merged/androidTest/debug/layout/main.xml",
+        "source": "/home/mobulous2/Test/AirMechanics/CropLib/build/intermediates/bundles/debug/res/layout/main.xml"
     }
 ]
