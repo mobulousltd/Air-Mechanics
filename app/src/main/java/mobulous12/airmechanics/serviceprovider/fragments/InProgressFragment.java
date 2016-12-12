@@ -130,6 +130,7 @@ public class InProgressFragment extends Fragment implements ApiListener {
                             BookingBean bean=beanArrayList.get(position);
                             Intent intent=new Intent(getActivity(), JobOrderDetailActivity.class);
                             intent.putExtra("bookingbean", bean);
+                            intent.putExtra("whichFrag", "InprogressFragment");
                             startActivityForResult(intent, JOBSTATUSCHANGE);
                         }
 

@@ -244,6 +244,21 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         RadioButton radio3 = (RadioButton) view2.findViewById(R.id.radio3_pending_popup);
         RadioGroup radioGroup = (RadioGroup) view2.findViewById(R.id.radioGroup_jod_popup);
 
+        String whichFrag = getIntent().getStringExtra("whichFrag");
+        switch (whichFrag)
+        {
+            case "PendingFragment":
+                radio3.setVisibility(View.GONE);
+                break;
+            case "InprogressFragment":
+                radio2.setVisibility(View.GONE);
+                break;
+            case "CompletedFragment":
+                radio1.setVisibility(View.GONE);
+                break;
+
+        }
+
 //        RADIO GROUP LISTENER
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
