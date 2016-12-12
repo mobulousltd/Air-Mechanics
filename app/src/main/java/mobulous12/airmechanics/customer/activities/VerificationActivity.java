@@ -39,7 +39,7 @@ import static mobulous12.airmechanics.R.id.editText_password;
 
 public class VerificationActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
-    String code, email="";
+    String code, email="",newContact;
     public static VerificationActivity verificationActivity;
     private EditText editText_verification_code;
     ProfileBean bean;
@@ -52,6 +52,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
         DataBindingUtil.setContentView(this, R.layout.activity_verification);
         verificationActivity = this;
         code = getIntent().getStringExtra("vcode");
+        newContact = getIntent().getStringExtra("number");
         bean=getIntent().getParcelableExtra("customerdata");
 
         editText_verification_code = (EditText) findViewById(R.id.editText_verification_code);
@@ -74,7 +75,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("country_code", "+91");
-            multipartbuilder.addTextBody("mobile", bean.getContactno());
+            multipartbuilder.addTextBody("mobile", newContact);
             multipartbuilder.addTextBody("email", email);
             ServiceBean serviceBean = new ServiceBean();
             if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
@@ -101,7 +102,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("country_code", "+91");
             multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.TOKEN));
-            multipartbuilder.addTextBody("contact_no", getIntent().getStringExtra("number"));
+            multipartbuilder.addTextBody("contact_no", newContact);
             ServiceBean serviceBean = new ServiceBean();
             if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
             {

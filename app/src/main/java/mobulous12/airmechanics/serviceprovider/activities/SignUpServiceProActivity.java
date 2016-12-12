@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
@@ -248,6 +250,18 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
     }
 
+    private boolean validateName(EditText editText)
+    {
+        Pattern ps = Pattern.compile("[a-zA-Z ]+");
+        Matcher ms = ps.matcher(editText.getText().toString());
+        boolean bs = ms.matches();
+        if (!bs) {
+            return true;
+        }
+        else
+            return false;
+    }
+
     private boolean validations()
     {
         if (editText_fullName_SP.getText().toString().trim().isEmpty())
@@ -257,7 +271,17 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (editText_companyName_SP.getText().toString().trim().isEmpty())
         {
-            showToast("Please enter company name");
+            showToast("Please enter Company name");
+            return false;
+        }
+        else if(!validateName(editText_fullName_SP))
+        {
+            showToast("Please enter a valid Full name");
+            return false;
+        }
+        else if(!validateName(editText_companyName_SP))
+        {
+            showToast("Please enter a valid Company name");
             return false;
         }
         else if (editText_email_SP.getText().toString().trim().isEmpty())
@@ -265,7 +289,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             showToast("Please enter Email");
             return false;
         }
-        else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(editText_email_SP.getText().toString()).matches()) {
+        else if (!Patterns.EMAIL_ADDRESS.matcher(editText_email_SP.getText().toString()).matches()) {
             showToast("Please enter valid Email");
             return false;
         }

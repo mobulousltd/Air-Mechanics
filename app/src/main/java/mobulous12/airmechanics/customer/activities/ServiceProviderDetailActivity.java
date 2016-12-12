@@ -19,15 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.androidquery.AQuery;
-
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
-
 import mobulous12.airmechanics.R;
-import mobulous12.airmechanics.SplashActivity;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.ServiceProviderDetailBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;

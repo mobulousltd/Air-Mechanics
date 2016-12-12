@@ -24,6 +24,8 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
@@ -87,6 +89,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         textView_address1.setOnClickListener(this);
     }
 
+    private boolean validateName(EditText editText)
+    {
+        Pattern ps = Pattern.compile("[a-zA-Z ]+");
+        Matcher ms = ps.matcher(editText.getText().toString());
+        boolean bs = ms.matches();
+        if (!bs) {
+            return true;
+        }
+        else
+            return false;
+    }
+
     private boolean validateCustomerData()
     {
         if (editText_fullName.getText().toString().trim().isEmpty())
@@ -94,12 +108,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             showToast("Please enter Full name");
             return false;
         }
+        else if(!validateName(editText_fullName))
+        {
+            showToast("Please enter a valid Full name");
+            return false;
+        }
         else if(editText_email.getText().toString().isEmpty())
         {
             showToast("Please enter Email Address");
             return false;
         }
-        else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(editText_email.getText().toString()).matches()) {
+        else if (!Patterns.EMAIL_ADDRESS.matcher(editText_email.getText().toString()).matches()) {
             showToast("Please enter valid Email Address");
             return false;
         }
