@@ -129,7 +129,6 @@ public class PendingFragment extends Fragment implements ApiListener {
 
                             BookingBean bean=beanArrayList.get(position);
                             Intent intent=new Intent(getActivity(), JobOrderDetailActivity.class);
-                            intent.putExtra("whichFrag", "PendingFragment");
                             intent.putExtra("bookingbean", bean);
                             startActivityForResult(intent, JOBSTATUSCHANGE);
                         }
