@@ -255,7 +255,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         Pattern ps = Pattern.compile("[a-zA-Z ]+");
         Matcher ms = ps.matcher(editText.getText().toString());
         boolean bs = ms.matches();
-        if (!bs) {
+        if (bs) {
             return true;
         }
         else
