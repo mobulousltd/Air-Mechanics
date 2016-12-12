@@ -37,7 +37,6 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 public class RejectedQuotesFragment extends Fragment implements ApiListener {
 
-
     private RecyclerView recyclerView_rejected;
     private RejectedRecyclerAapter rejectedRecyclerAapter;
     private View view;
@@ -132,9 +131,18 @@ public class RejectedQuotesFragment extends Fragment implements ApiListener {
                         bean.setRequestDate(obj.getString("requestDate"));
                         bean.setStatus(obj.getString("status"));
                         bean.setRequestTime(obj.getString("Request_time"));
+                        bean.setOpenTime(obj.getString("open_time"));
+                        bean.setCloseTime(obj.getString("close_time"));
                         beanArrayList.add(bean);
                     }
-
+                    if(beanArrayList.size()==0)
+                    {
+                        view.findViewById(R.id.tv_rejected).setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        view.findViewById(R.id.tv_rejected).setVisibility(View.GONE);
+                    }
                     rejectedRecyclerAapter = new RejectedRecyclerAapter(getActivity(), beanArrayList);
                     recyclerView_rejected.setAdapter(rejectedRecyclerAapter);
                     recyclerView_rejected.setLayoutManager(new LinearLayoutManager(getActivity()));

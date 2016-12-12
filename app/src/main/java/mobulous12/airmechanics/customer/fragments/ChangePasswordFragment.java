@@ -125,6 +125,10 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                 {
                     Toast.makeText(getActivity(),"Please enter valid New password",Toast.LENGTH_SHORT).show();
                 }
+                else if (editText_old_pass.getText().toString().equals(editText_new_pass.getText().toString()))
+                {
+                    Toast.makeText(getActivity(), "Old and New password must be different", Toast.LENGTH_SHORT).show();
+                }
                 else if(editText_confirm_new_pass.getText().toString().isEmpty())
                 {
                     Toast.makeText(getActivity(),"Please confirm your New password",Toast.LENGTH_SHORT).show();
@@ -183,7 +187,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                 {
                     if (responseObj.getString("requestKey").equalsIgnoreCase("resetPassword"))
                     {
-                       getActivity(). getSupportFragmentManager().popBackStack();
+                        getActivity(). getSupportFragmentManager().popBackStack();
                         Toast.makeText(getActivity(),"Your Password is changed successfully!",Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.airinterfaces.MyDialogListenerInterface;
+import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.serviceprovider.activities.SignUpServiceProActivity;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
@@ -92,11 +94,19 @@ public class SpecialityDialogFrag extends DialogFragment implements View.OnClick
         {
             case R.id.speciality_done:
 
-                if (getActivity() instanceof SignUpServiceProActivity)
+                MyDialogListenerInterface listener;
+                if(getActivity() instanceof HomeActivityServicePro)
                 {
-                    listener = (MyDialogListenerInterface) getActivity();
-                    listener.onFinishDialog(specialty, "speciality");
+                    Fragment fragment=getTargetFragment();
+                    listener=(MyDialogListenerInterface)fragment;
                 }
+                else
+                {
+                    listener=(MyDialogListenerInterface)getActivity();
+
+                }
+                listener.onFinishDialog(specialty, "speciality");
+                dismiss();
                 dismiss();
                 break;
             case R.id.speciality_cancel:

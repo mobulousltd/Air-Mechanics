@@ -130,13 +130,14 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("fullname", bean.getFullname());
+            multipartbuilder.addTextBody("companyName", bean.getCompanyname());
             multipartbuilder.addTextBody("email", bean.getEmail());
             multipartbuilder.addTextBody("password", bean.getPassword());
             multipartbuilder.addTextBody("country_code", "+91");
             multipartbuilder.addTextBody("contact_no",  bean.getContactno());
             multipartbuilder.addTextBody("address",  bean.getAddress());
             multipartbuilder.addTextBody("city", "noida");
-            multipartbuilder.addTextBody("companyName", bean.getCompanyname());
+
             multipartbuilder.addTextBody("category", bean.getCategory());
             multipartbuilder.addTextBody("from", bean.getFrom());
             multipartbuilder.addTextBody("to", bean.getTo());

@@ -191,6 +191,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                     monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
                                     monthlySubscriptionAmount.setText("$"+j_obj.getString("payamount"));
                                     btn_MonthlySubscription_BuyNow.setOnClickListener(this);
+                                    monthlySubscription_description.setText("Monthly credits will be "+j_obj.getString("creadits")+" points.");
 
                                 }
                                 else {
@@ -198,6 +199,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                     annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
                                     annualSubscriptionAmount.setText("$"+j_obj.getString("payamount"));
                                     btn_AnnualSubscription_BuyNow.setOnClickListener(this);
+                                    monthlySubscription_description.setText("Annual credits will be "+j_obj.getString("creadits")+" points.");
                                 }
                             }
                         }

@@ -71,10 +71,10 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     Calendar calendar;
     private EditText editText_name_profileSP, editText_email_profileSP,
             editText_employees_profileSP;
-
+//    private EditText et_companyname;
     private TextView textView_userName_ProfileSP, textView_openText_profileSP, textView_closeText_profileSP,
             tv_serviceArea_spProfile,tv_workdays_spProfile, tv_address_profileSP,tv_categoriesSP,tv_specialitySP,
-            editText_contactNumber_profileSP,tv_minCharge_profileSP;
+            editText_contactNumber_profileSP,tv_minCharge_profileSP,editText_companyNameSP;
 
     private int hour,minute;
 
@@ -122,11 +122,13 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
         editText_name_profileSP = (EditText) view.findViewById(R.id.editText_name_profileSP);
 //        editText_contactNumber_profileSP = (TextView) view.findViewById(R.id.editText_contactNumber_profileSP);
+        editText_companyNameSP = (EditText) view.findViewById(R.id.editText_companyNameSP);
         editText_email_profileSP = (EditText) view.findViewById(R.id.editText_email_profileSP);
         tv_address_profileSP = (TextView) view.findViewById(R.id.tv_address_profileSP);
         editText_employees_profileSP = (EditText) view.findViewById(R.id.editText_employees_profileSP);
 
         et_minCharge_profileSP = (EditText) view.findViewById(R.id.et_minCharge_profileSP);
+//        et_companyname=(EditText)view.findViewById(R.id.et_companyname);
         tv_categoriesSP = (TextView) view.findViewById(R.id.tv_categoriesSP);
         tv_specialitySP = (TextView) view.findViewById(R.id.tv_specialitySP);
 
@@ -159,10 +161,12 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         profileImage.setEnabled(false);
         editText_name_profileSP.setEnabled(false);
 //        editText_contactNumber_profileSP.setEnabled(false);
+        editText_companyNameSP.setEnabled(false);
         editText_email_profileSP.setEnabled(false);
 
         linear_setContactSP.setEnabled(false);
         et_minCharge_profileSP.setEnabled(false);
+//        et_companyname.setEnabled(false);
         tv_categoriesSP.setEnabled(false);
         tv_specialitySP.setEnabled(false);
 
@@ -206,6 +210,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         if(savedInstanceState != null)
         {
             editText_name_profileSP.setText(savedInstanceState.getString("name"));
+            editText_companyNameSP.setText(savedInstanceState.getString("companyName"));
             editText_email_profileSP.setText(savedInstanceState.getString("email"));
             tv_address_profileSP.setText(savedInstanceState.getString("address"));
             tv_categoriesSP.setText(savedInstanceState.getString("categories"));
@@ -237,6 +242,10 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         else if (editText_email_profileSP.getText().toString().trim().equals(""))
         {
             Toast.makeText(getActivity(), "Please enter your Email Address", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (editText_companyNameSP.getText().toString().trim().equals(""))
+        {
+            Toast.makeText(getActivity(), "Please enter your Company Name", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(editText_email_profileSP.getText().toString()).matches())
@@ -274,6 +283,11 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             Toast.makeText(getActivity(), "Please enter Minimum Charge.", Toast.LENGTH_SHORT).show();
             return false;
         }
+//        else if(et_companyname.getText().toString().isEmpty())
+//        {
+//            Toast.makeText(getActivity(), "Please enter your company name.", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
         else if(radius.isEmpty())
         {
             Toast.makeText(getActivity(), "Please select service area radius.", Toast.LENGTH_SHORT).show();
@@ -483,6 +497,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
                 profileImage.setEnabled(true);
                 editText_name_profileSP.setEnabled(true);
+                editText_companyNameSP.setEnabled(true);
 //                editText_contactNumber_profileSP.setEnabled(true);
                 tv_address_profileSP.setEnabled(true);
                 editText_employees_profileSP.setEnabled(true);
@@ -494,6 +509,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 ll_ContactSP.setVisibility(View.VISIBLE);
                 ll_ContactSP.setEnabled(true);
                 et_minCharge_profileSP.setEnabled(true);
+//                et_companyname.setEnabled(true);
                 tv_categoriesSP.setEnabled(true);
                 tv_specialitySP.setEnabled(true);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.VISIBLE);
@@ -511,6 +527,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
                 profileImage.setEnabled(false);
                 editText_name_profileSP.setEnabled(false);
+                editText_companyNameSP.setEnabled(false);
 //                editText_contactNumber_profileSP.setEnabled(false);
                 editText_email_profileSP.setEnabled(false);
                 tv_address_profileSP.setEnabled(false);
@@ -523,6 +540,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 ll_ContactSP.setVisibility(View.GONE);
                 ll_ContactSP.setEnabled(false);
                 et_minCharge_profileSP.setEnabled(false);
+//                et_companyname.setEnabled(false);
                 tv_categoriesSP.setEnabled(false);
                 tv_specialitySP.setEnabled(false);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.GONE);
@@ -541,7 +559,6 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_show_service_provider).setVisible(false);
-//        menu.findItem(R.id.action_show_myJob_Orders).setVisible(false);
     }
 
 
@@ -563,19 +580,13 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
     private void editProfileServiceHit()
     {
-//        edit profile keys:
-//        token,fullname,email,address,contact_no,speciality,address,lat,long,category,description,profile,employees
-
-//        signup keys:
-//        fullname,companyName,email,password,country_code,contact_no,address,device_type,device_token,
-//       lat,long,category,from,to,working_days,employees,description,min_charges,specility
-
         MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
         multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartbuilder.addTextBody("lat", lat);
         multipartbuilder.addTextBody("long", lng);
         multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
         multipartbuilder.addTextBody("fullname", editText_name_profileSP.getText().toString());
+        multipartbuilder.addTextBody("companyName", editText_companyNameSP.getText().toString());
         multipartbuilder.addTextBody("email", editText_email_profileSP.getText().toString());
         multipartbuilder.addTextBody("country_code", "+91");
         multipartbuilder.addTextBody("contact_no",  tv_contactNumSP.getText().toString());
@@ -590,6 +601,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         multipartbuilder.addTextBody("working_days", workdays);
         multipartbuilder.addTextBody("employees", editText_employees_profileSP.getText().toString());
         multipartbuilder.addTextBody("min_charges", et_minCharge_profileSP.getText().toString());
+//        multipartbuilder.addTextBody("companyName", et_companyname.getText().toString());
+
 
         if(picpath.isEmpty())
         {
@@ -608,6 +621,38 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         customHandler.makeMultipartRequest(multipartbuilder);
 
     }
+    /*{
+  "status": "SUCCESS",
+  "message": "User Details.",
+  "requestKey": "viewProfile",
+  "response": {
+    "id": "2",
+    "full_name": "Service Provider One",
+    "fb_id": "",
+    "twitter_id": "",
+    "email": "service1@gmail.com",
+    "password": "123456",
+    "contact_no": "8584858411",
+    "address": "H35, H Block, Sector 63, Noida, Uttar Pradesh 201301",
+    "profile": "http:\/\/mobulous.co.in\/airMechanics\/app\/webroot\/files\/original\/Image-4000161205033820.jpg",
+    "profile_thumb": "http:\/\/mobulous.co.in\/airMechanics\/app\/webroot\/files\/thumb\/Image-4000161205033820.jpg",
+    "lat": "28.6289659",
+    "long": "77.3790517",
+    "user_type": "service_provider",
+    "categories": "two,light,heavy",
+    "category": "two,light,heavy",
+    "start_time": "07:00",
+    "end_time": "20:00",
+    "workingDays": "0,2,3,4,5,6",
+    "radius": "20",
+    "no_employe": "8453",
+    "plan_id": "1",
+    "description": "",
+    "min_charge": "2509",
+    "specilityName": "heavy"
+  }
+}
+*/
 
 
     @Override
@@ -624,6 +669,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                     {
                         JSONObject response = responseObj.getJSONObject("response");
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
@@ -650,6 +696,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         lng = response.getString("long");
 
                         editText_name_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.FullName));
+                        editText_companyNameSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
                         tv_contactNumSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
                         tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
@@ -663,6 +710,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         categories=response.getString("categories");
                         speciality = response.getString("specilityName");
                         workdays=response.getString("workingDays");
+//                        et_companyname.setText(response.getString("companyName"));
 
 
 //                      categories
@@ -793,18 +841,22 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         tv_workdays_spProfile.setText(workday);
 
                         radius=response.getString("radius");
-                        if(radius.equals("5"))
+                        if(!radius.isEmpty())
                         {
-                            tv_serviceArea_spProfile.setText(getResources().getString(R.string.uptofive));
+                            if(radius.equals("5"))
+                            {
+                                tv_serviceArea_spProfile.setText(getResources().getString(R.string.uptofive));
+                            }
+                            else if(radius.equals("10"))
+                            {
+                                tv_serviceArea_spProfile.setText(getResources().getString(R.string.uptoten));
+                            }
+                            else
+                            {
+                                tv_serviceArea_spProfile.setText(getResources().getString(R.string.upto20));
+                            }
                         }
-                        else if(radius.equals("10"))
-                        {
-                            tv_serviceArea_spProfile.setText(getResources().getString(R.string.uptoten));
-                        }
-                        else
-                        {
-                            tv_serviceArea_spProfile.setText(getResources().getString(R.string.upto20));
-                        }
+
 
                     }
                     if (responseObj.getString("requestKey").equalsIgnoreCase("editProfile"))
@@ -813,8 +865,10 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         JSONObject response = responseObj.getJSONObject("response");
 
                         textView_userName_ProfileSP.setText(response.getString("full_name"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
 
@@ -836,6 +890,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         }
 
                         editText_name_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.FullName));
+                        editText_companyNameSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
 //                        tv_contactNumSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
                         tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
@@ -1074,6 +1129,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         super.onSaveInstanceState(outState);
 
         outState.putString("name",editText_name_profileSP.getText().toString().trim());
+        outState.putString("companyName",editText_companyNameSP.getText().toString().trim());
         outState.putString("email",editText_email_profileSP.getText().toString().trim());
         outState.putString("address",tv_address_profileSP.getText().toString().trim());
         outState.putString("categories",tv_categoriesSP.getText().toString().trim());

@@ -51,8 +51,7 @@ public class RejectedRecyclerAapter extends RecyclerView.Adapter<RejectedRecycle
             holder.textView_1_rejectedName.setText(bean.getUserName());
             holder.textView_1_rejectedAmount.setText(bean.getMinCharge());
             holder.textView_1_rejectedDate.setText(bean.getRequestDate());
-//            holder.textView_1_rejectedStatus.setText(bean.getStatus());
-            holder.textView_1_rejectedTime.setText(bean.getRequestTime());
+            holder.textView_1_rejectedTime.setText(bean.getOpenTime()+" - "+bean.getCloseTime());
         }
     }
 
@@ -75,27 +74,6 @@ public class RejectedRecyclerAapter extends RecyclerView.Adapter<RejectedRecycle
             textView_1_rejectedDate = (TextView) itemView.findViewById(R.id.textView_1_rejectedDate);
             textView_1_rejectedTime = (TextView) itemView.findViewById(R.id.textView_1_rejectedTime);
             textView_1_rejectedStatus = (TextView) itemView.findViewById(R.id.textView_1_rejectedStatus);
-//
-//            textView_2_rejectedName = (TextView) itemView.findViewById(R.id.textView_2_rejectedName);
-//            textView_2_rejectedAmount = (TextView) itemView.findViewById(R.id.textView_2_rejectedAmount);
-//            textView_2_rejectedDate = (TextView) itemView.findViewById(R.id.textView_2_rejectedDate);
-//            textView_2_rejectedTime = (TextView) itemView.findViewById(R.id.textView_2_rejectedTime);
-//            textView_2_rejectedStatus = (TextView) itemView.findViewById(R.id.textView_2_rejectedStatus);
-//
-//
-//            /* set Fonts*/
-//
-//            Font.setFontTextView(textView_1_rejectedName,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_1_rejectedAmount,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_1_rejectedDate,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_1_rejectedTime,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_1_rejectedStatus,(AppCompatActivity)context);
-//
-//            Font.setFontTextView(textView_2_rejectedName,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_2_rejectedAmount,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_2_rejectedDate,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_2_rejectedTime,(AppCompatActivity)context);
-//            Font.setFontTextView(textView_2_rejectedStatus,(AppCompatActivity)context);
 
         }
     }
