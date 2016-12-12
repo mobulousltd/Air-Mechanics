@@ -452,7 +452,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
-                            SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                            SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LOGINTYPE, "normal");
@@ -484,7 +484,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
-                            SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                            SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LOGINTYPE, "social");

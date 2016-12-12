@@ -14,6 +14,7 @@ public class SPreferenceKey {
     public static final String SERVICE_PROVIDER_LOGIN = "SERVICELOGIN";
     public static final String LATITUDE="latitude";
     public static final String LONGITUDE="longitude";
+    public static final String MYADDRESS="myaddress";
     public static final String ADDRESS="address";
     public static final String CITY="city";
     public static final String IMAGE="image";

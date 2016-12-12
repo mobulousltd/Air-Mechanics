@@ -672,7 +672,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
-                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
 
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MINCHARGE, response.getString("min_charge"));
@@ -699,7 +699,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         editText_companyNameSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
                         tv_contactNumSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
-                        tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
+                        tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.MYADDRESS));
 
                         textView_openText_profileSP.setText(response.getString("start_time"));
                         textView_closeText_profileSP.setText(response.getString("end_time"));
@@ -870,7 +870,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
-                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
 
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MINCHARGE, response.getString("min_charge"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.CATEGORIES, response.getString("categories"));
@@ -893,7 +893,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         editText_companyNameSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
 //                        tv_contactNumSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
-                        tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
+                        tv_address_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.MYADDRESS));
 
 //
 //                        tv_categoriesSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.CATEGORIES));

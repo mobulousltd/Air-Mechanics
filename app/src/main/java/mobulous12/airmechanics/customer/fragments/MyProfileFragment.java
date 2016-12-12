@@ -434,7 +434,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
-                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.NOTIFICATION, response.getString("notification"));
 
@@ -454,7 +454,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                         editText_name_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.FullName));
                         tv_contactNum.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
-                        tv_address_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
+                        tv_address_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.MYADDRESS));
 
 
                     }
@@ -468,7 +468,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                         //SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PhoneNumber, response.getString("contact_no"));
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.Email, response.getString("email"));
-                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.MYADDRESS, response.getString("address"));
 
                         //profile username
                         profile_name.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.FullName));
@@ -484,7 +484,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                         editText_name_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.FullName));
 //                        tv_contactNum.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
                         editText_email_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.Email));
-                        tv_address_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
+                        tv_address_profile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.MYADDRESS));
 
 
 
