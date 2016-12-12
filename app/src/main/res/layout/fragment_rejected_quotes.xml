@@ -2,10 +2,19 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <TextView
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_12sdp"
+            android:id="@+id/tv_rejected"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/norejected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_rejected"
             android:layout_width="match_parent"
@@ -13,6 +22,6 @@
             android:layout_marginBottom="@dimen/_6sdp"
             android:layout_marginTop="@dimen/_2sdp"  />
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </layout>

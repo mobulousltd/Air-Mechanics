@@ -499,6 +499,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             else
                             {
+                                SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                                 Intent intent=new Intent(this, HomeActivityServicePro.class);

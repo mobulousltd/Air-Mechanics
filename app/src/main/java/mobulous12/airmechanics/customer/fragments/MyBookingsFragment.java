@@ -52,10 +52,6 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
     private   LayoutInflater myinflater;
     private   ArrayList<BookingBean> bookingArrList;
 
-    public MyBookingsFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,20 +159,26 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setRequestcategory(jsonobject.getString("category"));
                         bean.setOpenTime(jsonobject.getString("open_time"));
                         bean.setCloseTime(jsonobject.getString("close_time"));
-
                         bookingArrList.add(bean);
-
-                        /*Recycler view*/
-                        bookingsRecyclerAdapter = new MyBookingsRecyclerAdapter(getActivity(),bookingArrList );
-                        bookingsRecyclerAdapter.onItemClickListener(new MyBookingsRecyclerAdapter.MyClickListener() {
-                            @Override
-                            public void onItemClick(int position, View v) {
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,new BookingDetailFragment(),"bookingDetailFragment").addToBackStack("bookingdetails").commit();
-                            }
-                        });
-                        recyclerView_myBookings.setAdapter(bookingsRecyclerAdapter);
-                        recyclerView_myBookings.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
+                    if(bookingArrList.size()==0)
+                    {
+                        view.findViewById(R.id.tv_rejected).setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        view.findViewById(R.id.tv_rejected).setVisibility(View.GONE);
+                    }
+                    /*Recycler view*/
+                    bookingsRecyclerAdapter = new MyBookingsRecyclerAdapter(getActivity(),bookingArrList );
+                    bookingsRecyclerAdapter.onItemClickListener(new MyBookingsRecyclerAdapter.MyClickListener() {
+                        @Override
+                        public void onItemClick(int position, View v) {
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,new BookingDetailFragment(),"bookingDetailFragment").addToBackStack("bookingdetails").commit();
+                        }
+                    });
+                    recyclerView_myBookings.setAdapter(bookingsRecyclerAdapter);
+                    recyclerView_myBookings.setLayoutManager(new LinearLayoutManager(getActivity()));
                 }
                 else
                 {
@@ -190,8 +192,6 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
         {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
