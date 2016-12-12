@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -44,7 +45,7 @@ public class NewJobRequest extends Fragment implements ApiListener {
     private RecyclerView recyVw_newJobRequest;
     private NewJobReqRecyclerAdapter jobReqRecyclerAdapter;
     private String status="";
-
+    private TextView tv_newJobReq;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
@@ -58,6 +59,7 @@ public class NewJobRequest extends Fragment implements ApiListener {
         ((HomeActivity) getActivity()).setNavigationIcon();
 
         recyVw_newJobRequest = (RecyclerView) view.findViewById(R.id.recyVw_newJobRequest);
+        tv_newJobReq = (TextView) view.findViewById(R.id.tv_newJobReq);
         LocalBroadcastManager.getInstance(getActivity().getApplicationContext()).registerReceiver(messageReciever,
                 new IntentFilter("NOTIFYCUST"));
 
@@ -106,6 +108,14 @@ public class NewJobRequest extends Fragment implements ApiListener {
                         JSONObject response = jsonObject.getJSONObject("response");
                         final JSONArray userArr = response.getJSONArray("user");
 
+                        if(userArr.length() == 0)
+                        {
+                            view.findViewById(R.id.tv_newJobReq).setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            view.findViewById(R.id.tv_newJobReq).setVisibility(View.GONE);
+                        }
                         jobReqRecyclerAdapter = new NewJobReqRecyclerAdapter(getActivity(),userArr);
                         recyVw_newJobRequest.setAdapter(jobReqRecyclerAdapter);
                         recyVw_newJobRequest.setLayoutManager(new LinearLayoutManager(getActivity()));
