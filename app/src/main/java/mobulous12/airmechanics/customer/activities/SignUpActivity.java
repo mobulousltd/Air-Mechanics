@@ -94,11 +94,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         Pattern ps = Pattern.compile("[a-zA-Z ]+");
         Matcher ms = ps.matcher(editText.getText().toString());
         boolean bs = ms.matches();
-        if (bs) {
-            return true;
-        }
-        else
-            return false;
+        return bs;
     }
 
     private boolean validateCustomerData()

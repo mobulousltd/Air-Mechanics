@@ -304,7 +304,7 @@
     <string name="nopending">No Pending Job Orders to show.</string>
     <string name="noprogress">No In-Progress Job Orders to show.</string>
     <string name="nocomplete">No Completed Job Orders to show.</string>
-    <string name="norequest">No new job request for you.</string>
+    <string name="norequest">No new job request to show.</string>
     <string name="norejected">No rejected job request to show.</string>
     <string name="nobooking">No booking to show.</string>
 

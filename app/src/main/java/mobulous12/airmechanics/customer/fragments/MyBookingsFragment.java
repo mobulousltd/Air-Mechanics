@@ -163,11 +163,11 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                     }
                     if(bookingArrList.size()==0)
                     {
-                        view.findViewById(R.id.tv_rejected).setVisibility(View.VISIBLE);
+                        view.findViewById(R.id.tv_book).setVisibility(View.VISIBLE);
                     }
                     else
                     {
-                        view.findViewById(R.id.tv_rejected).setVisibility(View.GONE);
+                        view.findViewById(R.id.tv_book).setVisibility(View.GONE);
                     }
                     /*Recycler view*/
                     bookingsRecyclerAdapter = new MyBookingsRecyclerAdapter(getActivity(),bookingArrList );

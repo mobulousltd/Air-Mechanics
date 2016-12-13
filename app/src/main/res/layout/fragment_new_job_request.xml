@@ -5,7 +5,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <TextView
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_12sdp"
+            android:id="@+id/tv_newJobReq"
+            android:layout_centerInParent="true"
+            android:text="@string/norequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyVw_newJobRequest"
             android:layout_width="match_parent"
