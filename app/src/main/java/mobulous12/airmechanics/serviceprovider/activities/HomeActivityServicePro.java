@@ -332,10 +332,10 @@ public class HomeActivityServicePro extends AppCompatActivity
                 else
                 {
                     setUserNameImage();
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                     drawerSP.openDrawer(GravityCompat.START);
                 }
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         }
     };

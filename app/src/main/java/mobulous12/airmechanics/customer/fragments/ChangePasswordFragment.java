@@ -1,6 +1,7 @@
 package mobulous12.airmechanics.customer.fragments;
 
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -148,6 +150,8 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.back_changePassFrag:
                 getActivity().getSupportFragmentManager().popBackStack();
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                 break;
         }
 

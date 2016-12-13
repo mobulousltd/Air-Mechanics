@@ -337,7 +337,6 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     /*Dialogs */
     private void showCategoriesDialog()
     {
-
         CategoriesDialogFragment categoriesFragment = new CategoriesDialogFragment();
         Bundle bundle=new Bundle();
         bundle.putString("categories", categories);

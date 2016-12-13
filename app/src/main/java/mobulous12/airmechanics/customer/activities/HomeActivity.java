@@ -385,11 +385,12 @@ private void doGuestStuff()
                 else
                 {
                     setUserNameImage();
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                     drawer.openDrawer(GravityCompat.START);
                 }
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
+
         }
     };
 
