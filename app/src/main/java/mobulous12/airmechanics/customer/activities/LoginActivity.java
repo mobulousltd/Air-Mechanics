@@ -141,6 +141,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.imageView_Fb).setOnClickListener(this);
         findViewById(R.id.imageView_G_plus).setOnClickListener(this);
 
+
+//        SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LATITUDE, "-1.2657943");
+//        SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LONGITUDE, "36.8391145");
         mResultReceiver = new AddressResultReceiver(null);
         linearlayout_newSignUp.setOnClickListener(this);
         Intent intent = new Intent(LoginActivity.this, GeocodeAddressIntentService.class);

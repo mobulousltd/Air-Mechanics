@@ -248,6 +248,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                     {
                         reqdate="";
                         String[] weekdays = new DateFormatSymbols().getWeekdays();
+                        quote_calview.removeSelection();
                         Toast.makeText(CalenderActivity.this,bean.getName()+" don't work at "+weekdays[date.getDay()+1],Toast.LENGTH_SHORT).show();
                     }
 
