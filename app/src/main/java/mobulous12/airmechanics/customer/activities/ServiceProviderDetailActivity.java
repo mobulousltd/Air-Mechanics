@@ -417,6 +417,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                     if(jsonObject.getString("requestKey").equalsIgnoreCase("service_ProviderDetail"))
                     {
                         JSONObject response=jsonObject.getJSONObject("response");
+                        serviceProviderBean.setWorkingdays(response.getString("workingDays"));
                         //setting details
                         if(response.getString("workingDays").contains("0"))
                         {

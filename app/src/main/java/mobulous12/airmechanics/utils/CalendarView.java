@@ -214,6 +214,22 @@ public class CalendarView extends LinearLayout
         });
 
     }
+    public void removeSelection()
+    {
+        if(textView!=null && currenttv!=null)
+        {
+            if(!currenttv.equals(textView))
+            {
+                textView.setBackgroundResource(0);
+                textView.setTextColor(getResources().getColor(R.color.black));
+            }
+            else
+            {
+                textView.setBackgroundResource(R.drawable.selected_circle_days);
+                textView.setTextColor(getResources().getColor(R.color.white));
+            }
+        }
+    }
 
     /**
      * Display dates correctly in grid
