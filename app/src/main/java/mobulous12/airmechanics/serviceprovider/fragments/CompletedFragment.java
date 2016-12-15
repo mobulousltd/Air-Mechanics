@@ -47,8 +47,7 @@ private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState)
     {
-        FragmentCompletedBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_completed, container, false);
-        view=binding.getRoot();
+        FragmentCompletedBinding binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_completed,container,false);
         recyclerView_completedFrag = (RecyclerView) view.findViewById(R.id.recyclerView_completedFrag);
 
 //        new Handler().postDelayed(new Runnable() {
