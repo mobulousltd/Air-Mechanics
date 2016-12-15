@@ -3,6 +3,7 @@ package mobulous12.airmechanics.serviceprovider.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,9 +114,23 @@ public class ContactUsFragment extends android.support.v4.app.Fragment implement
 
     private boolean validateName(EditText editText)
     {
-        Pattern ps = Pattern.compile("[a-zA-Z ]+");
-        Matcher ms = ps.matcher(editText.getText().toString());
-        boolean bs = ms.matches();
-        return bs;
+        final String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
+        final String string = editText.getText().toString().trim();
+
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(string);
+
+        if (matcher.find())
+        {
+            for (int i = 1; i <= matcher.groupCount(); i++)
+            {
+                Log.d("Name Matching","Group " + i + ": " + matcher.group(i));
+            }
+            return true;
+        }
+        else
+            return false;
+
     }
+
 }

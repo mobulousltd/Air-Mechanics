@@ -373,6 +373,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
         multipartEntityBuilder.addTextBody("service_id", serviceProviderBean.getId());
+        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.TOKEN));
         multipartEntityBuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LATITUDE));
         multipartEntityBuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
 

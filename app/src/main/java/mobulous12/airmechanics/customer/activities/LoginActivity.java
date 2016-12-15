@@ -318,6 +318,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             break;
             case R.id.linear_skipToHome:
+                SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.TOKEN, "");
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                 Intent in=new Intent(this, HomeActivity.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -47,6 +47,7 @@ import java.util.HashMap;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.customer.activities.ServiceProviderActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
 import mobulous12.airmechanics.customer.activities.VerificationActivity;
 import mobulous12.airmechanics.customer.adapters.MyInfoWindowAdapter;
@@ -61,11 +62,13 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback , ApiListener, GoogleMap.InfoWindowAdapter{
     GoogleMap googlemap;
+    boolean search=false;
     HashMap<Marker, ServiceProviderBean> sphashmap=new HashMap<Marker, ServiceProviderBean>( );
     private View view;
     private EditText et_search;
     private SearchView searchView_Home;
     private ArrayList<ServiceProviderBean> spArrayList;
+    ArrayList<ServiceProviderBean> arrayList;
     private RecyclerView recView_SPList;
     private SearchListAdapter searchListAdapter;
 
@@ -127,20 +130,108 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         recView_SPList = (RecyclerView) view.findViewById(R.id.recView_SPList);
         searchView_Home = (SearchView) view.findViewById(R.id.searchView_Home);
         searchView_Home.setQueryHint("Search Service Providers..");
+        searchView_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(search)
+                {
+                    search=false;
+                    view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+                }
+                else
+                {
+                    search=true;
+                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                }
+            }
+        });
         searchView_Home.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                searchByTextService();
+                if(!query.isEmpty())
+                {
+                    searchByTextService();
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
+                if(!newText.isEmpty())
+                {
+                    searchByTextService();
+                }
+                else
+                {
+                    spArrayList=arrayList;
+                    searchListAdapter.setArraList(spArrayList);
+                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                }
                 return true;
             }
         });
 
+        arrayList = new ArrayList<ServiceProviderBean>();
+        spArrayList=arrayList;
+        ServiceProviderBean serviceproviderbean=new ServiceProviderBean();
+        serviceproviderbean.setName("Looking for Light Weight Vehicle Services");
+        serviceproviderbean.setCategory("light");
+        serviceproviderbean.setId("");
+        ServiceProviderBean serviceproviderbean1=new ServiceProviderBean();
+        serviceproviderbean1.setCategory("two");
+        serviceproviderbean1.setId("");
+        serviceproviderbean1.setName("Looking for Two Wheeler Vehicle Services");
+        ServiceProviderBean serviceproviderbean2=new ServiceProviderBean();
+        serviceproviderbean2.setName("Looking for Heavy Weight Vehicle Services");
+        serviceproviderbean2.setCategory("heavy");
+        serviceproviderbean2.setId("");
+        arrayList.add(serviceproviderbean);
+        arrayList.add(serviceproviderbean1);
+        arrayList.add(serviceproviderbean2);
+        searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
+        recView_SPList.setAdapter(searchListAdapter);
+        recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
+            @Override
+            public void onItemClick(int position, View view)
+            {
+                ServiceProviderBean bean=spArrayList.get(position);
+                if(bean.getId().isEmpty())
+                {
+
+                    Intent intent = new Intent(getActivity(), ServiceProviderActivity.class);
+                    intent.putExtra("bean", bean);
+                    getActivity().startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(getActivity(), ServiceProviderDetailActivity.class);
+                    intent.putExtra("bean", bean);
+                    getActivity().startActivity(intent);
+
+                }
+            }
+        });
+        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+
+        view.findViewById(R.id.layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                if(search)
+                {
+                    search=false;
+                    view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+                }
+                else
+                {
+                    search=true;
+                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                }
+            }
+        });
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.home_map);
         mapFragment.getMapAsync(this);
         serviceProviderList();   // Listing of ServiceProviders as Markers in MAP
@@ -159,7 +250,13 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
-
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    if(search)
+                    {
+                        search=false;
+                        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+                    }
                 }
             });
 //            googleMap.setInfoWindowAdapter(new MyInfoWindowAdapter(getActivity()));
@@ -305,6 +402,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
 
         ServiceBean serviceBean = new ServiceBean();
+        serviceBean.setIsLoader(false);
         serviceBean.setMethodName("Consumers/searchbytext");
         serviceBean.setActivity(getActivity());
         serviceBean.setFragment(HomeMapFragment.this);
@@ -350,7 +448,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 {
                     setMarkers(responseObj.getJSONArray("response"));
                 }
-                if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("searchbytext"))
+                else if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("searchbytext"))
                 {
                     Log.d("SearchResponse", ""+responseObj.toString());
                     recView_SPList.setVisibility(View.VISIBLE);
@@ -381,23 +479,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                         spArrayList.add(serviceproviderbean);
 
                     }
-
-                     searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
-                    recView_SPList.setAdapter(searchListAdapter);
-                    recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-                    searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
-                        @Override
-                        public void onItemClick(int position, View view)
-                        {
-
-                            Toast.makeText(getActivity().getApplicationContext(), view.toString(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-
-
+                    searchListAdapter.setArraList(spArrayList);
+                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
                 }
                 else
                 {

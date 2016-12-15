@@ -24,15 +24,17 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SP
     public static MyListener listener;
     private Context context;
     private LayoutInflater inflater;
-    private HomeActivityServicePro homeActivityServicePro;
 
     public SearchListAdapter(Context context, ArrayList<ServiceProviderBean> spArrayList) {
         this.context = context;
         this.spArrayList = spArrayList;
         this.inflater = LayoutInflater.from(context);
-        this.homeActivityServicePro= (HomeActivityServicePro) context;
     }
-
+    public void setArraList(ArrayList<ServiceProviderBean> spArrayList)
+    {
+        this.spArrayList = spArrayList;
+        notifyDataSetChanged();
+    }
     @Override
     public SPListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 

@@ -45,5 +45,6 @@
     <color name="semitransparent">#77000000</color>
     <color name="scrollbar_color">#D3D3D3</color>#99000000
     <color name="backcolor">#F6F6F6</color>
+    <color name="bluetransparent">#DD518BF8</color>
 
 </resources>

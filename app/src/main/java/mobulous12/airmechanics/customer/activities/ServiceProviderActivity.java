@@ -73,7 +73,11 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
         textView_Sorting.setOnClickListener(this);
         textView_Filter.setOnClickListener(this);
         back_ServiceProvider.setOnClickListener(this);
-
+        ServiceProviderBean bean=getIntent().getParcelableExtra("bean");
+        if(bean!=null)
+        {
+            filter=bean.getCategory();
+        }
         serviceProviderList();
 
 //              Load items again
