@@ -9,9 +9,17 @@ import android.os.Parcelable;
 public class ServiceProviderBean implements Parcelable
 {
     String lat, lng, id, name, address, email, contact_no, profile, profile_thumb="", category, workhours, descritption, distance, workingdays="",
-            start, end, reviews, rating, min_charge;
+            start, end, reviews, rating, min_charge,speciality;
 
     public ServiceProviderBean() {
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     public String getRating() {
@@ -48,6 +56,7 @@ public class ServiceProviderBean implements Parcelable
         start = in.readString();
         end = in.readString();
         reviews = in.readString();
+        speciality = in.readString();
     }
 
     @Override
@@ -69,6 +78,7 @@ public class ServiceProviderBean implements Parcelable
         dest.writeString(start);
         dest.writeString(end);
         dest.writeString(reviews);
+        dest.writeString(speciality);
     }
 
     @Override

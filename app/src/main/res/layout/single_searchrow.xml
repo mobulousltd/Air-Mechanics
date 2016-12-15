@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--PAGE STARTS-->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/tv_spName"
+        android:textSize="@dimen/sp_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/_5sdp"
+        android:drawableRight="@drawable/profile_right_arrow"/>
+
+</LinearLayout>
+    </layout>

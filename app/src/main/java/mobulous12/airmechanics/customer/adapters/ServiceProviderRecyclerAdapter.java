@@ -39,9 +39,9 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
 
 
     public ServiceProviderRecyclerAdapter(Context context, ArrayList<ServiceProviderBean> serviceProviderArrayList) {
-      this.context = context;
-        inflater = LayoutInflater.from(context);
-      serviceProviderActivity= (ServiceProviderActivity) context;
+        this.context = context;
+        this.inflater = LayoutInflater.from(context);
+        this.serviceProviderActivity= (ServiceProviderActivity) context;
         this.serviceProviderArrayList=serviceProviderArrayList;
 
 

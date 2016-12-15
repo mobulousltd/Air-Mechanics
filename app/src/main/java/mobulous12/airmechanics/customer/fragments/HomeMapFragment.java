@@ -2,6 +2,7 @@ package mobulous12.airmechanics.customer.fragments;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -9,12 +10,18 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -34,6 +41,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import mobulous12.airmechanics.R;
@@ -42,6 +50,7 @@ import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
 import mobulous12.airmechanics.customer.activities.VerificationActivity;
 import mobulous12.airmechanics.customer.adapters.MyInfoWindowAdapter;
+import mobulous12.airmechanics.customer.adapters.SearchListAdapter;
 import mobulous12.airmechanics.databinding.HomeMapFragmentBinding;
 import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
@@ -55,6 +64,10 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     HashMap<Marker, ServiceProviderBean> sphashmap=new HashMap<Marker, ServiceProviderBean>( );
     private View view;
     private EditText et_search;
+    private SearchView searchView_Home;
+    private ArrayList<ServiceProviderBean> spArrayList;
+    private RecyclerView recView_SPList;
+    private SearchListAdapter searchListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,13 +104,51 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         ((HomeActivity) getActivity()).setNavigationIcon();
         ((HomeActivity) getActivity()).toolbarVisible();
 
-        et_search = (EditText) view.findViewById(R.id.editText_search_home);
-        et_search.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf"));
+        /*Searching serviceProviders by text in Home Map*/
+//        et_search = (EditText) view.findViewById(R.id.editText_search_home);
+//        et_search.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf"));
+//        et_search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                searchByTextService();
+//            }
+//        });
+
+        recView_SPList = (RecyclerView) view.findViewById(R.id.recView_SPList);
+        searchView_Home = (SearchView) view.findViewById(R.id.searchView_Home);
+        searchView_Home.setQueryHint("Search Service Providers..");
+        searchView_Home.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchByTextService();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return true;
+            }
+        });
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.home_map);
         mapFragment.getMapAsync(this);
-        serviceProviderList();
+        serviceProviderList();   // Listing of ServiceProviders as Markers in MAP
         return view;
     }
+
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -242,6 +293,28 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         }
     }
 
+/* SERVICES */
+
+    private void searchByTextService()
+    {
+
+        MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
+        multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        multipartbuilder.addTextBody("serviceName",searchView_Home.getQuery().toString().trim());
+        multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE));
+        multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
+
+        ServiceBean serviceBean = new ServiceBean();
+        serviceBean.setMethodName("Consumers/searchbytext");
+        serviceBean.setActivity(getActivity());
+        serviceBean.setFragment(HomeMapFragment.this);
+        serviceBean.setApilistener(this);
+
+        CustomHandler customHandler = new CustomHandler(serviceBean);
+        customHandler.makeMultipartRequest(multipartbuilder);
+    }
+
+
     // hit service of List of service providers on map
     private void serviceProviderList() {
         try
@@ -276,6 +349,55 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("list_serviceprovider"))
                 {
                     setMarkers(responseObj.getJSONArray("response"));
+                }
+                if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("searchbytext"))
+                {
+                    Log.d("SearchResponse", ""+responseObj.toString());
+                    recView_SPList.setVisibility(View.VISIBLE);
+
+                    JSONArray responseArr = responseObj.getJSONArray("response");
+                    spArrayList = new ArrayList<ServiceProviderBean>();
+                    for(int i=0;i<responseArr.length();i++)
+                    {
+                        ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
+                        JSONObject myObj = responseArr.getJSONObject(i);
+
+                        serviceproviderbean.setName(myObj.getString("name"));
+                        serviceproviderbean.setId(myObj.getString("id"));
+                        serviceproviderbean.setAddress(myObj.getString("address"));
+                        serviceproviderbean.setEmail(myObj.getString("email"));
+                        serviceproviderbean.setContact_no(myObj.getString("contact_no"));
+                        serviceproviderbean.setLat(myObj.getString("lat"));
+                        serviceproviderbean.setLng(myObj.getString("long"));
+                        serviceproviderbean.setProfile_thumb(myObj.getString("profile_thumb"));
+                        serviceproviderbean.setProfile(myObj.getString("profile"));
+                        serviceproviderbean.setMin_charge(myObj.getString("st_charge"));
+                        serviceproviderbean.setWorkingdays(myObj.getString("workingDays"));
+                        serviceproviderbean.setRating(myObj.getString("rating"));
+                        serviceproviderbean.setCategory(myObj.getString("work_category"));
+                        serviceproviderbean.setStart(myObj.getString("start_time"));
+                        serviceproviderbean.setEnd(myObj.getString("end_time"));
+                        serviceproviderbean.setSpeciality(myObj.getString("specilityName"));
+                        spArrayList.add(serviceproviderbean);
+
+                    }
+
+                     searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
+                    recView_SPList.setAdapter(searchListAdapter);
+                    recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+                    searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
+                        @Override
+                        public void onItemClick(int position, View view)
+                        {
+
+                            Toast.makeText(getActivity().getApplicationContext(), view.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+
+
                 }
                 else
                 {
