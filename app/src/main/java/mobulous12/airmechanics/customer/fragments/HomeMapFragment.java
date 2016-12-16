@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -59,6 +61,7 @@ import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
+
 
 public class HomeMapFragment extends Fragment implements OnMapReadyCallback , ApiListener, GoogleMap.InfoWindowAdapter{
     GoogleMap googlemap;
@@ -107,7 +110,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         ((HomeActivity) getActivity()).setNavigationIcon();
         ((HomeActivity) getActivity()).toolbarVisible();
 
-        /*Searching serviceProviders by text in Home Map*/
+
 //        et_search = (EditText) view.findViewById(R.id.editText_search_home);
 //        et_search.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf"));
 //        et_search.addTextChangedListener(new TextWatcher() {
@@ -130,7 +133,19 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         recView_SPList = (RecyclerView) view.findViewById(R.id.recView_SPList);
         searchView_Home = (SearchView) view.findViewById(R.id.searchView_Home);
         searchView_Home.setQueryHint("Search Service Providers..");
-        searchView_Home.setOnClickListener(new View.OnClickListener() {
+
+    /*Searching serviceProviders by text in Home Map*/
+        int et_id = searchView_Home.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        EditText editText = (EditText) searchView_Home.findViewById(et_id);
+
+        int searchPlateId = searchView_Home.getContext().getResources()
+                .getIdentifier("android:id/search_plate", null, null);
+        View searchPlateView = searchView_Home.findViewById(searchPlateId);
+        if (searchPlateView != null) {
+            searchPlateView.setBackgroundColor(Color.WHITE);
+        }
+
+        editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(search)
@@ -142,9 +157,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 {
                     search=true;
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                    setDefaultRecyclerView();
                 }
             }
         });
+
         searchView_Home.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -171,26 +188,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             }
         });
 
-        arrayList = new ArrayList<ServiceProviderBean>();
-        spArrayList=arrayList;
-        ServiceProviderBean serviceproviderbean=new ServiceProviderBean();
-        serviceproviderbean.setName("Looking for Light Weight Vehicle Services");
-        serviceproviderbean.setCategory("light");
-        serviceproviderbean.setId("");
-        ServiceProviderBean serviceproviderbean1=new ServiceProviderBean();
-        serviceproviderbean1.setCategory("two");
-        serviceproviderbean1.setId("");
-        serviceproviderbean1.setName("Looking for Two Wheeler Vehicle Services");
-        ServiceProviderBean serviceproviderbean2=new ServiceProviderBean();
-        serviceproviderbean2.setName("Looking for Heavy Weight Vehicle Services");
-        serviceproviderbean2.setCategory("heavy");
-        serviceproviderbean2.setId("");
-        arrayList.add(serviceproviderbean);
-        arrayList.add(serviceproviderbean1);
-        arrayList.add(serviceproviderbean2);
-        searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
-        recView_SPList.setAdapter(searchListAdapter);
-        recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setDefaultRecyclerView();
 
         searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
             @Override
@@ -218,7 +216,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         view.findViewById(R.id.layout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                getActivity();
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 if(search)
                 {
@@ -238,6 +237,28 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         return view;
     }
 
+    private void setDefaultRecyclerView() {
+        arrayList = new ArrayList<ServiceProviderBean>();
+        spArrayList=arrayList;
+        ServiceProviderBean serviceproviderbean=new ServiceProviderBean();
+        serviceproviderbean.setName("Looking for Light Weight Vehicle Services");
+        serviceproviderbean.setCategory("light");
+        serviceproviderbean.setId("");
+        ServiceProviderBean serviceproviderbean1=new ServiceProviderBean();
+        serviceproviderbean1.setCategory("two");
+        serviceproviderbean1.setId("");
+        serviceproviderbean1.setName("Looking for Two Wheeler Vehicle Services");
+        ServiceProviderBean serviceproviderbean2=new ServiceProviderBean();
+        serviceproviderbean2.setName("Looking for Heavy Weight Vehicle Services");
+        serviceproviderbean2.setCategory("heavy");
+        serviceproviderbean2.setId("");
+        arrayList.add(serviceproviderbean);
+        arrayList.add(serviceproviderbean1);
+        arrayList.add(serviceproviderbean2);
+        searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
+        recView_SPList.setAdapter(searchListAdapter);
+        recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
 
 
     @Override

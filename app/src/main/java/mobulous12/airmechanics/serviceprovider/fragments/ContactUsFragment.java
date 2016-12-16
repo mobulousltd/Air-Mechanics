@@ -1,40 +1,72 @@
 package mobulous12.airmechanics.serviceprovider.fragments;
 
-import android.app.Fragment;
+
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.databinding.ContactUsSpBinding;
+import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
+import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
+import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.volley.ApiListener;
+import mobulous12.airmechanics.volley.CustomHandler;
+import mobulous12.airmechanics.volley.ServiceBean;
 
 /**
  * Created by mobulous11 on 14/12/16.
  */
 
-public class ContactUsFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
+public class ContactUsFragment extends Fragment implements View.OnClickListener, ApiListener {
 
     private EditText fullName;
     private EditText email;
     private EditText contactNumber;
     private EditText message;
-
     private Button submitBtn;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
-        View view = inflater.inflate(R.layout.contact_us_sp, container, false);
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        ContactUsSpBinding binding = DataBindingUtil.inflate(inflater,R.layout.contact_us_sp,container,false);
+        View view = binding.getRoot();
+
+        if(!SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.LOGINKEY))
+        {
+            ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.contact_us_homesp));
+            ((HomeActivity)getActivity()).setNavigationIcon();
+        }
+        else
+        {
+            ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.contact_us_homesp));
+            ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
+
+        }
 
         fullName = (EditText) view.findViewById(R.id.editText_fullName_contact_us);
         email = (EditText) view.findViewById(R.id.editText_email_contact_us);
@@ -53,7 +85,7 @@ public class ContactUsFragment extends android.support.v4.app.Fragment implement
 //            SUBMIT BUTTON FUNCTIONALITY
             if (validateCustomerData())
             {
-
+                contactUsServiceHit();
             }
         }
     }
@@ -82,13 +114,13 @@ public class ContactUsFragment extends android.support.v4.app.Fragment implement
 
         else if (contactNumber.getText().toString().isEmpty())
         {
-            showToast("Please enter your contact number.");
+            showToast("Please enter your Contact Number.");
             return false;
         }
         else if(contactNumber.getText().toString().length()<8 || contactNumber.getText().toString().length()>15)
         {
 
-            showToast( "Please enter a valid Contact  number.");
+            showToast( "Please enter a valid Contact  Number.");
 
             return false;
         }
@@ -133,4 +165,56 @@ public class ContactUsFragment extends android.support.v4.app.Fragment implement
 
     }
 
+    private void contactUsServiceHit()
+    {
+        /*token,name,phone,email,message*/
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
+        multipartEntityBuilder.addTextBody("name", fullName.getText().toString());
+        multipartEntityBuilder.addTextBody("phone", contactNumber.getText().toString());
+        multipartEntityBuilder.addTextBody("email", email.getText().toString());
+        multipartEntityBuilder.addTextBody("message", message.getText().toString());
+
+        ServiceBean bean = new ServiceBean();
+        bean.setActivity(getActivity());
+        bean.setFragment(ContactUsFragment.this);
+        bean.setMethodName("Consumers/contactUs");
+        bean.setApilistener(this);
+
+        CustomHandler customHandler = new CustomHandler(bean);
+        customHandler.makeMultipartRequest(multipartEntityBuilder);
+
+    }
+
+    @Override
+    public void myServerResponse(JSONObject jsonObject)
+    {
+        if (jsonObject != null)
+        {
+          try {
+                if (jsonObject.getString("status").equalsIgnoreCase("SUCCESS") && jsonObject.getString("requestKey").equalsIgnoreCase("contactUs"))
+                {
+                    Toast.makeText(getActivity(), "Your query has been Submitted", Toast.LENGTH_SHORT).show();
+                    getActivity().getSupportFragmentManager().popBackStack();
+
+                Log.e("CONTACT_US", jsonObject.toString());
+                }
+              } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.blank_at_right_menu,menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_show_service_provider).setVisible(false);
+    }
 }

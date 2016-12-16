@@ -46,6 +46,7 @@ import mobulous12.airmechanics.customer.fragments.RejectedQuotesFragment;
 import mobulous12.airmechanics.customer.fragments.SettingsFragment;
 import mobulous12.airmechanics.customer.fragments.SubscriptionPlanFragment;
 import mobulous12.airmechanics.customer.fragments.WebViewsFragment;
+import mobulous12.airmechanics.serviceprovider.fragments.ContactUsFragment;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.fonts.Font;
@@ -304,6 +305,7 @@ private void doGuestStuff()
                     || (f instanceof SettingsFragment)
                     || (f instanceof ChangeContactFrag)
                     || (f instanceof NewJobRequest)
+                    || (f instanceof ContactUsFragment)
                     )
             {
                 toolbar_title.setText(title);
@@ -333,7 +335,9 @@ private void doGuestStuff()
                     || (f instanceof WebViewsFragment)
                     || (f instanceof SettingsFragment)
                     || (f instanceof ChangeContactFrag)
-                    || (f instanceof NewJobRequest) )
+                    || (f instanceof NewJobRequest)
+                    || (f instanceof ContactUsFragment)
+                    )
             {
 
                 toggle.setHomeAsUpIndicator(R.drawable.back);
@@ -374,7 +378,9 @@ private void doGuestStuff()
                         || (f instanceof WebViewsFragment)
                         || (f instanceof SettingsFragment)
                         || (f instanceof ChangeContactFrag)
-                        || (f instanceof NewJobRequest) )
+                        || (f instanceof NewJobRequest)
+                        || (f instanceof ContactUsFragment)
+                        )
 
                 {
 
@@ -509,12 +515,8 @@ private void doGuestStuff()
                 closeHomeNavigationDrawer();
                 break;
             case R.id.ll_contactUsInfo:
-
-                Bundle bun2=new Bundle();
-                bun2.putString("page_type", "contactus");
-                WebViewsFragment webFrag2 =new WebViewsFragment();
-                webFrag2.setArguments(bun2);
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, webFrag2, "webViewsFragment").addToBackStack("webViews").commit();
+                SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new ContactUsFragment(), "contactUsFragment").addToBackStack("contactUs").commit();
                 closeHomeNavigationDrawer();
                 break;
              case R.id.ll_TCInfo:

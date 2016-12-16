@@ -42,6 +42,7 @@ import mobulous12.airmechanics.customer.fragments.SubscriptionPlanFragment;
 import mobulous12.airmechanics.customer.fragments.WebViewsFragment;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.serviceprovider.fragments.CompletedFragment;
+import mobulous12.airmechanics.serviceprovider.fragments.ContactUsFragment;
 import mobulous12.airmechanics.serviceprovider.fragments.HomeFragment;
 import mobulous12.airmechanics.serviceprovider.fragments.InProgressFragment;
 import mobulous12.airmechanics.serviceprovider.fragments.JobRequestDetailFragment;
@@ -256,7 +257,9 @@ public class HomeActivityServicePro extends AppCompatActivity
                     ||  (f instanceof MyEarningsFragment_SP)
                     ||  (f instanceof YourJobsFragment_SP)
                     || ( f instanceof WebViewsFragment)
-                    ||(f instanceof ChangeContactFrag)   )
+                    ||(f instanceof ChangeContactFrag)
+                    || (f instanceof ContactUsFragment)
+                    )
             {
                 toolbar_titleSP.setText(title);
             } else {
@@ -284,6 +287,7 @@ public class HomeActivityServicePro extends AppCompatActivity
                     ||  (f instanceof YourJobsFragment_SP)
                     ||(f instanceof WebViewsFragment)
                     ||(f instanceof ChangeContactFrag)
+                    || (f instanceof ContactUsFragment)
                     )
             {
 
@@ -323,6 +327,7 @@ public class HomeActivityServicePro extends AppCompatActivity
                         ||  (f instanceof YourJobsFragment_SP)
                         || ( f instanceof WebViewsFragment)
                         ||(f instanceof ChangeContactFrag)
+                        || (f instanceof ContactUsFragment)
                           )
                 {
                     onResume();
@@ -461,11 +466,7 @@ public class HomeActivityServicePro extends AppCompatActivity
 
             case R.id.linearlayout_contactUsServicePro:
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);
-                Bundle bundle2=new Bundle();
-                bundle2.putString("page_type", "contactus");
-                WebViewsFragment webViewsFragment2 =new WebViewsFragment();
-                webViewsFragment2.setArguments(bundle2);
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, webViewsFragment2, "webViewsSPFrag").addToBackStack("webViews_sp").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, new ContactUsFragment(), "contactUsFrag").addToBackStack("contactUsSP").commit();
                 close_SPHomeNavigationDrawer();
                 break;
 

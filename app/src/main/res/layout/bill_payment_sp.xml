@@ -7,12 +7,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
+        <!--Header -->
+        <RelativeLayout
             android:id="@+id/toolbar_layout_billPayment_sp"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            layout="@layout/toolbar"/>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/home_header_color"
+            >
 
+            <ImageView
+                android:id="@+id/imageView_left_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back"
+                android:padding="@dimen/_12sdp"/>
+
+            <TextView
+                app:font="@{`medium`}"
+                android:id="@+id/title_toolbar"
+                android:text="Bill"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+
+                />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/imageView_bill_payment_sp"

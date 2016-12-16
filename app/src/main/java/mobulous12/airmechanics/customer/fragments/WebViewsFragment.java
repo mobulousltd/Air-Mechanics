@@ -57,12 +57,6 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
                 webView_custom.getSettings().setJavaScriptEnabled(true);
             }
-            if(type.equalsIgnoreCase("contactus"))
-            {
-                ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.contact_us_homesp));
-                ((HomeActivity)getActivity()).setNavigationIcon();
-
-            }
             if(type.equalsIgnoreCase("t_and_c"))
             {
                 ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.tc_homesp));
@@ -71,7 +65,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.getSettings().setJavaScriptEnabled(true);
             }
         }
-
+      /*For CUSTOMER user*/
         if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
         {
             if(type.equalsIgnoreCase("aboutus"))
@@ -82,6 +76,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.getSettings().setJavaScriptEnabled(true);
             }
         }
+        /*For SERVICE PROVIDER user*/
         else
         {
             if(type.equalsIgnoreCase("aboutus"))
@@ -100,11 +95,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/terms.html");
                 webView_custom.getSettings().setJavaScriptEnabled(true);
             }
-            if (type.equalsIgnoreCase("contactus"))
-            {
-                ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.contact_us_homesp));
-                ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
-            }
+
         }
         return view;
     }

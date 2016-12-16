@@ -8,6 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            >
+
         <LinearLayout
             android:id="@+id/ll_search"
             android:layout_width="match_parent"
@@ -36,15 +44,14 @@
             <!--/>-->
             <!--</android.support.v7.widget.CardView>-->
             <SearchView
-
                 android:id="@+id/searchView_Home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
-
+                android:background="@color/white"
                 />
         </LinearLayout>
-
+        </android.support.v7.widget.CardView>
 
 
 
@@ -53,9 +60,9 @@
             class="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ll_search" />
+            android:layout_below="@+id/cardView_search" />
         <android.support.v7.widget.CardView
-            android:layout_below="@+id/ll_search"
+            android:layout_below="@+id/cardView_search"
             android:id="@+id/search_rv"
             android:layout_width="match_parent"
             app:cardBackgroundColor="@color/transparent"
@@ -69,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
             </android.support.v7.widget.RecyclerView>
         </android.support.v7.widget.CardView>
 
