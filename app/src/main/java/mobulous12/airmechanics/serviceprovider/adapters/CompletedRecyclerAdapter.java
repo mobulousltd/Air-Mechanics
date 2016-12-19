@@ -2,6 +2,7 @@ package mobulous12.airmechanics.serviceprovider.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,6 +43,8 @@ public class CompletedRecyclerAdapter extends RecyclerView.Adapter<CompletedRecy
     {
         CompletedFragCardsBinding binding=DataBindingUtil.inflate(inflater,R.layout.completed_frag_cards,parent,false);
         CompletedViewHolder holder = new CompletedViewHolder(binding.getRoot());
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("", new BookingBean());
         return holder;
     }
 
@@ -73,7 +76,6 @@ public class CompletedRecyclerAdapter extends RecyclerView.Adapter<CompletedRecy
 
     public class CompletedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-
         private TextView jobOrderName_1_Comp;
         private TextView jobOrderAmount_1_Comp;
         private TextView jobOrderDate_1_Comp;
@@ -89,11 +91,11 @@ public class CompletedRecyclerAdapter extends RecyclerView.Adapter<CompletedRecy
 
             jobOrderAmount_1_Comp = (TextView) itemView.findViewById(R.id.textView_jobOrderAmount_1_completed);
 
-            jobOrderDate_1_Comp= (TextView) itemView.findViewById(R.id.textView_jobOrderDate_1_completed);
+            jobOrderDate_1_Comp = (TextView) itemView.findViewById(R.id.textView_jobOrderDate_1_completed);
 
-            jobOrderTime_1_Comp= (TextView) itemView.findViewById(R.id.textView_jobOrderTime_1_completed);
+            jobOrderTime_1_Comp = (TextView) itemView.findViewById(R.id.textView_jobOrderTime_1_completed);
 
-            jobOrderStatus_1_Comp= (TextView) itemView.findViewById(R.id.textView_jobOrderStatus_1_completed);
+            jobOrderStatus_1_Comp = (TextView) itemView.findViewById(R.id.textView_jobOrderStatus_1_completed);
 
             itemView.setOnClickListener(this);
         }

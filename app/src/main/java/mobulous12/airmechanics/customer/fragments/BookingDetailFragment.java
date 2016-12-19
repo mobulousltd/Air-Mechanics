@@ -54,6 +54,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     private TextView textViewServiceTypeDynamic2;
     View view;
 
+    private boolean isPaymentVisible = false;
     public BookingDetailFragment() {
         // Required empty public constructor
     }
@@ -120,6 +121,18 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
 //        Font.setFontTextView(textViewServiceTypeDynamic2, getActivity());
 //        Font.setFontTextView(textViewServiceProviderDetailDynamic, getActivity());
 //        Font.setFontTextView(textViewServiceProviderAddressDynamic, getActivity());
+
+        //CHECKING STATUS
+        Bundle bundle = getArguments();
+        if (bundle != null)
+        {
+            String status = bundle.getString("status");
+            if (status.equals("pending") || status.equals("process"))
+            {
+                isPaymentVisible = true;
+                getActivity().invalidateOptionsMenu();  //  Calling System call to onPrepareOptionsMenu()
+            }
+        }
         return view;
     }
 
@@ -220,7 +233,8 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-       inflater.inflate(R.menu.booking_detail_menu,menu);
+        inflater.inflate(R.menu.booking_detail_menu,menu);
+
     }
 
     @Override
@@ -241,7 +255,8 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_show_service_provider).setVisible(false);
-
+        if (isPaymentVisible) {
+            menu.findItem(R.id.payment).setVisible(false);
+        }
     }
-
 }
