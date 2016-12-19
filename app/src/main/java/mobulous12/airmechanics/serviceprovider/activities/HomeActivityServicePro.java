@@ -197,7 +197,11 @@ public class HomeActivityServicePro extends AppCompatActivity
             String notifi=getIntent().getStringExtra("notify");
             if(notifi.equals("request"))
             {
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, new JobRequestFragment(), "jobReqDetailFragSP").addToBackStack("jobReqDetailFrag").commit();
+                Fragment fragment = new JobRequestDetailFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("reqid", getIntent().getStringExtra("requestid"));
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, fragment).addToBackStack("jobReqDetailFragSP").commit();
             }
             if(notifi.equals("pending"))
             {

@@ -141,7 +141,10 @@ private View view;
                     {
                         @Override
                         public void onItemClick(int position, View v) {
-                            startActivityForResult(new Intent(getActivity(), BillPaymentActivitySp.class), 001);
+                            Intent intent = new Intent(getActivity(), BillPaymentActivitySp.class);
+                            intent.putExtra("bean", beanArrayList.get(position));
+
+                            startActivityForResult(intent, 001);
                         }
                     });
                 }
@@ -149,7 +152,6 @@ private View view;
                 e.printStackTrace();
             }
         }
-
     }
 
 }

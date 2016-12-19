@@ -1,5 +1,6 @@
 package mobulous12.airmechanics.serviceprovider.activities;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import mobulous12.airmechanics.R;
-import mobulous12.airmechanics.fonts.Font;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONObject;
 
-public class BillPaymentActivitySp extends AppCompatActivity implements View.OnClickListener {
+import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.beans.BookingBean;
+import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
+import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.volley.ApiListener;
+import mobulous12.airmechanics.volley.CustomHandler;
+import mobulous12.airmechanics.volley.ServiceBean;
+
+public class BillPaymentActivitySp extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
     private RelativeLayout rootTypeOfService;
     private RelativeLayout rootDescription;
@@ -39,6 +50,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
     private ImageView toolbarBackButton;
 
     private Button button_send;
+
+    private String price="";
 
 
     @Override
@@ -75,6 +88,22 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
         textViewTypeOfServiceDynamic.setVisibility(View.GONE);
         textViewDescriptionDynamic.setVisibility(View.GONE);
         textViewTotalPriceDynamic.setVisibility(View.GONE);
+
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            BookingBean bean = intent.getParcelableExtra("bean");
+            if (bean != null)
+            {
+                String category = bean.getCategory();
+                String title = bean.getRequestname();
+                String desc = bean.getRequestdesc();
+                price = bean.getMinCharge();
+                textViewTypeOfServiceDynamic.setText(category);
+                textViewDescriptionDynamic.setText("Title : "+title+"\n"+"Description : "+desc);
+                textViewTotalPriceDynamic.setText("$ "+price);
+            }
+        }
     }
 
     @Override
@@ -155,6 +184,31 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
                 finish();
                 break;
         }
+
+    }
+
+    private void sendBillServiceHit()
+    {
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN));
+        multipartEntityBuilder.addTextBody("request_id", "");
+        multipartEntityBuilder.addTextBody("price", price);
+
+        ServiceBean bean = new ServiceBean();
+        bean.setActivity(this);
+        bean.setMethodName("Services/sendbill");
+        bean.setApilistener(this);
+
+
+        CustomHandler customHandler = new CustomHandler(bean);
+        customHandler.makeMultipartRequest(multipartEntityBuilder);
+
+    }
+
+    @Override
+    public void myServerResponse(JSONObject jsonObject) {
 
     }
 }

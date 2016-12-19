@@ -36,6 +36,7 @@ import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
+    String requestid="";
     private static final String TAG = "MyFirebaseMsgService";
 
     // Called when message is received.@param remoteMessage Object representing the message received from Firebase Cloud Messaging.
@@ -76,6 +77,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 }
                                 else
                                 {
+                                    requestid=jsonObject.getString("request_id");
                                     sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider");
                                 }
                             }
@@ -102,6 +104,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 }
                                 else
                                 {
+                                    requestid=jsonObject.getString("request_id");
                                     sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
                                 }
                             }
@@ -152,6 +155,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         {
             intent = new Intent(this, HomeActivityServicePro.class);
         }
+        intent.putExtra("requestid", requestid);
         intent.putExtra("type", "notify");
         intent.putExtra("notify", type);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -177,6 +181,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 }
 //AIzaSyA0-bZUagt89GhxVnjLMP9PX3stw1bz0Y8
+//Message data payload: {status=request, request_id=133, message=New job request recieved from Customer Six.}//requesting
+//Message data payload: {minimum_charge=, address=B 23, Block B, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309, status=priceupdate, service_provider_name=Service Provider Three, minCharge=58809, id=, date=1 January, 1970, category=, title=, message=Your Job price Updated by Service Provider Three, category_id=, service_provider_Id=}
+//Message data payload: {customer_name=Customer Six, customer_Id=70, minimum_charge=58809, address=C-13, C Block, Sector 59, Noida, Uttar Pradesh 201301, status=pending, id=133, date=20 December, 2016, category=heavy, title=fcbc, message=Your Job request  accepted by Customer Six, category_id=heavy}
+
 //{minimum_charge=, address=3, D Block, Sector 59, Noida, Uttar Pradesh 201301, mesage=Your Job price Updated  Reject by Service Provider 3, status=priceupdate, service_provider_name=Service Provider 3, minCharge=27889, id=, date=1 January, 1970, category=, title=, category_id=, service_provider_Id=}
 //{customer_name=Customer Four, customer_Id=214, minimum_charge=27889, address=FNG Expressway Service Road, Amrapali Zodiac, Sector 120, Noida, Uttar Pradesh 201304, status=pending, id=64, date=25 November, 2016, category=light, title=fjfcjjffu, message=Your Job request  accepted by Customer Four, category_id=light}
 //{minimum_charge=, address=3, D Block, Sector 59, Noida, Uttar Pradesh 201301, status=priceupdate, service_provider_name=Service Provider 3, minCharge=27884, id=, date=1 January, 1970, category=, title=, message=Your Job price Updated by Service Provider 3, category_id=, service_provider_Id=}
