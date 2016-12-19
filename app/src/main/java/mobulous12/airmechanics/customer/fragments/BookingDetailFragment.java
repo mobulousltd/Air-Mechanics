@@ -16,8 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
+
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.databinding.BillPaymentBinding;
 import mobulous12.airmechanics.databinding.BookingDetailBinding;
 
 /**
@@ -42,6 +46,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     private boolean isServiceProviderDetailOpen = true;
     private boolean isServiceProviderAddressOpen = true;
     private boolean isRatingOpen = true;
+    private boolean isDescpOpen = true;
 
     private TextView textViewServiceTypeDynamic;
     private TextView textViewServiceProviderDetailDynamic;
@@ -52,7 +57,12 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     private TextView textViewServiceProviderAddress;
     private TextView textViewRating;
     private TextView textViewServiceTypeDynamic2;
+
+    private TextView title,descrip,tv_Descrip;
+    private RelativeLayout root_descrip,sp_bookDetailDescrip;
+    private ImageView img_Descrip,profile;
     View view;
+    private  BookingBean  bookingBean;
 
     public BookingDetailFragment() {
         // Required empty public constructor
@@ -74,6 +84,10 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         view=binding.getRoot();
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_booking_detail));
         ((HomeActivity)getActivity()).setNavigationIcon();
+
+
+        bookingBean=  getArguments().getParcelable("bookingBean");
+
 //        Font.setFontHeader(HomeActivity.toolbar_title, getActivity()); //toolbar set font
 
 
@@ -109,6 +123,21 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         textViewServiceProviderAddress = (TextView) view.findViewById(R.id.textView_service_provider_address);
         textViewRating = (TextView) view.findViewById(R.id.textView_booking_detail_rating);
 
+
+        tv_Descrip = (TextView) view.findViewById(R.id.tv_Descrip);
+        title = (TextView) view.findViewById(R.id.tv_bookTitle);
+        descrip = (TextView) view.findViewById(R.id.tv_bookDescrip);
+        img_Descrip = (ImageView)view.findViewById(R.id.img_Descrip);
+
+//        profile = (ImageView)view.findViewById(R.id.img_bookSP);
+//        title.setVisibility(View.GONE);
+//        descrip.setVisibility(View.GONE);
+//        profile.setVisibility(View.GONE);
+
+        sp_bookDetailDescrip = (RelativeLayout) view.findViewById(R.id.sp_bookDetailDescrip);
+        root_descrip = (RelativeLayout) view.findViewById(R.id.root_descripSP);
+        root_descrip.setVisibility(View.GONE);
+        sp_bookDetailDescrip.setOnClickListener(this);
         /*set fonts*/
 
 //        Font.setFontTextView(textViewServiceType, getActivity());
@@ -120,14 +149,107 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
 //        Font.setFontTextView(textViewServiceTypeDynamic2, getActivity());
 //        Font.setFontTextView(textViewServiceProviderDetailDynamic, getActivity());
 //        Font.setFontTextView(textViewServiceProviderAddressDynamic, getActivity());
+
+
+        setFields();
+
         return view;
     }
+private void setFields()
+{
+    String cat="";
+    if((bookingBean.getCategory()).equalsIgnoreCase("two"))
+    {
+        cat=getString(R.string.two_wheeler);
+    }
+    if((bookingBean.getCategory()).equalsIgnoreCase("light"))
+    {
+        cat=getString(R.string.two_wheeler);
+    }
+    if((bookingBean.getCategory()).equalsIgnoreCase("heavy"))
+    {
+        cat=getString(R.string.heavy_weight_vehicle);
+    }
+//    if((bookingBean.getCategory()).contains("light"))
+//    {
+//        if(cat.isEmpty())
+//        {
+//            cat=getString(R.string.light_weight_vehicle);
+//        }
+//        else
+//        {
+//            cat+=", "+getString(R.string.light_weight_vehicle);
+//        }
+//    }
+//    if((bookingBean.getCategory()).contains("heavy"))
+//    {
+//        if(cat.isEmpty())
+//        {
+//            cat=getString(R.string.heavy_weight_vehicle);
+//        }
+//        else
+//        {
+//            cat+=", "+getString(R.string.heavy_weight_vehicle);
+//        }
+//    }
+// type
+    textViewServiceTypeDynamic.setText(cat);
+    textViewServiceTypeDynamic2.setText(getString(R.string.sp_minCharge)+bookingBean.getMinCharge());
+//address
+    textViewServiceProviderAddressDynamic.setText(bookingBean.getUseraddress());
+//    title , description and profile
+    title.setText("Title: "+bookingBean.getRequestname());
+    descrip.setText("Description: "+bookingBean.getRequestdesc());
+
+//    AQuery aQuery = new AQuery(profile);
+//
+//    if((bookingBean.getProfile_thumb()).isEmpty())
+//    {
+//        aQuery.id(profile).image(R.drawable.default_profile_pic);
+//    }
+//    else
+//    {
+//        aQuery.id(profile).image((bookingBean.getProfile_thumb()));
+//    }
+
+
+//    details
+
+    textViewServiceProviderDetailDynamic.setText("Name: "+bookingBean.getUserName()+"\n"+
+                                                "Contact No.: "+bookingBean.getUsernumber()+"\n"+
+                                                "Timing: "+bookingBean.getOpenTime()+" To "+bookingBean.getCloseTime());
+
+
+}
+
+
 
     @Override
     public void onClick(View view) {
 
         switch (view.getId())
         {
+            case R.id.sp_bookDetailDescrip:
+                if(isDescpOpen)
+                {
+                    root_descrip.setVisibility(View.VISIBLE);
+                    isDescpOpen = false;
+                    sp_bookDetailDescrip.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
+                    tv_Descrip.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
+                    tv_Descrip.setTextColor(getResources().getColor(R.color.white));
+                    img_Descrip.setImageResource(R.drawable.down_arrow);
+
+                }
+                else {
+                    root_descrip.setVisibility(View.GONE);
+                    isDescpOpen = true;
+                    sp_bookDetailDescrip.setBackgroundColor(getResources().getColor(R.color.white));
+                    tv_Descrip.setBackgroundColor(getResources().getColor(R.color.white));
+                    tv_Descrip.setTextColor(getResources().getColor(R.color.text_gray));
+                    img_Descrip.setImageResource(R.drawable.greyright_arrow);
+                }
+                break;
+
             case R.id.root_service_type:
 
                 if (isServiceTypeOpen)
@@ -220,7 +342,14 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-       inflater.inflate(R.menu.booking_detail_menu,menu);
+        if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+        {
+            inflater.inflate(R.menu.booking_detail_menu,menu);
+        }
+        else {
+            inflater.inflate(R.menu.blank_at_right_menu,menu);
+        }
+
     }
 
     @Override
@@ -229,7 +358,12 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         switch (item.getItemId())
         {
             case R.id.payment:
-              getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,new BillPaymentFragment(),"billPaymentFragment").addToBackStack("payment").commit();
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("bookingBean",bookingBean);
+                BillPaymentFragment paymentFragment = new BillPaymentFragment();
+                paymentFragment.setArguments(bundle);
+              getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,paymentFragment,"billPaymentFragment").addToBackStack("payment").commit();
                 break;
         }
 

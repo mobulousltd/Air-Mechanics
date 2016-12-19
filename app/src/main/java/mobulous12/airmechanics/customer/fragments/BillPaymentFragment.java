@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.databinding.BillPaymentBinding;
 
@@ -47,6 +48,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     private TextView textViewDescriptionDynamic;
     private TextView textViewTotalPriceDynamic;
     private Button button_rate_us;
+    private BookingBean bookingBean;
     View view;
     public BillPaymentFragment() {
         // Required empty public constructor
@@ -64,6 +66,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         BillPaymentBinding binding=DataBindingUtil.inflate(inflater, R.layout.bill_payment, container, false);
         view=binding.getRoot();
+        bookingBean = getArguments().getParcelable("bookingBean");
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_billpayment));
         ((HomeActivity)getActivity()).setNavigationIcon();
 //        Font.setFontHeader(HomeActivity.toolbar_title, getActivity());
@@ -73,6 +76,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootTotalPrice = (RelativeLayout) view.findViewById(R.id.root_total_price);
         button_rate_us = (Button) view.findViewById(R.id.button_rate_us);
 
+        if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+        {
+            button_rate_us.setText("Pay Now");
+        }
         rootTypeOfService.setOnClickListener(this);
         rootDescription.setOnClickListener(this);
         rootTotalPrice.setOnClickListener(this);

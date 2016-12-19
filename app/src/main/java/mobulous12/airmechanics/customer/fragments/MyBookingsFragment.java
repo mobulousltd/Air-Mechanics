@@ -174,7 +174,12 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                     bookingsRecyclerAdapter.onItemClickListener(new MyBookingsRecyclerAdapter.MyClickListener() {
                         @Override
                         public void onItemClick(int position, View v) {
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,new BookingDetailFragment(),"bookingDetailFragment").addToBackStack("bookingdetails").commit();
+                            BookingBean bookingBean = bookingArrList.get(position);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("bookingBean",bookingBean);
+                            BookingDetailFragment bookingDetailFragment = new BookingDetailFragment();
+                            bookingDetailFragment.setArguments(bundle);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,bookingDetailFragment,"bookingDetailFragment").addToBackStack("bookingdetails").commit();
                         }
                     });
                     recyclerView_myBookings.setAdapter(bookingsRecyclerAdapter);

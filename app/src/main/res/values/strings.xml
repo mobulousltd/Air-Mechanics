@@ -223,6 +223,7 @@
     <string name="car_repair">Car Repair</string>
     <string name="servicetype_car_repair">Minimum Charges $50</string>
     <string name="service_provider_address_dummy_text">Service Provider Address Dummy Text</string>
+    <string name="sp_minCharge">Minimum Charges $</string>
     <string name="service_provider_address">Service Provider Address</string>
     <string name="rating_text">Rating</string>
     <string name="mobulous_address">H-35, H-Block, Sector-63, Noida(U.P)</string>
