@@ -151,6 +151,7 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setUseraddress(jsonobject.getString("address"));
                         bean.setUsernumber(jsonobject.getString("contact_no"));
                         bean.setStatus(jsonobject.getString("status"));
+                        bean.setCategory(jsonobject.getString("category"));
                         bean.setMinCharge(jsonobject.getString("minCharge"));
                         bean.setRequestname(jsonobject.getString("request_Title"));
                         bean.setRequestDate(jsonobject.getString("requestDate"));

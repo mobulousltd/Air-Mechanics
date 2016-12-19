@@ -255,6 +255,7 @@ private void setFields()
                 if (isServiceTypeOpen)
                 {
                     textViewServiceTypeDynamic.setVisibility(View.VISIBLE);
+                    textViewServiceTypeDynamic2.setVisibility(View.VISIBLE);
                     isServiceTypeOpen = false;
                     rootServiceType.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewServiceType.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -263,6 +264,7 @@ private void setFields()
                 }
                 else {
                     textViewServiceTypeDynamic.setVisibility(View.GONE);
+                    textViewServiceTypeDynamic2.setVisibility(View.GONE);
                     isServiceTypeOpen = true;
                     rootServiceType.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewServiceType.setBackgroundColor(getResources().getColor(R.color.white));
