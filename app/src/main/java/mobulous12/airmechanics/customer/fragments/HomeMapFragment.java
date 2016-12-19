@@ -152,11 +152,13 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 {
                     search=false;
                     view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+                    recView_SPList.setVisibility(View.GONE);
                 }
                 else
                 {
                     search=true;
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                    recView_SPList.setVisibility(View.VISIBLE);
                     setDefaultRecyclerView();
                 }
             }
@@ -183,6 +185,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     spArrayList=arrayList;
                     searchListAdapter.setArraList(spArrayList);
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                    recView_SPList.setVisibility(View.VISIBLE);
                 }
                 return true;
             }
@@ -211,26 +214,26 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 }
             }
         });
-        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
-
-        view.findViewById(R.id.layout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity();
-                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                if(search)
-                {
-                    search=false;
-                    view.findViewById(R.id.search_rv).setVisibility(View.GONE);
-                }
-                else
-                {
-                    search=true;
-                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
-                }
-            }
-        });
+//        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+//
+//        view.findViewById(R.id.layout).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity();
+//                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                if(search)
+//                {
+//                    search=false;
+//                    view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+//                }
+//                else
+//                {
+//                    search=true;
+//                    view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.home_map);
         mapFragment.getMapAsync(this);
         serviceProviderList();   // Listing of ServiceProviders as Markers in MAP
@@ -277,6 +280,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     {
                         search=false;
                         view.findViewById(R.id.search_rv).setVisibility(View.GONE);
+                        recView_SPList.setVisibility(View.GONE);
                     }
                 }
             });
@@ -472,7 +476,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 else if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("searchbytext"))
                 {
                     Log.d("SearchResponse", ""+responseObj.toString());
-                    recView_SPList.setVisibility(View.VISIBLE);
 
                     JSONArray responseArr = responseObj.getJSONArray("response");
                     spArrayList = new ArrayList<ServiceProviderBean>();
@@ -502,6 +505,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     }
                     searchListAdapter.setArraList(spArrayList);
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                    recView_SPList.setVisibility(View.VISIBLE);
                 }
                 else
                 {
