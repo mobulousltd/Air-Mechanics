@@ -244,7 +244,10 @@ public class HomeActivity extends AppCompatActivity
             String notifi=getIntent().getStringExtra("notify");
             if(notifi.equalsIgnoreCase("priceupdate"))
             {
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
+                Intent intent=new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
+                intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
+                startActivity(intent);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
             }
             else
             {
