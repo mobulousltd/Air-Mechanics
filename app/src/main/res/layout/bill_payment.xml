@@ -23,14 +23,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView_bill"
-            android:layout_below="@+id/imageView_bill_payment">
+            android:layout_above="@+id/button_rate_us"
+            android:layout_below="@+id/imageView_bill_payment"
+            android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
                 android:id="@+id/linear_bill_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@+id/imageView_bill_payment">
+                android:layout_below="@+id/imageView_bill_payment"
+              >
 
                 <RelativeLayout
                     android:id="@+id/root_type_of_vechile"
@@ -103,14 +106,44 @@
                         />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView_description_dynamic_billPayment"
-                    android:text="@string/description_myplan"
+                <RelativeLayout
+                    android:id="@+id/root_descripBill"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
-                    />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                    android:id="@+id/img_bookBill"
+                    android:layout_width="@dimen/dp_80"
+                    android:layout_height="@dimen/dp_80"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/default_profile_pic"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_descp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_bookBill">
+                        <TextView
+                            android:id="@+id/tv_bookTitleBill"
+                            android:text="@string/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="@dimen/_5sdp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_bookDescripBill"
+                            android:text="@string/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                          android:padding="@dimen/_5sdp"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="match_parent"

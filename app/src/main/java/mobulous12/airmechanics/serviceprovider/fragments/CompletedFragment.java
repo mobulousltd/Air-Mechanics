@@ -112,6 +112,7 @@ private View view;
                         bean.setBookingid(obj.getString("id"));
                         bean.setUserName(obj.getString("userName"));
                         bean.setUserImage(obj.getString("userImage"));
+                        bean.setProfile_thumb(obj.getString("userImage"));
                         bean.setUseraddress(obj.getString("address"));
                         bean.setUsernumber(obj.getString("contact_no"));
                         bean.setStatus(obj.getString("status"));
@@ -123,6 +124,17 @@ private View view;
                         bean.setRequestcategory(obj.getString("category"));
                         bean.setOpenTime(obj.getString("open_time"));
                         bean.setCloseTime(obj.getString("close_time"));
+                        bean.setCategory("category");
+                        JSONArray reqImgJsonArray = obj.getJSONArray("request_image");
+                        if(reqImgJsonArray.length()>0)
+                        {
+                            bean.setRequestImage(reqImgJsonArray.getString(0));
+                        }
+                        else
+                        {
+                            bean.setRequestImage(obj.getString("userImage"));
+                        }
+
                         beanArrayList.add(bean);
                     }
                     if(beanArrayList.size()==0)
@@ -141,8 +153,9 @@ private View view;
                     {
                         @Override
                         public void onItemClick(int position, View v) {
+                            BookingBean bean = beanArrayList.get(position);
                             Intent intent = new Intent(getActivity(), BillPaymentActivitySp.class);
-                            intent.putExtra("bean", beanArrayList.get(position));
+                            intent.putExtra("bean", bean);
 
                             startActivityForResult(intent, 001);
                         }

@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,17 +19,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONObject;
+
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.databinding.RateServiceProviderScreenBinding;
 import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
+import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.volley.ApiListener;
+import mobulous12.airmechanics.volley.CustomHandler;
+import mobulous12.airmechanics.volley.ServiceBean;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RateScreenFragment extends Fragment implements View.OnClickListener {
+public class RateScreenFragment extends Fragment implements View.OnClickListener, ApiListener {
 
-    View view;
+    private View view;
     private ImageView star1;
     private ImageView star2;
     private ImageView star3;
@@ -39,6 +50,8 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
     private boolean isStar3 = true;
     private boolean isStar4 = true;
     private boolean isStar5 = true;
+    private BookingBean bookingBean;
+    private EditText et_review;
 
     public RateScreenFragment() {
         // Required empty public constructor
@@ -57,8 +70,13 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
     {
         RateServiceProviderScreenBinding binding=DataBindingUtil.inflate(inflater, R.layout.rate_service_provider_screen, container, false);
         view=binding.getRoot();
+
+        bookingBean = getArguments().getParcelable("bookingBean");
+
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_rate_service));
         ((HomeActivity)getActivity()).setNavigationIcon();
+        et_review = (EditText) view.findViewById(R.id.edit_writeReview_rateScreen);
+
         star1 = (ImageView) view.findViewById(R.id.imageView_star1_rateScreen);
         star2 = (ImageView) view.findViewById(R.id.imageView_star2_rateScreen);
         star3 = (ImageView) view.findViewById(R.id.imageView_star3_rateScreen);
@@ -141,6 +159,7 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             case R.id.button_submit_Rate:
+                rateServiceProService();
                 int count=((HomeActivity)getActivity()).getSupportFragmentManager().getBackStackEntryCount();
                 for (int i=0;i<count;i++)
                 {
@@ -152,6 +171,52 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    private void rateServiceProService()
+    {
+
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+
+        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
+        multipartEntityBuilder.addTextBody("service_id", "");
+        multipartEntityBuilder.addTextBody("request_id", bookingBean.getBookingid());
+        multipartEntityBuilder.addTextBody("workRating","");
+        multipartEntityBuilder.addTextBody("review",et_review.getText().toString().trim());
+
+        ServiceBean bean = new ServiceBean();
+        bean.setActivity(getActivity());
+        bean.setIsLoader(true);
+        bean.setMethodName("Consumers/rate_serviceProvider");
+        bean.setApilistener(this);
+
+
+        CustomHandler customHandler = new CustomHandler(bean);
+        customHandler.makeMultipartRequest(multipartEntityBuilder);
+
+    }
+
+    @Override
+    public void myServerResponse(JSONObject jsonObject)
+    {
+        if (jsonObject != null) {
+            try
+            {
+                if ((jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) && (jsonObject.getString("requestKey").equalsIgnoreCase("rate_serviceProvider")))
+                {
+
+                    JSONObject response = jsonObject.getJSONObject("response");
+                    String reqstId = response.getString("request_id");
+                    String serviceId = response.getString("service_id");
+
+                    Log.e("J_RESPONSE", jsonObject.toString());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -173,4 +238,5 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
 
 
     }
+
 }

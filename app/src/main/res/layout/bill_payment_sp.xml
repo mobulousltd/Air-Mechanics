@@ -56,7 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView_bill_sp"
-            android:layout_below="@+id/imageView_bill_payment_sp">
+            android:layout_above="@+id/button_send_billPayment_sp"
+            android:layout_below="@+id/imageView_bill_payment_sp"
+            android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
                 android:id="@+id/linear_bill_payment_sp"
@@ -134,15 +136,44 @@
                         />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView_description_dynamic_billPayment_sp"
-                    android:text="@string/description_myplan"
+                <RelativeLayout
+                    android:id="@+id/rl_descripBill"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
-                    />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/imgV_descripBill"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_80"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:padding="@dimen/_4sdp"
+                        android:src="@drawable/default_profile_pic"/>
 
+                    <LinearLayout
+                        android:id="@+id/ll_descrip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/imgV_descripBill">
+                        <TextView
+                            android:id="@+id/tv_titleBill"
+                            android:text="@string/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="@dimen/_5sdp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_descripBill"
+                            android:text="@string/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:padding="@dimen/_5sdp"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
@@ -176,13 +207,16 @@
                         />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/textView_total_price_dynamic_sp"
+                <EditText
+                    android:id="@+id/et_totalPriceBill"
                     android:text="@string/total_price_dummy_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:padding="@dimen/_10sdp"
+                    android:background="@null"
+                    android:inputType="numberSigned"
+                    android:imeOptions="actionDone"
                     />
 
                 <TextView

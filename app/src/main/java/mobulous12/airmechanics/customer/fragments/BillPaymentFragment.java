@@ -2,6 +2,7 @@ package mobulous12.airmechanics.customer.fragments;
 
 
 import android.databinding.DataBindingUtil;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
@@ -49,7 +53,11 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     private TextView textViewTotalPriceDynamic;
     private Button button_rate_us;
     private BookingBean bookingBean;
-    View view;
+    private View view;
+    private RelativeLayout root_descripBill;
+    private ImageView profile;
+    private TextView title, descrip;
+
     public BillPaymentFragment() {
         // Required empty public constructor
     }
@@ -94,12 +102,19 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         textViewTotalPrice = (TextView) view.findViewById(R.id.textView_total_price);
 
         textViewTypeOfServiceDynamic = (TextView) view.findViewById(R.id.textView_type_of_vechile_dynamic);
-        textViewDescriptionDynamic = (TextView) view.findViewById(R.id.textView_description_dynamic_billPayment);
+//        textViewDescriptionDynamic = (TextView) view.findViewById(R.id.textView_description_dynamic_billPayment);
         textViewTotalPriceDynamic = (TextView) view.findViewById(R.id.textView_total_price_dynamic);
+        root_descripBill = (RelativeLayout) view.findViewById(R.id.root_descripBill);
+        profile = (ImageView) view.findViewById(R.id.img_bookBill);
+        title = (TextView) view.findViewById(R.id.tv_bookTitleBill);
+        descrip = (TextView) view.findViewById(R.id.tv_bookDescripBill);
+
 
         textViewTypeOfServiceDynamic.setVisibility(View.GONE);
-        textViewDescriptionDynamic.setVisibility(View.GONE);
+        root_descripBill.setVisibility(View.GONE);
+//        textViewDescriptionDynamic.setVisibility(View.GONE);
         textViewTotalPriceDynamic.setVisibility(View.GONE);
+
 
         /*set fonts*/
 //        Font.setFontTextView(textViewTypeOfService, getActivity());
@@ -113,9 +128,57 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 //
 //        Font.setFontButton(button_rate_us, getActivity());
 
+        setFields();
         return view;
     }
 
+    private void setFields()
+    {
+        String cat="";
+        if((bookingBean.getCategory()).contains("two"))
+        {
+            cat = getString(R.string.two_wheeler);
+        }
+        if((bookingBean.getCategory()).contains("light"))
+        {
+            if(cat.isEmpty())
+            {
+                cat=getString(R.string.light_weight_vehicle);
+            }
+            else
+            {
+                cat+=", "+getString(R.string.light_weight_vehicle);
+            }
+        }
+        if((bookingBean.getCategory()).contains("heavy"))
+        {
+            if(cat.isEmpty())
+            {
+                cat=getString(R.string.heavy_weight_vehicle);
+            }
+            else
+            {
+                cat+=", "+getString(R.string.heavy_weight_vehicle);
+            }
+        }
+//        categories/ type of vehicle and price
+        textViewTypeOfServiceDynamic.setText(cat);
+        textViewTotalPriceDynamic.setText("$"+bookingBean.getMinCharge());
+        //    title , description and profile
+        title.setText("Title: "+bookingBean.getRequestname());
+        descrip.setText("Description: "+bookingBean.getRequestdesc());
+
+       AQuery aQuery = new AQuery(profile);
+        if(bookingBean.getRequestImage().isEmpty())
+        {
+            aQuery.id(profile).image(R.drawable.default_profile_pic);
+        }
+        else
+        {
+            aQuery.id(profile).image(bookingBean.getRequestImage());
+        }
+
+    }
     @Override
     public void onClick(View view) {
 
@@ -146,7 +209,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
                 if (isDescriptionOpen)
                 {
-                    textViewDescriptionDynamic.setVisibility(View.VISIBLE);
+//                    textViewDescriptionDynamic.setVisibility(View.VISIBLE);
+                    root_descripBill.setVisibility(View.VISIBLE);
                     isDescriptionOpen = false;
                     rootDescription.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewDescription.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -154,7 +218,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                     imgDescription.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewDescriptionDynamic.setVisibility(View.GONE);
+//                    textViewDescriptionDynamic.setVisibility(View.GONE);
+                    root_descripBill.setVisibility(View.GONE);
                     isDescriptionOpen = true;
                     rootDescription.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewDescription.setBackgroundColor(getResources().getColor(R.color.white));
@@ -168,6 +233,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 if (isTotalPriceOpen)
                 {
                     textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
+
                     isTotalPriceOpen = false;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -176,6 +242,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 }
                 else {
                     textViewTotalPriceDynamic.setVisibility(View.GONE);
+
                     isTotalPriceOpen = true;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));
@@ -186,7 +253,11 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.button_rate_us:
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,new RateScreenFragment(),"rateServiceProviderFragment").addToBackStack("rateserviceprovider").commit();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("bookingBean",bookingBean);
+                RateScreenFragment rateFragment = new RateScreenFragment();
+                rateFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,rateFragment,"rateServiceProviderFragment").addToBackStack("rateserviceprovider").commit();
 
                 break;
         }

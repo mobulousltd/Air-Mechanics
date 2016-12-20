@@ -51,6 +51,7 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
     MyBookingsRecyclerAdapter bookingsRecyclerAdapter;
     private   LayoutInflater myinflater;
     private   ArrayList<BookingBean> bookingArrList;
+    private String[] reqstImgArray={};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,6 +149,7 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setBookingid(jsonobject.getString("id"));
                         bean.setUserName(jsonobject.getString("userName"));
                         bean.setUserImage(jsonobject.getString("userImage"));
+                        bean.setProfile_thumb(jsonobject.getString("userImage"));
                         bean.setUseraddress(jsonobject.getString("address"));
                         bean.setUsernumber(jsonobject.getString("contact_no"));
                         bean.setStatus(jsonobject.getString("status"));
@@ -160,6 +162,18 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setRequestcategory(jsonobject.getString("category"));
                         bean.setOpenTime(jsonobject.getString("open_time"));
                         bean.setCloseTime(jsonobject.getString("close_time"));
+
+                     JSONArray reqImgJsonArray = jsonobject.getJSONArray("request_image");
+                        if(reqImgJsonArray.length()>0)
+                        {
+                            bean.setRequestImage(reqImgJsonArray.getString(0));
+                        }
+                        else
+                        {
+                            bean.setRequestImage(jsonobject.getString("userImage"));
+                        }
+
+
                         bookingArrList.add(bean);
                     }
                     if(bookingArrList.size()==0)

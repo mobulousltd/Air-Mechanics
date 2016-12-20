@@ -72,19 +72,20 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         }
 
         holder.myBookingName.setText(bookingBean.getUserName());
-        holder.bookingAmount.setText(bookingBean.getMinCharge());
+        holder.bookingAmount.setText("$"+bookingBean.getMinCharge());
         holder.bookingDate.setText(bookingBean.getRequestDate());
         holder.bookingTime.setText(bookingBean.getOpenTime()+" - "+bookingBean.getCloseTime());
 
         AQuery aQuery=new AQuery(holder.circularImageView_myBooking);
-        if(bookingBean.getProfile_thumb().isEmpty())
+        if(bookingBean.getRequestImage().isEmpty())
         {
             aQuery.id(holder.circularImageView_myBooking).image(R.drawable.default_profile_pic);
         }
         else
         {
-            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getProfile_thumb());
+            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getRequestImage());
         }
+
     }
 
     @Override

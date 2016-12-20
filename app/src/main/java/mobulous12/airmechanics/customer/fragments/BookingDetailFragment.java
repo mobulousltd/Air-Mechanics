@@ -128,11 +128,8 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         title = (TextView) view.findViewById(R.id.tv_bookTitle);
         descrip = (TextView) view.findViewById(R.id.tv_bookDescrip);
         img_Descrip = (ImageView)view.findViewById(R.id.img_Descrip);
+        profile = (ImageView)view.findViewById(R.id.img_bookSP);
 
-//        profile = (ImageView)view.findViewById(R.id.img_bookSP);
-//        title.setVisibility(View.GONE);
-//        descrip.setVisibility(View.GONE);
-//        profile.setVisibility(View.GONE);
 
         sp_bookDetailDescrip = (RelativeLayout) view.findViewById(R.id.sp_bookDetailDescrip);
         root_descrip = (RelativeLayout) view.findViewById(R.id.root_descripSP);
@@ -158,40 +155,33 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
 private void setFields()
 {
     String cat="";
-    if((bookingBean.getCategory()).equalsIgnoreCase("two"))
+
+    if((bookingBean.getCategory()).contains("two"))
     {
-        cat=getString(R.string.two_wheeler);
+        cat = getString(R.string.two_wheeler);
     }
-    if((bookingBean.getCategory()).equalsIgnoreCase("light"))
+    if((bookingBean.getCategory()).contains("light"))
     {
-        cat=getString(R.string.two_wheeler);
+        if(cat.isEmpty())
+        {
+            cat=getString(R.string.light_weight_vehicle);
+        }
+        else
+        {
+            cat+=", "+getString(R.string.light_weight_vehicle);
+        }
     }
-    if((bookingBean.getCategory()).equalsIgnoreCase("heavy"))
+    if((bookingBean.getCategory()).contains("heavy"))
     {
-        cat=getString(R.string.heavy_weight_vehicle);
+        if(cat.isEmpty())
+        {
+            cat=getString(R.string.heavy_weight_vehicle);
+        }
+        else
+        {
+            cat+=", "+getString(R.string.heavy_weight_vehicle);
+        }
     }
-//    if((bookingBean.getCategory()).contains("light"))
-//    {
-//        if(cat.isEmpty())
-//        {
-//            cat=getString(R.string.light_weight_vehicle);
-//        }
-//        else
-//        {
-//            cat+=", "+getString(R.string.light_weight_vehicle);
-//        }
-//    }
-//    if((bookingBean.getCategory()).contains("heavy"))
-//    {
-//        if(cat.isEmpty())
-//        {
-//            cat=getString(R.string.heavy_weight_vehicle);
-//        }
-//        else
-//        {
-//            cat+=", "+getString(R.string.heavy_weight_vehicle);
-//        }
-//    }
 // type
     textViewServiceTypeDynamic.setText(cat);
     textViewServiceTypeDynamic2.setText(getString(R.string.sp_minCharge)+bookingBean.getMinCharge());
@@ -201,20 +191,17 @@ private void setFields()
     title.setText("Title: "+bookingBean.getRequestname());
     descrip.setText("Description: "+bookingBean.getRequestdesc());
 
-//    AQuery aQuery = new AQuery(profile);
-//
-//    if((bookingBean.getProfile_thumb()).isEmpty())
-//    {
-//        aQuery.id(profile).image(R.drawable.default_profile_pic);
-//    }
-//    else
-//    {
-//        aQuery.id(profile).image((bookingBean.getProfile_thumb()));
-//    }
-
+    AQuery aQuery = new AQuery(profile);
+    if(bookingBean.getRequestImage().isEmpty())
+    {
+        aQuery.id(profile).image(R.drawable.default_profile_pic);
+    }
+    else
+    {
+        aQuery.id(profile).image(bookingBean.getRequestImage());
+    }
 
 //    details
-
     textViewServiceProviderDetailDynamic.setText("Name: "+bookingBean.getUserName()+"\n"+
                                                 "Contact No.: "+bookingBean.getUsernumber()+"\n"+
                                                 "Timing: "+bookingBean.getOpenTime()+" To "+bookingBean.getCloseTime());

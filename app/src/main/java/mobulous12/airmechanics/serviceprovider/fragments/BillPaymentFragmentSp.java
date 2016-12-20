@@ -79,12 +79,12 @@ public class BillPaymentFragmentSp extends Fragment implements View.OnClickListe
         textViewTotalPrice = (TextView) view.findViewById(R.id.textView_total_price_sp);
 
         textViewTypeOfServiceDynamic = (TextView) view.findViewById(R.id.textView_type_of_vechile_dynamic_sp);
-        textViewDescriptionDynamic = (TextView) view.findViewById(R.id.textView_description_dynamic_billPayment_sp);
-        textViewTotalPriceDynamic = (TextView) view.findViewById(R.id.textView_total_price_dynamic_sp);
+//        textViewDescriptionDynamic = (TextView) view.findViewById(R.id.textView_description_dynamic_billPayment_sp);
+//        textViewTotalPriceDynamic = (TextView) view.findViewById(R.id.textView_total_price_dynamic_sp);
 
         textViewTypeOfServiceDynamic.setVisibility(View.GONE);
-        textViewDescriptionDynamic.setVisibility(View.GONE);
-        textViewTotalPriceDynamic.setVisibility(View.GONE);
+//        textViewDescriptionDynamic.setVisibility(View.GONE);
+//        textViewTotalPriceDynamic.setVisibility(View.GONE);
 
 
         imgTypeOfService.setImageResource(R.drawable.right_arrow);
@@ -125,7 +125,7 @@ public class BillPaymentFragmentSp extends Fragment implements View.OnClickListe
 
                 if (isDescriptionOpen)
                 {
-                    textViewDescriptionDynamic.setVisibility(View.VISIBLE);
+//                    textViewDescriptionDynamic.setVisibility(View.VISIBLE);
                     isDescriptionOpen = false;
                     rootDescription.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewDescription.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -133,7 +133,7 @@ public class BillPaymentFragmentSp extends Fragment implements View.OnClickListe
                     imgDescription.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewDescriptionDynamic.setVisibility(View.GONE);
+//                    textViewDescriptionDynamic.setVisibility(View.GONE);
                     isDescriptionOpen = true;
                     rootDescription.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewDescription.setBackgroundColor(getResources().getColor(R.color.white));
@@ -146,7 +146,7 @@ public class BillPaymentFragmentSp extends Fragment implements View.OnClickListe
 
                 if (isTotalPriceOpen)
                 {
-                    textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
+//                    textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
                     isTotalPriceOpen = false;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -154,7 +154,7 @@ public class BillPaymentFragmentSp extends Fragment implements View.OnClickListe
                     imgTotalPrice.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewTotalPriceDynamic.setVisibility(View.GONE);
+//                    textViewTotalPriceDynamic.setVisibility(View.GONE);
                     isTotalPriceOpen = true;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));

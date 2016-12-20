@@ -22,7 +22,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,15 +62,17 @@
                     android:id="@+id/root_descripSP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <!--<ImageView-->
-                        <!--android:id="@+id/img_bookSP"-->
-                        <!--android:layout_width="@dimen/dp_80"-->
-                        <!--android:layout_height="@dimen/dp_80"-->
-                        <!--android:layout_margin="@dimen/_7sdp"-->
-                        <!--android:src="@drawable/default_profile_pic"/>-->
+                    <ImageView
+                        android:id="@+id/img_bookSP"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_80"
+                      android:layout_marginRight="@dimen/_5sdp"
+                        android:padding="@dimen/_4sdp"
+                        android:src="@drawable/default_profile_pic"/>
                     <LinearLayout
-
+                        android:layout_toRightOf="@id/img_bookSP"
                         android:id="@+id/ll_descp"
+                        android:layout_centerVertical="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -79,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     />
 
                 <TextView
@@ -88,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     />
                     </LinearLayout>
                 </RelativeLayout>
@@ -132,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     />
 
                 <TextView
@@ -141,7 +144,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     />
 
                 <TextView
@@ -274,7 +277,7 @@
                 <!--STARS-->
 
                 <LinearLayout
-                    android:padding="@dimen/_8sdp"
+                    android:padding="@dimen/_10sdp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
