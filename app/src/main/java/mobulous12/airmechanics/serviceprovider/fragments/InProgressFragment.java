@@ -109,6 +109,13 @@ public class InProgressFragment extends Fragment implements ApiListener {
                         bean.setRequestcategory(obj.getString("category"));
                         bean.setOpenTime(obj.getString("open_time"));
                         bean.setCloseTime(obj.getString("close_time"));
+                        JSONArray jsonArray=obj.getJSONArray("request_image");
+                        String array[]=new String[jsonArray.length()];
+                        for (int j=0;j<jsonArray.length();j++)
+                        {
+                            array[j]=jsonArray.getString(j);
+                        }
+                        bean.setRequestImgArr(array);
                         beanArrayList.add(bean);
                     }
                     if(beanArrayList.size()==0)

@@ -137,6 +137,7 @@ public class YourJobsFragment_SP extends Fragment implements View.OnClickListene
                     bean.setUserName(object.getString("userName"));
                     bean.setUsernumber(object.getString("contact_no"));
                     bean.setUseraddress(object.getString("address"));
+
                     bean.setLatitude(object.getString("lat"));
                     bean.setLongitude(object.getString("long"));
                     bean.setServiceType(object.getString("service_type"));
@@ -151,8 +152,14 @@ public class YourJobsFragment_SP extends Fragment implements View.OnClickListene
                     bean.setCategory(object.getString("category"));
                     bean.setRequestTime(object.getString("time"));
                     bean.setRequestDate(object.getString("date"));
-                    bean.setProfile_thumb(object.getString("profile_thumb"));
-
+                    bean.setUserImage(object.getString("profile_thumb"));
+                    JSONArray jsonArray=object.getJSONArray("request_image");
+                    String array[]=new String[jsonArray.length()];
+                    for (int j=0;j<jsonArray.length();j++)
+                    {
+                        array[j]=jsonArray.getString(j);
+                    }
+                    bean.setRequestImgArr(array);
                     bookingBeen.add(bean);
 
                 }

@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONException;
@@ -42,7 +44,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
     private ImageView imgCategoryType;
     private ImageView imgCustomerDetails;
     private ImageView imgCustomerAddress;
-    private ImageView imgRequestDetail;
+    private ImageView imgRequestDetail,request_img;
 
     private boolean isCategoryTypeOpen = true;
     private boolean isCustomerDetailsOpen = true;
@@ -81,7 +83,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         rootCustomerAddress.setOnClickListener(this);
         rootRequestDetail.setOnClickListener(this);
 
-
+        request_img=(ImageView)findViewById(R.id.request_img);
         imgCategoryType = (ImageView) findViewById(R.id.imageView_service_type_jOD);
         imgCustomerDetails = (ImageView) findViewById(R.id.imageView_rightArrow_customer_details_jOD);
         imgCustomerAddress = (ImageView) findViewById(R.id.imageView_customer_address_jOD);
@@ -100,7 +102,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         textViewCategoryTypeDynamic.setVisibility(View.GONE);
         textViewCustomerDetailsDynamic.setVisibility(View.GONE);
         textViewCustomerAddressDynamic.setVisibility(View.GONE);
-        textViewRequestDetailDynamic.setVisibility(View.GONE);
+        findViewById(R.id.request_layout).setVisibility(View.GONE);
 
         // setting values
         switch (bean.getRequestcategory())
@@ -119,7 +121,15 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         textViewCustomerDetailsDynamic.setText("Customer Name : "+bean.getUserName()+ "\nCustomer Number : " +bean.getUsernumber());
         textViewCustomerAddressDynamic.setText(bean.getUseraddress());
         textViewRequestDetailDynamic.setText("Title : "+bean.getRequestname() +"\nDescription : "+ bean.getRequestdesc() +"\nMinimum Charge : $"+ bean.getMinCharge());
-
+        AQuery aQuery=new AQuery(request_img);
+        if(bean.getRequestImgArr().length>0)
+        {
+            aQuery.id(request_img).image(bean.getRequestImgArr()[0]);
+        }
+        else
+        {
+            request_img.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -195,7 +205,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
             case R.id.root_request_detail_jOD:
                 if (isRequestDetailOpen)
                 {
-                    textViewRequestDetailDynamic.setVisibility(View.VISIBLE);
+                    findViewById(R.id.request_layout).setVisibility(View.VISIBLE);
                     isRequestDetailOpen = false;
                     rootRequestDetail.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewRequestDetail.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -203,7 +213,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
                     imgRequestDetail.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewRequestDetailDynamic.setVisibility(View.GONE);
+                    findViewById(R.id.request_layout).setVisibility(View.GONE);
                     isRequestDetailOpen = true;
                     rootRequestDetail.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewRequestDetail.setBackgroundColor(getResources().getColor(R.color.white));

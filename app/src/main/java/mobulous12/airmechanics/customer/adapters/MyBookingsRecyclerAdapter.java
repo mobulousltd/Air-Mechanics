@@ -77,13 +77,13 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         holder.bookingTime.setText(bookingBean.getOpenTime()+" - "+bookingBean.getCloseTime());
 
         AQuery aQuery=new AQuery(holder.circularImageView_myBooking);
-        if(bookingBean.getRequestImage().isEmpty())
+        if(bookingBean.getUserImage().isEmpty())
         {
             aQuery.id(holder.circularImageView_myBooking).image(R.drawable.default_profile_pic);
         }
         else
         {
-            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getRequestImage());
+            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getUserImage());
         }
 
     }

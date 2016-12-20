@@ -74,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_gray"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/_14sdp"
                         />
 
                     <ImageView
@@ -93,6 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
                     android:padding="@dimen/_10sdp"
                     />
                 <TextView
@@ -116,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_gray"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/_14sdp"
                         />
 
                     <ImageView
@@ -130,6 +131,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:textSize="@dimen/_12sdp"
                     android:id="@+id/textView_customer_details_dynamic_jOD"
                     android:text="@string/dummy_customer_details"
                     android:layout_width="match_parent"
@@ -159,7 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_gray"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/_14sdp"
                         />
 
                     <ImageView
@@ -173,6 +175,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:textSize="@dimen/_12sdp"
                     android:id="@+id/textView_customer_address_dynamic_jOD"
                     android:text="@string/dummy_address"
                     android:layout_width="match_parent"
@@ -201,7 +204,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_gray"
-                        android:textSize="@dimen/sp_16"
+                        android:textSize="@dimen/_14sdp"
                         />
 
                     <ImageView
@@ -213,15 +216,30 @@
                         android:layout_marginRight="@dimen/_7sdp"
                         />
                 </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/textView_request_detail_dynamic_jOD"
-                    android:text="@string/dummy_address"
+                <LinearLayout
+                    android:id="@+id/request_layout"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:padding="@dimen/_10sdp"
-                    />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/request_img"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_marginLeft="@dimen/_6sdp"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_80"  />
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/_12sdp"
+                        android:id="@+id/textView_request_detail_dynamic_jOD"
+                        android:text="@string/dummy_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:padding="@dimen/_10sdp"
+                        />
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="match_parent"

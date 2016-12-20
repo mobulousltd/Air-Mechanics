@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 
+import java.util.List;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
@@ -59,7 +61,8 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     private TextView textViewServiceTypeDynamic2;
 
     private TextView title,descrip,tv_Descrip;
-    private RelativeLayout root_descrip,sp_bookDetailDescrip;
+    private LinearLayout root_descrip;
+    RelativeLayout sp_bookDetailDescrip;
     private ImageView img_Descrip,profile;
     View view;
     private  BookingBean  bookingBean;
@@ -112,8 +115,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         textViewServiceProviderAddressDynamic = (TextView) view.findViewById(R.id.textView_service_provider_address_dynamic);
         rootStars = (LinearLayout) view.findViewById(R.id.linearlayout_starsFavorites_bookingDetail);
 
-        textViewServiceTypeDynamic.setVisibility(View.GONE);
-        textViewServiceTypeDynamic2.setVisibility(View.GONE);
+        view.findViewById(R.id.type_layout).setVisibility(View.GONE);
         textViewServiceProviderDetailDynamic.setVisibility(View.GONE);
         textViewServiceProviderAddressDynamic.setVisibility(View.GONE);
         rootStars.setVisibility(View.GONE);
@@ -132,7 +134,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
 
 
         sp_bookDetailDescrip = (RelativeLayout) view.findViewById(R.id.sp_bookDetailDescrip);
-        root_descrip = (RelativeLayout) view.findViewById(R.id.root_descripSP);
+        root_descrip = (LinearLayout) view.findViewById(R.id.root_descripSP);
         root_descrip.setVisibility(View.GONE);
         sp_bookDetailDescrip.setOnClickListener(this);
         /*set fonts*/
@@ -189,12 +191,12 @@ private void setFields()
     textViewServiceProviderAddressDynamic.setText(bookingBean.getUseraddress());
 //    title , description and profile
     title.setText("Title: "+bookingBean.getRequestname());
-    descrip.setText("Description: "+bookingBean.getRequestdesc());
+    descrip.setText("Description: "+bookingBean.getRequestdesc()+"\nStatus : "+bookingBean.getStatus().toUpperCase());
 
     AQuery aQuery = new AQuery(profile);
     if(bookingBean.getRequestImage().isEmpty())
     {
-        aQuery.id(profile).image(R.drawable.default_profile_pic);
+        profile.setVisibility(View.GONE);
     }
     else
     {
@@ -202,9 +204,9 @@ private void setFields()
     }
 
 //    details
-    textViewServiceProviderDetailDynamic.setText("Name: "+bookingBean.getUserName()+"\n"+
-                                                "Contact No.: "+bookingBean.getUsernumber()+"\n"+
-                                                "Timing: "+bookingBean.getOpenTime()+" To "+bookingBean.getCloseTime());
+    textViewServiceProviderDetailDynamic.setText("Name : "+bookingBean.getUserName()+"\n"+
+                                                "Contact No. : "+bookingBean.getUsernumber()+"\n"+
+                                                "Timing : "+bookingBean.getOpenTime()+" To "+bookingBean.getCloseTime());
 
 
 }
@@ -241,7 +243,7 @@ private void setFields()
 
                 if (isServiceTypeOpen)
                 {
-                    textViewServiceTypeDynamic.setVisibility(View.VISIBLE);
+                    this.view.findViewById(R.id.type_layout).setVisibility(View.VISIBLE);
                     textViewServiceTypeDynamic2.setVisibility(View.VISIBLE);
                     isServiceTypeOpen = false;
                     rootServiceType.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -250,8 +252,7 @@ private void setFields()
                     imgServiceType.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewServiceTypeDynamic.setVisibility(View.GONE);
-                    textViewServiceTypeDynamic2.setVisibility(View.GONE);
+                    this.view.findViewById(R.id.type_layout).setVisibility(View.GONE);
                     isServiceTypeOpen = true;
                     rootServiceType.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewServiceType.setBackgroundColor(getResources().getColor(R.color.white));

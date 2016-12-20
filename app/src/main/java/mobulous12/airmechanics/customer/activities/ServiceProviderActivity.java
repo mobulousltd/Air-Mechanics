@@ -1,6 +1,7 @@
 package mobulous12.airmechanics.customer.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -267,7 +268,8 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                     JSONArray jsonArray=responseObj.getJSONArray("response");
 
                     serviceProviderArrayList=new ArrayList<ServiceProviderBean>();
-                    for (int i=0;i<jsonArray.length();i++) {
+                    for (int i=0;i<jsonArray.length();i++)
+                    {
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
                         serviceproviderbean.setLng(jsonobject.getString("long"));
@@ -283,8 +285,16 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                         serviceproviderbean.setWorkingdays(jsonobject.getString("workingDays"));
                         serviceProviderArrayList.add(serviceproviderbean);
                     }
-                        serviceProviderRecyclerAdapter = new ServiceProviderRecyclerAdapter(this, serviceProviderArrayList);
-                        recyclerView_ServiceProvider.setAdapter(serviceProviderRecyclerAdapter);
+                    serviceProviderRecyclerAdapter = new ServiceProviderRecyclerAdapter(this, serviceProviderArrayList);
+                    recyclerView_ServiceProvider.setAdapter(serviceProviderRecyclerAdapter);
+                    serviceProviderRecyclerAdapter.onItemClickListener(new ServiceProviderRecyclerAdapter.MyClickListener() {
+                        @Override
+                        public void onItemClick(int position, View v) {
+                            Intent intent = new Intent(ServiceProviderActivity.this,ServiceProviderDetailActivity.class);
+                            intent.putExtra("bean",serviceProviderArrayList.get(position));
+                            startActivity(intent);
+                        }
+                    });
                         recyclerView_ServiceProvider.setLayoutManager(new LinearLayoutManager(this));
 
                     // Load complete

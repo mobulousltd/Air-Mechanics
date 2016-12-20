@@ -185,7 +185,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     spArrayList=arrayList;
                     searchListAdapter.setArraList(spArrayList);
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
-                    recView_SPList.setVisibility(View.VISIBLE);
                 }
                 return true;
             }
@@ -195,7 +194,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
 
         searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
             @Override
-            public void onItemClick(int position, View view)
+            public void onItemClick(int position, View v)
             {
                 ServiceProviderBean bean=spArrayList.get(position);
                 if(bean.getId().isEmpty())
@@ -212,6 +211,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     getActivity().startActivity(intent);
 
                 }
+
+                view.findViewById(R.id.search_rv).setVisibility(View.GONE);
             }
         });
 //        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
@@ -280,7 +281,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     {
                         search=false;
                         view.findViewById(R.id.search_rv).setVisibility(View.GONE);
-                        recView_SPList.setVisibility(View.GONE);
                     }
                 }
             });
