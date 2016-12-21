@@ -12,16 +12,8 @@ public class BookingBean implements Parcelable
             usernumber="", useraddress="", bookingid="", requestdesc="", requestname="", requestcategory="",requestImage = "";
     private String latitude = "", longitude = "", serviceType = "";
     private String openTime = "", closeTime = "";
-    private String createdOn = "", categoryId = "", category = "";
+    private String createdOn = "", categoryId = "", category = "", serviceproviderid="";
     private String[] requestImgArr={};
-
-    public String getRequestImage() {
-        return requestImage;
-    }
-
-    public void setRequestImage(String requestImage) {
-        this.requestImage = requestImage;
-    }
 
     protected BookingBean(Parcel in) {
         status = in.readString();
@@ -37,6 +29,7 @@ public class BookingBean implements Parcelable
         requestdesc = in.readString();
         requestname = in.readString();
         requestcategory = in.readString();
+        requestImage = in.readString();
         latitude = in.readString();
         longitude = in.readString();
         serviceType = in.readString();
@@ -45,8 +38,41 @@ public class BookingBean implements Parcelable
         createdOn = in.readString();
         categoryId = in.readString();
         category = in.readString();
-        requestImage = in.readString();
+        serviceproviderid = in.readString();
         requestImgArr = in.createStringArray();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(status);
+        dest.writeString(userName);
+        dest.writeString(userImage);
+        dest.writeString(profile_thumb);
+        dest.writeString(minCharge);
+        dest.writeString(requestDate);
+        dest.writeString(requestTime);
+        dest.writeString(usernumber);
+        dest.writeString(useraddress);
+        dest.writeString(bookingid);
+        dest.writeString(requestdesc);
+        dest.writeString(requestname);
+        dest.writeString(requestcategory);
+        dest.writeString(requestImage);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        dest.writeString(serviceType);
+        dest.writeString(openTime);
+        dest.writeString(closeTime);
+        dest.writeString(createdOn);
+        dest.writeString(categoryId);
+        dest.writeString(category);
+        dest.writeString(serviceproviderid);
+        dest.writeStringArray(requestImgArr);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<BookingBean> CREATOR = new Creator<BookingBean>() {
@@ -61,6 +87,15 @@ public class BookingBean implements Parcelable
         }
     };
 
+    public String getRequestImage() {
+        return requestImage;
+    }
+
+    public void setRequestImage(String requestImage) {
+        this.requestImage = requestImage;
+    }
+
+
     public String[] getRequestImgArr() {
         return requestImgArr;
     }
@@ -72,7 +107,13 @@ public class BookingBean implements Parcelable
     public BookingBean() {
     }
 
+    public String getServiceproviderid() {
+        return serviceproviderid;
+    }
 
+    public void setServiceproviderid(String serviceproviderid) {
+        this.serviceproviderid = serviceproviderid;
+    }
 
     public String getCreatedOn() {
         return createdOn;
@@ -244,35 +285,5 @@ public class BookingBean implements Parcelable
         this.requestcategory = requestcategory;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(status);
-        dest.writeString(userName);
-        dest.writeString(userImage);
-        dest.writeString(profile_thumb);
-        dest.writeString(minCharge);
-        dest.writeString(requestDate);
-        dest.writeString(requestTime);
-        dest.writeString(usernumber);
-        dest.writeString(useraddress);
-        dest.writeString(bookingid);
-        dest.writeString(requestdesc);
-        dest.writeString(requestname);
-        dest.writeString(requestcategory);
-        dest.writeString(latitude);
-        dest.writeString(longitude);
-        dest.writeString(serviceType);
-        dest.writeString(openTime);
-        dest.writeString(closeTime);
-        dest.writeString(createdOn);
-        dest.writeString(categoryId);
-        dest.writeString(category);
-        dest.writeString(requestImage);
-        dest.writeStringArray(requestImgArr);
-    }
 }

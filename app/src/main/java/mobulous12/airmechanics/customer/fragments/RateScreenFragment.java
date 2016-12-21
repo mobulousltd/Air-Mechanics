@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
@@ -40,22 +42,14 @@ import mobulous12.airmechanics.volley.ServiceBean;
 public class RateScreenFragment extends Fragment implements View.OnClickListener, ApiListener {
 
     private View view;
+    String star="0";
     private ImageView star1;
     private ImageView star2;
     private ImageView star3;
     private ImageView star4;
     private ImageView star5;
-    private boolean isStar1 = true;
-    private boolean isStar2 = true;
-    private boolean isStar3 = true;
-    private boolean isStar4 = true;
-    private boolean isStar5 = true;
     private BookingBean bookingBean;
     private EditText et_review;
-
-    public RateScreenFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
@@ -64,6 +58,23 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.blank_at_right_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.action_show_service_provider).setVisible(false);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -89,7 +100,10 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         star4.setOnClickListener(this);
         star5.setOnClickListener(this);
         view.findViewById(R.id.button_submit_Rate).setOnClickListener(this);
-
+        AQuery aQuery=new AQuery(view.findViewById(R.id.circularImageView_rate_screen));
+        aQuery.id(view.findViewById(R.id.circularImageView_rate_screen)).image(bookingBean.getUserImage());
+        ((TextView)view.findViewById(R.id.textView_name_rateScreen)).setText(bookingBean.getUserName());
+        ((TextView)view.findViewById(R.id.textView_address_rateScreen)).setText(bookingBean.getUseraddress());
 
         return view;
     }
@@ -99,73 +113,64 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         switch (view.getId())
         {
             case R.id.imageView_star1_rateScreen:
-                if (isStar1)
-                {
-                    star1.setImageResource(R.drawable.star);
-                    isStar1 = false;
-                }
-                else
-                {
-                    star1.setImageResource(R.drawable.star_gray);
-                    isStar1 = true;
-                }
+
+                star="1";
+                star1.setImageResource(R.drawable.yellow_star);
+                star2.setImageResource(R.drawable.gray_star);
+                star3.setImageResource(R.drawable.gray_star);
+                star4.setImageResource(R.drawable.gray_star);
+                star5.setImageResource(R.drawable.gray_star);
+
                 break;
             case R.id.imageView_star2_rateScreen:
-                if (isStar2)
-                {
-                    star2.setImageResource(R.drawable.star);
-                    isStar2 = false;
-                }
-                else
-                {
-                    star2.setImageResource(R.drawable.star_gray);
-                    isStar2 = true;
-                }
+                star="2";
+                star1.setImageResource(R.drawable.yellow_star);
+                star2.setImageResource(R.drawable.yellow_star);
+                star3.setImageResource(R.drawable.gray_star);
+                star4.setImageResource(R.drawable.gray_star);
+                star5.setImageResource(R.drawable.gray_star);
                 break;
             case R.id.imageView_star3_rateScreen:
-                if (isStar3)
-                {
-                    star3.setImageResource(R.drawable.star);
-                    isStar3 = false;
-                }
-                else
-                {
-                    star3.setImageResource(R.drawable.star_gray);
-                    isStar3 = true;
-                }
+                star="3";
+                star1.setImageResource(R.drawable.yellow_star);
+                star2.setImageResource(R.drawable.yellow_star);
+                star3.setImageResource(R.drawable.yellow_star);
+                star4.setImageResource(R.drawable.gray_star);
+                star5.setImageResource(R.drawable.gray_star);
                 break;
             case R.id.imageView_star4_rateScreen:
-                if (isStar4)
-                {
-                    star4.setImageResource(R.drawable.star);
-                    isStar4 = false;
-                }
-                else
-                {
-                    star4.setImageResource(R.drawable.star_gray);
-                    isStar4 = true;
-                }
+                star="4";
+                star1.setImageResource(R.drawable.yellow_star);
+                star2.setImageResource(R.drawable.yellow_star);
+                star3.setImageResource(R.drawable.yellow_star);
+                star4.setImageResource(R.drawable.yellow_star);
+                star5.setImageResource(R.drawable.gray_star);
                 break;
             case R.id.imageView_star5_rateScreen:
-                if (isStar5)
+                star="5";
+                star1.setImageResource(R.drawable.yellow_star);
+                star2.setImageResource(R.drawable.yellow_star);
+                star3.setImageResource(R.drawable.yellow_star);
+                star4.setImageResource(R.drawable.yellow_star);
+                star5.setImageResource(R.drawable.yellow_star);
+                break;
+            case R.id.button_submit_Rate:
+                if(!star.isEmpty())
                 {
-                    star5.setImageResource(R.drawable.star);
-                    isStar5 = false;
+                    if(!et_review.getText().toString().isEmpty())
+                    {
+                        rateServiceProService();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Please write your reviews for this service.", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else
                 {
-                    star5.setImageResource(R.drawable.star_gray);
-                    isStar5 = true;
+                    Toast.makeText(getActivity(), "Please give ratings for this service.", Toast.LENGTH_SHORT).show();
                 }
-                break;
-            case R.id.button_submit_Rate:
-                rateServiceProService();
-                int count=((HomeActivity)getActivity()).getSupportFragmentManager().getBackStackEntryCount();
-                for (int i=0;i<count;i++)
-                {
-                    ((HomeActivity)getActivity()).getSupportFragmentManager().popBackStack();
-                }
-                Toast.makeText(getActivity(),"Ratings & Reviews Submitted Successfully!",Toast.LENGTH_SHORT).show();
+
                 break;
 
         }
@@ -178,9 +183,9 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
         multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
-        multipartEntityBuilder.addTextBody("service_id", "");
+        multipartEntityBuilder.addTextBody("service_id", bookingBean.getServiceproviderid());
         multipartEntityBuilder.addTextBody("request_id", bookingBean.getBookingid());
-        multipartEntityBuilder.addTextBody("workRating","");
+        multipartEntityBuilder.addTextBody("workRating",star);
         multipartEntityBuilder.addTextBody("review",et_review.getText().toString().trim());
 
         ServiceBean bean = new ServiceBean();
@@ -204,12 +209,19 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
                 if ((jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) && (jsonObject.getString("requestKey").equalsIgnoreCase("rate_serviceProvider")))
                 {
 
-                    JSONObject response = jsonObject.getJSONObject("response");
-                    String reqstId = response.getString("request_id");
-                    String serviceId = response.getString("service_id");
+                    int count=((HomeActivity)getActivity()).getSupportFragmentManager().getBackStackEntryCount();
+                    for (int i=0;i<count;i++)
+                    {
+                        ((HomeActivity)getActivity()).getSupportFragmentManager().popBackStack();
+                    }
+                    Toast.makeText(getActivity(),"Ratings & Reviews Submitted Successfully!",Toast.LENGTH_SHORT).show();
 
-                    Log.e("J_RESPONSE", jsonObject.toString());
                 }
+                else
+                {
+
+                }
+                Log.e("Json Response", jsonObject.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -218,25 +230,5 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
 
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.blank_at_right_menu,menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.action_show_service_provider).setVisible(false);
-
-
-    }
 
 }

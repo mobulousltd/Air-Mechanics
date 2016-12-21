@@ -84,10 +84,11 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootTotalPrice = (RelativeLayout) view.findViewById(R.id.root_total_price);
         button_rate_us = (Button) view.findViewById(R.id.button_rate_us);
 
-        if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+        if(bookingBean.getStatus().equalsIgnoreCase("payment"))
         {
-            button_rate_us.setText("Pay Now");
+            button_rate_us.setText("Paid");
         }
+
         rootTypeOfService.setOnClickListener(this);
         rootDescription.setOnClickListener(this);
         rootTotalPrice.setOnClickListener(this);
@@ -171,7 +172,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
        AQuery aQuery = new AQuery(profile);
         if(bookingBean.getRequestImage().isEmpty())
         {
-            aQuery.id(profile).image(R.drawable.default_profile_pic);
+            profile.setVisibility(View.GONE);
         }
         else
         {
@@ -252,13 +253,14 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
                 break;
             case R.id.button_rate_us:
-
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("bookingBean",bookingBean);
-                RateScreenFragment rateFragment = new RateScreenFragment();
-                rateFragment.setArguments(bundle);
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,rateFragment,"rateServiceProviderFragment").addToBackStack("rateserviceprovider").commit();
-
+                if(bookingBean.getStatus().equalsIgnoreCase("billgenerate"))
+                {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("bookingBean",bookingBean);
+                    RateScreenFragment rateFragment = new RateScreenFragment();
+                    rateFragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,rateFragment,"rateServiceProviderFragment").addToBackStack("rateserviceprovider").commit();
+                }
                 break;
         }
 

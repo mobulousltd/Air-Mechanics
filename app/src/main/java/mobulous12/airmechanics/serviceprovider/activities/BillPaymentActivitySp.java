@@ -114,7 +114,10 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
         setFields();
 
-
+        if(!bookingBean.getStatus().equalsIgnoreCase("complete"))
+        {
+            button_send.setVisibility(View.GONE);
+        }
     }
 
     private void setFields()
@@ -122,31 +125,17 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
         if (bookingBean != null)
         {
             String cat="";
-            if((bookingBean.getCategory()).contains("two"))
+            if((bookingBean.getCategory()).equals("two"))
             {
                 cat = getString(R.string.two_wheeler);
             }
-            if((bookingBean.getCategory()).contains("light"))
+            if((bookingBean.getCategory()).equals("light"))
             {
-                if(cat.isEmpty())
-                {
-                    cat=getString(R.string.light_weight_vehicle);
-                }
-                else
-                {
-                    cat+=", "+getString(R.string.light_weight_vehicle);
-                }
+                cat=getString(R.string.light_weight_vehicle);
             }
-            if((bookingBean.getCategory()).contains("heavy"))
+            if((bookingBean.getCategory()).equals("heavy"))
             {
-                if(cat.isEmpty())
-                {
-                    cat=getString(R.string.heavy_weight_vehicle);
-                }
-                else
-                {
-                    cat+=", "+getString(R.string.heavy_weight_vehicle);
-                }
+                cat=getString(R.string.light_weight_vehicle);
             }
 
 //        categories/ type of vehicle and price
@@ -247,9 +236,13 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.button_send_billPayment_sp:
-                sendBillServiceHit();
-                finish();
-                Toast.makeText(this, "Bill Sent to Customer successfully!", Toast.LENGTH_SHORT).show();
+                if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+                {
+                    sendBillServiceHit();
+                    finish();
+                    Toast.makeText(this, "Bill Sent to Customer successfully!", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
 
             case R.id.imageView_left_toolbar:

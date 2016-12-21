@@ -124,7 +124,7 @@ private View view;
                         bean.setRequestcategory(obj.getString("category"));
                         bean.setOpenTime(obj.getString("open_time"));
                         bean.setCloseTime(obj.getString("close_time"));
-                        bean.setCategory("category");
+                        bean.setCategory(obj.getString("category"));
                         JSONArray reqImgJsonArray = obj.getJSONArray("request_image");
                         if(reqImgJsonArray.length()>0)
                         {

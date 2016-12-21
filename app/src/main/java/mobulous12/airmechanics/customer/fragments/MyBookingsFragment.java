@@ -139,9 +139,7 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                 {
                     JSONObject response = responseObj.getJSONObject("response");
                     JSONArray userArr = response.getJSONArray("user");
-
                     bookingArrList=new ArrayList<>();
-
                     for (int i = 0; i < userArr.length(); i++)
                     {
                         JSONObject jsonobject = userArr.getJSONObject(i);
@@ -163,13 +161,18 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setCategory(jsonobject.getString("category"));
                         bean.setOpenTime(jsonobject.getString("open_time"));
                         bean.setCloseTime(jsonobject.getString("close_time"));
-
-                     JSONArray reqImgJsonArray = jsonobject.getJSONArray("request_image");
+                        bean.setServiceproviderid(jsonobject.getString("service_id"));
+                        JSONArray reqImgJsonArray = jsonobject.getJSONArray("request_image");
                         String array[]=new String[reqImgJsonArray.length()];
                         for(int j=0;j<reqImgJsonArray.length();j++)
                         {
                             array[j]=reqImgJsonArray.getString(j);
 
+                        }
+                        bean.setRequestImgArr(array);
+                        if(array.length>0)
+                        {
+                            bean.setRequestImage(array[0]);
                         }
                         bookingArrList.add(bean);
                     }

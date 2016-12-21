@@ -190,8 +190,21 @@ private void setFields()
 //address
     textViewServiceProviderAddressDynamic.setText(bookingBean.getUseraddress());
 //    title , description and profile
-    title.setText("Title: "+bookingBean.getRequestname());
-    descrip.setText("Description: "+bookingBean.getRequestdesc()+"\nStatus : "+bookingBean.getStatus().toUpperCase());
+    title.setText("Title : "+bookingBean.getRequestname());
+    String status;
+    if(!bookingBean.getStatus().equalsIgnoreCase("pending") ||!bookingBean.getStatus().equalsIgnoreCase("process"))
+    {
+        status="Completed";
+    }
+    else if (bookingBean.getStatus().equalsIgnoreCase("pending"))
+    {
+        status="Pending";
+    }
+    else
+    {
+        status="In Progress";
+    }
+    descrip.setText("Description : "+bookingBean.getRequestdesc()+"\nStatus : "+status);
 
     AQuery aQuery = new AQuery(profile);
     if(bookingBean.getRequestImage().isEmpty())
@@ -332,7 +345,7 @@ private void setFields()
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") )
         {
             inflater.inflate(R.menu.booking_detail_menu,menu);
         }

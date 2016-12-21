@@ -59,31 +59,34 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
             holder.bookingStatus.setText("Pending");
             holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_pending_color));
         }
-        else if(bookingBean.getStatus().equalsIgnoreCase("complete"))
+        else if(bookingBean.getStatus().equalsIgnoreCase("process"))
         {
-            holder.bookingStatus.setText("Completed!");
-            holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
+
+            holder.bookingStatus.setText("In Progress");
+            holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_inprogress_color));
 
         }
         else
         {
-            holder.bookingStatus.setText("Inprogress");
-            holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_inprogress_color));
+            holder.bookingStatus.setText("Completed!");
+            holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
+
+
         }
 
-        holder.myBookingName.setText(bookingBean.getUserName());
+        holder.myBookingName.setText(bookingBean.getRequestname());
         holder.bookingAmount.setText("$"+bookingBean.getMinCharge());
         holder.bookingDate.setText(bookingBean.getRequestDate());
         holder.bookingTime.setText(bookingBean.getOpenTime()+" - "+bookingBean.getCloseTime());
 
         AQuery aQuery=new AQuery(holder.circularImageView_myBooking);
-        if(bookingBean.getUserImage().isEmpty())
+        if(bookingBean.getRequestImage().isEmpty())
         {
-            aQuery.id(holder.circularImageView_myBooking).image(R.drawable.default_profile_pic);
+            aQuery.id(holder.circularImageView_myBooking).image(R.drawable.profile_pic);
         }
         else
         {
-            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getUserImage());
+            aQuery.id(holder.circularImageView_myBooking).image(bookingBean.getRequestImage());
         }
 
     }

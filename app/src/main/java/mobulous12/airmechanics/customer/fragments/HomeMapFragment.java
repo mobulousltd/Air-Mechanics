@@ -237,7 +237,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
 //        });
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.home_map);
         mapFragment.getMapAsync(this);
-        serviceProviderList();   // Listing of ServiceProviders as Markers in MAP
+        serviceProviderList();// Listing of ServiceProviders as Markers in MAP
+
+        view.findViewById(R.id.search_rv).setVisibility(View.GONE);
         return view;
     }
 

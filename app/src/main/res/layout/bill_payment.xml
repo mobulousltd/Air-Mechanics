@@ -111,6 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
+                        android:visibility="gone"
                     android:id="@+id/img_bookBill"
                     android:layout_width="@dimen/dp_80"
                     android:layout_height="@dimen/dp_80"
@@ -119,6 +120,7 @@
                     android:src="@drawable/default_profile_pic"/>
 
                     <LinearLayout
+                        android:padding="@dimen/_10sdp"
                         android:id="@+id/ll_descp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -131,7 +133,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                            android:padding="@dimen/_5sdp"
                             />
 
                         <TextView
@@ -140,7 +141,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
-                          android:padding="@dimen/_5sdp"
                             />
                     </LinearLayout>
                 </RelativeLayout>
@@ -204,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/home_header_color"
-            android:text=""
+            android:text="Pay Now"
             android:inputType="text"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_18"

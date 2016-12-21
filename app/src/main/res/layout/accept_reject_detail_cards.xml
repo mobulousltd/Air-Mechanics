@@ -163,6 +163,7 @@
                                 android:textColor="@color/text_gray"/>
                             <TextView
                                 android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
                                 android:textSize="@dimen/_10sdp"
                                 android:id="@+id/tv_minchrge"
                                 android:layout_width="wrap_content"

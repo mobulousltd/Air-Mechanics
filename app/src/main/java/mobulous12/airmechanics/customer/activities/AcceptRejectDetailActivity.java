@@ -183,7 +183,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
                         tv_descrip.setText(j_object.getString("request_description"));
                         String date=j_object.getString("requestDate");
                         tv_Date.setText(date);
-                        tv_minchrge.setText(j_object.getString("minCharge"));
+                        tv_minchrge.setText("$"+j_object.getString("minCharge"));
                         tv_jobtitle.setText(j_object.getString("request_Title"));
                         textView_AcceptRejectTime.setText(j_object.getString("open_time")+" - "+j_object.getString("close_time"));
                         AQuery aQuery = new AQuery(image_AcceptRej);
