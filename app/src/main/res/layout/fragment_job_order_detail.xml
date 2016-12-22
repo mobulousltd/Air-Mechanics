@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView_jOD"
+            android:background="@color/white"
             android:layout_below="@+id/imageView_jOD"
             android:layout_above="@+id/linear_button_jod">
 

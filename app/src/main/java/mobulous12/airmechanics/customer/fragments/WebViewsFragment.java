@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
@@ -54,15 +55,23 @@ public class WebViewsFragment extends Fragment {
             {
                 ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.about_us_home));
                 ((HomeActivity)getActivity()).setNavigationIcon();
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+                webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
+                webView_custom.setWebViewClient(new MyWebViewClient());
+                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+                webView_custom.requestFocus();
+
             }
             if(type.equalsIgnoreCase("t_and_c"))
             {
                 ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.tc_homesp));
                 ((HomeActivity)getActivity()).setNavigationIcon();
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/terms.html");
+                webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
+                webView_custom.setWebViewClient(new MyWebViewClient());
+                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/terms.html");
+                webView_custom.requestFocus();
+
             }
         }
       /*For CUSTOMER user*/
@@ -72,8 +81,13 @@ public class WebViewsFragment extends Fragment {
             {
                 ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.about_us_home));
                 ((HomeActivity)getActivity()).setNavigationIcon();
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+
+                webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
+                webView_custom.setWebViewClient(new MyWebViewClient());
+                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+                webView_custom.requestFocus();
+
             }
         }
         /*For SERVICE PROVIDER user*/
@@ -84,23 +98,36 @@ public class WebViewsFragment extends Fragment {
                 ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.about_us_home));
                 ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
 
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+                webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
+                webView_custom.setWebViewClient(new MyWebViewClient());
+                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/about.html");
+                webView_custom.requestFocus();
+
             }
             if(type.equalsIgnoreCase("t_and_c"))
             {
                 ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.tc_homesp));
                 ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
 
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/terms.html");
+                webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
+                webView_custom.setWebViewClient(new MyWebViewClient());
+                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/terms.html");
+                webView_custom.requestFocus();
             }
 
         }
         return view;
     }
 
-
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

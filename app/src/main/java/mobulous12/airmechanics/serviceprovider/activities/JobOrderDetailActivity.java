@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -104,19 +105,49 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         textViewCustomerAddressDynamic.setVisibility(View.GONE);
         findViewById(R.id.request_layout).setVisibility(View.GONE);
 
-        // setting values
-        switch (bean.getRequestcategory())
+
+        String cat="";
+        if((bean.getCategory()).contains("two"))
         {
-            case "two":
-                textViewCategoryTypeDynamic.setText("Two Wheeler");
-                break;
-            case "light":
-                textViewCategoryTypeDynamic.setText("Light Weight vehicle");
-                break;
-            case "heavy":
-                textViewCategoryTypeDynamic.setText("Heavy Weight vehicle");
-                break;
+            cat = getString(R.string.two_wheeler);
         }
+        if((bean.getCategory()).contains("light"))
+        {
+            if(cat.isEmpty())
+            {
+                cat=getString(R.string.light_weight_vehicle);
+            }
+            else
+            {
+                cat+=", "+getString(R.string.light_weight_vehicle);
+            }
+        }
+        if((bean.getCategory()).contains("heavy"))
+        {
+            if(cat.isEmpty())
+            {
+                cat=getString(R.string.heavy_weight_vehicle);
+            }
+            else
+            {
+                cat+=", "+getString(R.string.heavy_weight_vehicle);
+            }
+        }
+        textViewCategoryTypeDynamic.setText(cat);
+
+        // setting values
+//        switch (bean.getRequestcategory())
+//        {
+//            case "two":
+//                textViewCategoryTypeDynamic.setText("Two Wheeler");
+//                break;
+//            case "light":
+//                textViewCategoryTypeDynamic.setText("Light Weight vehicle");
+//                break;
+//            case "heavy":
+//                textViewCategoryTypeDynamic.setText("Heavy Weight vehicle");
+//                break;
+//        }
 
         textViewCustomerDetailsDynamic.setText("Customer Name : "+bean.getUserName()+ "\nCustomer Number : " +bean.getUsernumber());
         textViewCustomerAddressDynamic.setText(bean.getUseraddress());
