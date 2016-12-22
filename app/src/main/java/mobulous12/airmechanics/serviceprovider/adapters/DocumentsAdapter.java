@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
+import com.androidquery.AQuery;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -50,10 +52,16 @@ public class DocumentsAdapter extends RecyclerView.Adapter<DocumentsAdapter.Docu
     {
         String path=arrayList.get(position);
         File imgFile = new File(path);
-        if(imgFile.exists())
-        {
-            holder.imageView.setImageURI(Uri.fromFile(imgFile));
-        }
+//        if(imgFile.exists())
+//        {
+//            holder.imageView.setImageURI(Uri.fromFile(imgFile));
+//        }
+//        else
+//        {
+//
+//        }
+        AQuery aQuery=new AQuery(holder.imageView);
+        aQuery.id(holder.imageView).image(path);
 //        holder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
 //            @Override
 //            public boolean onLongClick(View v)

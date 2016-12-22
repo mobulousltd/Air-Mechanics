@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,10 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.databinding.FragmentJobRequestDetailBinding;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
+import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -30,6 +37,8 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
 
     String custid, reqid;
     View view;
+    RecyclerView requestimg_rv;
+    ArrayList<String> requestarray;
     private EditText et_price;
     private boolean isPriceSent=false;
 
@@ -55,6 +64,7 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
     {
         FragmentJobRequestDetailBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_job_request_detail, container, false);
         view=binding.getRoot();
+        requestimg_rv=(RecyclerView)view.findViewById(R.id.requestimg_rv);
         et_price = (EditText) view.findViewById(R.id.editText_price_dynamic_job_request_detail);
         ((HomeActivityServicePro) getActivity()).setToolbarTitleSP("Job Request Detail");
         ((HomeActivityServicePro) getActivity()).setNavigationIconSP();
@@ -143,6 +153,26 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
                         et_price.setText(jsonObject1.getString("minCharge"));
                         ((TextView)view.findViewById(R.id.textView_date_job_request_detail)).setText(jsonObject1.getString("requestDate"));
                         view.findViewById(R.id.ll_jobrequestdetail).setVisibility(View.VISIBLE);
+                        JSONArray jsonArray=jsonObject1.getJSONArray("request_Largeimage");
+                        requestarray=new ArrayList<String>();
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+                            requestarray.add(jsonArray.getString(i));
+                        }
+                        DocumentsAdapter documentsAdapter=new DocumentsAdapter(getActivity(), requestarray);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                        requestimg_rv.setLayoutManager(linearLayoutManager);
+                        requestimg_rv.setAdapter(documentsAdapter);
+                        documentsAdapter.onItemClickListener(new DocumentsAdapter.MyClickListener()
+                        {
+                            @Override
+                            public void onItemClick(int position, View v) {
+                            }
+
+                            @Override
+                            public void OnLongPress(int position, View v) {
+                            }
+                        });
                     }
                     if(jsonObject.getString("requestKey").equalsIgnoreCase("update_price"))
                     {
