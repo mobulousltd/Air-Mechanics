@@ -1,8 +1,8 @@
 package mobulous12.airmechanics.customer.adapters;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +12,11 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
+import mobulous12.airmechanics.databinding.MyBookingCardBinding;
+import mobulous12.airmechanics.databinding.RatingScreenListingRowBinding;
 import mobulous12.airmechanics.utils.CircularImageView;
 
 /**
@@ -34,9 +35,10 @@ public class RatingScreenListingAdapter extends RecyclerView.Adapter<RatingScree
     }
 
     @Override
-    public RatingScreenListingAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View row = inflater.inflate(R.layout.rating_screen_listing_row, parent, false);
-        MyViewHolder holder = new MyViewHolder(row);
+    public RatingScreenListingAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+        RatingScreenListingRowBinding binding=DataBindingUtil.inflate(inflater, R.layout.rating_screen_listing_row, parent, false);
+        MyViewHolder holder = new MyViewHolder(binding.getRoot());
         return holder;
     }
 
@@ -52,29 +54,29 @@ public class RatingScreenListingAdapter extends RecyclerView.Adapter<RatingScree
         switch (bean.getRating())
         {
             case "1":
-                holder.star1.setImageResource(R.drawable.star);
+                holder.star1.setImageResource(R.drawable.star_rate);
                 break;
             case "2":
-                holder.star1.setImageResource(R.drawable.star);
-                holder.star2.setImageResource(R.drawable.star);
+                holder.star1.setImageResource(R.drawable.star_rate);
+                holder.star2.setImageResource(R.drawable.star_rate);
                 break;
             case "3":
-                holder.star1.setImageResource(R.drawable.star);
-                holder.star2.setImageResource(R.drawable.star);
-                holder.star3.setImageResource(R.drawable.star);
+                holder.star1.setImageResource(R.drawable.star_rate);
+                holder.star2.setImageResource(R.drawable.star_rate);
+                holder.star3.setImageResource(R.drawable.star_rate);
                 break;
             case "4":
-                holder.star1.setImageResource(R.drawable.star);
-                holder.star2.setImageResource(R.drawable.star);
-                holder.star3.setImageResource(R.drawable.star);
-                holder.star4.setImageResource(R.drawable.star);
+                holder.star1.setImageResource(R.drawable.star_rate);
+                holder.star2.setImageResource(R.drawable.star_rate);
+                holder.star3.setImageResource(R.drawable.star_rate);
+                holder.star4.setImageResource(R.drawable.star_rate);
                 break;
             case "5":
-                holder.star1.setImageResource(R.drawable.star);
-                holder.star2.setImageResource(R.drawable.star);
-                holder.star3.setImageResource(R.drawable.star);
-                holder.star4.setImageResource(R.drawable.star);
-                holder.star5.setImageResource(R.drawable.star);
+                holder.star1.setImageResource(R.drawable.star_rate);
+                holder.star2.setImageResource(R.drawable.star_rate);
+                holder.star3.setImageResource(R.drawable.star_rate);
+                holder.star4.setImageResource(R.drawable.star_rate);
+                holder.star5.setImageResource(R.drawable.star_rate);
                 break;
 
         }

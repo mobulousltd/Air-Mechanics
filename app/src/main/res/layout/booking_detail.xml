@@ -292,17 +292,17 @@
                     android:id="@+id/linearlayout_starsFavorites_bookingDetail" >
 
                     <ImageView
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>
                     <ImageView
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>
                     <ImageView
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>

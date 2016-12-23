@@ -109,19 +109,15 @@
 
 
                         <!--STARS-->
-
-                        <RelativeLayout
-                            android:id="@+id/root1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/textView_raj_auto_garage_serviceProviderDetail"
-                            android:layout_alignStart="@+id/textView_raj_auto_garage_serviceProviderDetail"
+                        <LinearLayout
                             android:layout_marginTop="@dimen/_10sdp"
-                            >
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/imageView_star1"
-                                android:src="@drawable/yellow_star"
+                                android:src="@drawable/gray_star"
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
 
@@ -129,48 +125,36 @@
 
                             <ImageView
                                 android:id="@+id/imageView_star2"
-                                android:src="@drawable/yellow_star"
-
+                                android:src="@drawable/gray_star"
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
-                                android:layout_toRightOf="@+id/imageView_star1"
-
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 />
 
                             <ImageView
                                 android:id="@+id/imageView_star3"
-                                android:src="@drawable/yellow_star"
-
+                                android:src="@drawable/gray_star"
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
-                                android:layout_toRightOf="@+id/imageView_star2"
-
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 />
 
                             <ImageView
                                 android:id="@+id/imageView_star4"
                                 android:src="@drawable/gray_star"
-
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
-                                android:layout_toRightOf="@+id/imageView_star3"
-
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 />
 
                             <ImageView
                                 android:id="@+id/imageView_star5"
                                 android:src="@drawable/gray_star"
-
                                 android:layout_width="@dimen/_15sdp"
                                 android:layout_height="@dimen/_15sdp"
-                                android:layout_toRightOf="@+id/imageView_star4"
-
                                 android:layout_marginLeft="@dimen/_5sdp"
                                 />
-                        </RelativeLayout>
+                        </LinearLayout>
 
                         <!--DAYS-->
 

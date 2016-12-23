@@ -69,7 +69,7 @@
 
                     <ImageView
                         android:id="@+id/imageView_star1"
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
 
                         android:layout_width="@dimen/_20sdp"
@@ -80,7 +80,7 @@
 
                     <ImageView
                         android:id="@+id/imageView_star2"
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
                         android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"
@@ -91,7 +91,7 @@
 
                     <ImageView
                         android:id="@+id/imageView_star3"
-                        android:src="@drawable/star"
+                        android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
                         android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"

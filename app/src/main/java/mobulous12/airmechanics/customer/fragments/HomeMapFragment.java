@@ -152,14 +152,11 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 {
                     search=false;
                     view.findViewById(R.id.search_rv).setVisibility(View.GONE);
-                    recView_SPList.setVisibility(View.GONE);
                 }
                 else
                 {
                     search=true;
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
-                    recView_SPList.setVisibility(View.VISIBLE);
-                    setDefaultRecyclerView();
                 }
             }
         });
@@ -321,6 +318,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 return;
             }
             googleMap.setMyLocationEnabled(true);
+            googleMap.getUiSettings().setMapToolbarEnabled(false);
 
 
 //            LatLng latlonglocation1 = new LatLng(28.628781, 77.379296);

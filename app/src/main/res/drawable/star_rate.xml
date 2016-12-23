@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/android:background"
+        android:drawable="@drawable/yelloww" />
+    <item
+        android:id="@+id/android:secondaryProgress"
+        android:drawable="@drawable/yelloww" />
+    <item
+        android:id="@+id/android:progress"
+        android:drawable="@drawable/yelloww" />
+
+</layer-list>

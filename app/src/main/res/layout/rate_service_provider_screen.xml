@@ -165,6 +165,14 @@
                 android:layout_marginRight="@dimen/_30sdp"
                 />
 
+            <!--<RatingBar-->
+                <!--style="@style/foodRatingBar"-->
+                <!--android:id="@+id/rating"-->
+                <!--android:numStars="5"-->
+                <!--android:stepSize="1.0"-->
+                <!--android:rating="0.0"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

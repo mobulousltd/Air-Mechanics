@@ -51,7 +51,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
     private TextView textViewReviewsDynamic, tv_minchrge;
     private TextView textViewContactNumberDynamic;
 
-    private ImageView imgCategories;
+    private ImageView imgCategories, imageView_star1,imageView_star2, imageView_star3, imageView_star4,imageView_star5;
     private ImageView imgAddress;
     private ImageView imgWorkHours;
     private ImageView imgSpeciality;
@@ -107,7 +107,11 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         rootSpeciality = (RelativeLayout) findViewById(R.id.root_speciality_serviceProviderDetail);
         rootDescription = (RelativeLayout) findViewById(R.id.root_description_serviceProviderDetail);
         rootReviews = (RelativeLayout) findViewById(R.id.root_reviews_serviceProviderDetail);
-
+        imageView_star1=(ImageView)findViewById(R.id.imageView_star1);
+        imageView_star2=(ImageView)findViewById(R.id.imageView_star2);
+        imageView_star3=(ImageView)findViewById(R.id.imageView_star3);
+        imageView_star4=(ImageView)findViewById(R.id.imageView_star4);
+        imageView_star5=(ImageView)findViewById(R.id.imageView_star5);
 
         findViewById(R.id.button_ask_for_quote_serviceProviderDetail).setOnClickListener(this);
         findViewById(R.id.imageView_back_).setOnClickListener(this);
@@ -466,6 +470,36 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                             favoriteImage.setImageResource(R.drawable.favorite);
                         }
 
+                        serviceProviderBean.setRating(response.getString("rating"));
+                        switch (serviceProviderBean.getRating())
+                        {
+                            case "1":
+                                imageView_star1.setImageResource(R.drawable.star_rate);
+                                break;
+                            case "2":
+                                imageView_star1.setImageResource(R.drawable.star_rate);
+                                imageView_star2.setImageResource(R.drawable.star_rate);
+                                break;
+                            case "3":
+                                imageView_star1.setImageResource(R.drawable.star_rate);
+                                imageView_star2.setImageResource(R.drawable.star_rate);
+                                imageView_star3.setImageResource(R.drawable.star_rate);
+                                break;
+                            case "4":
+                                imageView_star1.setImageResource(R.drawable.star_rate);
+                                imageView_star2.setImageResource(R.drawable.star_rate);
+                                imageView_star3.setImageResource(R.drawable.star_rate);
+                                imageView_star4.setImageResource(R.drawable.star_rate);
+                                break;
+                            case "5":
+                                imageView_star1.setImageResource(R.drawable.star_rate);
+                                imageView_star2.setImageResource(R.drawable.star_rate);
+                                imageView_star3.setImageResource(R.drawable.star_rate);
+                                imageView_star4.setImageResource(R.drawable.star_rate);
+                                imageView_star5.setImageResource(R.drawable.star_rate);
+                                break;
+
+                        }
                         textViewAddressDynamic.setText(response.getString("address"));
                         serviceProviderName.setText(response.getString("name"));
                         serviceProviderBean.setStart(response.getString("start_time"));

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +88,12 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_rate_service));
         ((HomeActivity)getActivity()).setNavigationIcon();
         et_review = (EditText) view.findViewById(R.id.edit_writeReview_rateScreen);
+//        RatingBar ratingBar = (RatingBar)view.findViewById(R.id.rating);
+//        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+//            public void onRatingChanged(RatingBar ratingBar, float rating,  boolean fromUser) {
+//                Toast.makeText(getActivity(), ""+String.valueOf(rating), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         star1 = (ImageView) view.findViewById(R.id.imageView_star1_rateScreen);
         star2 = (ImageView) view.findViewById(R.id.imageView_star2_rateScreen);
