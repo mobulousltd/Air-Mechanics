@@ -173,6 +173,8 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         imgReviews = (ImageView) findViewById(R.id.imageView_rightArrow_reviews_serviceProviderDetail_6);
         img_minchrge = (ImageView) findViewById(R.id.img_minchrge);
 
+        textViewReviewsDynamic.setOnClickListener(this);
+
         serviceProviderDetail_Service();
     }
 
@@ -345,6 +347,11 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
 
                 break;
 
+            case R.id.textView_reviews_dynamic:
+                Intent intent = new Intent(this, RatingScreenListingActivity.class);
+                intent.putExtra("bean", serviceProviderBean);
+                startActivity(intent);
+                break;
         }
 
     }
@@ -507,6 +514,8 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
 
                         // Code for new field i.e. Contact Number
                         textViewContactNumberDynamic.setText(response.getString("contact_no"));
+                        textViewReviewsDynamic.setText(response.getString("last_review"));
+
                     }
 
                     if (jsonObject.getString("requestKey").equals("follow_serviceProvider"))

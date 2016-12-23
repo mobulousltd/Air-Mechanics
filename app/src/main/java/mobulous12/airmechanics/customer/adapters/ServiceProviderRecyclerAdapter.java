@@ -22,6 +22,7 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.activities.CalenderActivity;
 import mobulous12.airmechanics.customer.activities.LoginActivity;
+import mobulous12.airmechanics.customer.activities.RatingScreenListingActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
 import mobulous12.airmechanics.databinding.ServiceProviderCardBinding;
@@ -181,9 +182,13 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
         holder.relative_ReviewAndRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(activity, RatingScreenListingActivity.class);
+                intent.putExtra("bean", providerBean);
+                activity.startActivity(intent);
 
             }
         });
+        holder.reviewRating.setText(providerBean.getRequestCount());
     }
 
     @Override

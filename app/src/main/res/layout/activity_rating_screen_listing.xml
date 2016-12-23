@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_rating_screen_listing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mobulous12.airmechanics.customer.activities.RatingScreenListingActivity"
+    android:background="@drawable/bg">
+
+
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        android:id="@+id/tv_rating_screen_listing"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/no_rating_to_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--Header-->
+
+    <RelativeLayout
+        android:id="@+id/header_rating_screen_listing"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#60000000">
+
+        <ImageView
+            android:id="@+id/back_ratingScreenListing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back"
+            android:padding="@dimen/_12sdp"
+            />
+
+        <TextView
+            app:font="@{`medium`}"
+            android:id="@+id/textview_headername_ratingScreenListing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/rating_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/header_rating_screen_listing"
+        android:id="@+id/recycler_ratingScreenListing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>
+</layout>

@@ -283,6 +283,10 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                         serviceproviderbean.setEmail(jsonobject.getString("email"));
                         serviceproviderbean.setCategory(jsonobject.getString("work_category"));
                         serviceproviderbean.setWorkingdays(jsonobject.getString("workingDays"));
+                        serviceproviderbean.setReviews(jsonobject.getString("review"));
+                        serviceproviderbean.setRating(jsonobject.getString("rating"));
+                        serviceproviderbean.setRequestCount(jsonobject.getString("request_count"));
+
                         serviceProviderArrayList.add(serviceproviderbean);
                     }
                     serviceProviderRecyclerAdapter = new ServiceProviderRecyclerAdapter(this, serviceProviderArrayList);
@@ -309,7 +313,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
 
 
 
-                Log.e("JsonResponse", ""+responseObj.toString());
+                Log.e("JsonResponse_SPA", ""+responseObj.toString());
 
 
             }

@@ -266,10 +266,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
         bean.setMethodName("Services/sendbill");
         bean.setApilistener(this);
 
-
         CustomHandler customHandler = new CustomHandler(bean);
         customHandler.makeMultipartRequest(multipartEntityBuilder);
-
     }
 
     @Override

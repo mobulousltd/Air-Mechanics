@@ -21,6 +21,7 @@ public class Profile implements Parcelable
     private String lat="";
     private String lng="";
 
+
     public Profile() {
     }
 

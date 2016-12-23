@@ -311,6 +311,7 @@
 
     <string name="noplan">No Plan to show.</string>
     <string name="message">Message</string>
+    <string name="no_rating_to_show">No Rating To Show</string>
 
 
 </resources>

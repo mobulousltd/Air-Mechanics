@@ -2,9 +2,8 @@ package mobulous12.airmechanics.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
-import android.widget.Toast;
+
 
 /**
  * Created by mobulous2 on 31/5/16.

@@ -692,6 +692,18 @@
                         android:hint="@string/dummy_address"
                         android:padding="@dimen/_7sdp"
                         android:textSize="@dimen/sp_16"/>
+
+                    <ImageView
+                        android:id="@+id/imageView_rightArrow_reviews_dynamic"
+                        android:src="@drawable/service_pro_right_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@id/textView_reviews_dynamic"
+                        android:layout_marginRight="@dimen/_7sdp"
+                        android:tint="@color/text_gray"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        />
                 </RelativeLayout>
 
                 <Button
