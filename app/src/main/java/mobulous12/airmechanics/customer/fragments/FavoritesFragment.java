@@ -2,6 +2,7 @@ package mobulous12.airmechanics.customer.fragments;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
 import mobulous12.airmechanics.customer.adapters.FavoritesRecyclerAdapter;
 import mobulous12.airmechanics.customer.adapters.ServiceProviderRecyclerAdapter;
 import mobulous12.airmechanics.databinding.FragmentFavoritesBinding;
@@ -348,6 +350,16 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
                         /*Recycler view*/
                         favoritesRecyclerAdapter = new FavoritesRecyclerAdapter(getActivity(),serviceProviderArrayList);
                         recyclerView_myFavorites.setAdapter(favoritesRecyclerAdapter);
+                        favoritesRecyclerAdapter.onItemClickListener(new FavoritesRecyclerAdapter.MyClickListener() {
+                            @Override
+                            public void onItemClick(View v, int position)
+                            {
+                                Intent intent = new Intent(getActivity(),ServiceProviderDetailActivity.class);
+                                intent.putExtra("bean",serviceProviderArrayList.get(position));
+                                startActivity(intent);
+
+                            }
+                        });
                         recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
                     }
                 }

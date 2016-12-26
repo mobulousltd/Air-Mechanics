@@ -50,8 +50,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
-                                android:layout_toLeftOf="@+id/textView_jobOrderAmount_1"
-                                android:text="lj sjdlf sdf s jfs dfsdlf  kse"
+                                android:layout_toLeftOf="@+id/textView_1_rejectedAmount"
+                                android:text="Title"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/sp_16"/>
 
@@ -73,6 +73,14 @@
                                 android:orientation="vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/tv_nameSp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/service_provider"
+                                    android:textColor="@color/gray"
+                                    />
                                 <LinearLayout
                                     android:layout_marginTop="@dimen/_5sdp"
                                     android:layout_width="match_parent"

@@ -30,6 +30,7 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<ServiceProviderBean> serviceProviderArrayList;
+    private static MyClickListener listener;
 
 
     public FavoritesRecyclerAdapter(Context context,ArrayList<ServiceProviderBean> serviceProviderArrayList) {
@@ -175,9 +176,12 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
         return serviceProviderArrayList.size();
     }
 
+    public void onItemClickListener(MyClickListener listener) {
+        this.listener = listener;
+    }
 
-    class FavoritesViewHolder extends RecyclerView.ViewHolder
-    {
+
+    class FavoritesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView serviceProviderName;
         private TextView mon, tue, wed, thur, fri, sat, sun;
@@ -231,6 +235,25 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
 //
             reviewRating = (TextView) itemView.findViewById(R.id.imageView_ReviewRating);
 //            Font.setFontTextView(reviewRating, (AppCompatActivity)context);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v)
+        {
+            switch (v.getId())
+            {
+                default:
+                    listener.onItemClick(v,getPosition());
+                    break;
+            }
+
+        }
+    }
+
+    public interface MyClickListener
+    {
+        void onItemClick(View v, int position);
     }
 }

@@ -126,13 +126,16 @@ public class RejectedQuotesFragment extends Fragment implements ApiListener {
 
                         BookingBean bean = new BookingBean();
 
-                        bean.setUserName(obj.getString("request_Title"));
+                        bean.setUserName(obj.getString("userName"));
+                        bean.setProfile_thumb(obj.getString("profile_thumb"));
+                        bean.setRequestname(obj.getString("request_Title"));
                         bean.setMinCharge(obj.getString("minCharge"));
                         bean.setRequestDate(obj.getString("requestDate"));
                         bean.setStatus(obj.getString("status"));
                         bean.setRequestTime(obj.getString("Request_time"));
                         bean.setOpenTime(obj.getString("open_time"));
                         bean.setCloseTime(obj.getString("close_time"));
+
                         beanArrayList.add(bean);
                     }
                     if(beanArrayList.size()==0)

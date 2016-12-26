@@ -58,7 +58,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         MyDialogListenerInterface
 {
 
-    ProfileBean profileBean;
+    private ProfileBean profileBean;
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int CAMERA_REQUEST = 1888;
     private static int ADDRESSFETCH=011;
@@ -191,6 +191,8 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                     profileBean.setCategory(categories);
                     profileBean.setSpeciality(speciality);
                     profileBean.setMnCharg(et_minchrge_sp.getText().toString());
+                    profileBean.setImagesAttach(arrayList);
+
 
                     senCodeServiceHit();
                 }

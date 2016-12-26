@@ -285,7 +285,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                         serviceproviderbean.setWorkingdays(jsonobject.getString("workingDays"));
                         serviceproviderbean.setReviews(jsonobject.getString("review"));
                         serviceproviderbean.setRating(jsonobject.getString("rating"));
-                        serviceproviderbean.setRequestCount(jsonobject.getString("request_count"));
+                        serviceproviderbean.setRequestCount(jsonobject.getString("review_count"));
 
                         serviceProviderArrayList.add(serviceproviderbean);
                     }

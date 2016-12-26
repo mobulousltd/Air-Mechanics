@@ -151,6 +151,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
         {
             aQuery.id(holder.circularImageView_ServiceProvider).image(providerBean.getProfile_thumb());
         }
+        /*** Open Ask for Quote / CalenderActivity Directly ***/
         holder.askForQuote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +180,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
                 }
             }
         });
+        /*** Open Reviews and Ratings Directly ***/
         holder.relative_ReviewAndRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

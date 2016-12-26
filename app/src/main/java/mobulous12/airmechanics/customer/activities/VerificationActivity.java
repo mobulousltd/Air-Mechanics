@@ -42,7 +42,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
     String code, email="",newContact;
     public static VerificationActivity verificationActivity;
     private EditText editText_verification_code;
-    ProfileBean bean;
+    private ProfileBean bean;
 
     TextView headername_verification,textView_verification_code,textView_dont_get_verification_code;
     @Override
@@ -147,7 +147,14 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
             multipartbuilder.addTextBody("employees", bean.getEmployees());
             multipartbuilder.addTextBody("min_charges", bean.getMnCharg());
             multipartbuilder.addTextBody("specility", bean.getSpeciality());
+
+            for(int i=0;i<bean.getImagesAttach().size();i++)
+            {
+                multipartbuilder.addBinaryBody("image["+i+"]" , new File(bean.getImagesAttach().get(i)));
+            }
+
             multipartbuilder.addTextBody("description", "");
+
             if(bean.getImagePath().isEmpty())
             {
                 multipartbuilder.addTextBody("profile","");

@@ -3,6 +3,8 @@ package mobulous12.airmechanics.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by mobulous12 on 26/10/16.
  */
@@ -27,10 +29,15 @@ public class ProfileBean implements Parcelable {
     private String employees="";
     private String speciality="";
     private String mnCharg="";
+    private ArrayList<String> imagesAttach=new ArrayList<>();
 
-    public ProfileBean() {
+    public ArrayList<String> getImagesAttach() {
+        return imagesAttach;
     }
 
+    public void setImagesAttach(ArrayList<String> imagesAttach) {
+        this.imagesAttach = imagesAttach;
+    }
 
     protected ProfileBean(Parcel in) {
         fullname = in.readString();
@@ -52,34 +59,8 @@ public class ProfileBean implements Parcelable {
         employees = in.readString();
         speciality = in.readString();
         mnCharg = in.readString();
-    }
+        imagesAttach =in.createStringArrayList();
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(fullname);
-        dest.writeString(companyname);
-        dest.writeString(email);
-        dest.writeString(password);
-        dest.writeString(contactno);
-        dest.writeString(address);
-        dest.writeString(imagePath);
-        dest.writeString(country_code);
-        dest.writeString(category);
-        dest.writeString(city);
-        dest.writeString(lat);
-        dest.writeString(lng);
-        dest.writeString(from);
-        dest.writeString(to);
-        dest.writeString(radius);
-        dest.writeString(working_days);
-        dest.writeString(employees);
-        dest.writeString(speciality);
-        dest.writeString(mnCharg);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<ProfileBean> CREATOR = new Creator<ProfileBean>() {
@@ -93,6 +74,11 @@ public class ProfileBean implements Parcelable {
             return new ProfileBean[size];
         }
     };
+
+
+    public ProfileBean() {
+    }
+
 
     public String getSpeciality() {
         return speciality;
@@ -246,4 +232,32 @@ public class ProfileBean implements Parcelable {
         this.city = city;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fullname);
+        dest.writeString(companyname);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeString(contactno);
+        dest.writeString(address);
+        dest.writeString(imagePath);
+        dest.writeString(country_code);
+        dest.writeString(category);
+        dest.writeString(city);
+        dest.writeString(lat);
+        dest.writeString(lng);
+        dest.writeString(from);
+        dest.writeString(to);
+        dest.writeString(radius);
+        dest.writeString(working_days);
+        dest.writeString(employees);
+        dest.writeString(speciality);
+        dest.writeString(mnCharg);
+       dest.writeStringList(imagesAttach);
+    }
 }
