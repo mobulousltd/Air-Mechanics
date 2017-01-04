@@ -104,50 +104,31 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
         textViewCustomerDetailsDynamic.setVisibility(View.GONE);
         textViewCustomerAddressDynamic.setVisibility(View.GONE);
         findViewById(R.id.request_layout).setVisibility(View.GONE);
-
-
-        String cat="";
-        if((bean.getCategory()).contains("two"))
-        {
-            cat = getString(R.string.two_wheeler);
-        }
-        if((bean.getCategory()).contains("light"))
-        {
-            if(cat.isEmpty())
-            {
-                cat=getString(R.string.light_weight_vehicle);
-            }
-            else
-            {
-                cat+=", "+getString(R.string.light_weight_vehicle);
-            }
-        }
-        if((bean.getCategory()).contains("heavy"))
-        {
-            if(cat.isEmpty())
-            {
-                cat=getString(R.string.heavy_weight_vehicle);
-            }
-            else
-            {
-                cat+=", "+getString(R.string.heavy_weight_vehicle);
-            }
-        }
-        textViewCategoryTypeDynamic.setText(cat);
-
-        // setting values
-//        switch (bean.getRequestcategory())
+//
+//        if((bean.getCategory()).equalsIgnoreCase("two"))
 //        {
-//            case "two":
-//                textViewCategoryTypeDynamic.setText("Two Wheeler");
-//                break;
-//            case "light":
-//                textViewCategoryTypeDynamic.setText("Light Weight vehicle");
-//                break;
-//            case "heavy":
-//                textViewCategoryTypeDynamic.setText("Heavy Weight vehicle");
-//                break;
+//            textViewCategoryTypeDynamic.setText(R.string.two_wheeler);
 //        }
+//        if((bean.getCategory()).equalsIgnoreCase("light")) {
+//            textViewCategoryTypeDynamic.setText(R.st32ring.light_weight_vehicle);
+//        }
+//        if((bean.getCategory()).equalsIgnoreCase("heavy"))
+//        {
+//            textViewCategoryTypeDynamic.setText(R.string.heavy_weight_vehicle);
+//        }
+
+        switch (bean.getRequestcategory())
+        {
+            case "two":
+                textViewCategoryTypeDynamic.setText(R.string.two_wheeler);
+                break;
+            case "light":
+                textViewCategoryTypeDynamic.setText(R.string.light_weight_vehicle);
+                break;
+            case "heavy":
+                textViewCategoryTypeDynamic.setText(R.string.heavy_weight_vehicle);
+                break;
+        }
 
         textViewCustomerDetailsDynamic.setText("Customer Name : "+bean.getUserName()+ "\nCustomer Number : " +bean.getUsernumber());
         textViewCustomerAddressDynamic.setText(bean.getUseraddress());
