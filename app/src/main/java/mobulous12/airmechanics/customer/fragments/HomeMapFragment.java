@@ -318,6 +318,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 return;
             }
             googleMap.setMyLocationEnabled(true);
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
             googleMap.getUiSettings().setMapToolbarEnabled(false);
 
 

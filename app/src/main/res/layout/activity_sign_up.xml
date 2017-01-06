@@ -53,7 +53,7 @@
             android:layout_below="@+id/root_back_sign_up_activity"
             android:id="@+id/scrollView_signUp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
