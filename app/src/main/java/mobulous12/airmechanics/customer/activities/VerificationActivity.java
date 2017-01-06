@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -206,9 +207,16 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.ADDRESS, response.getString("address"));
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
-                        if(response.has("companyName")) {
+                        if(response.has("companyName"))
+                        {
+                            JSONArray jsonArray=responseObj.getJSONArray("documentImages");
+                            if(jsonArray.length()>0)
+                            {
+                                SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYIMAGE, jsonArray.getString(0));
+                            }
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                         }
+
 //                        if(response.getString("user_type").equalsIgnoreCase("customer"))
 //                        {
 //                            SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);

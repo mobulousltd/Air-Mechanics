@@ -94,14 +94,6 @@ public class HomeFragment extends Fragment implements ApiListener {
         //profile username and address
         textView_name_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
         textView_address_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
-        AQuery aQuery = new AQuery(profileImage);
-        if (!SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.IMAGE).isEmpty())
-        {
-            aQuery.id(profileImage).image(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.IMAGE));
-
-        } else {
-            aQuery.id(profileImage).image(R.drawable.default_profile_pic);
-        }
 
 
         homefragment_calview=(CalendarView)view.findViewById(R.id.homefragment_calview);
@@ -182,20 +174,19 @@ public class HomeFragment extends Fragment implements ApiListener {
     @Override
     public void onResume() {
         super.onResume();
-
         //profile username and address
         textView_name_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
         textView_address_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));
         //profile image
-        AQuery aQuery = new AQuery(profileImage);
-        if (!SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.IMAGE).isEmpty())
+        AQuery aQuery=new AQuery(profileImage);
+        if(!SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.COMPANYIMAGE).isEmpty())
         {
-            aQuery.id(profileImage).image(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.IMAGE));
-
-        } else {
+            aQuery.id(profileImage).image(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.COMPANYIMAGE));
+        }
+        else
+        {
             aQuery.id(profileImage).image(R.drawable.default_profile_pic);
         }
-
 
 
 

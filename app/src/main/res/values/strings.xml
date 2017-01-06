@@ -122,7 +122,6 @@
     <!--*************Service proders list page**-->
     <string name="ask_for_quote">Ask For Quote</string>
     <string name="review">Review</string>
-    <string name="rating">01</string>
     <string name="price_with_dollar">Price $20</string>
     <string name="filter_serviceprovider">Filter</string>
     <string name="sorting_serviceprovider">Sorting</string>

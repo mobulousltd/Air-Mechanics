@@ -66,6 +66,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
 
         final ServiceProviderBean providerBean = serviceProviderArrayList.get(position);
         holder.serviceProviderName.setText(providerBean.getName());
+        holder.sp_rating.setText(providerBean.getRating());
         String cat="";
         if(providerBean.getCategory().contains("two"))
         {
@@ -203,15 +204,15 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
         CircularImageView circularImageView_ServiceProvider;
         RelativeLayout  relative_ReviewAndRating;
         TextView serviceProviderName,ratingServiceProvider,mon,tue,wed,thur,fri,sat,sun,
-                sp_owner,textView_ServiceProviderLocation,askForQuote,review,reviewRating;
+                sp_owner,textView_ServiceProviderLocation,askForQuote,review,reviewRating, sp_rating;
 
         public ServiceProviderViewHolder(View itemView)
         {
             super(itemView);
+            sp_rating=(TextView)itemView.findViewById(R.id.sp_rating);
             relative_ReviewAndRating=(RelativeLayout)itemView.findViewById(R.id.relative_ReviewAndRating);
             circularImageView_ServiceProvider=(CircularImageView)itemView.findViewById(R.id.circularImageView_ServiceProvider);
             serviceProviderName = (TextView) itemView.findViewById(R.id.textView_ServiceProviderName);
-            ratingServiceProvider = (TextView) itemView.findViewById(R.id.textView_RatingServiceProvider);
             mon = (TextView) itemView.findViewById(R.id.textView_mon_serviceProviderDetail);
             tue = (TextView) itemView.findViewById(R.id.textView_tue_serviceProviderDetail);
             wed = (TextView) itemView.findViewById(R.id.textView_wed_serviceProviderDetail);

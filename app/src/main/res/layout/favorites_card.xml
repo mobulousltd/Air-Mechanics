@@ -306,11 +306,10 @@
                         android:layout_toEndOf="@+id/button_Review"
                         android:layout_toRightOf="@+id/button_Review"
                         android:background="@drawable/circle"
-                        android:contentDescription="@string/rating"
                         android:gravity="center"
                         android:importantForAccessibility="auto"
                         android:padding="@dimen/_2sdp"
-                        android:text="@string/rating"
+                        android:maxLength="3"
                         android:textSize="@dimen/sp_10" />
 
 

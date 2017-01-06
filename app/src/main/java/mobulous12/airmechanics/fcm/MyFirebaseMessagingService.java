@@ -108,6 +108,22 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                     sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
                                 }
                             }
+                            else if(jsonObject.getString("status").equals("billgenerate"))
+                            {
+
+                                requestid=jsonObject.getString("request_id");
+                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+//                                if(NewJobRequest.jobRequest)
+//                                {
+//                                    Intent intent = new Intent("NOTIFYCUST");
+//                                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+//                                }
+//                                else
+//                                {
+//                                    requestid=jsonObject.getString("request_id");
+//                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+//                                }
+                            }
                             else
                             {
                                 if(MyBookingsFragment.bookingsFrag)

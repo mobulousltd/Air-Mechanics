@@ -49,6 +49,7 @@ import com.google.android.gms.common.api.Status;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileOutputStream;
@@ -471,6 +472,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             else
                             {
+                                JSONArray jsonArray=response.getJSONArray("documentImages");
+                                if(jsonArray.length()>0)
+                                {
+                                    SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYIMAGE, jsonArray.getString(0));
+                                }
                                 SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);

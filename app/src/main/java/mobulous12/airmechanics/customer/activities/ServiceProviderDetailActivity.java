@@ -165,6 +165,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         textViewSpecialityDynamic.setVisibility(View.GONE);
         textViewDescriptionDynamic.setVisibility(View.GONE);
         textViewReviewsDynamic.setVisibility(View.GONE);
+        findViewById(R.id.rv_review).setVisibility(View.GONE);
         tv_minchrge.setVisibility(View.GONE);
 
 
@@ -285,11 +286,13 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
 
             case R.id.root_reviews_serviceProviderDetail:
                 if (isReviewOpen) {
+                    findViewById(R.id.rv_review).setVisibility(View.VISIBLE);
                     textViewReviewsDynamic.setVisibility(View.VISIBLE);
                     imgReviews.setRotation(90.0f);
                     isReviewOpen = false;
                     rootReviews.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                 } else {
+                    findViewById(R.id.rv_review).setVisibility(View.GONE);
                     textViewReviewsDynamic.setVisibility(View.GONE);
                     imgReviews.setRotation(0.0f);
                     isReviewOpen = true;

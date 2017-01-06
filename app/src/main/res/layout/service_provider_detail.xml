@@ -666,28 +666,34 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         android:textSize="@dimen/sp_16"
                         />
-                    <TextView
-                        android:id="@+id/textView_reviews_dynamic"
-                        android:layout_below="@+id/textView_line_8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:background="@color/white"
-                        android:hint="@string/dummy_address"
-                        android:padding="@dimen/_7sdp"
-                        android:textSize="@dimen/sp_16"/>
+                        <RelativeLayout
+                            android:id="@+id/rv_review"
+                            android:background="@color/white"
+                            android:layout_below="@+id/textView_line_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/textView_reviews_dynamic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:background="@color/white"
+                                android:hint="@string/dummy_address"
+                                android:padding="@dimen/_7sdp"
+                                android:textSize="@dimen/sp_16"/>
 
-                    <ImageView
-                        android:id="@+id/imageView_rightArrow_reviews_dynamic"
-                        android:src="@drawable/service_pro_right_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignTop="@id/textView_reviews_dynamic"
-                        android:layout_marginRight="@dimen/_7sdp"
-                        android:tint="@color/text_gray"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        />
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:id="@+id/imageView_rightArrow_reviews_dynamic"
+                                android:src="@drawable/service_pro_right_arrow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="@dimen/_7sdp"
+                                android:tint="@color/text_gray"
+                                />
+                        </RelativeLayout>
+
                 </RelativeLayout>
 
                 <Button

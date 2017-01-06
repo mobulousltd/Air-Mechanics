@@ -30,6 +30,7 @@ import com.androidquery.AQuery;
 import com.google.android.gms.maps.GoogleMap;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.RoleSelectionActivity;
+import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.fragments.BillPaymentFragment;
 import mobulous12.airmechanics.customer.fragments.BookingDetailFragment;
 import mobulous12.airmechanics.customer.fragments.ChangeContactFrag;
@@ -248,6 +249,17 @@ public class HomeActivity extends AppCompatActivity
                 intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
                 startActivity(intent);
 //                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
+            }
+            else if(notifi.equalsIgnoreCase("billgenerate"))
+            {
+                BookingBean bean=new BookingBean();
+                bean.setBookingid(getIntent().getStringExtra("requestid"));
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("bookingBean",bean);
+                BillPaymentFragment paymentFragment = new BillPaymentFragment();
+                paymentFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,paymentFragment,"billPaymentFragment").addToBackStack("payment").commit();
+
             }
             else
             {

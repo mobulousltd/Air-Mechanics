@@ -7,6 +7,7 @@ public class SPreferenceKey {
     public static final String TOKEN = "token";
     public static final String FullName = "fullname";
     public static final String COMPANYNAME = "companyname";
+    public static final String COMPANYIMAGE = "companyimage";
     public static final String Email = "Email";
     public static final String PhoneNumber = "phone_number";
     public static final String NOTIFICATION = "notification";

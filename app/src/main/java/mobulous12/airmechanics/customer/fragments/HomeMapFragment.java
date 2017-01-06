@@ -319,7 +319,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             }
             googleMap.setMyLocationEnabled(true);
             googleMap.getUiSettings().setZoomControlsEnabled(true);
-            googleMap.getUiSettings().setMapToolbarEnabled(false);
+//            googleMap.getUiSettings().setMapToolbarEnabled(false);
 
 
 //            LatLng latlonglocation1 = new LatLng(28.628781, 77.379296);

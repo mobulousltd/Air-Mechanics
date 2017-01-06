@@ -192,17 +192,17 @@ private void setFields()
 //    title , description and profile
     title.setText("Title : "+bookingBean.getRequestname());
     String status;
-    if(!bookingBean.getStatus().equalsIgnoreCase("pending") ||!bookingBean.getStatus().equalsIgnoreCase("process"))
-    {
-        status="Completed";
-    }
-    else if (bookingBean.getStatus().equalsIgnoreCase("pending"))
+    if (bookingBean.getStatus().equalsIgnoreCase("pending"))
     {
         status="Pending";
     }
-    else
+    else if (bookingBean.getStatus().equalsIgnoreCase("process"))
     {
         status="In Progress";
+    }
+    else
+    {
+        status="Completed";
     }
     descrip.setText("Description : "+bookingBean.getRequestdesc()+"\nStatus : "+status);
 

@@ -6,6 +6,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,18 +18,29 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
+
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.databinding.BillPaymentBinding;
+import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
+import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.volley.ApiListener;
+import mobulous12.airmechanics.volley.CustomHandler;
+import mobulous12.airmechanics.volley.ServiceBean;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BillPaymentFragment extends Fragment implements View.OnClickListener {
+public class BillPaymentFragment extends Fragment implements View.OnClickListener, ApiListener {
 
 
     private RelativeLayout rootTypeOfService;
@@ -75,6 +87,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         BillPaymentBinding binding=DataBindingUtil.inflate(inflater, R.layout.bill_payment, container, false);
         view=binding.getRoot();
         bookingBean = getArguments().getParcelable("bookingBean");
+
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_billpayment));
         ((HomeActivity)getActivity()).setNavigationIcon();
 //        Font.setFontHeader(HomeActivity.toolbar_title, getActivity());
@@ -130,6 +143,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 //        Font.setFontButton(button_rate_us, getActivity());
 
         setFields();
+        if(bookingBean.getStatus().isEmpty())
+        {
+            detailServiceHit();
+        }
         return view;
     }
 
@@ -284,7 +301,70 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_show_service_provider).setVisible(false);
+    }
 
+
+    //    Services
+    private void detailServiceHit()
+    {
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
+        multipartEntityBuilder.addTextBody("requestId", bookingBean.getBookingid());
+
+        ServiceBean serviceBean = new ServiceBean();
+        serviceBean.setActivity(getActivity());
+        serviceBean.setFragment(BillPaymentFragment.this);
+        serviceBean.setMethodName("Consumers/request_details");
+        serviceBean.setApilistener(this);
+
+        CustomHandler customHandler = new CustomHandler(serviceBean);
+        customHandler.makeMultipartRequest(multipartEntityBuilder);
+
+    }
+
+    @Override
+    public void myServerResponse(JSONObject jsonObject)
+    {
+        try {
+            if (jsonObject != null)
+            {
+                if (jsonObject.getString("status").equals("SUCCESS"))
+                {
+                    if(jsonObject.getString("requestKey").equalsIgnoreCase("request_details"))
+                    {
+                        JSONObject j_object = jsonObject.getJSONObject("response").getJSONObject("user");
+                        bookingBean.setRequestcategory(j_object.getString("category"));
+                        bookingBean.setRequestdesc(j_object.getString("request_description"));
+                        bookingBean.setUserName(j_object.getString("userName"));
+                        bookingBean.setRequestname(j_object.getString("request_Title"));
+                        bookingBean.setRequestDate(j_object.getString("requestDate"));
+                        JSONArray reqImgJsonArray=j_object.getJSONArray("reqImgJsonArray");
+                        String array[]=new String[reqImgJsonArray.length()];
+                        for(int j=0;j<reqImgJsonArray.length();j++)
+                        {
+                            array[j]=reqImgJsonArray.getString(j);
+
+                        }
+                        bookingBean.setRequestImgArr(array);
+                        if(array.length>0)
+                        {
+                            bookingBean.setRequestImage(array[0]);
+                        }
+                        setFields();
+                    }
+
+                }
+                else
+                {
+
+                }
+                Log.e("JSON Response: ",""+jsonObject.toString());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

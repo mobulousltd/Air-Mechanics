@@ -70,8 +70,6 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         {
             holder.bookingStatus.setText("Completed!");
             holder.bookingStatus.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
-
-
         }
 
         holder.myBookingName.setText(bookingBean.getRequestname());
