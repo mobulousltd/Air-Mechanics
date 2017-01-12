@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import mobulous12.airmechanics.R;
+import mobulous12.airmechanics.databinding.AcceptRejectDetailCardsBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.utils.CircularImageView;
@@ -28,8 +29,9 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 public class AcceptRejectDetailActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
-    private TextView tv_minchrge, tv_accept, tv_reject,tv_ServiceProName,tv_Date,tv_descrip,textView_AcceptRejectTime, tv_jobtitle, tv_min, tv_sec;
-    private String reqid;
+    AcceptRejectDetailCardsBinding binding;
+    private TextView tv_minchrge,tv_ServiceProName,tv_Date,tv_descrip,textView_AcceptRejectTime, tv_jobtitle;
+    private String reqid, expiredtime;
     private CircularImageView image_AcceptRej;
 
     long days, hours, minutes, seconds;
@@ -37,32 +39,30 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.accept_reject_detail_cards);
+        binding=DataBindingUtil.setContentView(this, R.layout.accept_reject_detail_cards);
         reqid=getIntent().getStringExtra("requestid");
           /*views*/
-        tv_sec=(TextView)findViewById(R.id.tv_sec);
-        tv_min=(TextView)findViewById(R.id.tv_min);
 
         tv_minchrge=(TextView)findViewById(R.id.tv_minchrge);
         textView_AcceptRejectTime=(TextView)findViewById(R.id.textView_AcceptRejectTime);
-        tv_accept = (TextView) findViewById(R.id.textView_accept_Quote);
-        tv_reject = (TextView) findViewById(R.id.textView_reject_Quote);
+
         tv_ServiceProName = (TextView) findViewById(R.id.textView_AcceptRejectServiceProName);
         tv_Date = (TextView) findViewById(R.id.textView_AcceptRejectDate);
         tv_descrip = (TextView) findViewById(R.id.textView_description_accept_reject);
         image_AcceptRej = (CircularImageView) findViewById(R.id.circularImageView1_AcceptReject);
         tv_jobtitle=(TextView)findViewById(R.id.tv_jobtitle);
-        findViewById(R.id.img_back).setOnClickListener(this);
-        tv_accept.setOnClickListener(this);
-        tv_reject.setOnClickListener(this);
+        binding.imgBack.setOnClickListener(this);
+        binding.textViewAcceptQuote.setOnClickListener(this);
+        binding.textViewRejectQuote.setOnClickListener(this);
         detailServiceHit();
-        setTimer();
     }
     private void setTimer()
     {
+        int index=expiredtime.indexOf(".");
+
         long h=Long.parseLong("00");
-        long m=Long.parseLong("60");
-        long s=Long.parseLong("00");
+        long m=Long.parseLong(expiredtime.substring(0, index));
+        long s=Long.parseLong(expiredtime.substring(index+1, expiredtime.length()));
         long minuts= TimeUnit.MINUTES.toMillis(m);
         long hour=TimeUnit.HOURS.toMillis(h);
         long secnd=TimeUnit.SECONDS.toMillis(s);
@@ -80,8 +80,9 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
             public void onTick(long millisUntilFinished)
             {
                 timeCalculate(millisUntilFinished/1000);
-                tv_min.setText(String.format("%2d", minutes));
-                tv_sec.setText(String.format("%2d", seconds));
+                binding.tvMin.setText(String.format("%2d", minutes));
+                binding.tvSec.setText(String.format("%2d", seconds));
+                Log.i("Timer", ""+String.format("%2d", minutes)+" : "+String.format("%2d", seconds));
             }
         }.start();
     }
@@ -179,6 +180,11 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
                     if(jsonObject.getString("requestKey").equalsIgnoreCase("request_details"))
                     {
                         JSONObject j_object = jsonObject.getJSONObject("response").getJSONObject("user");
+                        expiredtime=j_object.getString("expiredtime");
+                        if(!expiredtime.isEmpty())
+                        {
+                            setTimer();
+                        }
                         tv_ServiceProName.setText(j_object.getString("userName"));
                         tv_descrip.setText(j_object.getString("request_description"));
                         String date=j_object.getString("requestDate");

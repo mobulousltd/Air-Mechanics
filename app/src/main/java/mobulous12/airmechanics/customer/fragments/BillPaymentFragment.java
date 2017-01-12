@@ -339,7 +339,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setUserName(j_object.getString("userName"));
                         bookingBean.setRequestname(j_object.getString("request_Title"));
                         bookingBean.setRequestDate(j_object.getString("requestDate"));
-                        JSONArray reqImgJsonArray=j_object.getJSONArray("reqImgJsonArray");
+                        JSONArray reqImgJsonArray=j_object.getJSONArray("request_image");
                         String array[]=new String[reqImgJsonArray.length()];
                         for(int j=0;j<reqImgJsonArray.length();j++)
                         {
