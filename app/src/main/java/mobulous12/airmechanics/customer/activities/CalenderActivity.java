@@ -29,6 +29,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,6 +77,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     public static HashMap<Integer, TextView> tv_hashMap;
     private TextView  starttime, endtime, tv_address;
     private LinearLayout root_relative_quote;
+    private String timerHour,timerMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -299,7 +301,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             case R.id.endtime:
                 InputMethodManager imm2 = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 imm2.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                showTime(endtime);
+                showTimeForClose(endtime);
+//                showTime(endtime);
                 break;
             case R.id.imageView_back_quote:
                 finish();
@@ -386,13 +389,58 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 return true;
             }
         }
-
-        else
+        else if(!checkOpenTiming(starttime))
         {
-            return true;
+            return false;
+
         }
+
+
+            return true;
+
     }
 
+
+    private boolean checkReqDateTime(Calendar calendar,String time)
+    {
+
+        int result = 0;
+
+        Date selected_time,current_time;
+
+            try
+            {
+                SimpleDateFormat sdfTime=new SimpleDateFormat("kk:mm");
+                selected_time=sdfTime.parse(time);      // Time selected in time-picker in 24 hr format
+
+//                new SimpleDateFormat("kk:mm:ss").format(new SimpleDateFormat("hh:mm:ss a").parse(DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));   // exact current time
+
+                SimpleDateFormat displayFormat = new SimpleDateFormat("kk:mm:ss");
+                SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm:ss a");
+                Date date = parseFormat.parse( DateFormat.getTimeInstance().format( calendar.getTime() ));
+                String exactTime =   displayFormat.format(date);
+
+                String[] timings = exactTime.split(":");
+                String current = timings[0]+":"+timings[1];
+
+                SimpleDateFormat sd=new SimpleDateFormat("kk:mm");
+                current_time=sd.parse(current);         // Exact current Time of device in 24 hr format
+
+                result= current_time.compareTo(selected_time);   // comparing  Time selected and  current Time
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        if(result>0)
+          {
+              return true;
+          }
+        else
+          {
+              return false;
+           }
+    }
 
     private boolean compareTime(String time)
     {
@@ -423,8 +471,66 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private boolean checkOpenTiming(final TextView tv)
+    {
+        Calendar c = Calendar.getInstance();  // Georgegian_calendar
+        boolean r = false;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf.format(c.getTime());  // current date
+
+        if(reqdate.equalsIgnoreCase(currentDate))
+        {
+            if(checkReqDateTime(c,timerHour+":"+timerMin))
+            {
+                tv.setText(timerHour + ":" + timerMin);
+                r= true;
+            }
+            else
+            {
+                Toast.makeText(CalenderActivity.this," Open Timing can't be in Past", Toast.LENGTH_SHORT).show();
+                r= false;
+
+            }
+        }
+        return r;
+
+    }
+
     //dialogs
     public void showTime(final TextView tv)
+    {
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+            {
+                String hours = selectedHour+"";
+                String minutes = selectedMinute+"";
+                timerHour = hours;
+                timerMin = minutes;
+
+                if (selectedMinute < 10)
+                {
+                    minutes = "0"+minutes;
+                }
+                if (selectedHour < 10)
+                {
+                    hours = "0"+selectedHour;
+                }
+                if(compareTime(hours + ":" + minutes))
+                {
+                    tv.setText(hours + ":" + minutes);
+                }
+                else
+                {
+                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, hour, minute, false);//Yes 24 hour time
+        mTimePicker.show();
+    }
+    public void showTimeForClose(final TextView tv)
     {
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -454,6 +560,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.show();
     }
+
     private void showFilterDialog()
     {
 
