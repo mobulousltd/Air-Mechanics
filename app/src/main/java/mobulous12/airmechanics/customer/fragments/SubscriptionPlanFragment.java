@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.PlanBean;
@@ -64,6 +65,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     private Button btn_AnnualSubscription_BuyNow;
 
     private String id = "", annualid="", monthlyid="";
+    private String monthlyPayAmount="",annualPayAmount="",transactionId="",payamount="";
     //////////////////////
 
 
@@ -96,6 +98,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             annualSubscription_description = (TextView) view.findViewById(R.id.textView_lower_descriptionSubscriptionPlan);
         btn_AnnualSubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_annualSubscription);
 
+        generateTransId();
         subscriptionPlanListServicehit();
         if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
         {
@@ -117,6 +120,19 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
         return view;
     }
+
+     private void generateTransId()
+      {
+        Random rand = new Random();
+        String randomString = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
+        Log.i("TRANSANCTION_ID", "--"+"TRANS"+randomString);
+        transactionId="TRANS"+randomString.substring(1, 11);
+
+        Random r = new Random(System.currentTimeMillis());
+        String transId = "TRANS" + (1 + r.nextInt(2)) * 10000
+                + r.nextInt(10000);
+        Log.i("TRANS_ID",transId);
+      }
 
 /*  Services*/
     private void subscriptionPlanListServicehit()
@@ -147,16 +163,18 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
         multipartEntityBuilder.addTextBody("planId", id);
+        multipartEntityBuilder.addTextBody("transactionId", transactionId);
+        multipartEntityBuilder.addTextBody("payamount", payamount);
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setActivity(getActivity());
         if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
         {
-            serviceBean.setMethodName("Consumers/planpurchase");
+            serviceBean.setMethodName("Consumers/planpayment");
         }
         else
-        {
-            serviceBean.setMethodName("Services/planPurchase");
+        {   
+            serviceBean.setMethodName("Services/planpayment");
         }
         serviceBean.setApilistener(SubscriptionPlanFragment.this);
 
@@ -189,7 +207,8 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                 {
                                     monthlyid=j_obj.getString("id");
                                     monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
-                                    monthlySubscriptionAmount.setText("$"+j_obj.getString("payamount"));
+                                    monthlyPayAmount =j_obj.getString("payamount") ;
+                                    monthlySubscriptionAmount.setText("$"+monthlyPayAmount);
                                     btn_MonthlySubscription_BuyNow.setOnClickListener(this);
                                     monthlySubscription_description.setText("Monthly credits will be "+j_obj.getString("creadits")+" points.");
 
@@ -197,7 +216,8 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                 else {
                                     annualid=j_obj.getString("id");
                                     annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
-                                    annualSubscriptionAmount.setText("$"+j_obj.getString("payamount"));
+                                    annualPayAmount =j_obj.getString("payamount") ;
+                                    annualSubscriptionAmount.setText("$"+annualPayAmount);
                                     btn_AnnualSubscription_BuyNow.setOnClickListener(this);
                                     monthlySubscription_description.setText("Annual credits will be "+j_obj.getString("creadits")+" points.");
                                 }
@@ -216,21 +236,23 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                     {
                                         monthlyid=object.getString("id");
                                         monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
-                                        monthlySubscriptionAmount.setText("$"+rate);
+                                        monthlyPayAmount = rate;
+                                        monthlySubscriptionAmount.setText("$"+monthlyPayAmount);
                                         monthlySubscription_description.setText(description);
                                         btn_MonthlySubscription_BuyNow.setOnClickListener(this);
                                     }
                                     else {
                                         annualid=object.getString("id");
                                         annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
-                                        annualSubscriptionAmount.setText("$"+rate);
+                                        annualPayAmount = rate;
+                                        annualSubscriptionAmount.setText("$"+annualPayAmount);
                                         annualSubscription_description.setText(description);
                                         btn_AnnualSubscription_BuyNow.setOnClickListener(this);
                                     }
                                 }
                              }
                     }
-                    if(jsonObject.getString("requestKey").equalsIgnoreCase("planpurchase"))
+                    if(jsonObject.getString("requestKey").equalsIgnoreCase("planpayment"))
                     {
                         JSONObject response = jsonObject.getJSONObject("response");
                         String planId = response.getString("plan_id");
@@ -285,11 +307,13 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             case R.id.button_buyNow_monthlysubscription:
 
                 id=monthlyid;
+                payamount = monthlyPayAmount;
                 planPurchaseServiceHit();
                 break;
 
             case R.id.button_buyNow_annualSubscription:
                 id=annualid;
+                payamount = annualPayAmount;
                 planPurchaseServiceHit();
                 break;
         }
