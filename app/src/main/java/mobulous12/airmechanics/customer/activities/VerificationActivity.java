@@ -209,7 +209,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                         if(response.has("companyName"))
                         {
-                            JSONArray jsonArray=responseObj.getJSONArray("documentImages");
+                            JSONArray jsonArray=response.getJSONArray("documentImages");
                             if(jsonArray.length()>0)
                             {
                                 SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYIMAGE, jsonArray.getString(0));

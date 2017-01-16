@@ -44,6 +44,7 @@ import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.fragments.SubmitQuoteFragment;
+import mobulous12.airmechanics.databinding.ActivityCalenderBinding;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.serviceprovider.activities.SignUpServiceProActivity;
 import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
@@ -61,11 +62,10 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     private static int RESULT_LOAD_IMAGE = 1;
     private static final int CAMERA_REQUEST = 1888;
     private static int ADDRESSFETCH=011;
-
+    Date current,open,end,spopen,spend;
     Calendar calendar;
     DocumentsAdapter documentsAdapter;
     String lat="", lng="", reqdate="", category="";
-    String sp_day;
     private boolean isDayOk = false;
 
     RecyclerView rv_attchpic;
@@ -78,16 +78,16 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     private TextView  starttime, endtime, tv_address;
     private LinearLayout root_relative_quote;
     private String timerHour,timerMin;
-
+    ActivityCalenderBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.activity_calender);
+        binding=DataBindingUtil.setContentView(this, R.layout.activity_calender);
 
         bean=getIntent().getParcelableExtra("bean");
 
-        calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance(Locale.ENGLISH);
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute= calendar.get(Calendar.MINUTE);
         day=calendar.get(Calendar.DATE);
@@ -314,7 +314,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             case R.id.button_Submit_quote:
                 if(validateData())
                 {
-                    showFilterDialog();
+                    checkOpentime();
                 }
                 break;
             case R.id.imageView_attachDocs_quote:
@@ -362,44 +362,178 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Please select date for service.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else  if(!this.starttime.getText().toString().isEmpty())
+        else
         {
-            int ok ;
-            Date cloTime=  null,opTime = null;
-            try {
-                SimpleDateFormat s = new SimpleDateFormat("kk:mm");
-                opTime = s.parse(this.starttime.getText().toString());
-                cloTime = s.parse(this.endtime.getText().toString());
+            return true;
+        }
+//        else  if(!this.starttime.getText().toString().isEmpty())
+//        {
+//            int ok ;
+//            Date cloTime=  null,opTime = null;
+//            try {
+//                SimpleDateFormat s = new SimpleDateFormat("kk:mm");
+//                opTime = s.parse(this.starttime.getText().toString());
+//                cloTime = s.parse(this.endtime.getText().toString());
+//
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            ok = (opTime != null) ? opTime.compareTo(cloTime) : 0;
+//            if (ok > 0) {
+//                Toast.makeText(this, "Open Timing should be before Close Timing.", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//            else if(ok ==0)
+//            {
+//                Toast.makeText(this, "Open Timing can't be same as Close Timing.", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//            else
+//            {
+//                return true;
+//            }
+//        }
+//        else if(!checkOpenTiming(starttime))
+//        {
+//            return false;
+//
+//        }
+//        return true;
 
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            ok = (opTime != null) ? opTime.compareTo(cloTime) : 0;
-            if (ok > 0) {
-                Toast.makeText(this, "Open Timing should be before Close Timing.", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-            else if(ok ==0)
+    }
+    private void checkTime()
+    {
+        try {
+            SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd kk:mm");
+            current=s.parse(year+"-"+month+1+"-"+day+" "+hour+":"+minute);
+            open=s.parse(reqdate+" "+binding.starttime.getText().toString());
+            end=s.parse(reqdate+" "+binding.endtime.getText().toString());
+            spopen=s.parse(reqdate+" "+bean.getStart());
+            spend=s.parse(reqdate+" "+bean.getEnd());
+            if(open.compareTo(current)>=0 && end.compareTo(current)>0)
             {
-                Toast.makeText(this, "Open Timing can't be same as Close Timing.", Toast.LENGTH_SHORT).show();
-                return false;
+                if(open.compareTo(spopen)>=0 && end.compareTo(spopen)>0)
+                {
+                    if(open.compareTo(spend)<=0 && end.compareTo(spend)<=0)
+                    {
+                        if(end.compareTo(open)>0)
+                        {
+                            showFilterDialog();
+//                        Toast.makeText(CalenderActivity.this, "Go", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(CalenderActivity.this, "Please select valid time slot", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                }
             }
             else
             {
-                return true;
+                Toast.makeText(CalenderActivity.this, "You can not request service provider in Past.", Toast.LENGTH_LONG).show();
             }
         }
-        else if(!checkOpenTiming(starttime))
+        catch (Exception e)
         {
-            return false;
-
+            e.printStackTrace();
         }
-
-
-            return true;
-
     }
 
+    private void checkOpentime()
+    {
+        try
+        {
+            SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd kk:mm");
+            current=s.parse(year+"-"+month+1+"-"+day+" "+hour+":"+minute);
+            open=s.parse(reqdate+" "+binding.starttime.getText().toString());
+            end=s.parse(reqdate+" "+binding.endtime.getText().toString());
+            spopen=s.parse(reqdate+" "+bean.getStart());
+            spend=s.parse(reqdate+" "+bean.getEnd());
+            Log.i("Current Date", ""+current.toString());
+            Log.i("Open Date", ""+open.toString());
+            Log.i("SP Open Date", ""+spopen.toString());
+            int x=open.compareTo(current);//comparing open time from current time
+            Log.i("Compare current",""+x);
+            if(x>=0)
+            {
+                int y=open.compareTo(spopen);//comparing open time from service provider start working time
+                Log.i("Compare spopen",""+y);
+                if(y>=0)
+                {
+                    int z=open.compareTo(spend);//comparing open time from service provider close working time
+                    Log.i("Compare spend",""+z);
+                    if(z<=0)
+                    {
+                        checkCloseTime();
+                    }
+                    else
+                    {
+                        Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(CalenderActivity.this, "You can not request service provider in Past", Toast.LENGTH_LONG).show();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+    private void checkCloseTime()
+    {
+        int x=end.compareTo(current);
+        Log.i("Compare current",""+x);
+        if(x>=0)
+        {
+            int y=end.compareTo(spopen);//comparing open time from service provider start working time
+            Log.i("Compare spopen",""+y);
+            if(y>=0)
+            {
+                int z=end.compareTo(spend);//comparing open time from service provider close working time
+                Log.i("Compare spend",""+z);
+                if(z<=0)
+                {
+                    if(end.compareTo(open)>0)
+                    {
+                        showFilterDialog();
+//                        Toast.makeText(CalenderActivity.this, "Go", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(CalenderActivity.this, "Please select valid time slot", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(CalenderActivity.this, "You can not request service provider in Past", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private boolean checkReqDateTime(Calendar calendar,String time)
     {
@@ -518,14 +652,14 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 {
                     hours = "0"+selectedHour;
                 }
-                if(compareTime(hours + ":" + minutes))
-                {
+//                if(compareTime(hours + ":" + minutes))
+//                {
                     tv.setText(hours + ":" + minutes);
-                }
-                else
-                {
-                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_SHORT).show();
-                }
+//                }
+//                else
+//                {
+//                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_SHORT).show();
+//                }
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.show();
@@ -548,14 +682,14 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 {
                     hours = "0"+selectedHour;
                 }
-                if(compareTime(hours + ":" + minutes))
-                {
+//                if(compareTime(hours + ":" + minutes))
+//                {
                     tv.setText(hours + ":" + minutes);
-                }
-                else
-                {
-                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_SHORT).show();
-                }
+//                }
+//                else
+//                {
+//                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_SHORT).show();
+//                }
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.show();
@@ -734,6 +868,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         negative_button.setTextColor(getResources().getColor(R.color.black));
 
     }
+
     //services
     private void requestServiceHit() {
         try {
