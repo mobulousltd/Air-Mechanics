@@ -158,7 +158,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         {
             detailServiceHit();
         }
-        setFields();
+
         return view;
     }
 
@@ -397,6 +397,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         {
                             bookingBean.setRequestImage(array[0]);
                         }
+
+                        setFields();
 
                     }
 

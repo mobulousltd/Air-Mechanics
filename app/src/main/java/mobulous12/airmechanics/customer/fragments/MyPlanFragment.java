@@ -107,15 +107,18 @@ public class MyPlanFragment extends Fragment implements ApiListener {
         try {
             if (jsonObject != null) {
                 if (jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) {
-                    if (jsonObject.getString("requestKey").equalsIgnoreCase("myplan"))
-                    {
+                    if (jsonObject.getString("requestKey").equalsIgnoreCase("myplan")) {
                         JSONObject jsonObject1 = jsonObject.getJSONObject("response");
+                        String doIhavePlan = jsonObject1.getString("plan");
+                        if (!doIhavePlan.equalsIgnoreCase("no"))
+                        {
+                            tv_plan.setVisibility(View.GONE);
+
                         PlanBean planBean = new PlanBean();
                         planBean.setPlanId(jsonObject1.getString("palnid"));
                         planBean.setPlanAmount(jsonObject1.getString("rate"));
                         planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
-                        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
-                        {
+                        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN)) {
                             if (jsonObject1.getString("validity").equalsIgnoreCase("1 months")) {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_myplan));
                             } else {
@@ -123,9 +126,7 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                             }
                             planBean.setRemainingPoints(jsonObject1.getString("remainingpoin"));
                             planBean.setDescription("You have " + planBean.getRemainingPoints() + " credits.");
-                        }
-                        else
-                        {
+                        } else {
                             if (jsonObject1.getString("planname").equalsIgnoreCase("Yearly")) {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
                             } else {
@@ -137,14 +138,18 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                         planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
                         planBeanArrayList.add(planBean);
 
-                        if (planBeanArrayList.size() == 0) {
-                            tv_plan.setVisibility(View.VISIBLE);
-                        } else {
-                            tv_plan.setVisibility(View.GONE);
-                        }
+//                        if (planBeanArrayList.size() == 0) {
+//                            tv_plan.setVisibility(View.VISIBLE);
+//                        } else {
+//                            tv_plan.setVisibility(View.GONE);
+//                        }
                         myPlanRecyclerAdapter = new MyPlanRecyclerAdapter(getActivity(), planBeanArrayList);
                         recyclerView_myPlan.setAdapter(myPlanRecyclerAdapter);
                         recyclerView_myPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    }
+                        else {
+                            tv_plan.setVisibility(View.VISIBLE);
+                        }
                     }
                 } else {
                     Log.v("JSON_Response", "" + jsonObject.toString());
