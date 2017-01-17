@@ -14,8 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +43,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BillPaymentFragment extends Fragment implements View.OnClickListener, ApiListener {
+public class BillPaymentFragment extends Fragment implements View.OnClickListener, ApiListener, CompoundButton.OnCheckedChangeListener {
 
 
     private RelativeLayout rootTypeOfService;
@@ -69,6 +72,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     private RelativeLayout root_descripBill;
     private ImageView profile;
     private TextView title, descrip;
+    private LinearLayout ll_price;
+    private CheckBox chBox_wallet;
+    private TextView tv_walletBalance;
+    private double payAmount=0;
 
     public BillPaymentFragment() {
         // Required empty public constructor
@@ -96,6 +103,9 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootDescription = (RelativeLayout) view.findViewById(R.id.root_description_bill_payment);
         rootTotalPrice = (RelativeLayout) view.findViewById(R.id.root_total_price);
         button_rate_us = (Button) view.findViewById(R.id.button_rate_us);
+        ll_price = (LinearLayout) view.findViewById(R.id.ll_price);
+        chBox_wallet = (CheckBox) view.findViewById(R.id.chBox_wallet);
+        tv_walletBalance = (TextView) view.findViewById(R.id.tv_walletBalance);
 
         if(bookingBean.getStatus().equalsIgnoreCase("payment"))
         {
@@ -106,6 +116,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootDescription.setOnClickListener(this);
         rootTotalPrice.setOnClickListener(this);
         button_rate_us.setOnClickListener(this);
+        chBox_wallet.setOnCheckedChangeListener(this);
 
         imgTypeOfService = (ImageView) view.findViewById(R.id.imageView_type_of_vechile_billPayment);
         imgDescription = (ImageView) view.findViewById(R.id.imageView_rightArrow_description_billPayment);
@@ -127,7 +138,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         textViewTypeOfServiceDynamic.setVisibility(View.GONE);
         root_descripBill.setVisibility(View.GONE);
 //        textViewDescriptionDynamic.setVisibility(View.GONE);
-        textViewTotalPriceDynamic.setVisibility(View.GONE);
+//        textViewTotalPriceDynamic.setVisibility(View.GONE);
+        ll_price.setVisibility(View.GONE);
 
 
         /*set fonts*/
@@ -142,11 +154,11 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 //
 //        Font.setFontButton(button_rate_us, getActivity());
 
-        setFields();
-        if(bookingBean.getStatus().isEmpty())
+        if(!bookingBean.getStatus().isEmpty())
         {
             detailServiceHit();
         }
+        setFields();
         return view;
     }
 
@@ -182,6 +194,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 //        categories/ type of vehicle and price
         textViewTypeOfServiceDynamic.setText(cat);
         textViewTotalPriceDynamic.setText("$"+bookingBean.getMinCharge());
+        if(!bookingBean.getWalletAmount().isEmpty())
+        { tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+bookingBean.getWalletAmount()+")"); }
+        else
+        {  tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ 0"+")"); }
         //    title , description and profile
         title.setText("Title: "+bookingBean.getRequestname());
         descrip.setText("Description: "+bookingBean.getRequestdesc());
@@ -250,7 +266,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
                 if (isTotalPriceOpen)
                 {
-                    textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
+//                    textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
+                    ll_price.setVisibility(View.VISIBLE);
 
                     isTotalPriceOpen = false;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -259,7 +276,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                     imgTotalPrice.setImageResource(R.drawable.down_arrow);
                 }
                 else {
-                    textViewTotalPriceDynamic.setVisibility(View.GONE);
+//                    textViewTotalPriceDynamic.setVisibility(View.GONE);
+                    ll_price.setVisibility(View.GONE);
 
                     isTotalPriceOpen = true;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));
@@ -280,6 +298,30 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 }
                 break;
         }
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        try {
+
+            if (isChecked) {
+                if(!bookingBean.getWalletAmount().isEmpty())
+                {
+                payAmount = Double.parseDouble(bookingBean.getMinCharge()) - Double.parseDouble(bookingBean.getWalletAmount());
+                textViewTotalPriceDynamic.setText("$" + payAmount);
+                }
+                else
+                    Toast.makeText(getActivity(), "Wallet is Empty.", Toast.LENGTH_SHORT).show();
+            }
+            if (!isChecked) {
+                payAmount = Double.parseDouble(bookingBean.getMinCharge());
+                textViewTotalPriceDynamic.setText("$" + bookingBean.getMinCharge());
+            }
+        }
+        catch (Exception e)
+        {e.printStackTrace();}
 
     }
 
@@ -310,16 +352,18 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
-        multipartEntityBuilder.addTextBody("requestId", bookingBean.getBookingid());
+        multipartEntityBuilder.addTextBody("request_id", bookingBean.getBookingid());
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setActivity(getActivity());
         serviceBean.setFragment(BillPaymentFragment.this);
-        serviceBean.setMethodName("Consumers/request_details");
+//        serviceBean.setMethodName("Consumers/request_details");
+        serviceBean.setMethodName("Consumers/billdetails");
         serviceBean.setApilistener(this);
 
         CustomHandler customHandler = new CustomHandler(serviceBean);
         customHandler.makeMultipartRequest(multipartEntityBuilder);
+        ///Consumers/billdetails
 
     }
 
@@ -331,7 +375,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
             {
                 if (jsonObject.getString("status").equals("SUCCESS"))
                 {
-                    if(jsonObject.getString("requestKey").equalsIgnoreCase("request_details"))
+                    if(jsonObject.getString("requestKey").equalsIgnoreCase("billdetails"))
                     {
                         JSONObject j_object = jsonObject.getJSONObject("response").getJSONObject("user");
                         bookingBean.setRequestcategory(j_object.getString("category"));
@@ -339,6 +383,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setUserName(j_object.getString("userName"));
                         bookingBean.setRequestname(j_object.getString("request_Title"));
                         bookingBean.setRequestDate(j_object.getString("requestDate"));
+                        bookingBean.setWalletAmount(j_object.getString("Wallet_amount"));
+
                         JSONArray reqImgJsonArray=j_object.getJSONArray("request_image");
                         String array[]=new String[reqImgJsonArray.length()];
                         for(int j=0;j<reqImgJsonArray.length();j++)
@@ -351,7 +397,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         {
                             bookingBean.setRequestImage(array[0]);
                         }
-                        setFields();
+
                     }
 
                 }

@@ -173,7 +173,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             serviceBean.setMethodName("Consumers/planpayment");
         }
         else
-        {   
+        {
             serviceBean.setMethodName("Services/planpayment");
         }
         serviceBean.setApilistener(SubscriptionPlanFragment.this);
