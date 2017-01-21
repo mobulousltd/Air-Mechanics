@@ -336,6 +336,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     String code = responseObj.getJSONObject("response").getString("verification_code");
                     Intent intent = new Intent(this, VerificationActivity.class);
                     intent.putExtra("customerdata",bean);
+                    intent.putExtra("number",bean.getContactno());
                     intent.putExtra("vcode",code);
                     startActivity(intent);
                 }

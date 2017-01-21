@@ -93,9 +93,10 @@ public class CustomHandler implements Response.Listener, Response.ErrorListener,
         if (!new NetworkConnectionCheck(activity.getApplicationContext()).isConnect())
         {
 
-            Toast toast = Toast.makeText(activity.getApplicationContext(), "Internet Disconnected", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
+            Toast.makeText(activity.getApplicationContext(), "Internet not available.", Toast.LENGTH_SHORT);
+//            Toast toast = Toast.makeText(activity.getApplicationContext(), "Internet not available.", Toast.LENGTH_SHORT);
+//            toast.setGravity(Gravity.CENTER, 0, 0);
+//            toast.show();
             return false;
         }
         else
@@ -192,7 +193,7 @@ public class CustomHandler implements Response.Listener, Response.ErrorListener,
     @Override
     public void onErrorResponse(VolleyError error) {
         hideProgressDialog();
-        Toast.makeText(activity.getApplicationContext(), "Server not Responding", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity.getApplicationContext(), "Server not responding.", Toast.LENGTH_SHORT).show();
         VolleyLog.d("MODULE ERROR", "Error: " + error.toString());
         VolleyLog.d("MODULE ERROR", "Error: " + error.getLocalizedMessage());
         Log.i("Error", "" + error.getLocalizedMessage());

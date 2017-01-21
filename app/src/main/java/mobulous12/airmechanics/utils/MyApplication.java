@@ -33,6 +33,13 @@ public class MyApplication extends MultiDexApplication
     private ImageLoader mImageLoader;
     Activity activity;
 
+    public enum enIsComingFrom
+    {
+        eeNone,
+        eeBillPayment,
+        eeSubscriptionPlan
+   }
+
     public Activity getActivity() {
         return activity;
     }

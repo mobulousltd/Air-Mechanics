@@ -308,7 +308,7 @@
     <string name="norejected">No rejected job request to show.</string>
     <string name="nobooking">No booking to show.</string>
 
-    <string name="noplan">You didn't purchased any Plans yet.</string>
+    <string name="noplan">You did not purchased any Plans yet.</string>
     <string name="message">Message</string>
     <string name="no_rating_to_show">No Rating To Show</string>
     <string name="current_balance_is">Current balance is</string>

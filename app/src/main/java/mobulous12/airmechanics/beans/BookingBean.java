@@ -13,6 +13,35 @@ public class BookingBean implements Parcelable
     private String latitude = "", longitude = "", serviceType = "";
     private String openTime = "", closeTime = "";
     private String createdOn = "", categoryId = "", category = "", serviceproviderid="", walletAmount="";
+    private String payAmount = "";
+    private String usedWalletAmount="";
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    private String paymentId="";
+
+    public String getPayAmount() {
+        return payAmount;
+    }
+
+    public void setPayAmount(String payAmount) {
+        this.payAmount = payAmount;
+    }
+
+    public String getUsedWalletAmount() {
+        return usedWalletAmount;
+    }
+
+    public void setUsedWalletAmount(String usedWalletAmount) {
+        this.usedWalletAmount = usedWalletAmount;
+    }
+
     private String[] requestImgArr={};
 
     public String getWalletAmount() {
@@ -48,6 +77,9 @@ public class BookingBean implements Parcelable
         category = in.readString();
         serviceproviderid = in.readString();
         walletAmount = in.readString();
+        usedWalletAmount = in.readString();
+        payAmount = in.readString();
+        paymentId = in.readString();
         requestImgArr = in.createStringArray();
     }
 
@@ -77,6 +109,9 @@ public class BookingBean implements Parcelable
         dest.writeString(category);
         dest.writeString(serviceproviderid);
         dest.writeString(walletAmount);
+        dest.writeString(usedWalletAmount);
+        dest.writeString(payAmount);
+        dest.writeString(paymentId);
         dest.writeStringArray(requestImgArr);
     }
 

@@ -59,7 +59,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
        /*Views*/
         RelativeLayout root_pushnotify = (RelativeLayout) view.findViewById(R.id.root_pushnotify_settingsFrag);
         RelativeLayout root_changePass = (RelativeLayout) view.findViewById(R.id.root_changePassword_settingsFrag);
-        RelativeLayout root_aboutUs = (RelativeLayout) view.findViewById(R.id.root_aboutUs_settingsFrag);
         RelativeLayout root_logout = (RelativeLayout) view.findViewById(R.id.root_logout_settingsFrag);
         imgView_pushNotify = (ImageView) view.findViewById(R.id.imgView_pushNotify);
 
@@ -74,7 +73,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
          /*CLick listeneres*/
         root_pushnotify.setOnClickListener(this);
         root_changePass.setOnClickListener(this);
-        root_aboutUs.setOnClickListener(this);
         root_logout.setOnClickListener(this);
 
         return view;
@@ -111,17 +109,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
 //                }
 
                 break;
-            case R.id.root_aboutUs_settingsFrag:
-                SharedPreferenceWriter.getInstance(getActivity()).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
 
-                Bundle bundle=new Bundle();
-                bundle.putString("page_type", "aboutus");
-                WebViewsFragment webViewsFragment =new WebViewsFragment();
-                webViewsFragment.setArguments(bundle);
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, webViewsFragment, "webViewsFragment").addToBackStack("webViews").commit();
-
-                break;
             case R.id.root_logout_settingsFrag:
                 logoutPopUp();
                 break;

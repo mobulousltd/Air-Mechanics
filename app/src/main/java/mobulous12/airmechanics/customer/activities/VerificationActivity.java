@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -40,7 +41,7 @@ import static mobulous12.airmechanics.R.id.editText_password;
 
 public class VerificationActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
-    String code, email="",newContact;
+    String code, email="",newContact="";
     public static VerificationActivity verificationActivity;
     private EditText editText_verification_code;
     private ProfileBean bean;
@@ -235,13 +236,14 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                             new SendCodeFragment().show(getSupportFragmentManager(), "sendCodeSP");
                         }
                     }
-                    else if (responseObj.getString("requestKey").equals("sendCode"))
+                    if (responseObj.getString("requestKey").equals("sendCode"))
                     {
+                        Log.w("RE-sendCode:",responseObj+"");
                         code = responseObj.getJSONObject("response").getString("verification_no");
                         editText_verification_code.setText(code);
                         editText_verification_code.setSelection(editText_verification_code.getText().toString().length());
                     }
-                    else if(responseObj.getString("requestKey").equals("change_contact"))
+                    if(responseObj.getString("requestKey").equals("change_contact"))
                     {
                         setResult(RESULT_OK);
                         finish();

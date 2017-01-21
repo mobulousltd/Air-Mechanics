@@ -215,20 +215,17 @@ public class RateScreenFragment extends Fragment implements View.OnClickListener
             {
                 if ((jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) && (jsonObject.getString("requestKey").equalsIgnoreCase("rate_serviceProvider")))
                 {
+                    Log.w("RATESCREEN Response", jsonObject.toString());
+                    ((HomeActivity)getActivity()).getSupportFragmentManager().popBackStack();
 
-                    int count=((HomeActivity)getActivity()).getSupportFragmentManager().getBackStackEntryCount();
-                    for (int i=0;i<count;i++)
-                    {
-                        ((HomeActivity)getActivity()).getSupportFragmentManager().popBackStack();
-                    }
                     Toast.makeText(getActivity(),"Ratings & Reviews Submitted Successfully!",Toast.LENGTH_SHORT).show();
 
                 }
                 else
                 {
-
+                    Log.w("RATESCREEN_Response", jsonObject.toString());
                 }
-                Log.e("Json Response", jsonObject.toString());
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

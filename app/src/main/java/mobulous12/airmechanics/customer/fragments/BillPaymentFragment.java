@@ -1,6 +1,7 @@
 package mobulous12.airmechanics.customer.fragments;
 
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.media.Image;
 import android.os.Bundle;
@@ -35,12 +36,16 @@ import java.util.Random;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.customer.activities.PaymentActivity;
 import mobulous12.airmechanics.databinding.BillPaymentBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,8 +82,9 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     private LinearLayout ll_price;
     private CheckBox chBox_wallet;
     private TextView tv_walletBalance;
-    private double payAmount=0;
+    private double payAmount=0,usedWalletAmount=0,totalAmount=0;
     private String paymentId = "";
+    private static final int PAY_REQCODE=902;
 
     public BillPaymentFragment() {
         // Required empty public constructor
@@ -197,7 +203,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         }
 //        categories/ type of vehicle and price
         textViewTypeOfServiceDynamic.setText(cat);
+        payAmount = Double.parseDouble(bookingBean.getMinCharge());
+        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
         textViewTotalPriceDynamic.setText("$"+bookingBean.getMinCharge());
+
         if(!bookingBean.getWalletAmount().isEmpty())
         { tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+bookingBean.getWalletAmount()+")"); }
         else
@@ -291,11 +300,20 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 }
 
                 break;
-            case R.id.button_rate_us:
 
-                break;
             case R.id.button_pay:
-                onlinePaymentServiceHit();
+                bookingBean.setUsedWalletAmount(String.valueOf(usedWalletAmount));
+                bookingBean.setPayAmount(String.valueOf(payAmount));
+                bookingBean.setPaymentId(paymentId);
+
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("bookingBean",bookingBean);
+
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                intent.putExtra("beanBundle",bundle);
+                intent.putExtra("isComingFrom",MyApplication.enIsComingFrom.eeBillPayment);
+                startActivityForResult(intent,PAY_REQCODE);
+
                 break;
         }
 
@@ -309,15 +327,47 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
             if (isChecked) {
                 if(!bookingBean.getWalletAmount().isEmpty())
                 {
-                payAmount = Double.parseDouble(bookingBean.getMinCharge()) - Double.parseDouble(bookingBean.getWalletAmount());
+                    totalAmount = Double.parseDouble(bookingBean.getMinCharge());
+
+                    if( Double.parseDouble(bookingBean.getWalletAmount()) > Double.parseDouble(bookingBean.getMinCharge() ) )
+                    {
+
+                        usedWalletAmount =Double.parseDouble(bookingBean.getMinCharge()) ;
+                        payAmount = totalAmount - usedWalletAmount;
+
+                    }
+                    else {
+
+                        usedWalletAmount = Double.parseDouble(bookingBean.getWalletAmount());
+                        payAmount = totalAmount - usedWalletAmount;
+                    }
+
                 textViewTotalPriceDynamic.setText("$" + payAmount);
+
+                tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
+
+
                 }
-                else
-                    Toast.makeText(getActivity(), "Wallet is Empty.", Toast.LENGTH_SHORT).show();
+                else {
+//                    Toast.makeText(getActivity(), "Your AirMechaniks Wallet is Empty.", Toast.LENGTH_SHORT).show();
+                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
+                }
             }
             if (!isChecked) {
+
+                usedWalletAmount = 0;
                 payAmount = Double.parseDouble(bookingBean.getMinCharge());
-                textViewTotalPriceDynamic.setText("$" + bookingBean.getMinCharge());
+
+
+                textViewTotalPriceDynamic.setText("$" + payAmount);
+                if(!bookingBean.getWalletAmount().isEmpty())
+                {
+                    tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
+                }
+                else {
+                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
+                }
+
             }
         }
         catch (Exception e)
@@ -345,6 +395,18 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         menu.findItem(R.id.action_show_service_provider).setVisible(false);
     }
 
+    private void generateTransId()
+    {
+        Random rand = new Random();
+        String randomString = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
+        Log.i("PAYMENT_ID", "--"+"PAY"+randomString);
+        paymentId = "PAY"+randomString.substring(1, 11);
+
+        Random r = new Random(System.currentTimeMillis());
+        String transId = "PAY" + (1 + r.nextInt(2)) * 10000
+                + r.nextInt(10000);
+        Log.i("PAY_ID",transId);
+    }
 
     //    Services
     private void detailServiceHit()
@@ -367,32 +429,18 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private void generateTransId()
-    {
-        Random rand = new Random();
-        String randomString = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
-        Log.i("PAYMENT_ID", "--"+"PAY"+randomString);
-        paymentId = "PAY"+randomString.substring(1, 11);
-
-        Random r = new Random(System.currentTimeMillis());
-        String transId = "PAY" + (1 + r.nextInt(2)) * 10000
-                + r.nextInt(10000);
-        Log.i("PAY_ID",transId);
-    }
-
     private void onlinePaymentServiceHit()
     {
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         builder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
-//        token,request_id,paymentId,totalamount,walletamount,serviceprovider_id
+//        token,request_id,paymentId,totalamount,walletamount,serviceprovider_id ,payamount
 
         builder.addTextBody("request_id", bookingBean.getBookingid());
         builder.addTextBody("paymentId", paymentId);
-        builder.addTextBody("totalamount", bookingBean.getMinCharge());
-//        builder.addTextBody("walletamount", bookingBean.getWalletAmount());
-        builder.addTextBody("walletamount", "1234");
+        builder.addTextBody("totalamount", String.valueOf(totalAmount));
+        builder.addTextBody("walletamount", String.valueOf(usedWalletAmount));
         builder.addTextBody("serviceprovider_id", bookingBean.getServiceproviderid());
         builder.addTextBody("payamount", String.valueOf(payAmount));
 
@@ -417,6 +465,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 {
                     if(jsonObject.getString("requestKey").equalsIgnoreCase("billdetails"))
                     {
+                        Log.w("billdetails Response:",""+jsonObject.toString());
                         JSONObject j_object = jsonObject.getJSONObject("response").getJSONObject("user");
                         bookingBean.setRequestcategory(j_object.getString("category"));
                         bookingBean.setRequestdesc(j_object.getString("request_description"));
@@ -426,6 +475,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setWalletAmount(j_object.getString("Wallet_amount"));
                         bookingBean.setMinCharge(j_object.getString("minCharge"));
                         bookingBean.setServiceproviderid(j_object.getString("service_id"));
+                        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
 
 
                         JSONArray reqImgJsonArray=j_object.getJSONArray("request_image");
@@ -447,7 +497,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
                     if (jsonObject.getString("requestKey").equalsIgnoreCase("onlinePayment"))
                     {
-                        Log.e("BPF_OnlinePayment", jsonObject+"");
+                        detailServiceHit();
+                        Log.w("onlinePayment Response:",""+jsonObject.toString());
                         if(bookingBean.getStatus().equalsIgnoreCase("billgenerate"))
                         {
                             Bundle bundle = new Bundle();
@@ -455,16 +506,16 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                             RateScreenFragment rateFragment = new RateScreenFragment();
                             rateFragment.setArguments(bundle);
                             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,rateFragment,"rateServiceProviderFragment").addToBackStack("rateserviceprovider").commit();
-                            Toast.makeText(getActivity(), "Payment SUCCESS", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Payment done Successfully.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                 }
                 else
                 {
-
+                    Log.e("JSON Response:",""+jsonObject.toString());
                 }
-                Log.e(BillPaymentFragment.class.getSimpleName(),""+jsonObject.toString());
+
             }
 
         } catch (Exception e) {
@@ -473,4 +524,22 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode)
+        {
+            case PAY_REQCODE:
+                if(resultCode == RESULT_OK)
+                {
+                    Bundle beanBundle = data.getBundleExtra("beanBundle");
+                    bookingBean = beanBundle.getParcelable("bookingBean");
+
+                    onlinePaymentServiceHit();
+
+                }
+                break;
+        }
+    }
 }

@@ -134,7 +134,8 @@
             android:exported="false" />
 
         <activity android:name=".SplashActivity" />
-        <activity android:name=".customer.activities.RatingScreenListingActivity"></activity>
+        <activity android:name=".customer.activities.RatingScreenListingActivity" />
+        <activity android:name=".customer.activities.PaymentActivity"></activity>
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView_bill"
-            android:layout_above="@+id/button_rate_us"
+            android:layout_above="@+id/button_pay"
             android:layout_below="@+id/imageView_bill_payment"
             android:layout_marginBottom="@dimen/_15sdp">
 
@@ -229,7 +229,7 @@
 
         <Button
             app:font="@{`semibold`}"
-            android:id="@+id/button_rate_us"
+            android:id="@+id/button_pay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/home_header_color"

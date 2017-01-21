@@ -219,7 +219,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                                     annualPayAmount =j_obj.getString("payamount") ;
                                     annualSubscriptionAmount.setText("$"+annualPayAmount);
                                     btn_AnnualSubscription_BuyNow.setOnClickListener(this);
-                                    monthlySubscription_description.setText("Annual credits will be "+j_obj.getString("creadits")+" points.");
+                                    annualSubscription_description.setText("Annual credits will be "+j_obj.getString("creadits")+" points.");
                                 }
                             }
                         }

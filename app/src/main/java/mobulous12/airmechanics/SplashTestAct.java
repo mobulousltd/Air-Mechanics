@@ -58,7 +58,7 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
         public void run(){
             if (!new NetworkConnectionCheck(getApplicationContext()).isConnect())
             {
-                Toast.makeText(getApplicationContext(), "Internet Disconnected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Internet not available.", Toast.LENGTH_SHORT).show();
                 handler.postDelayed(this, 6000);
             }
             else
@@ -231,7 +231,7 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
         else
         {
             loadGoogleApi();
-            Toast.makeText(SplashTestAct.this, "Gps is still disabled.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SplashTestAct.this, "GPS is still disabled.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -350,7 +350,7 @@ public class SplashTestAct extends AppCompatActivity implements GoogleApiClient.
                 Toast.makeText(getApplicationContext(), "GPS is enabled now.", Toast.LENGTH_LONG).show();
             } else {
 
-                Toast.makeText(getApplicationContext(), "GPS is not enabled", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "GPS is not enabled.", Toast.LENGTH_LONG).show();
             }
         }
     }
