@@ -63,6 +63,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
     private int d=0,r=0,p=0;
     private String filter="";
     private ArrayList<ServiceProviderBean> serviceProviderArrayList;
+    private TextView tv_newFavourites;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -94,6 +95,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         headername_favoritesFrag  = (TextView) view.findViewById(R.id.headername_favoritesFrag);
         back_favoritesFrag  = (ImageView) view.findViewById(R.id.back_favoritesFrag);
         recyclerView_myFavorites = (RecyclerView) view.findViewById(R.id.recyclerView_myFavorites);
+        tv_newFavourites = (TextView) view.findViewById(R.id.tv_newFavourites);
 
 
 
@@ -325,42 +327,48 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
             {
                 if (responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("my_favourites")) {
                     JSONArray jsonArray = responseObj.getJSONArray("response");
-                    serviceProviderArrayList = new ArrayList<ServiceProviderBean>();
-                    for (int i = 0; i < jsonArray.length(); i++)
+                    if(jsonArray.length() == 0)
                     {
-                        JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
+                        tv_newFavourites.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        tv_newFavourites.setVisibility(View.GONE);
 
-                        serviceproviderbean.setCategory(jsonobject.getString("work_category"));
-                        serviceproviderbean.setId(jsonobject.getString("id"));
-                        serviceproviderbean.setName(jsonobject.getString("name"));
-                        serviceproviderbean.setAddress(jsonobject.getString("address"));
-                        serviceproviderbean.setEmail(jsonobject.getString("email"));
-                        serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));
-                        serviceproviderbean.setLat(jsonobject.getString("lat"));
-                        serviceproviderbean.setLng(jsonobject.getString("long"));
-                        serviceproviderbean.setProfile(jsonobject.getString("profile"));
-                        serviceproviderbean.setProfile_thumb(jsonobject.getString("profile_thumb"));
-                        serviceproviderbean.setWorkingdays(jsonobject.getString("workingDays"));
-                        serviceproviderbean.setRating(jsonobject.getString("rating"));
-                        serviceproviderbean.setMin_charge(jsonobject.getString("st_charge"));
-                        serviceproviderbean.setDistance(jsonobject.getString("distance"));
-                        serviceProviderArrayList.add(serviceproviderbean);
+                        serviceProviderArrayList = new ArrayList<ServiceProviderBean>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonobject = jsonArray.getJSONObject(i);
+                            ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
+
+                            serviceproviderbean.setCategory(jsonobject.getString("work_category"));
+                            serviceproviderbean.setId(jsonobject.getString("id"));
+                            serviceproviderbean.setName(jsonobject.getString("name"));
+                            serviceproviderbean.setAddress(jsonobject.getString("address"));
+                            serviceproviderbean.setEmail(jsonobject.getString("email"));
+                            serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));
+                            serviceproviderbean.setLat(jsonobject.getString("lat"));
+                            serviceproviderbean.setLng(jsonobject.getString("long"));
+                            serviceproviderbean.setProfile(jsonobject.getString("profile"));
+                            serviceproviderbean.setProfile_thumb(jsonobject.getString("profile_thumb"));
+                            serviceproviderbean.setWorkingdays(jsonobject.getString("workingDays"));
+                            serviceproviderbean.setRating(jsonobject.getString("rating"));
+                            serviceproviderbean.setMin_charge(jsonobject.getString("st_charge"));
+                            serviceproviderbean.setDistance(jsonobject.getString("distance"));
+                            serviceProviderArrayList.add(serviceproviderbean);
 
                         /*Recycler view*/
-                        favoritesRecyclerAdapter = new FavoritesRecyclerAdapter(getActivity(),serviceProviderArrayList);
-                        recyclerView_myFavorites.setAdapter(favoritesRecyclerAdapter);
-                        favoritesRecyclerAdapter.onItemClickListener(new FavoritesRecyclerAdapter.MyClickListener() {
-                            @Override
-                            public void onItemClick(View v, int position)
-                            {
-                                Intent intent = new Intent(getActivity(),ServiceProviderDetailActivity.class);
-                                intent.putExtra("bean",serviceProviderArrayList.get(position));
-                                startActivity(intent);
+                            favoritesRecyclerAdapter = new FavoritesRecyclerAdapter(getActivity(), serviceProviderArrayList);
+                            recyclerView_myFavorites.setAdapter(favoritesRecyclerAdapter);
+                            favoritesRecyclerAdapter.onItemClickListener(new FavoritesRecyclerAdapter.MyClickListener() {
+                                @Override
+                                public void onItemClick(View v, int position) {
+                                    Intent intent = new Intent(getActivity(), ServiceProviderDetailActivity.class);
+                                    intent.putExtra("bean", serviceProviderArrayList.get(position));
+                                    startActivity(intent);
 
-                            }
-                        });
-                        recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
+                                }
+                            });
+                            recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        }
                     }
                 }
                 else

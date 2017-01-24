@@ -467,6 +467,14 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                     {
                         Log.w("billdetails Response:",""+jsonObject.toString());
                         JSONObject j_object = jsonObject.getJSONObject("response").getJSONObject("user");
+                        bookingBean.setBookingid(j_object.getString("id"));
+                        bookingBean.setServiceproviderid(j_object.getString("service_id"));
+                        bookingBean.setProfile_thumb(j_object.getString("profile_thumb"));
+                        bookingBean.setUsernumber(j_object.getString("contact_no"));
+                        bookingBean.setUseraddress(j_object.getString("address"));
+                        bookingBean.setStatus(j_object.getString("status"));
+                        bookingBean.setOpenTime(j_object.getString("open_time"));
+                        bookingBean.setOpenTime(j_object.getString("close_time"));
                         bookingBean.setRequestcategory(j_object.getString("category"));
                         bookingBean.setRequestdesc(j_object.getString("request_description"));
                         bookingBean.setUserName(j_object.getString("userName"));
@@ -474,7 +482,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setRequestDate(j_object.getString("requestDate"));
                         bookingBean.setWalletAmount(j_object.getString("Wallet_amount"));
                         bookingBean.setMinCharge(j_object.getString("minCharge"));
-                        bookingBean.setServiceproviderid(j_object.getString("service_id"));
+
                         totalAmount = Double.parseDouble(bookingBean.getMinCharge());
 
 

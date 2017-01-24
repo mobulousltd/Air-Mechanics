@@ -1,6 +1,6 @@
 package mobulous12.airmechanics.serviceprovider.activities;
 
-import android.content.Intent;
+
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,20 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.androidquery.AQuery;
-
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -62,6 +58,7 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
     private TextView title,descrip;
     private ImageView profile;
     private EditText et_totalPriceBill;
+    private LinearLayout ll_editBillPrice;
 
 
     @Override
@@ -103,10 +100,12 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
         title = (TextView)findViewById(R.id.tv_titleBill);
         descrip = (TextView)findViewById(R.id.tv_descripBill);
         et_totalPriceBill = (EditText) findViewById(R.id.et_totalPriceBill);
+        ll_editBillPrice = (LinearLayout) findViewById(R.id.ll_editBillPrice);
 
         textViewTypeOfServiceDynamic.setVisibility(View.GONE);
         root_descripBill.setVisibility(View.GONE);
-        et_totalPriceBill.setVisibility(View.GONE);
+//        et_totalPriceBill.setVisibility(View.GONE);
+        ll_editBillPrice.setVisibility(View.GONE);
 //        textViewDescriptionDynamic.setVisibility(View.GONE);
 //        textViewTotalPriceDynamic.setVisibility(View.GONE);
 
@@ -114,7 +113,7 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
         setFields();
 
-        if(!bookingBean.getStatus().equalsIgnoreCase("complete"))
+        if(!bookingBean.getStatus().equalsIgnoreCase("billgenerate"))
         {
             button_send.setVisibility(View.GONE);
         }
@@ -216,7 +215,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
                 if (isTotalPriceOpen)
                 {
 //                    textViewTotalPriceDynamic.setVisibility(View.VISIBLE);
-                    et_totalPriceBill.setVisibility(View.VISIBLE);
+//                    et_totalPriceBill.setVisibility(View.VISIBLE);
+                    ll_editBillPrice.setVisibility(View.VISIBLE);
                     isTotalPriceOpen = false;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.dodgerblue));
@@ -225,7 +225,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
                 }
                 else {
 //                    textViewTotalPriceDynamic.setVisibility(View.GONE);
-                    et_totalPriceBill.setVisibility(View.GONE);
+//                    et_totalPriceBill.setVisibility(View.GONE);
+                    ll_editBillPrice.setVisibility(View.GONE);
                     isTotalPriceOpen = true;
                     rootTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));
                     textViewTotalPrice.setBackgroundColor(getResources().getColor(R.color.white));

@@ -307,6 +307,8 @@
     <string name="norequest">No new job request to show.</string>
     <string name="norejected">No rejected job request to show.</string>
     <string name="nobooking">No booking to show.</string>
+    <string name="no_notification">No Notifications to show.</string>
+    <string name="no_favourites">No Favourites to show.</string>
 
     <string name="noplan">You did not purchased any Plans yet.</string>
     <string name="message">Message</string>

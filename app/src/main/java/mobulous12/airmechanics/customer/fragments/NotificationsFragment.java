@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -45,6 +46,7 @@ public class NotificationsFragment extends Fragment implements ApiListener{
     NotificationsRecyclerAdapter notificationsRecyclerAdapter;
     private View view;
     JSONArray jsonArray;
+    private TextView tv_newNotifi;
     private SwipeRefreshLayout swipeRefresh;
 
 
@@ -80,6 +82,7 @@ public class NotificationsFragment extends Fragment implements ApiListener{
         ((HomeActivity)getActivity()).setNavigationIcon();
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView_notifications);
         swipeRefresh = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
+        tv_newNotifi = (TextView) view.findViewById(R.id.tv_newNotifi);
 
         notificationServiceHit();
 
@@ -121,30 +124,33 @@ public class NotificationsFragment extends Fragment implements ApiListener{
                     if (jsonObject.getString("requestKey").equalsIgnoreCase("NotificationList"))
                     {
                         jsonArray=jsonObject.getJSONArray("response");
+                        if(jsonArray.length() == 0)
+                        {
+                            tv_newNotifi.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            tv_newNotifi.setVisibility(View.GONE);
 
-                        notificationsRecyclerAdapter = new NotificationsRecyclerAdapter(getActivity(), jsonArray);
-                        recyclerView.setAdapter(notificationsRecyclerAdapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        notificationsRecyclerAdapter.onItemClickListener(new NotificationsRecyclerAdapter.MyClickListener() {
-                            @Override
-                            public void onItemClick(int position, View v)
-                            {
-                                try
-                                {
+                            notificationsRecyclerAdapter = new NotificationsRecyclerAdapter(getActivity(), jsonArray);
+                            recyclerView.setAdapter(notificationsRecyclerAdapter);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            notificationsRecyclerAdapter.onItemClickListener(new NotificationsRecyclerAdapter.MyClickListener() {
+                                @Override
+                                public void onItemClick(int position, View v) {
+                                    try {
 //                                    JSONObject jsonObject1 = jsonArray.getJSONObject(position);
 //                                    Intent intent=new Intent(getActivity(), AcceptRejectDetailActivity.class);
 //                                    intent.putExtra("requestid", jsonObject1.getString("request_id"));
 //                                    getActivity().startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                                catch (Exception e)
-                                {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+                            });
 
-                        // Load complete
-                        swipeRefresh.setRefreshing(false);
+                            // Load complete
+                            swipeRefresh.setRefreshing(false);
+                        }
                     }
                 }
                 else
