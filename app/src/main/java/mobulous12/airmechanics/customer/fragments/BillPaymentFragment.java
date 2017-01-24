@@ -470,8 +470,11 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setBookingid(j_object.getString("id"));
                         bookingBean.setServiceproviderid(j_object.getString("service_id"));
                         bookingBean.setProfile_thumb(j_object.getString("profile_thumb"));
+                        bookingBean.setUserImage(j_object.getString("userImage"));
                         bookingBean.setUsernumber(j_object.getString("contact_no"));
                         bookingBean.setUseraddress(j_object.getString("address"));
+                        bookingBean.setLatitude(j_object.getString("lat"));
+                        bookingBean.setLatitude(j_object.getString("long"));
                         bookingBean.setStatus(j_object.getString("status"));
                         bookingBean.setOpenTime(j_object.getString("open_time"));
                         bookingBean.setOpenTime(j_object.getString("close_time"));

@@ -789,6 +789,7 @@ private void doGuestStuff()
         }
         else {
             homeact = true;
+            profile_image.setVisibility(View.VISIBLE);
             profile_name.setText(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.FullName));
 
             AQuery aQuery = new AQuery(profile_image);

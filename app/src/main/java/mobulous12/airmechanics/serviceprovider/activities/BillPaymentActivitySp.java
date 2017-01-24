@@ -113,7 +113,7 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
         setFields();
 
-        if(!bookingBean.getStatus().equalsIgnoreCase("billgenerate"))
+        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate"))
         {
             button_send.setVisibility(View.GONE);
         }
@@ -139,7 +139,7 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
 //        categories/ type of vehicle and price
             textViewTypeOfServiceDynamic.setText(cat);
-            et_totalPriceBill.setText("$"+bookingBean.getMinCharge());
+            et_totalPriceBill.setText(bookingBean.getMinCharge());
 //            textViewDescriptionDynamic.setText("Title : "+title+"\n"+"Description : "+desc);
 //            textViewTotalPriceDynamic.setText("$ "+price);
 
