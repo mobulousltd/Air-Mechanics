@@ -119,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
         else if(!validateName(editText_fullName))
         {
-            showToast("Please enter a valid Full name");
+            showToast("Please enter  valid Full name");
             return false;
         }
         else if(editText_email.getText().toString().isEmpty())

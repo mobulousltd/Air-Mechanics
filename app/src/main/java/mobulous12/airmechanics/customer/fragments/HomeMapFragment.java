@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -74,6 +75,9 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     ArrayList<ServiceProviderBean> arrayList;
     private RecyclerView recView_SPList;
     private SearchListAdapter searchListAdapter;
+private boolean noSpFound = false;
+    private RelativeLayout rootLayout;
+    private EditText editText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,13 +134,15 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
 //            }
 //        });
 
+        rootLayout = (RelativeLayout) view.findViewById(R.id.layout);
+
         recView_SPList = (RecyclerView) view.findViewById(R.id.recView_SPList);
         searchView_Home = (SearchView) view.findViewById(R.id.searchView_Home);
         searchView_Home.setQueryHint("Search Service Providers..");
 
     /*Searching serviceProviders by text in Home Map*/
         int et_id = searchView_Home.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-        EditText editText = (EditText) searchView_Home.findViewById(et_id);
+         editText = (EditText) searchView_Home.findViewById(et_id);
 
         int searchPlateId = searchView_Home.getContext().getResources()
                 .getIdentifier("android:id/search_plate", null, null);
@@ -168,6 +174,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 {
                     searchByTextService();
                 }
+
                 return true;
             }
 
@@ -187,6 +194,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             }
         });
 
+
+
         setDefaultRecyclerView();
 
         searchListAdapter.onItemClickListener(new SearchListAdapter.MyListener() {
@@ -196,10 +205,19 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 ServiceProviderBean bean=spArrayList.get(position);
                 if(bean.getId().isEmpty())
                 {
+                    if(noSpFound && bean.getNoSpFound().equalsIgnoreCase("true"))
+                    {
+                        editText.setText("");
+                        searchView_Home.setQueryHint("Search Service Providers..");
+//                        searchView_Home.setQuery("",false);
+                    }
+                    else {
+                        Intent intent = new Intent(getActivity(), ServiceProviderActivity.class);
+                        intent.putExtra("bean", bean);
+                        getActivity().startActivity(intent);
+                    }
 
-                    Intent intent = new Intent(getActivity(), ServiceProviderActivity.class);
-                    intent.putExtra("bean", bean);
-                    getActivity().startActivity(intent);
+
                 }
                 else
                 {
@@ -238,6 +256,13 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
 
         view.findViewById(R.id.search_rv).setVisibility(View.GONE);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        searchView_Home.setQuery("", false);
+        rootLayout.requestFocus();
     }
 
     private void setDefaultRecyclerView() {
@@ -479,31 +504,56 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                     Log.d("SearchResponse", ""+responseObj.toString());
 
                     JSONArray responseArr = responseObj.getJSONArray("response");
-                    spArrayList = new ArrayList<ServiceProviderBean>();
-                    for(int i=0;i<responseArr.length();i++)
+
+                    if(responseArr.length() == 0)
                     {
+                        noSpFound=true;
+                        spArrayList = new ArrayList<ServiceProviderBean>();
                         ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
-                        JSONObject myObj = responseArr.getJSONObject(i);
-
-                        serviceproviderbean.setName(myObj.getString("name"));
-                        serviceproviderbean.setId(myObj.getString("id"));
-                        serviceproviderbean.setAddress(myObj.getString("address"));
-                        serviceproviderbean.setEmail(myObj.getString("email"));
-                        serviceproviderbean.setContact_no(myObj.getString("contact_no"));
-                        serviceproviderbean.setLat(myObj.getString("lat"));
-                        serviceproviderbean.setLng(myObj.getString("long"));
-                        serviceproviderbean.setProfile_thumb(myObj.getString("profile_thumb"));
-                        serviceproviderbean.setProfile(myObj.getString("profile"));
-                        serviceproviderbean.setMin_charge(myObj.getString("st_charge"));
-                        serviceproviderbean.setWorkingdays(myObj.getString("workingDays"));
-                        serviceproviderbean.setRating(myObj.getString("rating"));
-                        serviceproviderbean.setCategory(myObj.getString("work_category"));
-                        serviceproviderbean.setStart(myObj.getString("start_time"));
-                        serviceproviderbean.setEnd(myObj.getString("end_time"));
-                        serviceproviderbean.setSpeciality(myObj.getString("specilityName"));
+                        serviceproviderbean.setName("No Results Found.");
+                        serviceproviderbean.setCategory("");
+                        serviceproviderbean.setId("");
+                        serviceproviderbean.setNoSpFound("true");
                         spArrayList.add(serviceproviderbean);
-
+                        searchListAdapter = new SearchListAdapter(getActivity(),spArrayList);
+                        recView_SPList.setAdapter(searchListAdapter);
+                        recView_SPList.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
+                        recView_SPList.setVisibility(View.VISIBLE);
                     }
+                    else
+                    {
+
+                        noSpFound=false;
+                        spArrayList = new ArrayList<ServiceProviderBean>();
+                        for(int i=0;i<responseArr.length();i++)
+                        {
+                            ServiceProviderBean serviceproviderbean = new ServiceProviderBean();
+                            JSONObject myObj = responseArr.getJSONObject(i);
+
+                            serviceproviderbean.setName(myObj.getString("name"));
+                            serviceproviderbean.setId(myObj.getString("id"));
+                            serviceproviderbean.setAddress(myObj.getString("address"));
+                            serviceproviderbean.setEmail(myObj.getString("email"));
+                            serviceproviderbean.setContact_no(myObj.getString("contact_no"));
+                            serviceproviderbean.setLat(myObj.getString("lat"));
+                            serviceproviderbean.setLng(myObj.getString("long"));
+                            serviceproviderbean.setProfile_thumb(myObj.getString("profile_thumb"));
+                            serviceproviderbean.setProfile(myObj.getString("profile"));
+                            serviceproviderbean.setMin_charge(myObj.getString("st_charge"));
+                            serviceproviderbean.setWorkingdays(myObj.getString("workingDays"));
+                            serviceproviderbean.setRating(myObj.getString("rating"));
+                            serviceproviderbean.setCategory(myObj.getString("work_category"));
+                            serviceproviderbean.setStart(myObj.getString("start_time"));
+                            serviceproviderbean.setEnd(myObj.getString("end_time"));
+                            serviceproviderbean.setSpeciality(myObj.getString("specilityName"));
+
+                            serviceproviderbean.setNoSpFound("false");
+                            spArrayList.add(serviceproviderbean);
+
+                        }
+                    }
+
                     searchListAdapter.setArraList(spArrayList);
                     view.findViewById(R.id.search_rv).setVisibility(View.VISIBLE);
                     recView_SPList.setVisibility(View.VISIBLE);

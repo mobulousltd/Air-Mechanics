@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import mobulous12.airmechanics.R;
@@ -46,7 +47,11 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SP
     public void onBindViewHolder(SPListViewHolder holder, int position) {
 
         final ServiceProviderBean serviceProviderBean = spArrayList.get(position);
-
+        if (serviceProviderBean.getId().isEmpty() )
+        {
+            if (serviceProviderBean.getNoSpFound().equalsIgnoreCase("true"))
+            { holder.rightArrow.setVisibility(View.GONE);}
+        }
         holder.tv_spName.setText(serviceProviderBean.getName());
 
     }
@@ -63,12 +68,18 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SP
 
 
     class SPListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         private TextView tv_spName;
+        private ImageView rightArrow;
+
         public SPListViewHolder(View itemView) {
             super(itemView);
 
             tv_spName = (TextView) itemView.findViewById(R.id.tv_spName);
             itemView.setOnClickListener(this);
+
+            rightArrow = (ImageView) itemView.findViewById(R.id.right);
+
         }
 
         @Override

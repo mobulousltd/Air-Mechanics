@@ -8,8 +8,37 @@ import android.os.Parcelable;
  */
 public class ServiceProviderBean implements Parcelable
 {
-    String lat, lng, id, name, address, email, contact_no, profile, profile_thumb="", category, workhours, descritption, distance, workingdays="",
-            start, end, reviews, rating, min_charge,speciality, requestCount;
+    String lat;
+    String lng;
+    String id;
+    String name;
+    String address;
+    String email;
+    String contact_no;
+    String profile;
+    String profile_thumb="";
+    String category;
+    String workhours;
+    String descritption;
+    String distance;
+    String workingdays="";
+    String start;
+    String end;
+    String reviews;
+    String rating;
+    String min_charge;
+    String speciality;
+    String requestCount;
+
+    public String getNoSpFound() {
+        return noSpFound;
+    }
+
+    public void setNoSpFound(String noSpFound) {
+        this.noSpFound = noSpFound;
+    }
+
+    String noSpFound="";
 
     public String getRequestCount() {
         return requestCount;
@@ -66,6 +95,7 @@ public class ServiceProviderBean implements Parcelable
         reviews = in.readString();
         speciality = in.readString();
         requestCount = in.readString();
+        noSpFound = in.readString();
     }
 
     @Override
@@ -89,6 +119,7 @@ public class ServiceProviderBean implements Parcelable
         dest.writeString(reviews);
         dest.writeString(speciality);
         dest.writeString(requestCount);
+        dest.writeString(noSpFound);
     }
 
     @Override

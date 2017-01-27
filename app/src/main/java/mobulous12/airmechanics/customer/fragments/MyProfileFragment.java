@@ -33,6 +33,8 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
@@ -290,6 +292,28 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean validateName(EditText editText)
+    {
+        final String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
+        final String string = editText.getText().toString().trim();
+
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(string);
+
+        if (matcher.find())
+        {
+            for (int i = 1; i <= matcher.groupCount(); i++)
+            {
+                Log.d("Name Matching","Group " + i + ": " + matcher.group(i));
+            }
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+
     private boolean validateData()
     {
         if (editText_name_profile.getText().toString().trim().equals(""))
@@ -297,7 +321,11 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             Toast.makeText(getActivity(), "Please enter Name", Toast.LENGTH_SHORT).show();
             return false;
         }
-
+       else if(!validateName(editText_name_profile))
+        {
+            Toast.makeText(getActivity(), "Please enter valid Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         else if (editText_email_profile.getText().toString().trim().equals(""))
         {
             Toast.makeText(getActivity(), "Please enter Email", Toast.LENGTH_SHORT).show();
@@ -313,8 +341,9 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             Toast.makeText(getActivity(), "Please enter Address", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else
+        else {
             return true;
+        }
     }
 
 

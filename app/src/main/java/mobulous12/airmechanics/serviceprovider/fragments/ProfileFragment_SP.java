@@ -37,6 +37,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
@@ -229,7 +231,26 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         return view;
     }
 
+    private boolean validateName(EditText editText)
+    {
+        final String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
+        final String string = editText.getText().toString().trim();
 
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(string);
+
+        if (matcher.find())
+        {
+            for (int i = 1; i <= matcher.groupCount(); i++)
+            {
+                Log.d("Name Matching","Group " + i + ": " + matcher.group(i));
+            }
+            return true;
+        }
+        else
+            return false;
+
+    }
 
     //validations
     private boolean validate()
@@ -237,6 +258,11 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         if (editText_name_profileSP.getText().toString().trim().equals(""))
         {
             Toast.makeText(getActivity(), "Please enter your Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!validateName(editText_name_profileSP))
+        {
+            Toast.makeText(getActivity(), "Please enter valid Name", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (editText_email_profileSP.getText().toString().trim().equals(""))
@@ -303,7 +329,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             Toast.makeText(getActivity(), "Please select working days.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else
+
             return true;
     }
 
@@ -357,7 +383,6 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
     private void showServiceAreaDialog()
     {
-
         ServiceRadiusDialogFrag fragment=new ServiceRadiusDialogFrag();
         Bundle bundle=new Bundle();
         bundle.putString("radius", radius);
