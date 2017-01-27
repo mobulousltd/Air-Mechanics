@@ -1,6 +1,7 @@
 package mobulous12.airmechanics.customer.fragments;
 
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.share.Sharer;
+
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
@@ -29,6 +32,7 @@ import java.util.Random;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.PlanBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
+import mobulous12.airmechanics.customer.activities.PaymentActivity;
 import mobulous12.airmechanics.customer.adapters.SubscriptionPlanRecyclerAdapter;
 import mobulous12.airmechanics.databinding.FragmentSubscriptionPlanBinding;
 import mobulous12.airmechanics.databinding.SubscriptionPlanCustomCardsBinding;
@@ -36,9 +40,12 @@ import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +53,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 public class SubscriptionPlanFragment extends Fragment implements ApiListener, View.OnClickListener {
 
 
+    private static final int PAY_REQCODE = 1012;
     ArrayList<PlanBean> arrayList;
     RecyclerView recyclerView_subscriptionPlan;
     SubscriptionPlanRecyclerAdapter subsPlanRecyclerAdapter;
@@ -122,7 +130,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     }
 
      private void generateTransId()
-      {
+     {
         Random rand = new Random();
         String randomString = Integer.toString(rand.nextInt()) + (System.currentTimeMillis() / 1000L);
         Log.i("TRANSANCTION_ID", "--"+"TRANS"+randomString);
@@ -132,7 +140,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
         String transId = "TRANS" + (1 + r.nextInt(2)) * 10000
                 + r.nextInt(10000);
         Log.i("TRANS_ID",transId);
-      }
+     }
 
 /*  Services*/
     private void subscriptionPlanListServicehit()
@@ -289,8 +297,8 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
                 }
                 else {
-                    Log.v("JSON_Response", ""+jsonObject.toString());
                 }
+                Log.v("JSON_Response", ""+jsonObject.toString());
             }
         }catch (Exception e)
         {
@@ -308,19 +316,24 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
                 id=monthlyid;
                 payamount = monthlyPayAmount;
-                planPurchaseServiceHit();
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                intent.putExtra("plan_id",id);
+                intent.putExtra("payamount", payamount);
+                intent.putExtra("isComingFrom", MyApplication.enIsComingFrom.eeSubscriptionPlan);
+                startActivityForResult(intent,PAY_REQCODE);
                 break;
 
             case R.id.button_buyNow_annualSubscription:
                 id=annualid;
                 payamount = annualPayAmount;
-                planPurchaseServiceHit();
+                Intent intent1 = new Intent(getActivity(), PaymentActivity.class);
+                intent1.putExtra("plan_id",id);
+                intent1.putExtra("payamount", payamount);
+                intent1.putExtra("isComingFrom", MyApplication.enIsComingFrom.eeSubscriptionPlan);
+                startActivityForResult(intent1,PAY_REQCODE);
                 break;
         }
-
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -349,5 +362,14 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PAY_REQCODE)
+            {
+                planPurchaseServiceHit();
+//                Toast.makeText(getActivity(), "Buy operation success", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

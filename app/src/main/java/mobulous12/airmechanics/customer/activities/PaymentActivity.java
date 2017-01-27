@@ -44,13 +44,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         toolbar_payment.setNavigationOnClickListener(this);
         getSupportActionBar().setTitle("");
 
-        final Bundle beanBundle = this.getIntent().getBundleExtra("beanBundle");
-        bookingBean = beanBundle.getParcelable("bookingBean");
+
         isComingFrom = (MyApplication.enIsComingFrom) this.getIntent().getSerializableExtra("isComingFrom");
 
 
         if(isComingFrom  == MyApplication.enIsComingFrom.eeBillPayment)
         {
+            final Bundle beanBundle = this.getIntent().getBundleExtra("beanBundle");
+            bookingBean = beanBundle.getParcelable("bookingBean");
 
             if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
             {
@@ -69,7 +70,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
                         if (url.equalsIgnoreCase(resultUrl))
                         {
-
                             Intent returnIntent = new Intent();
                             returnIntent.putExtra("beanBundle",beanBundle);
                             returnIntent.putExtra("bookingBean",bookingBean);
@@ -92,7 +92,57 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         }
+        if (isComingFrom == MyApplication.enIsComingFrom.eeSubscriptionPlan)
+        {
+            String userId =  SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN);
+            String paymentType = "1";
+//            CUSTOMER
+            if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+            {
+                String paymentId = getIntent().getStringExtra("plan_id");
+                String paymentAmount = getIntent().getStringExtra("payamount");
+                subscriptionPayment(userId, paymentType, paymentId, paymentAmount);
+            }
+            else // SERVICE PROVIDER
+            {
+                String paymentId = getIntent().getStringExtra("plan_id");
+                String paymentAmount = getIntent().getStringExtra("payamount");
+                subscriptionPayment(userId, paymentType, paymentId, paymentAmount);
+            }
+        }
 
+    }
+
+    private void subscriptionPayment(String userId, String paymentType, String paymentId, String paymentAmount)
+    {
+
+        String myUrl = "http://mobulous.co.in/airMechanics/admin/admins/testpay/" + userId + "/" + paymentType + "/" + paymentId + "/" + paymentAmount + "";
+        baseUrl = myUrl.trim();
+
+        webView_payment.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView_payment.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                if (url.equalsIgnoreCase(resultUrl))
+                {
+                    setResult(RESULT_OK,new Intent());
+                    finish();
+                }
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+
+        });
+        WebSettings webSettings = webView_payment.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView_payment.loadUrl(baseUrl);
+        webView_payment.requestFocus();
     }
 
     @Override
