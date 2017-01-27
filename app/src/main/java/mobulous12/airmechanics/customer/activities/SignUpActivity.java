@@ -105,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
             return true;
         }
-        else
+
             return false;
 
     }
@@ -154,6 +154,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         else if(!editText_confirmPassword.getText().toString().equals(editText_password.getText().toString()))
         {
             showToast("Password and Confirm password doesn't match");
+            return false;
         }
         else if (editText_contact_number.getText().toString().isEmpty())
         {
@@ -184,7 +185,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         {
             return true;
         }
-        return false;
     }
 
     public ProfileBean storeValuesInBean() {

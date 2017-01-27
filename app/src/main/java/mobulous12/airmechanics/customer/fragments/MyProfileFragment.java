@@ -308,7 +308,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             }
             return true;
         }
-        else
+
             return false;
 
     }
@@ -324,6 +324,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
        else if(!validateName(editText_name_profile))
         {
             Toast.makeText(getActivity(), "Please enter valid Name", Toast.LENGTH_SHORT).show();
+            editText_name_profile.setText(profile_name.getText());
             return false;
         }
         else if (editText_email_profile.getText().toString().trim().equals(""))
@@ -341,9 +342,10 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             Toast.makeText(getActivity(), "Please enter Address", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else {
+
             return true;
-        }
+
+
     }
 
 
@@ -551,8 +553,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
         {
             if (requestCode == RESULT_LOAD_IMAGE || requestCode == CAMERA_REQUEST)
             {
-                if (resultCode == RESULT_OK)
-                {
+
                     picpath = data.getStringExtra("filePath");
                     if (picpath != null) {
                         File imgFile = new File(data.getStringExtra("filePath"));
@@ -564,7 +565,6 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                     }
                     Log.i("File Path", "" + picpath);
 
-                }
             }
             if (requestCode == ADDRESSFETCH)
             {

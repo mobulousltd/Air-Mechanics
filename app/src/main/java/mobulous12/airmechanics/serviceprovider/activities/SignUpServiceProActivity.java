@@ -268,7 +268,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             }
             return true;
         }
-        else
+
             return false;
 
     }

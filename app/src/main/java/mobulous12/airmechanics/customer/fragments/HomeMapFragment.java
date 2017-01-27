@@ -209,7 +209,7 @@ private boolean noSpFound = false;
                     {
                         editText.setText("");
                         searchView_Home.setQueryHint("Search Service Providers..");
-//                        searchView_Home.setQuery("",false);
+                        searchView_Home.setQuery("",false);
                     }
                     else {
                         Intent intent = new Intent(getActivity(), ServiceProviderActivity.class);

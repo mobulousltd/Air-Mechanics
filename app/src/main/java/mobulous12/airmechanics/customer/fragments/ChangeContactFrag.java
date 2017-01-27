@@ -96,14 +96,27 @@ public class ChangeContactFrag extends Fragment implements ApiListener {
         editText_newContact = (EditText) view.findViewById(R.id.editText_newContact);
         view.findViewById(R.id.submit_newContact).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if(!editText_newContact.getText().toString().isEmpty())
+                {
+                    if(!  (editText_newContact.getText().toString().length()<8
+                            || editText_newContact.getText().toString().length()>15)  )
+                    {
+                        if (Patterns.PHONE.matcher(editText_newContact.getText().toString()).matches())
+                        {
+                            senCodeServiceHit();
+                        }
+                    }
+                    else {
+                        Toast.makeText(getActivity(),"Please enter valid Contact Number.",Toast.LENGTH_SHORT).show();
+                    }
 
-                if (Patterns.PHONE.matcher(editText_newContact.getText().toString()).matches() && !editText_newContact.getText().toString().isEmpty() && (editText_newContact.getText().toString().length()>8 || editText_newContact.getText().toString().length()<15)) {
-
-                    senCodeServiceHit();
-                }else {
-                    Toast.makeText(getActivity(),"Please enter valid Contact Number.",Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    Toast.makeText(getActivity(),"Please enter New Contact Number.",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         return view;

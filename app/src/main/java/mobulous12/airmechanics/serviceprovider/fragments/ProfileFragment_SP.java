@@ -247,7 +247,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             }
             return true;
         }
-        else
+
             return false;
 
     }
@@ -263,6 +263,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         else if (!validateName(editText_name_profileSP))
         {
             Toast.makeText(getActivity(), "Please enter valid Name", Toast.LENGTH_SHORT).show();
+            editText_name_profileSP.setText(textView_userName_ProfileSP.getText());
             return false;
         }
         else if (editText_email_profileSP.getText().toString().trim().equals(""))
