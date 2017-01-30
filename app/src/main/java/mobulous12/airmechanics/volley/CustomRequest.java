@@ -29,7 +29,7 @@ public class CustomRequest extends Request<JSONObject>
 {
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
-    private static final String BASE_URL = "http://mobulous.co.in/airMechanics/";
+    private static final String BASE_URL = "http://airmechaniks.com/";
     private HttpEntity mHttpEntity;
     private MultipartEntityBuilder entity;
     private MultipartEntity mentity;
