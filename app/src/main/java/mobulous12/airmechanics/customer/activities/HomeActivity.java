@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.google.android.gms.maps.GoogleMap;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.RoleSelectionActivity;
 import mobulous12.airmechanics.beans.BookingBean;
@@ -57,33 +58,32 @@ public class HomeActivity extends AppCompatActivity
 
     /*variables*/
 
-    public static boolean homeact=false;
+    public static boolean homeact = false;
     public static HomeActivity homeActivity;
-    public   Toolbar toolbar;
-    private GoogleMap mMap;
+    public Toolbar toolbar;
     public static TextView toolbar_title;
     TextView profile_name;
     ImageView profile_image;
-    private  NavigationView navigationView;
+    private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    private boolean isBookingArrowOpen = true, isPlanArrowOpen = true,isAirInfoOpen = true;
+    private boolean isBookingArrowOpen = true, isPlanArrowOpen = true, isAirInfoOpen = true;
 
     private LinearLayout linearlayout_myBooking,
             linearlayout_booking, linearlayout_plan, linearlayout_myPlan,
             linearlayout_myProfile, linearlayout_favorites,
-            linearlayout_subscriptionPlan,linearlayout_about, linearlayout_notification,linearlayout_share,
-            linearlayout_job_rejected,linearlayout_settings,linearlayout_newJobReq;
+            linearlayout_subscriptionPlan, linearlayout_about, linearlayout_notification, linearlayout_share,
+            linearlayout_job_rejected, linearlayout_settings, linearlayout_newJobReq;
 
-    private ImageView imageView_plan_arrow, imageView_booking_arrow,imageView_airInfo;
-    private LinearLayout ll_airInfo,ll_aboutUsInfo,ll_contactUsInfo,ll_TCInfo,ll_customerLogin,ll_serviceProLogin;
+    private ImageView imageView_plan_arrow, imageView_booking_arrow, imageView_airInfo;
+    private LinearLayout ll_airInfo, ll_aboutUsInfo, ll_contactUsInfo, ll_TCInfo, ll_customerLogin, ll_serviceProLogin;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DataBindingUtil.setContentView(this, R.layout.activity_main);
-        homeact=true;
+        homeact = true;
 
 
         /*set toolbar*/
@@ -116,25 +116,24 @@ public class HomeActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
-        profile_name=(TextView)header.findViewById(R.id.textView_userName_Home);
-        profile_image=(ImageView)header.findViewById(R.id.circularImageView_profilePic_Home);
+        profile_name = (TextView) header.findViewById(R.id.textView_userName_Home);
+        profile_image = (ImageView) header.findViewById(R.id.circularImageView_profilePic_Home);
 
-        if(!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY))
-        {
+        if (!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY)) {
             profile_name.setText("Welcome Guest");
             profile_name.setTypeface(Typeface.createFromAsset(this.getAssets(),
                     "fonts/Raleway-SemiBold_0.ttf"));
             profile_image.setVisibility(View.INVISIBLE);
         }
 
-            profile_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyProfileFragment(), "myProfileFragment").addToBackStack("profile").commit();
-                    closeHomeNavigationDrawer();
-                }
-            });
+        profile_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyProfileFragment(), "myProfileFragment").addToBackStack("profile").commit();
+                closeHomeNavigationDrawer();
+            }
+        });
 
 
 
@@ -180,10 +179,10 @@ public class HomeActivity extends AppCompatActivity
 //        linearlayout_logout = (LinearLayout) header.findViewById(R.id.linearlayout_logout);
         ll_airInfo = (LinearLayout) header.findViewById(R.id.ll_airInfo);
         ll_aboutUsInfo = (LinearLayout) header.findViewById(R.id.ll_aboutUsInfo);
-        ll_contactUsInfo = (LinearLayout)  header.findViewById(R.id.ll_contactUsInfo);
-        ll_TCInfo = (LinearLayout)  header.findViewById(R.id.ll_TCInfo);
-        ll_customerLogin = (LinearLayout)  header.findViewById(R.id.ll_customerLogin);
-        ll_serviceProLogin = (LinearLayout)  header.findViewById(R.id.ll_serviceProLogin);
+        ll_contactUsInfo = (LinearLayout) header.findViewById(R.id.ll_contactUsInfo);
+        ll_TCInfo = (LinearLayout) header.findViewById(R.id.ll_TCInfo);
+        ll_customerLogin = (LinearLayout) header.findViewById(R.id.ll_customerLogin);
+        ll_serviceProLogin = (LinearLayout) header.findViewById(R.id.ll_serviceProLogin);
 
 
 
@@ -193,8 +192,7 @@ public class HomeActivity extends AppCompatActivity
         imageView_airInfo = (ImageView) header.findViewById(R.id.imageView_airInfo);
 
 
-
-        linearlayout_job_rejected=(LinearLayout)header.findViewById(R.id.linearlayout_job_rejected);
+        linearlayout_job_rejected = (LinearLayout) header.findViewById(R.id.linearlayout_job_rejected);
         linearlayout_job_rejected.setOnClickListener(this);
         /* make these layouts invisible at start */
         linearlayout_myBooking.setVisibility(View.GONE);
@@ -228,8 +226,7 @@ public class HomeActivity extends AppCompatActivity
         linearlayout_share.setOnClickListener(this);
 
 
-        if(!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY))
-        {
+        if (!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY)) {
             doGuestStuff();
             ll_airInfo.setOnClickListener(this);
             ll_aboutUsInfo.setOnClickListener(this);
@@ -240,71 +237,64 @@ public class HomeActivity extends AppCompatActivity
         }
 
 
-        if(getIntent().getStringExtra("notify")!=null)
-        {
-            String notifi=getIntent().getStringExtra("notify");
-            if(notifi.equalsIgnoreCase("priceupdate"))
-            {
-                Intent intent=new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
+        if (getIntent().getStringExtra("notify") != null) {
+            String notifi = getIntent().getStringExtra("notify");
+            if (notifi.equalsIgnoreCase("priceupdate")) {
+                Intent intent = new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
                 intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
                 startActivity(intent);
 //                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
-            }
-            else if(notifi.equalsIgnoreCase("billgenerate"))
-            {
-                BookingBean bean=new BookingBean();
+            } else if (notifi.equalsIgnoreCase("billgenerate")) {
+                BookingBean bean = new BookingBean();
                 bean.setBookingid(getIntent().getStringExtra("requestid"));
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("bookingBean",bean);
+                bundle.putParcelable("bookingBean", bean);
                 BillPaymentFragment paymentFragment = new BillPaymentFragment();
                 paymentFragment.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,paymentFragment,"billPaymentFragment").addToBackStack("payment").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, paymentFragment, "billPaymentFragment").addToBackStack("payment").commit();
 
-            }
-            else
-            {
+            } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyBookingsFragment(), "myBookingsFragment").addToBackStack("mybookings").commit();
             }
         }
     }  //oncreate ends Here
 
-private void doGuestStuff()
-{
-    ll_airInfo.setVisibility(View.VISIBLE);
-    ll_customerLogin.setVisibility(View.VISIBLE);
-    ll_serviceProLogin.setVisibility(View.VISIBLE);
+    private void doGuestStuff() {
+        ll_airInfo.setVisibility(View.VISIBLE);
+        ll_customerLogin.setVisibility(View.VISIBLE);
+        ll_serviceProLogin.setVisibility(View.VISIBLE);
 
-    //    make all other fields GONE  for Guest
-
-
-    profile_name.setText("Welcome Guest");
-    profile_name.setTypeface(Typeface.createFromAsset(this.getAssets(),
-            "fonts/Raleway-SemiBold_0.ttf"));
-    profile_image.setVisibility(View.INVISIBLE);
-    linearlayout_myProfile.setVisibility(View.GONE);
-    linearlayout_booking.setVisibility(View.GONE);
-    linearlayout_myBooking.setVisibility(View.GONE);
-    linearlayout_newJobReq.setVisibility(View.GONE);
-    linearlayout_job_rejected.setVisibility(View.GONE);
-    linearlayout_notification.setVisibility(View.GONE);
-    linearlayout_favorites.setVisibility(View.GONE);
-    linearlayout_plan.setVisibility(View.GONE);
-    linearlayout_myPlan.setVisibility(View.GONE);
-    linearlayout_subscriptionPlan.setVisibility(View.GONE);
-    linearlayout_about.setVisibility(View.GONE);
-    linearlayout_settings.setVisibility(View.GONE);
-    linearlayout_share.setVisibility(View.GONE);
+        //    make all other fields GONE  for Guest
 
 
-}
+        profile_name.setText("Welcome Guest");
+        profile_name.setTypeface(Typeface.createFromAsset(this.getAssets(),
+                "fonts/Raleway-SemiBold_0.ttf"));
+        profile_image.setVisibility(View.INVISIBLE);
+        linearlayout_myProfile.setVisibility(View.GONE);
+        linearlayout_booking.setVisibility(View.GONE);
+        linearlayout_myBooking.setVisibility(View.GONE);
+        linearlayout_newJobReq.setVisibility(View.GONE);
+        linearlayout_job_rejected.setVisibility(View.GONE);
+        linearlayout_notification.setVisibility(View.GONE);
+        linearlayout_favorites.setVisibility(View.GONE);
+        linearlayout_plan.setVisibility(View.GONE);
+        linearlayout_myPlan.setVisibility(View.GONE);
+        linearlayout_subscriptionPlan.setVisibility(View.GONE);
+        linearlayout_about.setVisibility(View.GONE);
+        linearlayout_settings.setVisibility(View.GONE);
+        linearlayout_share.setVisibility(View.GONE);
 
-    /*****Handling Toolbar  and its components *****/
-    public void setToolbarTitle(String title)
-    {
+
+    }
+
+    /*****
+     * Handling Toolbar  and its components
+     *****/
+    public void setToolbarTitle(String title) {
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.framelayout_homeContainer);
 
-        if (toolbar_title != null)
-        {
+        if (toolbar_title != null) {
             if ((f instanceof MyProfileFragment)
                     || (f instanceof MyBookingsFragment)
                     || (f instanceof ChangePasswordFragment)
@@ -321,8 +311,7 @@ private void doGuestStuff()
                     || (f instanceof ChangeContactFrag)
                     || (f instanceof NewJobRequest)
                     || (f instanceof ContactUsFragment)
-                    )
-            {
+                    ) {
                 toolbar_title.setText(title);
             } else {
                 toolbar_title.setText(getResources().getString(R.string.headername_home));
@@ -330,13 +319,11 @@ private void doGuestStuff()
         }
     }
 
-    public void setNavigationIcon()
-    {
+    public void setNavigationIcon() {
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.framelayout_homeContainer);
 
-        if (toggle != null)
-        {
-            if (    (f instanceof MyProfileFragment)
+        if (toggle != null) {
+            if ((f instanceof MyProfileFragment)
                     || (f instanceof MyBookingsFragment)
                     || (f instanceof ChangePasswordFragment)
                     || (f instanceof FavoritesFragment)
@@ -352,8 +339,7 @@ private void doGuestStuff()
                     || (f instanceof ChangeContactFrag)
                     || (f instanceof NewJobRequest)
                     || (f instanceof ContactUsFragment)
-                    )
-            {
+                    ) {
 
                 toggle.setHomeAsUpIndicator(R.drawable.back);
                 toggle.syncState();
@@ -367,19 +353,16 @@ private void doGuestStuff()
     //          Handling listeners on left-icon in toolbar
     private View.OnClickListener toolbarNavigationClickListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view)
-        {
+        public void onClick(View view) {
 
-            if (drawer.isDrawerVisible(GravityCompat.START))
-            {
+            if (drawer.isDrawerVisible(GravityCompat.START)) {
                 setUserNameImage();
 //                onResume();
                 drawer.openDrawer(GravityCompat.START);
 
-            }
-            else {
+            } else {
                 Fragment f = getSupportFragmentManager().findFragmentById(R.id.framelayout_homeContainer);
-                if (    (f instanceof MyProfileFragment)
+                if ((f instanceof MyProfileFragment)
                         || (f instanceof MyBookingsFragment)
                         || (f instanceof ChangePasswordFragment)
                         || (f instanceof FavoritesFragment)
@@ -402,51 +385,41 @@ private void doGuestStuff()
                     onResume();
                     getSupportFragmentManager().popBackStack();
 
-                }
-                else
-                {
+                } else {
                     setUserNameImage();
                     drawer.openDrawer(GravityCompat.START);
                 }
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
 
         }
     };
 
-    private void setUserNameImage()
-    {
-        if(!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY))
-        {
+    private void setUserNameImage() {
+        if (!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY)) {
             profile_name.setText("Welcome Guest");
             profile_name.setTypeface(Typeface.createFromAsset(this.getAssets(),
                     "fonts/Raleway-SemiBold_0.ttf"));
             profile_image.setVisibility(View.INVISIBLE);
-        }
-        else {
+        } else {
             profile_name.setText(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.FullName));
 
-            AQuery aQuery=new AQuery(profile_image);
-            if(!SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.IMAGE).isEmpty())
-            {
+            AQuery aQuery = new AQuery(profile_image);
+            if (!SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.IMAGE).isEmpty()) {
                 aQuery.id(profile_image).image(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.IMAGE));
-            }
-            else
-            {
+            } else {
                 aQuery.id(profile_image).image(R.drawable.default_profile_pic);
             }
         }
 
     }
 
-    public  void toolbarGone()
-    {
+    public void toolbarGone() {
         toolbar.setVisibility(View.GONE);
     }
 
-    public  void toolbarVisible()
-    {
+    public void toolbarVisible() {
         toolbar.setVisibility(View.VISIBLE);
     }
 
@@ -464,8 +437,8 @@ private void doGuestStuff()
         linearlayout_subscriptionPlan.setVisibility(View.VISIBLE);
 
     }
-    private void checkAirInfoStatusOnGone()
-    {
+
+    private void checkAirInfoStatusOnGone() {
         imageView_airInfo.setRotation(90.0f);
         ll_aboutUsInfo.setVisibility(View.VISIBLE);
         ll_contactUsInfo.setVisibility(View.VISIBLE);
@@ -473,10 +446,8 @@ private void doGuestStuff()
 
     }
 
-    private void closeHomeNavigationDrawer()
-    {
-        if (drawer.isDrawerOpen(GravityCompat.START))
-        {
+    private void closeHomeNavigationDrawer() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
 
             imageView_booking_arrow.setRotation(0.0f);
@@ -500,7 +471,6 @@ private void doGuestStuff()
     }
 
 
-
     /* click events in navigation drawer menu */
     @Override
     public void onClick(View view) {
@@ -522,9 +492,9 @@ private void doGuestStuff()
 
             case R.id.ll_aboutUsInfo:
 
-                Bundle bun1=new Bundle();
+                Bundle bun1 = new Bundle();
                 bun1.putString("page_type", "aboutus");
-                WebViewsFragment webFrag1 =new WebViewsFragment();
+                WebViewsFragment webFrag1 = new WebViewsFragment();
                 webFrag1.setArguments(bun1);
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, webFrag1, "webViewsFragment").addToBackStack("webViews").commit();
                 closeHomeNavigationDrawer();
@@ -534,11 +504,11 @@ private void doGuestStuff()
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new ContactUsFragment(), "contactUsFragment").addToBackStack("contactUs").commit();
                 closeHomeNavigationDrawer();
                 break;
-             case R.id.ll_TCInfo:
+            case R.id.ll_TCInfo:
 
-                Bundle bun3=new Bundle();
+                Bundle bun3 = new Bundle();
                 bun3.putString("page_type", "t_and_c");
-                WebViewsFragment webFrag3 =new WebViewsFragment();
+                WebViewsFragment webFrag3 = new WebViewsFragment();
                 webFrag3.setArguments(bun3);
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, webFrag3, "webViewsFragment").addToBackStack("webViews").commit();
                 closeHomeNavigationDrawer();
@@ -546,7 +516,7 @@ private void doGuestStuff()
 
             case R.id.ll_customerLogin:
 
-                Intent in1=new Intent(this, LoginActivity.class);
+                Intent in1 = new Intent(this, LoginActivity.class);
                 in1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
@@ -556,7 +526,7 @@ private void doGuestStuff()
                 break;
             case R.id.ll_serviceProLogin:
 
-                Intent in2=new Intent(this, LoginActivity.class);
+                Intent in2 = new Intent(this, LoginActivity.class);
                 in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
@@ -564,7 +534,6 @@ private void doGuestStuff()
                 startActivity(in2);
                 finish();
                 break;
-
 
 
             case R.id.linearlayout_myProfile:
@@ -604,7 +573,6 @@ private void doGuestStuff()
             case R.id.linearlayout_favorites:
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new FavoritesFragment(), "favoritesFragment").addToBackStack("favourites").commit();
-
                 closeHomeNavigationDrawer();
                 break;
 
@@ -638,9 +606,9 @@ private void doGuestStuff()
 
                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
 
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putString("page_type", "aboutus");
-                WebViewsFragment webViewsFragment =new WebViewsFragment();
+                WebViewsFragment webViewsFragment = new WebViewsFragment();
                 webViewsFragment.setArguments(bundle);
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, webViewsFragment, "webViewsFragment").addToBackStack("webViews").commit();
@@ -724,14 +692,12 @@ private void doGuestStuff()
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
 
         }
         // getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new HomeMapFragment(), "homeMapFragment").commit();
     }
-
 
 
     @Override
@@ -760,7 +726,6 @@ private void doGuestStuff()
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -780,14 +745,12 @@ private void doGuestStuff()
     @Override
     protected void onResume() {
         super.onResume();
-        if(!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY))
-        {
+        if (!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY)) {
             profile_name.setText("Welcome Guest");
             profile_name.setTypeface(Typeface.createFromAsset(this.getAssets(),
                     "fonts/Raleway-SemiBold_0.ttf"));
             profile_image.setVisibility(View.INVISIBLE);
-        }
-        else {
+        } else {
             homeact = true;
             profile_image.setVisibility(View.VISIBLE);
             profile_name.setText(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.FullName));
@@ -805,12 +768,12 @@ private void doGuestStuff()
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        homeact=false;
+        homeact = false;
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        homeact=false;
+        homeact = false;
     }
 }

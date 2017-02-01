@@ -69,13 +69,12 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     boolean search=false;
     HashMap<Marker, ServiceProviderBean> sphashmap=new HashMap<Marker, ServiceProviderBean>( );
     private View view;
-    private EditText et_search;
     private SearchView searchView_Home;
     private ArrayList<ServiceProviderBean> spArrayList;
     ArrayList<ServiceProviderBean> arrayList;
     private RecyclerView recView_SPList;
     private SearchListAdapter searchListAdapter;
-private boolean noSpFound = false;
+    private boolean noSpFound = false;
     private RelativeLayout rootLayout;
     private EditText editText;
 

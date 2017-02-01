@@ -30,7 +30,7 @@ public class MyEarningsFragment_SP extends Fragment implements ApiListener {
 
     private View view;
     private TextView textView_nameMyEarning,textView_amountMyEarning,textView_dateEarning,descrip1_earning,descrip2_earning;
-    private int offSet = 0;
+    private static int  offSet = 0;
     private static int c = 0;
 
     @Override
@@ -53,13 +53,13 @@ public class MyEarningsFragment_SP extends Fragment implements ApiListener {
         descrip1_earning = (TextView) view.findViewById(R.id.descrip1_earning);
         descrip2_earning = (TextView) view.findViewById(R.id.descrip2_earning);
 
-        if (c == 0)
+        if (offSet == 0)
         {
-            offSet = 0;
+            offSet += 10;
         }
         else {
-            c = c+10;
-            offSet = c + offSet;
+
+            offSet += 10;
         }
 
         myEarningsListService();  // MyEarnings List Service Hit
@@ -74,7 +74,7 @@ public class MyEarningsFragment_SP extends Fragment implements ApiListener {
         MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
         multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
-        multipartbuilder.addTextBody("token", String.valueOf(offSet));
+        multipartbuilder.addTextBody("offset", String.valueOf(offSet));
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setMethodName("Services/my_earnings");

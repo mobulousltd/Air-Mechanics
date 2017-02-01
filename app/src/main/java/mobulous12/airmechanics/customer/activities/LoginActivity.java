@@ -405,7 +405,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         multipartbuilder.addTextBody("address", add);
         multipartbuilder.addTextBody("city", city);
         multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LATITUDE));
-        multipartbuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
+        multipartbuilder.addTextBody("long", lng);
         multipartbuilder.addTextBody("deviceToken", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.DEVICETOKEN));
         multipartbuilder.addTextBody("deviceType", "android");
 
@@ -557,7 +557,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         @Override
         protected void onReceiveResult(int resultCode, final Bundle resultData) {
             if (resultCode == Constants.SUCCESS_RESULT) {
-                final Address address = resultData.getParcelable(Constants.RESULT_ADDRESS);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

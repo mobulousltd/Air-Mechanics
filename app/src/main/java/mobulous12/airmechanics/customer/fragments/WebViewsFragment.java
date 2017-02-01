@@ -60,7 +60,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
                 webView_custom.setWebViewClient(new MyWebViewClient());
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/aboutUs.html");
+                webView_custom.loadUrl("http://airmechaniks.com/home/about");
                 webView_custom.requestFocus();
 
             }
@@ -71,7 +71,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
                 webView_custom.setWebViewClient(new MyWebViewClient());
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/termsandcondition.html");
+                webView_custom.loadUrl("http://airmechaniks.com/home/terms");
                 webView_custom.requestFocus();
 
             }
@@ -87,7 +87,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
                 webView_custom.setWebViewClient(new MyWebViewClient());
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/aboutUs.html");
+                webView_custom.loadUrl("http://airmechaniks.com/home/about");
                 webView_custom.requestFocus();
 
             }
@@ -103,7 +103,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
                 webView_custom.setWebViewClient(new MyWebViewClient());
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/aboutUs.html");
+                webView_custom.loadUrl("http://airmechaniks.com/home/about");
                 webView_custom.requestFocus();
 
             }
@@ -115,7 +115,7 @@ public class WebViewsFragment extends Fragment {
                 webView_custom.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
                 webView_custom.getSettings().setJavaScriptEnabled(true);
                 webView_custom.setWebViewClient(new MyWebViewClient());
-                webView_custom.loadUrl("http://mobulous.co.in/design/airMechaniks/termsandcondition.html");
+                webView_custom.loadUrl("http://airmechaniks.com/home/terms");
                 webView_custom.requestFocus();
             }
 
