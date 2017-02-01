@@ -51,9 +51,10 @@ public class JobRequestAdapter extends RecyclerView.Adapter<JobRequestAdapter.My
 
         JobRequestModel model = modelList.get(position);
 
-        holder.tv_title.setText(model.getRequestTitle());
-        holder.tv_description.setText(model.getRequestDescription());
+        holder.tv_title.setText("Title: "+model.getRequestTitle());
+        holder.tv_description.setText("Description: "+model.getRequestDescription());
         holder.tv_date.setText(model.getDate());
+        holder.textView_custName.setText(model.getCustName());
 
 
         // calling onItemClick()
@@ -70,6 +71,7 @@ public class JobRequestAdapter extends RecyclerView.Adapter<JobRequestAdapter.My
         private TextView tv_title;
         private TextView tv_date;
         private TextView tv_description;
+        private TextView textView_custName;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -77,6 +79,7 @@ public class JobRequestAdapter extends RecyclerView.Adapter<JobRequestAdapter.My
             tv_title = (TextView) itemView.findViewById(R.id.textView_title_job_request);
             tv_date = (TextView) itemView.findViewById(R.id.textView_date_job_request);
             tv_description = (TextView) itemView.findViewById(R.id.textView_description_job_request);
+            textView_custName = (TextView) itemView.findViewById(R.id.textView_custName);
             itemView.setOnClickListener(this);
 
 

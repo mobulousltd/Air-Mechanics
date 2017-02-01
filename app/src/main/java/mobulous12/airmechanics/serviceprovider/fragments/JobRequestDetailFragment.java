@@ -41,6 +41,8 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
     ArrayList<String> requestarray;
     private EditText et_price;
     private boolean isPriceSent=false;
+    private TextView textView_custName;
+    private long minCharge;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
         view=binding.getRoot();
         requestimg_rv=(RecyclerView)view.findViewById(R.id.requestimg_rv);
         et_price = (EditText) view.findViewById(R.id.editText_price_dynamic_job_request_detail);
+        textView_custName = (TextView) view.findViewById(R.id.textView_custName);
         ((HomeActivityServicePro) getActivity()).setToolbarTitleSP("Job Request Detail");
         ((HomeActivityServicePro) getActivity()).setNavigationIconSP();
         reqid=getArguments().getString("reqid");
@@ -73,22 +76,29 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
         view.findViewById(R.id.btn_send_job_request_detail).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isPriceSent)
+                if(Long.parseLong(et_price.getText().toString().trim() ) >= minCharge)
                 {
-                    Toast.makeText(getActivity(),"You've already set the Price.",Toast.LENGTH_SHORT).show();
-                    view.findViewById(R.id.btn_send_job_request_detail).setVisibility(View.GONE);
-                }
-                else
-                {
-                    if(et_price.getText().toString().trim().isEmpty())
+                    if(isPriceSent)
                     {
-                        Toast.makeText(getActivity(), "Please enter price for this job request.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"You've already set the Price.",Toast.LENGTH_SHORT).show();
+                        view.findViewById(R.id.btn_send_job_request_detail).setVisibility(View.GONE);
                     }
                     else
                     {
-                        updatePriceServiceHit();
+                        if(et_price.getText().toString().trim().isEmpty())
+                        {
+                            Toast.makeText(getActivity(), "Please enter price for this job request.", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            updatePriceServiceHit();
+                        }
                     }
                 }
+                else {
+                    Toast.makeText(getActivity()," Price can't be less than "+minCharge+".", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         requestDetailServiceHit();
@@ -148,9 +158,11 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
                             view.findViewById(R.id.btn_send_job_request_detail).setVisibility(View.GONE);
                             isPriceSent=true;
                         }
-                        ((TextView)view.findViewById(R.id.textView_title_job_request_detail)).setText(jsonObject1.getString("request_Title"));
-                        ((TextView)view.findViewById(R.id.textView_description_job_request_detail)).setText(jsonObject1.getString("request_description"));
-                        et_price.setText(jsonObject1.getString("minCharge"));
+                        textView_custName.setText(jsonObject1.getString("userName"));
+                        ((TextView)view.findViewById(R.id.textView_title_job_request_detail)).setText("Title: "+jsonObject1.getString("request_Title"));
+                        ((TextView)view.findViewById(R.id.textView_description_job_request_detail)).setText("Description: "+jsonObject1.getString("request_description"));
+                        minCharge = Long.parseLong(jsonObject1.getString("minCharge"));
+                        et_price.setText(String.valueOf(minCharge));
                         ((TextView)view.findViewById(R.id.textView_date_job_request_detail)).setText(jsonObject1.getString("requestDate"));
                         view.findViewById(R.id.ll_jobrequestdetail).setVisibility(View.VISIBLE);
                         JSONArray jsonArray=jsonObject1.getJSONArray("request_Largeimage");

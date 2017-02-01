@@ -56,7 +56,8 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
     private String filter="";
     private int d=0,r=0,p=0;
     private SwipeRefreshLayout swipeRefresh;
-
+    private boolean isListEmpty = false;
+    private int counterForList = 0;
 
 
     @Override
@@ -86,6 +87,10 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
             @Override
             public void onRefresh() {
 //              Refresh items
+                d=0;
+                r=0;
+                p=0;
+                filter = "";
                 serviceProviderList();
             }
         });
@@ -289,6 +294,10 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
 
                         serviceProviderArrayList.add(serviceproviderbean);
                     }
+                    if (jsonArray.length() > 0)
+                    {
+                        counterForList++;
+                    }
                     serviceProviderRecyclerAdapter = new ServiceProviderRecyclerAdapter(this, serviceProviderArrayList);
                     recyclerView_ServiceProvider.setAdapter(serviceProviderRecyclerAdapter);
                     serviceProviderRecyclerAdapter.onItemClickListener(new ServiceProviderRecyclerAdapter.MyClickListener() {
@@ -332,11 +341,17 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
         switch (id)
         {
             case R.id.textView_Sorting:
-                showSortDialog();
+                if (counterForList > 0)
+                {
+                    showSortDialog();
+                }
                 break;
 
             case R.id.textView_Filter:
-                showFilterDialog();
+                if (counterForList > 0)
+                {
+                    showFilterDialog();
+                }
                 break;
 
             case R.id.back_ServiceProviderActivity:

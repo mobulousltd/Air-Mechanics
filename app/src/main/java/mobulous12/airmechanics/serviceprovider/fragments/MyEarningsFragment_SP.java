@@ -53,9 +53,10 @@ public class MyEarningsFragment_SP extends Fragment implements ApiListener {
         descrip1_earning = (TextView) view.findViewById(R.id.descrip1_earning);
         descrip2_earning = (TextView) view.findViewById(R.id.descrip2_earning);
 
-        if (offSet == 0)
+        if (c == 0)
         {
-            offSet += 10;
+            offSet = c;
+            ++c;
         }
         else {
 

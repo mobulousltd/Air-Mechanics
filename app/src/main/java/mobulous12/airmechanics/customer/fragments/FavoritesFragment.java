@@ -301,6 +301,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
             multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
             multipartEntityBuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LATITUDE));
             multipartEntityBuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LONGITUDE));
+            multipartEntityBuilder.addTextBody("w_category",filter);
             multipartEntityBuilder.addTextBody("distance",String.valueOf(d));
             multipartEntityBuilder.addTextBody("rating",String.valueOf(r));
             multipartEntityBuilder.addTextBody("price",String.valueOf(p));

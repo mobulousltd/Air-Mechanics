@@ -142,6 +142,7 @@ public class JobRequestFragment extends Fragment implements ApiListener {
                         model.setDate(arrayObj.getString("requestDate"));
                         model.setRequestTitle(arrayObj.getString("request_Title"));
                         model.setRequestDescription(arrayObj.getString("request_description"));
+                        model.setCustName(arrayObj.getString("userName"));
 
                         //Adding RequestModel class object into jobRequestModelList ONE at a TIME
                         jobRequestModelList.add(model);

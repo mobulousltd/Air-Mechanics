@@ -233,7 +233,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             case R.id.linear_speciality_sp:
                 SpecialityDialogFrag specialityDialogFrag = new SpecialityDialogFrag();
                 Bundle bundle=new Bundle();
-                bundle.putString("specialty", speciality);
+                bundle.putString("specialty", categories);
                 specialityDialogFrag.setArguments(bundle);
                 specialityDialogFrag.show(getSupportFragmentManager(), "Speciality");
                 break;
@@ -357,12 +357,21 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             return false;
         } else if (textview_close_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter closing time");
-
             return false;
         }
+        else if(et_minchrge_sp.getText().toString().trim().isEmpty())
+        {
+            showToast("Please enter Minimum Charges");
+            return false;
+        }
+        else if (textview_speciality_sp.getText().toString().trim().isEmpty())
+        {
+            showToast("Please select Speciality");
+            return false;
+        }
+
         else if (textview_serviceArea_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter service area radius");
-
             return false;
         }
         else if (editText_employees_sp.getText().toString().trim().isEmpty())
@@ -372,15 +381,6 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (textview_workdays_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter working days");
-            return false;
-        }
-        else if (speciality.isEmpty()) {
-            showToast("Please enter working days");
-            return false;
-        }
-        else if(et_minchrge_sp.getText().toString().isEmpty())
-        {
-            showToast("Please enter Minimum Charges");
             return false;
         }
         else

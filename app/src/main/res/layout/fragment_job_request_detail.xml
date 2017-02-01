@@ -28,10 +28,23 @@
                 android:background="@drawable/drawable_job_request">
 
                 <TextView
+                    android:id="@+id/textView_custName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    />
+
+                <TextView
+                    android:layout_below="@+id/textView_custName"
+                    android:text="title"
+                    android:textColor="@color/text_gray"
                     android:id="@+id/textView_title_job_request_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
                     android:textSize="@dimen/sp_16"
                     android:layout_toLeftOf="@+id/textView_date_job_request_detail"
                     android:layout_marginLeft="@dimen/_30sdp"
@@ -45,17 +58,18 @@
                     android:layout_alignParentRight="true"
                     android:textColor="@color/text_gray"
                     android:textSize="@dimen/sp_14"
-                    android:layout_alignTop="@+id/textView_title_job_request_detail"
+                    android:layout_alignTop="@+id/textView_custName"
                     />
 
                 <TextView
+                    android:text="decsp"
                     android:id="@+id/textView_description_job_request_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView_title_job_request_detail"
                     android:textColor="@color/text_gray"
                     android:textSize="@dimen/sp_14"
-                    android:layout_marginTop="@dimen/_11sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginLeft="@dimen/_30sdp"
                     />
 

@@ -21,14 +21,26 @@
             android:background="@drawable/drawable_job_request">
 
             <TextView
-                android:id="@+id/textView_title_job_request"
+                android:id="@+id/textView_custName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/car_repair"
+                android:text="@string/name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_3sdp"
+                />
+
+            <TextView
+                android:id="@+id/textView_title_job_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/car_repair"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_below="@+id/textView_custName"
                 />
 
             <TextView
@@ -39,7 +51,7 @@
                 android:text="15-09-2016"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/sp_14"
-                android:layout_alignTop="@+id/textView_title_job_request"
+                android:layout_alignTop="@+id/textView_custName"
                 />
 
             <TextView
@@ -47,10 +59,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_title_job_request"
-                android:text="Clutch is not working properly. Break is not working. A.C is not working properly."
+                android:text="Desc."
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/sp_14"
-                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_marginLeft="@dimen/_30sdp"
                 />
 

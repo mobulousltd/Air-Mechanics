@@ -40,6 +40,7 @@ public class NotificationFragment_SP extends Fragment implements ApiListener {
     JSONArray jsonArray;
     RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefresh;
+    private FragmentNotificationSpBinding binding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class NotificationFragment_SP extends Fragment implements ApiListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        FragmentNotificationSpBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_notification_sp, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification_sp, container, false);
         view=binding.getRoot();
 
         ((HomeActivityServicePro) getActivity()).setToolbarTitleSP("Notifications");
@@ -110,15 +111,21 @@ public class NotificationFragment_SP extends Fragment implements ApiListener {
                     if (jsonObject.getString("requestKey").equalsIgnoreCase("notification_list"))
                     {
                         jsonArray=jsonObject.getJSONArray("response");
-                        NotificationsRecyclerAdapter_SP adapter=new NotificationsRecyclerAdapter_SP(getActivity(), jsonArray);
-                        recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        adapter.onItemClickListener(new NotificationsRecyclerAdapter_SP.MyClickListener() {
-                            @Override
-                            public void onItemClick(int position, View v)
-                            {
-                                try
+                        if (jsonArray.length() == 0)
+                        {
+                            binding.tvNotificationSp.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            NotificationsRecyclerAdapter_SP adapter=new NotificationsRecyclerAdapter_SP(getActivity(), jsonArray);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            adapter.onItemClickListener(new NotificationsRecyclerAdapter_SP.MyClickListener() {
+                                @Override
+                                public void onItemClick(int position, View v)
                                 {
+                                    try
+                                    {
 //                                    JSONObject jsonObject1 = jsonArray.getJSONObject(position);
 //                                    Fragment fragment = new JobRequestDetailFragment();
 //                                    Bundle bundle = new Bundle();
@@ -126,13 +133,15 @@ public class NotificationFragment_SP extends Fragment implements ApiListener {
 //                                    bundle.putString("reqid", jsonObject1.getString("request_id"));
 //                                    fragment.setArguments(bundle);
 //                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_serviceHomeContainer, fragment).addToBackStack("jobReqFrag").commit();
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        e.printStackTrace();
+                                    }
                                 }
-                                catch (Exception e)
-                                {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+                            });
+
+                        }
 
                         // Load complete
                         swipeRefresh.setRefreshing(false);

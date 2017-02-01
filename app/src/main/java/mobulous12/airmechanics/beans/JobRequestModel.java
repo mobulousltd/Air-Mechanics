@@ -10,6 +10,15 @@ public class JobRequestModel {
     private String requestTitle;
     private String requestDescription;
     private String date;
+    private String custName;
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
 
     public String getId() {
         return id;
