@@ -92,6 +92,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         minute= calendar.get(Calendar.MINUTE);
         day=calendar.get(Calendar.DATE);
         month=calendar.get(Calendar.MONTH);
+        month += 1;
         year=calendar.get(Calendar.YEAR);
         rv_attchpic=(RecyclerView)findViewById(R.id.rv_attchpic);
         documentsAdapter=new DocumentsAdapter(this, arrayList);
@@ -452,7 +453,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
         try
         {
             SimpleDateFormat s=new SimpleDateFormat("yyyy-MM-dd kk:mm");
-            current=s.parse(year+"-"+month+1+"-"+day+" "+hour+":"+minute);
+
+            current=s.parse(year+"-"+month+"-"+day+" "+hour+":"+minute);
             open=s.parse(reqdate+" "+binding.starttime.getText().toString());
             end=s.parse(reqdate+" "+binding.endtime.getText().toString());
             spopen=s.parse(reqdate+" "+bean.getStart());
