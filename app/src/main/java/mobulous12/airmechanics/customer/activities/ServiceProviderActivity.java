@@ -130,6 +130,18 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                 }
             }
         });
+        if(d==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio1_byDistance)).setChecked(true);
+        }
+        if(r==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio2_byRating)).setChecked(true);
+        }
+        if(p==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio3_byPrice)).setChecked(true);
+        }
         alertbuilder_Sort.setView(view2);
         alertbuilder_Sort.setPositiveButton(getResources().getString(R.string.popup_done), new DialogInterface.OnClickListener()
         {

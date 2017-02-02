@@ -105,8 +105,6 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         back_favoritesFrag.setOnClickListener(this);
 
 
-        myFavouritesService();
-
 
         return  view;
     }
@@ -130,39 +128,47 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         final RadioGroup rdGrp_Sorting = (RadioGroup) view2.findViewById(R.id.radioGroup_Sorting);
 
         alertbuilder_sortFavorites.setView(view2);
+        rdGrp_Sorting.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
 
+                switch (checkedId)
+                {
+                    case R.id.radio1_byDistance:
+                        d=1;
+                        r=0;
+                        p=0;
+                        break;
+                    case R.id.radio2_byRating:
+                        d=0;
+                        r=1;
+                        p=0;
+                        break;
+                    case R.id.radio3_byPrice:
+                        d=0;
+                        r=0;
+                        p=1;
+                        break;
+                }
+            }
+        });
+        if(d==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio1_byDistance)).setChecked(true);
+        }
+        if(r==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio2_byRating)).setChecked(true);
+        }
+        if(p==1)
+        {
+            ((RadioButton)view2.findViewById(R.id.radio3_byPrice)).setChecked(true);
+        }
         alertbuilder_sortFavorites.setPositiveButton(getResources().getString(R.string.popup_done), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-                rdGrp_Sorting.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId)
-                    {
-
-                        switch (checkedId)
-                        {
-                            case R.id.radio1_byDistance:
-                                d=1;
-                                r=0;
-                                p=0;
-                                break;
-                            case R.id.radio2_byRating:
-                                d=0;
-                                r=1;
-                                p=0;
-                                break;
-                            case R.id.radio3_byPrice:
-                                d=0;
-                                r=0;
-                                p=1;
-                                break;
-                        }
-                    }
-                });
-
                 myFavouritesService();
-
             }
         });
         alertbuilder_sortFavorites.setNegativeButton(getResources().getString(R.string.popup_cancel), new DialogInterface.OnClickListener() {
@@ -384,6 +390,14 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         {
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        myFavouritesService();
 
     }
 
