@@ -106,37 +106,37 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
         alertbuilder_Sort.setCustomTitle(view1);
         View view2 = inflater.inflate(R.layout.sort_your_list,null);
         final RadioGroup rdGrp_Sorting = (RadioGroup) view2.findViewById(R.id.radioGroup_Sorting);
+        rdGrp_Sorting.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+                switch (checkedId)
+                {
+                    case R.id.radio1_byDistance:
+                        d=1;
+                        r=0;
+                        p=0;
+                        break;
+                    case R.id.radio2_byRating:
+                        d=0;
+                        r=1;
+                        p=0;
+                        break;
+                    case R.id.radio3_byPrice:
+                        d=0;
+                        r=0;
+                        p=1;
+                        break;
+                }
+            }
+        });
         alertbuilder_Sort.setView(view2);
         alertbuilder_Sort.setPositiveButton(getResources().getString(R.string.popup_done), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                rdGrp_Sorting.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                        switch (checkedId)
-                        {
-                            case R.id.radio1_byDistance:
-                                d=1;
-                                r=0;
-                                p=0;
-                                break;
-                            case R.id.radio2_byRating:
-                                d=0;
-                                r=1;
-                                p=0;
-                                break;
-                            case R.id.radio3_byPrice:
-                                d=0;
-                                r=0;
-                                p=1;
-                                break;
-                        }
-                    }
-                });
                 serviceProviderList();
             }
         });
