@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -33,14 +34,74 @@ public class SpecialityDialogFrag extends DialogFragment implements View.OnClick
     private TextView tvCancel;
     private TextView tvDone;
     private MyDialogListenerInterface listener;
-    private String specialty="";
+    private String specialty="",selectedCategories = "";
+    private String cat = "";
+    private String[] categories=new String[]{};
+    private RadioButton radio_btn_twoV,radio_btn_lightV,radio_btn_heavyV;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_speciality_dialog, container, false);
+        radio_btn_twoV = (RadioButton) view.findViewById(R.id.radio_btn_twoV);
+        radio_btn_lightV = (RadioButton) view.findViewById(R.id.radio_btn_lightV);
+        radio_btn_heavyV = (RadioButton) view.findViewById(R.id.radio_btn_heavyV);
+        radio_btn_twoV.setVisibility(View.GONE);
+        radio_btn_lightV.setVisibility(View.GONE);
+        radio_btn_heavyV.setVisibility(View.GONE);
+
         specialty=getArguments().getString("specialty");
+        selectedCategories=getArguments().getString("selectedCategories");
+        if (selectedCategories != null) {
+            categories = selectedCategories.split(",");
+        }
+        for(int i = 0;i<categories.length;i++)
+        {
+            if(categories[i].equals("two"))
+            {
+                cat = "two";
+                radio_btn_twoV.setVisibility(View.VISIBLE);
+                radio_btn_lightV.setVisibility(View.GONE);
+                radio_btn_heavyV.setVisibility(View.GONE);
+
+            }
+            if(categories[i].equals("light"))
+            {
+                if(cat.isEmpty())
+                {
+                    cat = "light";
+                    radio_btn_twoV.setVisibility(View.GONE);
+                    radio_btn_lightV.setVisibility(View.VISIBLE);
+                    radio_btn_heavyV.setVisibility(View.GONE);
+                }
+                else
+                {
+                    cat += "light";
+                    radio_btn_lightV.setVisibility(View.VISIBLE);
+
+
+                }
+            }
+            if(categories[i].equals("heavy"))
+            {
+                if(cat.isEmpty())
+
+                {
+                    cat = "heavy";
+                    radio_btn_twoV.setVisibility(View.GONE);
+                    radio_btn_lightV.setVisibility(View.GONE);
+                    radio_btn_heavyV.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    cat += "heavy";
+                    radio_btn_heavyV.setVisibility(View.VISIBLE);
+
+                }
+            }
+        }
+
         tvDone= (TextView) view.findViewById(R.id.speciality_done);
         tvDone.setOnClickListener(this);
         tvCancel = (TextView) view.findViewById(R.id.speciality_cancel);
@@ -106,10 +167,12 @@ public class SpecialityDialogFrag extends DialogFragment implements View.OnClick
 
                 }
                 listener.onFinishDialog(specialty, "speciality");
-                dismiss();
+
+                categories=new String[]{};
                 dismiss();
                 break;
             case R.id.speciality_cancel:
+                categories=new String[]{};
                 dismiss();
                 break;
         }

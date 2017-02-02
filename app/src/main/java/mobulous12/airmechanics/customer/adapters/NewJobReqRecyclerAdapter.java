@@ -45,9 +45,11 @@ public class NewJobReqRecyclerAdapter extends RecyclerView.Adapter<NewJobReqRecy
         try {
             JSONObject jsonObject=jsonArray.getJSONObject(position);
                 status = jsonObject.getString("status");
-            holder.tv_title.setText(jsonObject.getString("request_Title"));
+            String serviceProName = jsonObject.getString("userName");
+            holder.tv_SpName.setText(serviceProName);
+            holder.tv_title.setText("Title: "+jsonObject.getString("request_Title"));
             holder.tv_date.setText(jsonObject.getString("requestDate"));
-            holder.tv_description.setText(jsonObject.getString("request_description"));
+            holder.tv_description.setText("Description: "+jsonObject.getString("request_description"));
         }
         catch (Exception e)
         {
@@ -67,13 +69,14 @@ public class NewJobReqRecyclerAdapter extends RecyclerView.Adapter<NewJobReqRecy
 
     class JobReqViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private TextView tv_title;
+        private TextView tv_title,tv_SpName;
         private TextView tv_date;
         private TextView tv_description;
 
         public JobReqViewHolder(View itemView) {
             super(itemView);
 
+            tv_SpName = (TextView) itemView.findViewById(R.id.tv_SpName);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title_newJobRequest);
             tv_date = (TextView) itemView.findViewById(R.id.tv_date_newJobRequest);
             tv_description = (TextView) itemView.findViewById(R.id.tv_descrip_newJobRequest);

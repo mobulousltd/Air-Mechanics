@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/textView_service_type_dynamic_jOD"
-                    android:text="@string/car_repair"
+                    android:text="@string/not_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -134,7 +134,7 @@
                 <TextView
                     android:textSize="@dimen/_12sdp"
                     android:id="@+id/textView_customer_details_dynamic_jOD"
-                    android:text="@string/dummy_customer_details"
+                    android:text="@string/not_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -178,7 +178,7 @@
                 <TextView
                     android:textSize="@dimen/_12sdp"
                     android:id="@+id/textView_customer_address_dynamic_jOD"
-                    android:text="@string/dummy_address"
+                    android:text="@string/not_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -233,7 +233,7 @@
                         android:layout_gravity="center_vertical"
                         android:textSize="@dimen/_12sdp"
                         android:id="@+id/textView_request_detail_dynamic_jOD"
-                        android:text="@string/dummy_address"
+                        android:text="@string/not_available"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"

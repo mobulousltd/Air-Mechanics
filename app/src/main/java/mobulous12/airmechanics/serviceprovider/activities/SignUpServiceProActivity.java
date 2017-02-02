@@ -233,9 +233,17 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             case R.id.linear_speciality_sp:
                 SpecialityDialogFrag specialityDialogFrag = new SpecialityDialogFrag();
                 Bundle bundle=new Bundle();
-                bundle.putString("specialty", categories);
+                bundle.putString("specialty", speciality);
+                bundle.putString("selectedCategories",categories);
                 specialityDialogFrag.setArguments(bundle);
-                specialityDialogFrag.show(getSupportFragmentManager(), "Speciality");
+                if(!(categories.isEmpty()) )
+                {
+                    specialityDialogFrag.show(getSupportFragmentManager(), "Speciality");
+                }
+                else {
+                    Toast.makeText(this, "Please Select at least one Category first.", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.linear_service_area_sp:
                 showServiceAreaDialog();
@@ -280,14 +288,14 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             showToast("Please Enter Full Name");
             return false;
         }
-        else if (editText_companyName_SP.getText().toString().trim().isEmpty())
-        {
-            showToast("Please enter Company name");
-            return false;
-        }
         else if(!validateName(editText_fullName_SP))
         {
             showToast("Please enter a valid Full name");
+            return false;
+        }
+        else if (editText_companyName_SP.getText().toString().trim().isEmpty())
+        {
+            showToast("Please enter Company name");
             return false;
         }
         else if(!validateName(editText_companyName_SP))
@@ -406,6 +414,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         bundle.putString("categories", categories);
         categoriesFragment.setArguments(bundle);
         categoriesFragment.show(getSupportFragmentManager(), "categoriesFrag");
+        textview_speciality_sp.setText("");
 
     }
     private void showworkDaysDialog()

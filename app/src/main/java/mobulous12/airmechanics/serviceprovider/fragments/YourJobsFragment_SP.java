@@ -150,6 +150,7 @@ public class YourJobsFragment_SP extends Fragment implements View.OnClickListene
                     bean.setCreatedOn(object.getString("createdOn"));
                     bean.setCategoryId(object.getString("Categorie_id"));
                     bean.setCategory(object.getString("category"));
+                    bean.setRequestcategory(object.getString("category"));
                     bean.setRequestTime(object.getString("time"));
                     bean.setRequestDate(object.getString("date"));
                     bean.setUserImage(object.getString("profile_thumb"));

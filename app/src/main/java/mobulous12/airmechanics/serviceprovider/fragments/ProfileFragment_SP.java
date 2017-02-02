@@ -370,6 +370,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         categoriesFragment.setArguments(bundle);
         categoriesFragment.setTargetFragment(ProfileFragment_SP.this, 300);
         categoriesFragment.show(getActivity().getSupportFragmentManager(), "categoriesFrag");
+        tv_specialitySP.setText("");
 
     }
     private void showSpecialityDialog()
@@ -377,9 +378,17 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         SpecialityDialogFrag specialityFrag = new SpecialityDialogFrag();
         Bundle bundle=new Bundle();
         bundle.putString("specialty", speciality);
+        bundle.putString("selectedCategories",categories);
         specialityFrag.setArguments(bundle);
         specialityFrag.setTargetFragment(ProfileFragment_SP.this, 300);
-        specialityFrag.show(getActivity().getSupportFragmentManager(), "Speciality");
+        if(!(categories.isEmpty()) )
+        {
+            specialityFrag.show(getActivity().getSupportFragmentManager(), "Speciality");
+        }
+        else {
+            Toast.makeText(getActivity(), "Please Select at least one Category first.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void showServiceAreaDialog()

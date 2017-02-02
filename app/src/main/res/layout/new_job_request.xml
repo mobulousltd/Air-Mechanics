@@ -21,14 +21,27 @@
             android:background="@drawable/drawable_job_request">
 
             <TextView
+
                 android:layout_toLeftOf="@+id/tv_date_newJobRequest"
-                android:id="@+id/tv_title_newJobRequest"
+                android:id="@+id/tv_SpName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:layout_marginTop="@dimen/_3sdp"
+                />
+            <TextView
+
+                android:layout_toLeftOf="@+id/tv_date_newJobRequest"
+                android:id="@+id/tv_title_newJobRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/sp_16"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_below="@+id/tv_SpName"
                 />
 
             <TextView
@@ -40,17 +53,18 @@
                 android:text="15-09-2016"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/sp_14"
-                android:layout_alignTop="@+id/tv_title_newJobRequest"
+                android:layout_alignTop="@+id/tv_SpName"
                 />
 
             <TextView
+
                 android:id="@+id/tv_descrip_newJobRequest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title_newJobRequest"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/sp_14"
-                android:layout_marginTop="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:layout_marginLeft="@dimen/_30sdp"
                 />
 

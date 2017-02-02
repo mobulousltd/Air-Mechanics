@@ -33,7 +33,8 @@ import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
-public class JobOrderDetailActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
+public class
+JobOrderDetailActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
     BookingBean bean;
     private RelativeLayout rootServiceType;
