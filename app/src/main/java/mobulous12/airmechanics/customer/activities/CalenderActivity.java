@@ -918,6 +918,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                    {
 
                        SubmitQuoteFragment submitQuoteDialogFrag = new SubmitQuoteFragment();
+                       submitQuoteDialogFrag.setCancelable(false);
                        submitQuoteDialogFrag.show(getSupportFragmentManager(),"submitQuote");
                    }
                 }

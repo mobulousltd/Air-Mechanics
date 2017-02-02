@@ -41,7 +41,6 @@ public class SubmitQuoteFragment extends DialogFragment implements View.OnClickL
         FragmentSubmitQuoteBinding binding=DataBindingUtil.inflate(inflater,R.layout.fragment_submit_quote, container, false);
         view =  binding.getRoot();
         view.findViewById(R.id.button_okSendReq_Quote).setOnClickListener(this);
-        SubmitQuoteFragment.this.getDialog().setCanceledOnTouchOutside(false);
         return view;
     }
 
