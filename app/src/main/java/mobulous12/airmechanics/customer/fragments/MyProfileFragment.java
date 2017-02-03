@@ -237,6 +237,17 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 
         save = menu.findItem(R.id.save_profile);
         editing = menu.findItem(R.id.edit_profile);
+//        if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PROFILEUPDATED).equalsIgnoreCase("1"))
+//        {
+//            isEditable = true;
+//            save.setVisible(true);
+//            editing.setVisible(false);
+//        }
+//        else {
+//            isEditable = false;
+//            save.setVisible(false);
+//            editing.setVisible(true);
+//        }
 
 
     }
@@ -269,7 +280,6 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             case R.id.save_profile:
 
                 isEditable = false;
-
                 save.setVisible(false);
                 editing.setVisible(true);
 
@@ -325,6 +335,11 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
         {
             Toast.makeText(getActivity(), "Please enter valid Name", Toast.LENGTH_SHORT).show();
             editText_name_profile.setText(profile_name.getText());
+            return false;
+        }
+       else if(tv_contactNum.getText().toString().trim().equalsIgnoreCase(""))
+        {
+            Toast.makeText(getActivity(), "Please update Contact Number.", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (editText_email_profile.getText().toString().trim().equals(""))
@@ -491,6 +506,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
                     }
                     if (responseObj.getString("requestKey").equalsIgnoreCase("editProfile"))
                     {
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PROFILEUPDATED,"1");
 
                         JSONObject response = responseObj.getJSONObject("response");
 
