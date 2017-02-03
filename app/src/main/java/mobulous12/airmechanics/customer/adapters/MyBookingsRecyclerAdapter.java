@@ -76,6 +76,7 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         holder.bookingAmount.setText("$"+bookingBean.getMinCharge());
         holder.bookingDate.setText(bookingBean.getRequestDate());
         holder.bookingTime.setText(bookingBean.getOpenTime()+" - "+bookingBean.getCloseTime());
+        holder.tv_sp_name_my_booking.setText(bookingBean.getUserName());
 
         AQuery aQuery=new AQuery(holder.circularImageView_myBooking);
         if(bookingBean.getRequestImage().isEmpty())
@@ -102,7 +103,8 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         private TextView bookingDate;
         private TextView bookingTime;
         private TextView bookingStatus;
-        ImageView imageView_myBookingRightArrow;
+        private ImageView imageView_myBookingRightArrow;
+        private TextView tv_sp_name_my_booking;
 
         public BookingsViewHolder(View itemView) {
             super(itemView);
@@ -115,6 +117,7 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
             bookingDate= (TextView) itemView.findViewById(R.id.textView_myBookingDate);
             bookingTime= (TextView) itemView.findViewById(R.id.textView_myBookingTime);
             bookingStatus= (TextView) itemView.findViewById(R.id.textView_bookingStatus);
+            tv_sp_name_my_booking = (TextView) itemView.findViewById(R.id.tv_sp_name_my_booking);
             itemView.setOnClickListener(this);
         }
 
