@@ -46,7 +46,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/textView_1_rejectedName"
+                                android:id="@+id/tv_nameSp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
@@ -74,15 +74,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
-                                    android:id="@+id/tv_nameSp"
+                                    android:id="@+id/textView_1_rejectedName"
                                     android:layout_gravity="center_vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/service_provider"
-                                    android:textColor="@color/gray"
+                                    android:textColor="@color/text_gray"
                                     />
                                 <LinearLayout
-                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_marginTop="@dimen/_4sdp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
                                     <ImageView
@@ -107,7 +107,9 @@
                                         android:layout_gravity="center_vertical"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/watch"/>
+                                        android:src="@drawable/watch"
+                                        android:layout_marginBottom="@dimen/dp_4"
+                                        />
 
 
 
@@ -118,7 +120,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="@string/booking_time"
-                                        android:textColor="@color/gray"/>
+                                        android:textColor="@color/gray"
+                                        android:layout_marginBottom="@dimen/dp_5"/>
                                 </LinearLayout>
                             </LinearLayout>
                             <ImageView

@@ -56,7 +56,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="start"
                             android:layout_toLeftOf="@+id/textView_myBookingAmount"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_gray"
                             android:textSize="@dimen/sp_16"
                             android:layout_below="@+id/tv_sp_name_my_booking"/>
 
@@ -103,7 +103,9 @@
                                     android:layout_gravity="center_vertical"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/watch"/>
+                                    android:src="@drawable/watch"
+                                    android:layout_marginBottom="@dimen/dp_4"
+                                    />
 
 
 
@@ -113,7 +115,9 @@
                                     android:id="@+id/textView_myBookingTime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@color/gray"/>
+                                    android:textColor="@color/gray"
+                                    android:layout_marginBottom="@dimen/dp_5"
+                                    />
                             </LinearLayout>
                         </LinearLayout>
                         <ImageView
