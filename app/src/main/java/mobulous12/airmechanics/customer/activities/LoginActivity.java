@@ -498,8 +498,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.IMAGE, response.getString("profile"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.FullName, response.getString("full_name"));
                             SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LOGINTYPE, "social");
+
                             if(response.getString("user_type").equalsIgnoreCase("customer"))
                             {
+                                SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.PROFILEUPDATED, response.getString("profile_updated"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, true);
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, false);
                                 Intent intent=new Intent(this, HomeActivity.class);
@@ -510,6 +512,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             else
                             {
                                 SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
+                                SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.PROFILEUPDATED, response.getString("profile_updated"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                                 Intent intent=new Intent(this, HomeActivityServicePro.class);

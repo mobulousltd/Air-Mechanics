@@ -266,11 +266,17 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             editText_name_profileSP.setText(textView_userName_ProfileSP.getText());
             return false;
         }
+        else if (tv_contactNumSP.getText().toString().trim().equalsIgnoreCase(""))
+        {
+            Toast.makeText(getActivity(), "Please update Contact Number.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         else if (editText_email_profileSP.getText().toString().trim().equals(""))
         {
             Toast.makeText(getActivity(), "Please enter your Email Address", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (editText_companyNameSP.getText().toString().trim().equals(""))
+        }
+        else if (editText_companyNameSP.getText().toString().trim().equals(""))
         {
             Toast.makeText(getActivity(), "Please enter your Company Name", Toast.LENGTH_SHORT).show();
             return false;
@@ -895,6 +901,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                     }
                     if (responseObj.getString("requestKey").equalsIgnoreCase("editProfile"))
                     {
+                        SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PROFILEUPDATED,"1");
 
                         JSONObject response = responseObj.getJSONObject("response");
 

@@ -48,7 +48,9 @@ import mobulous12.airmechanics.customer.fragments.RejectedQuotesFragment;
 import mobulous12.airmechanics.customer.fragments.SettingsFragment;
 import mobulous12.airmechanics.customer.fragments.SubscriptionPlanFragment;
 import mobulous12.airmechanics.customer.fragments.WebViewsFragment;
+import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.serviceprovider.fragments.ContactUsFragment;
+import mobulous12.airmechanics.serviceprovider.fragments.ProfileFragment_SP;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.fonts.Font;
@@ -257,6 +259,14 @@ public class HomeActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyBookingsFragment(), "myBookingsFragment").addToBackStack("mybookings").commit();
             }
         }
+
+        if(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.PROFILEUPDATED).equalsIgnoreCase("0"))
+        {
+            Toast.makeText(HomeActivity.this, "Please update your Profile to continue ...", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyProfileFragment(), "myProfileFragment").addToBackStack("profile").commit();
+        }
+
+
     }  //oncreate ends Here
 
     private void doGuestStuff() {

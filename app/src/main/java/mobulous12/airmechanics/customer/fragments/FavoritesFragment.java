@@ -332,14 +332,17 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         try {
             if (responseObj != null)
             {
-                if (responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("my_favourites")) {
+                if (responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("my_favourites"))
+                {
                     JSONArray jsonArray = responseObj.getJSONArray("response");
                     if(jsonArray.length() == 0)
                     {
                         tv_newFavourites.setVisibility(View.VISIBLE);
                     }
-                    else {
+                    else
+                    {
                         tv_newFavourites.setVisibility(View.GONE);
+                    }
 
                         serviceProviderArrayList = new ArrayList<ServiceProviderBean>();
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -362,8 +365,10 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
                             serviceproviderbean.setDistance(jsonobject.getString("distance"));
                             serviceProviderArrayList.add(serviceproviderbean);
 
+                        }
                         /*Recycler view*/
                             favoritesRecyclerAdapter = new FavoritesRecyclerAdapter(getActivity(), serviceProviderArrayList);
+                            recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
                             recyclerView_myFavorites.setAdapter(favoritesRecyclerAdapter);
                             favoritesRecyclerAdapter.onItemClickListener(new FavoritesRecyclerAdapter.MyClickListener() {
                                 @Override
@@ -374,9 +379,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
 
                                 }
                             });
-                            recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        }
-                    }
+
                 }
                 else
                 {

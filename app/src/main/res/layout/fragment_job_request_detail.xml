@@ -31,7 +31,7 @@
                     android:id="@+id/textView_custName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16"
                     android:layout_marginLeft="@dimen/_30sdp"
@@ -40,7 +40,7 @@
 
                 <TextView
                     android:layout_below="@+id/textView_custName"
-                    android:text="title"
+                    android:text=""
                     android:textColor="@color/text_gray"
                     android:id="@+id/textView_title_job_request_detail"
                     android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                     />
 
                 <TextView
-                    android:text="decsp"
+                    android:text=""
                     android:id="@+id/textView_description_job_request_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
