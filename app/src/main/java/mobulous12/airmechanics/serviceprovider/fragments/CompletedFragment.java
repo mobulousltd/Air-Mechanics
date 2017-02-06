@@ -4,7 +4,6 @@ package mobulous12.airmechanics.serviceprovider.fragments;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,9 +24,7 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.FragmentCompletedBinding;
 import mobulous12.airmechanics.serviceprovider.activities.BillPaymentActivitySp;
-import mobulous12.airmechanics.serviceprovider.activities.JobOrderDetailActivity;
-import mobulous12.airmechanics.serviceprovider.adapters.CompletedRecyclerAdapter;
-import mobulous12.airmechanics.serviceprovider.adapters.PendingRecyclerAdapter;
+import mobulous12.airmechanics.serviceprovider.adapters.PendingInProgressCompletedAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -38,7 +35,7 @@ public class CompletedFragment extends Fragment implements ApiListener {
 
 private View view;
     private RecyclerView recyclerView_completedFrag;
-    private CompletedRecyclerAdapter completedRecyclerAdapter;
+    private PendingInProgressCompletedAdapter adapter;
     private ArrayList<BookingBean> beanArrayList;
 
     public CompletedFragment() {  }
@@ -150,11 +147,12 @@ private View view;
                     {
                         view.findViewById(R.id.tv_complete).setVisibility(View.GONE);
                     }
-                    completedRecyclerAdapter = new CompletedRecyclerAdapter(getActivity(), beanArrayList);
-                    recyclerView_completedFrag.setAdapter(completedRecyclerAdapter);
+//                    completedRecyclerAdapter = new CompletedRecyclerAdapter(getActivity(), beanArrayList);
+                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList, this);
+                    recyclerView_completedFrag.setAdapter(adapter);
                     recyclerView_completedFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    completedRecyclerAdapter.onItemClickListener(new CompletedRecyclerAdapter.MyClickListener()
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.MyClickListener()
                     {
                         @Override
                         public void onItemClick(int position, View v) {
@@ -171,5 +169,4 @@ private View view;
             }
         }
     }
-
 }

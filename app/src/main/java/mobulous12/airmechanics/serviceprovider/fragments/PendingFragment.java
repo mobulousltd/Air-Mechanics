@@ -2,11 +2,9 @@ package mobulous12.airmechanics.serviceprovider.fragments;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,12 +22,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import mobulous12.airmechanics.R;
-import mobulous12.airmechanics.RoleSelectionActivity;
 import mobulous12.airmechanics.beans.BookingBean;
-import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.databinding.FragmentPendingBinding;
-import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.serviceprovider.activities.JobOrderDetailActivity;
+import mobulous12.airmechanics.serviceprovider.adapters.PendingInProgressCompletedAdapter;
 import mobulous12.airmechanics.serviceprovider.adapters.PendingRecyclerAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
@@ -41,7 +37,7 @@ public class PendingFragment extends Fragment implements ApiListener {
 
     public static final int JOBSTATUSCHANGE=005;
     private RecyclerView recyclerView_pendingFrag;
-    private PendingRecyclerAdapter pendingRecyclerAdapter;
+    private PendingInProgressCompletedAdapter adapter;
     private View view;
     private ArrayList<BookingBean> beanArrayList;
 
@@ -126,11 +122,12 @@ public class PendingFragment extends Fragment implements ApiListener {
                     {
                         view.findViewById(R.id.tv_pending).setVisibility(View.GONE);
                     }
-                    pendingRecyclerAdapter = new PendingRecyclerAdapter(getActivity(), beanArrayList);
-                    recyclerView_pendingFrag.setAdapter(pendingRecyclerAdapter);
+//                    pendingRecyclerAdapter = new PendingRecyclerAdapter(getActivity(), beanArrayList);
+                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList, this);
+                    recyclerView_pendingFrag.setAdapter(adapter);
                     recyclerView_pendingFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    pendingRecyclerAdapter.onItemClickListener(new PendingRecyclerAdapter.MyClickListener() {
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.MyClickListener() {
                         @Override
                         public void onItemClick(int position, View v) {
 

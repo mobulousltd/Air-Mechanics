@@ -4,7 +4,6 @@ package mobulous12.airmechanics.serviceprovider.fragments;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,11 +23,9 @@ import java.util.ArrayList;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.FragmentInProgressBinding;
-import mobulous12.airmechanics.serviceprovider.activities.BillPaymentActivitySp;
 import mobulous12.airmechanics.serviceprovider.activities.JobOrderDetailActivity;
-import mobulous12.airmechanics.serviceprovider.adapters.CompletedRecyclerAdapter;
 import mobulous12.airmechanics.serviceprovider.adapters.InProgressRecyclerAdapter;
-import mobulous12.airmechanics.serviceprovider.adapters.PendingRecyclerAdapter;
+import mobulous12.airmechanics.serviceprovider.adapters.PendingInProgressCompletedAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -42,7 +39,7 @@ public class InProgressFragment extends Fragment implements ApiListener {
 
     public static final int JOBSTATUSCHANGE=005;
     private RecyclerView recyclerView_inProgressFrag;
-    private InProgressRecyclerAdapter inProgressRecyclerAdapter;
+    private PendingInProgressCompletedAdapter adapter;
     private View view;
 
     private ArrayList<BookingBean> beanArrayList;
@@ -126,11 +123,12 @@ public class InProgressFragment extends Fragment implements ApiListener {
                     {
                         view.findViewById(R.id.tv_progress).setVisibility(View.GONE);
                     }
-                    inProgressRecyclerAdapter = new InProgressRecyclerAdapter(getActivity(), beanArrayList);
-                    recyclerView_inProgressFrag.setAdapter(inProgressRecyclerAdapter);
+//                    inProgressRecyclerAdapter = new InProgressRecyclerAdapter(getActivity(), beanArrayList);
+                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList, this);
+                    recyclerView_inProgressFrag.setAdapter(adapter);
                     recyclerView_inProgressFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    inProgressRecyclerAdapter.onItemClickListener(new InProgressRecyclerAdapter.MyClickListener() {
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.MyClickListener() {
                         @Override
                         public void onItemClick(int position, View v)
                         {
