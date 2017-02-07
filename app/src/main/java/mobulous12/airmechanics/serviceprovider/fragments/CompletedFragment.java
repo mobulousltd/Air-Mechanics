@@ -68,11 +68,7 @@ private View view;
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        completedServiceHit();
-    }
+
 
     public void completedServiceHit()
     {
