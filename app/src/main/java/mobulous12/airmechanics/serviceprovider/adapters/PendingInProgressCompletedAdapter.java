@@ -27,15 +27,13 @@ public class PendingInProgressCompletedAdapter extends RecyclerView.Adapter<Pend
 
     private Context context;
     private LayoutInflater inflater;
-    private static PendingInProgressCompletedAdapter.MyClickListener listener;
+    private static PendingInProgressCompletedAdapter.ClickListener listener;
     private ArrayList<BookingBean> beanArrayList;
-    private Fragment fromWhichFrag;
 
-    public PendingInProgressCompletedAdapter(Context context, ArrayList<BookingBean> list, Fragment fromWhichFrag) {
+    public PendingInProgressCompletedAdapter(Context context, ArrayList<BookingBean> list) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         beanArrayList = list;
-        this.fromWhichFrag = fromWhichFrag;
     }
 
     @Override
@@ -63,21 +61,27 @@ public class PendingInProgressCompletedAdapter extends RecyclerView.Adapter<Pend
             aQuery.id(holder.circularImageView_1_inProgressFrag).image(bean.getUserImage());
         }
 
-        if (fromWhichFrag instanceof PendingFragment)
+        String status = bean.getStatus();
+
+        if (status != null)
         {
-            holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_pending_color));
-            holder.jobOrderStatus_1_inProg.setText("Pending");
+            if (status.equalsIgnoreCase("pending"))
+            {
+                holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_pending_color));
+                holder.jobOrderStatus_1_inProg.setText("Pending");
+            }
+            else if (status.equalsIgnoreCase("process"))
+            {
+                holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_inprogress_color));
+                holder.jobOrderStatus_1_inProg.setText("InProgress");
+            }
+            else if (status.equalsIgnoreCase("billgenerate") || status.equalsIgnoreCase("complete"))
+            {
+                holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
+                holder.jobOrderStatus_1_inProg.setText("Completed");
+            }
         }
-        else if (fromWhichFrag instanceof InProgressFragment)
-        {
-            holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_inprogress_color));
-            holder.jobOrderStatus_1_inProg.setText("InProgress");
-        }
-        else if (fromWhichFrag instanceof CompletedFragment)
-        {
-            holder.jobOrderStatus_1_inProg.setBackgroundColor(context.getResources().getColor(R.color.booking_completed_color));
-            holder.jobOrderStatus_1_inProg.setText("Completed");
-        }
+
     }
 
     @Override
@@ -106,22 +110,16 @@ protected class PendingInProgressCompletedHolder extends RecyclerView.ViewHolder
         }
         @Override
         public void onClick(View v) {
-            switch (v.getId())
-            {
-                default:
                     listener.onItemClick(getPosition(), v);
-                    break;
-            }
-
         }
 
     }
-    public void onItemClickListener(PendingInProgressCompletedAdapter.MyClickListener listener) {
+    public void onItemClickListener(PendingInProgressCompletedAdapter.ClickListener listener) {
         this.listener = listener;
     }
 
-    public interface MyClickListener
+    public interface ClickListener
     {
-        public void onItemClick(int position, View v);
+        void onItemClick(int position, View v);
     }
 }

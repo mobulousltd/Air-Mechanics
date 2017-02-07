@@ -68,11 +68,6 @@ private View view;
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        completedServiceHit();
-    }
 
     public void completedServiceHit()
     {
@@ -148,24 +143,36 @@ private View view;
                         view.findViewById(R.id.tv_complete).setVisibility(View.GONE);
                     }
 //                    completedRecyclerAdapter = new CompletedRecyclerAdapter(getActivity(), beanArrayList);
-                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList, this);
+                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList);
                     recyclerView_completedFrag.setAdapter(adapter);
                     recyclerView_completedFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.MyClickListener()
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.ClickListener()
                     {
                         @Override
                         public void onItemClick(int position, View v) {
                             BookingBean bean = beanArrayList.get(position);
                             Intent intent = new Intent(getActivity(), BillPaymentActivitySp.class);
                             intent.putExtra("bean", bean);
-
                             startActivityForResult(intent, 001);
                         }
                     });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==getActivity().RESULT_OK) {
+            if (requestCode == 001)
+            {
+                completedServiceHit();
             }
         }
     }

@@ -35,7 +35,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 public class PendingFragment extends Fragment implements ApiListener {
 
-    public static final int JOBSTATUSCHANGE=005;
+    private static final int JOBSTATUSCHANGE=005;
     private RecyclerView recyclerView_pendingFrag;
     private PendingInProgressCompletedAdapter adapter;
     private View view;
@@ -123,11 +123,11 @@ public class PendingFragment extends Fragment implements ApiListener {
                         view.findViewById(R.id.tv_pending).setVisibility(View.GONE);
                     }
 //                    pendingRecyclerAdapter = new PendingRecyclerAdapter(getActivity(), beanArrayList);
-                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList, this);
+                    adapter = new PendingInProgressCompletedAdapter(getActivity(), beanArrayList);
                     recyclerView_pendingFrag.setAdapter(adapter);
                     recyclerView_pendingFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.MyClickListener() {
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.ClickListener() {
                         @Override
                         public void onItemClick(int position, View v) {
 

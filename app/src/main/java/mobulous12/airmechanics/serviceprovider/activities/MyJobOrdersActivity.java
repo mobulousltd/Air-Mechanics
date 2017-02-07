@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -305,7 +306,7 @@ public class MyJobOrdersActivity extends AppCompatActivity implements ApiListene
 
 
     // My Adapter class for View Pager
-    class MyViewPagerAdapter extends FragmentStatePagerAdapter
+    class MyViewPagerAdapter extends FragmentPagerAdapter
     {
         private final List<Fragment> myFragmentsList = new ArrayList<>();
         private final List<String> myFragmentTitleList = new ArrayList<>();

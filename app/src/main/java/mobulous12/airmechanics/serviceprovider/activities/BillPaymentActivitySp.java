@@ -240,8 +240,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
                 if(bookingBean.getStatus().equalsIgnoreCase("complete"))
                 {
                     sendBillServiceHit();
-                    finish();
-                    Toast.makeText(this, "Bill Sent to Customer successfully!", Toast.LENGTH_SHORT).show();
+
+
                 }
 
                 break;
@@ -282,8 +282,11 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
                     JSONObject response = jsonObject.getJSONObject("response");
                     String reqstId = response.getString("request_id");
+                    Toast.makeText(this, "Bill Sent to Customer successfully!", Toast.LENGTH_SHORT).show();
+                    Log.e("SEND_BILL", jsonObject.toString());
+                    setResult(RESULT_OK);
+                    finish();
 
-                    Log.e("J_RESPONSE", jsonObject.toString());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
