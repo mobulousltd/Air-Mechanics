@@ -26,100 +26,94 @@
 
             <mobulous12.airmechanics.utils.CircularImageView
                 android:id="@+id/circularImageView_Favorites"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_68sdp"
+                android:layout_height="@dimen/_68sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_1sdp"
                 android:src="@drawable/garage_image" />
 
 
             <!--Service provider details layout-->
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/relative_allDetailsFavorites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_toEndOf="@+id/circularImageView_Favorites"
-                android:layout_toRightOf="@+id/circularImageView_Favorites">
+                android:layout_toRightOf="@+id/circularImageView_Favorites"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textView_serviceProviderName_favorites"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_7sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:layout_marginRight="@dimen/_2sdp"
-                    android:text="@string/raj_auto_garage"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:text="@string/not_available"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_16" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:id="@+id/linearlayout_starsFavorites"
+
                     >
 
                     <ImageView
                         android:id="@+id/imageView_star1"
                         android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
-
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:layout_toRightOf="@+id/circularImageView_profile_pic_info_window"
-                        android:layout_marginTop="@dimen/_20sdp"
+
                         />
 
                     <ImageView
                         android:id="@+id/imageView_star2"
                         android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
-                        android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:layout_toRightOf="@+id/imageView_star1"
-                        android:layout_marginTop="@dimen/_20sdp"
+
                         />
 
                     <ImageView
                         android:id="@+id/imageView_star3"
                         android:src="@drawable/star_rate"
                         android:padding="@dimen/_2sdp"
-                        android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:layout_toRightOf="@+id/imageView_star2"
-                        android:layout_marginTop="@dimen/_20sdp"
+
                         />
 
                     <ImageView
                         android:id="@+id/imageView_star4"
                         android:src="@drawable/gray_star"
                         android:padding="@dimen/_2sdp"
-                        android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:layout_toRightOf="@+id/imageView_star3"
-                        android:layout_marginTop="@dimen/_20sdp"
+
                         />
 
                     <ImageView
                         android:id="@+id/imageView_star5"
                         android:src="@drawable/gray_star"
                         android:padding="@dimen/_2sdp"
-                        android:layout_below="@+id/rootLayout"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:layout_toRightOf="@+id/imageView_star4"
-                        android:layout_marginTop="@dimen/_20sdp"
+
                         />
 
                 </LinearLayout>
@@ -130,12 +124,9 @@
 
                 <LinearLayout
                     android:id="@+id/linearlayout_Days"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/linearlayout_starsFavorites"
-                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -243,7 +234,7 @@
 
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
             <!--Card Buttons-->

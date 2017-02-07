@@ -1,5 +1,7 @@
 package mobulous12.airmechanics.customer.activities;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +56,13 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
         binding.imgBack.setOnClickListener(this);
         binding.textViewAcceptQuote.setOnClickListener(this);
         binding.textViewRejectQuote.setOnClickListener(this);
+
+        NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        if(nm!=null)
+        {
+            nm.cancelAll();
+        }
+
         detailServiceHit();
     }
     private void setTimer()

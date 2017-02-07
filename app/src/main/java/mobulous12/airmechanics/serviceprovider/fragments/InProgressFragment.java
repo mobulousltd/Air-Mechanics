@@ -35,7 +35,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InProgressFragment extends Fragment implements ApiListener, PendingInProgressCompletedAdapter.ClickListener {
+public class InProgressFragment extends Fragment implements ApiListener {
 
     private static final int JOBSTATUSCHANGE=005;
     private RecyclerView recyclerView_inProgressFrag;
@@ -75,14 +75,15 @@ public class InProgressFragment extends Fragment implements ApiListener, Pending
     @Override
     public void myServerResponse(JSONObject jsonObject) {
 
-        Log.e("JOB_ORDERS_IN_PROCESS", jsonObject.toString());
+
 
         if (jsonObject != null)
         {
             try {
 
-                if (jsonObject.getString("status").equals("SUCCESS"))
+             if ( (jsonObject.getString("status").equals("SUCCESS")) && (jsonObject.getString("requestKey").equalsIgnoreCase("process_job_request")) )
                 {
+                    Log.w("JOB_ORDERS_IN_PROCESS", jsonObject.toString());
                     JSONObject response = jsonObject.getJSONObject("response");
                     JSONArray userArray = response.getJSONArray("user");
 
@@ -128,7 +129,16 @@ public class InProgressFragment extends Fragment implements ApiListener, Pending
                     recyclerView_inProgressFrag.setAdapter(adapter);
                     recyclerView_inProgressFrag.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                    adapter.onItemClickListener(this);
+                    adapter.onItemClickListener(new PendingInProgressCompletedAdapter.ClickListener() {
+                        @Override
+                        public void onItemClick(int position, View v)
+                        {
+                            BookingBean bean=beanArrayList.get(position);
+                            Intent intent=new Intent(getActivity(), JobOrderDetailActivity.class);
+                            intent.putExtra("bookingbean", bean);
+                            startActivityForResult(intent, JOBSTATUSCHANGE);
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -149,11 +159,5 @@ public class InProgressFragment extends Fragment implements ApiListener, Pending
         }
     }
 
-    @Override
-    public void onItemClick(int position, View v) {
-        BookingBean bean=beanArrayList.get(position);
-        Intent intent=new Intent(getActivity(), JobOrderDetailActivity.class);
-        intent.putExtra("bookingbean", bean);
-        startActivityForResult(intent, JOBSTATUSCHANGE);
-    }
+
 }

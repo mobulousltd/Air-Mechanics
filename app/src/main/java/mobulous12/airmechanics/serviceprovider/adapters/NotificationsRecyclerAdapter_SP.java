@@ -50,6 +50,7 @@ public class NotificationsRecyclerAdapter_SP extends RecyclerView.Adapter<Notifi
         try {
             JSONObject jsonObject=jsonArray.getJSONObject(position);
             holder.tv_content.setText(jsonObject.getString("message"));
+            holder.tv_time.setText(jsonObject.getString("createdDate"));
         }
         catch (Exception e)
         {
@@ -62,6 +63,7 @@ public class NotificationsRecyclerAdapter_SP extends RecyclerView.Adapter<Notifi
         return jsonArray.length();
     }
 
+//    VIEWHOLDER CLASS
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
 
@@ -85,6 +87,8 @@ public class NotificationsRecyclerAdapter_SP extends RecyclerView.Adapter<Notifi
             }
         }
     }
+
+//    LISTENER
     public void onItemClickListener(MyClickListener listener) {
         this.listener = listener;
     }

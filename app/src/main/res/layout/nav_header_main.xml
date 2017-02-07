@@ -110,9 +110,11 @@
                         android:textSize="@dimen/sp_16" />
 
                     <ImageView
+
                         android:id="@+id/imageView_booking_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/dp_15"
+                        android:layout_height="@dimen/dp_15"
+                        android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_gravity="center"
                         android:layout_weight="0.48"
                         android:src="@drawable/side_menu_right_arrow"
@@ -284,10 +286,11 @@
 
                     <ImageView
                         android:id="@+id/imageView_plan_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/dp_15"
+                        android:layout_height="@dimen/dp_15"
+                        android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_gravity="center"
-                        android:layout_weight="0.46"
+                        android:layout_weight="0.48"
                         android:src="@drawable/side_menu_right_arrow"
                         android:tint="@color/gray"
                         />
@@ -488,8 +491,9 @@
 
                     <ImageView
                         android:id="@+id/imageView_airInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/dp_15"
+                        android:layout_height="@dimen/dp_15"
+                        android:layout_marginEnd="@dimen/_2sdp"
                         android:layout_gravity="center"
                         android:layout_weight="0.48"
                         android:src="@drawable/side_menu_right_arrow"

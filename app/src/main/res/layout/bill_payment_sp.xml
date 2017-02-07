@@ -96,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/textView_type_of_vechile_dynamic_sp"
-                    android:text="@string/car"
+                    android:text="@string/not_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -224,7 +224,7 @@
 
                 <EditText
                     android:id="@+id/et_totalPriceBill"
-                    android:text="200"
+                    android:text="@string/not_available"
                     android:textSize="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

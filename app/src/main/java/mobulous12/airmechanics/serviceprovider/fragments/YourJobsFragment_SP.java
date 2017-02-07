@@ -153,13 +153,19 @@ public class YourJobsFragment_SP extends Fragment implements View.OnClickListene
                     bean.setRequestcategory(object.getString("category"));
                     bean.setRequestTime(object.getString("time"));
                     bean.setRequestDate(object.getString("date"));
-                    bean.setUserImage(object.getString("profile_thumb"));
+                    bean.setUserImage(object.getString("userImage"));
+                    bean.setProfile_thumb(object.getString("profile_thumb"));
                     JSONArray jsonArray=object.getJSONArray("request_image");
                     String array[]=new String[jsonArray.length()];
                     for (int j=0;j<jsonArray.length();j++)
                     {
                         array[j]=jsonArray.getString(j);
                     }
+                    if(array.length>0)
+                    {
+                        bean.setRequestImage(array[0]);
+                    }
+
                     bean.setRequestImgArr(array);
                     bookingBeen.add(bean);
 

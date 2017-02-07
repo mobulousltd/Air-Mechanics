@@ -1,13 +1,11 @@
 package mobulous12.airmechanics.serviceprovider.fragments;
 
 
-import android.app.Notification;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,17 +14,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.databinding.FragmentNotificationSpBinding;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.serviceprovider.adapters.NotificationsRecyclerAdapter_SP;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;

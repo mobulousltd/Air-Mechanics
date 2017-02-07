@@ -105,6 +105,7 @@
                 android:maxLines="1"
                 android:theme="@style/MyEditTextTheme"
                 android:layout_gravity="center"
+                android:maxLength="35"
                 />
 
         </LinearLayout>

@@ -73,6 +73,7 @@
                                 android:layout_height="@dimen/_55sdp"/>
 
                             <ImageView
+                                android:contentDescription="@string/accepttitle"
                                 android:layout_gravity="center"
                                 android:id="@+id/circularImageView2_AcceptReject"
                                 android:layout_width="@dimen/_50sdp"
@@ -92,10 +93,12 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:id="@+id/textView_AcceptRejectServiceProName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="start"
+                                android:text=""
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:textColor="@color/black"
@@ -119,7 +122,7 @@
                                     android:layout_marginLeft="@dimen/_5sdp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="16 November, 2016"
+                                    android:text=""
                                     android:textColor="@color/text_gray"
                                     android:id="@+id/textView_AcceptRejectDate"/>
                             </LinearLayout>
@@ -139,6 +142,7 @@
                                     android:layout_gravity="center_vertical"
                                     android:textSize="@dimen/_10sdp"
                                     android:layout_marginLeft="@dimen/_5sdp"
+                                    android:text=""
                                     android:id="@+id/textView_AcceptRejectTime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -151,12 +155,14 @@
                                 android:textSize="@dimen/_10sdp"
                                 android:id="@+id/tv_jobtitle"
                                 android:layout_width="wrap_content"
+                                android:text=""
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/text_gray" />
 
                             <TextView
                                 android:layout_marginTop="@dimen/_5sdp"
                                 android:textSize="@dimen/_10sdp"
+                                android:text=""
                                 android:id="@+id/textView_description_accept_reject"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -166,6 +172,7 @@
                                 android:layout_marginBottom="@dimen/_5sdp"
                                 android:textSize="@dimen/_10sdp"
                                 android:id="@+id/tv_minchrge"
+                                android:text=""
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/text_gray"/>
