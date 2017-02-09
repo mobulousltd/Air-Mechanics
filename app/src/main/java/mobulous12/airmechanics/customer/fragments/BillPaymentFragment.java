@@ -233,6 +233,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         {
             case R.id.root_type_of_vechile:
 
+
                 if (isTypeOfServiceOpen)
                 {
                     textViewTypeOfServiceDynamic.setVisibility(View.VISIBLE);
@@ -479,6 +480,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setOpenTime(j_object.getString("open_time"));
                         bookingBean.setOpenTime(j_object.getString("close_time"));
                         bookingBean.setRequestcategory(j_object.getString("category"));
+                        bookingBean.setCategory(j_object.getString("category"));
                         bookingBean.setRequestdesc(j_object.getString("request_description"));
                         bookingBean.setUserName(j_object.getString("userName"));
                         bookingBean.setRequestname(j_object.getString("request_Title"));

@@ -37,6 +37,7 @@ import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     String requestid="";
+    private String status = "";
     private static final String TAG = "MyFirebaseMsgService";
 
     // Called when message is received.@param remoteMessage Object representing the message received from Firebase Cloud Messaging.
@@ -110,8 +111,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             }
                             else if(jsonObject.getString("status").equals("billgenerate"))
                             {
-
+/*Message data payload: {status=billgenerate, type=billgenerate, request_id=395, price=600, message=Your bill recieved from Anil Sharma New.}*/
                                 requestid=jsonObject.getString("request_id");
+                                status=jsonObject.getString("status");
                                 sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
 //                                if(NewJobRequest.jobRequest)
 //                                {
@@ -172,6 +174,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent = new Intent(this, HomeActivityServicePro.class);
         }
         intent.putExtra("requestid", requestid);
+        intent.putExtra("status", status);
         intent.putExtra("type", "notify");
         intent.putExtra("notify", type);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

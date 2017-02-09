@@ -84,7 +84,7 @@
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
                         android:theme="@style/MyEditTextTheme"
-
+                        android:maxLength="35"
                         />
                 </LinearLayout>
 

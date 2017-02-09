@@ -71,6 +71,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
+                        android:maxLength="35"
                         android:theme="@style/MyEditTextTheme" />
 
                 </LinearLayout>
@@ -229,6 +230,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
+                        android:maxLength="35"
                         android:theme="@style/MyEditTextTheme" />
 
 

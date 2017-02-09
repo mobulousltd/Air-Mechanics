@@ -136,7 +136,7 @@
                     <TextView
                         android:textSize="@dimen/_12sdp"
                         android:id="@+id/textView_service_type_dynamic"
-                        android:text="@string/car_repair"
+                        android:text="@string/not_available"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -192,7 +192,7 @@
                 <TextView
                     android:textSize="@dimen/_12sdp"
                     android:id="@+id/textView_service_provider_detail_dynamic"
-                    android:text="@string/service_provider_detail_dummy_text"
+                    android:text="@string/not_available"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"

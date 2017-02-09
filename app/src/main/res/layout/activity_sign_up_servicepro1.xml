@@ -95,6 +95,7 @@
                         android:textSize="@dimen/sp_16"
                         android:theme="@style/MyEditTextTheme"
                         android:layout_gravity="center"
+                        android:maxLength="35"
                         />
                 </LinearLayout>
 
@@ -129,6 +130,7 @@
                         android:textSize="@dimen/sp_16"
                         android:theme="@style/MyEditTextTheme"
                         android:layout_gravity="center"
+                        android:maxLength="35"
                         />
                 </LinearLayout>
 

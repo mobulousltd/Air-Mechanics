@@ -34,41 +34,39 @@
 
                 <!--pending Frag job orders  details layout-->
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <RelativeLayout
+                        android:id="@+id/ll_nameAndPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:orientation="horizontal">
 
                         <!--SERVICE PROVIDER NAME-->
                         <TextView
                             android:id="@+id/tv_sp_name_my_booking"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_toStartOf="@+id/textView_myBookingAmount"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/sp_16"/>
+                            android:textSize="@dimen/sp_16" />
+
 
                         <TextView
-                            android:id="@+id/textView_myBookingName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="start"
-                            android:layout_toLeftOf="@+id/textView_myBookingAmount"
-                            android:textColor="@color/text_gray"
-                            android:textSize="@dimen/sp_16"
-                            android:layout_below="@+id/tv_sp_name_my_booking"/>
-
-                        <TextView
+                            android:id="@+id/textView_myBookingAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_alignParentEnd="true"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/sp_16"
-                            android:layout_marginRight="@dimen/_14sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:id="@+id/textView_myBookingAmount"
-                            android:layout_alignParentRight="true"/>
+                            android:textSize="@dimen/sp_16" />
+
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -77,8 +75,17 @@
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/textView_myBookingName"
+                                android:text=""
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/sp_16" />
                             <LinearLayout
-                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <ImageView
@@ -88,6 +95,7 @@
                                     android:src="@drawable/calendar"/>
                                 <TextView
                                     android:layout_marginLeft="@dimen/_6sdp"
+                                    android:text=""
                                     android:layout_gravity="center_vertical"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -122,9 +130,9 @@
                         </LinearLayout>
                         <ImageView
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_14sdp"
-                            android:layout_marginLeft="@dimen/_2sdp"
-                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:layout_alignParentEnd="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/right_arrow_myjob_order"

@@ -89,14 +89,13 @@ private View view;
     @Override
     public void myServerResponse(JSONObject jsonObject) {
 
-        Log.e("JOB_ORDERS_COMPLETED", jsonObject.toString());
-
         if (jsonObject != null)
         {
             try {
 
-                if (jsonObject.getString("status").equals("SUCCESS"))
+               if ( (jsonObject.getString("status").equals("SUCCESS")) && (jsonObject.getString("requestKey").equalsIgnoreCase("complete_job_request")) )
                 {
+                    Log.w("JOB_ORDERS_COMPLETED", jsonObject.toString());
                     JSONObject response = jsonObject.getJSONObject("response");
                     JSONArray userArray = response.getJSONArray("user");
 

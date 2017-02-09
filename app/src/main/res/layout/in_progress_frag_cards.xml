@@ -57,10 +57,11 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/sp_16"
-                                android:layout_marginRight="@dimen/_14sdp"
-                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:layout_alignParentEnd="true"
                                 android:id="@+id/textView_jobOrderAmount_1_inProgress"
-                                android:layout_alignParentRight="true"/>
+                                />
                         </RelativeLayout>
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -84,7 +85,7 @@
                                         android:layout_gravity="center_vertical"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/booking_date"
+                                        android:text=""
                                         android:textColor="@color/gray" />
                                 </LinearLayout>
                                 <LinearLayout
@@ -111,9 +112,9 @@
                             </LinearLayout>
                             <ImageView
                                 android:layout_centerVertical="true"
-                                android:layout_marginRight="@dimen/_14sdp"
-                                android:layout_marginLeft="@dimen/_2sdp"
-                                android:layout_alignParentRight="true"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:layout_alignParentEnd="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/right_arrow_myjob_order"

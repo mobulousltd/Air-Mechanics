@@ -1,139 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <android.support.v7.widget.CardView
             android:id="@+id/cardView_1_rejected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             app:cardCornerRadius="@dimen/_5sdp"
             app:cardElevation="@dimen/_3sdp">
 
 
             <LinearLayout
-                android:orientation="vertical"
-                android:background="@drawable/background_service_provider_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_service_provider_card"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <mobulous12.airmechanics.utils.CircularImageView
                         android:id="@+id/circularImageView_1_rejected"
                         android:layout_width="@dimen/_65sdp"
                         android:layout_height="@dimen/_65sdp"
                         android:layout_margin="@dimen/_8sdp"
-                        android:src="@drawable/default_profile_pic"
-                        android:padding="@dimen/_3sdp"/>
+                        android:padding="@dimen/_3sdp"
+                        android:src="@drawable/default_profile_pic" />
 
                     <!--pending Frag job orders  details layout-->
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
                         <RelativeLayout
-                            android:layout_marginTop="@dimen/_10sdp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp">
 
                             <TextView
                                 android:id="@+id/tv_nameSp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="start"
                                 android:layout_toLeftOf="@+id/textView_1_rejectedAmount"
-                                android:text="Title"
+                                android:gravity="start"
+                                android:text=""
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/sp_16"/>
+                                android:textSize="@dimen/sp_16" />
 
                             <TextView
+                                android:id="@+id/textView_1_rejectedAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/booking_amount"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp_16"
-                                android:layout_marginRight="@dimen/_14sdp"
+                                android:layout_alignParentRight="true"
                                 android:layout_marginLeft="@dimen/_2sdp"
-                                android:id="@+id/textView_1_rejectedAmount"
-                                android:layout_alignParentRight="true"/>
+                                android:layout_marginRight="@dimen/_14sdp"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_16" />
                         </RelativeLayout>
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <LinearLayout
-                                android:orientation="vertical"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
                                 <TextView
+                                    android:layout_marginTop="@dimen/_2sdp"
                                     android:id="@+id/textView_1_rejectedName"
-                                    android:layout_gravity="center_vertical"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/service_provider"
-                                    android:textColor="@color/text_gray"
-                                    />
+                                    android:layout_gravity="center_vertical"
+                                    android:text=""
+                                    android:textColor="@color/text_gray" />
+
                                 <LinearLayout
-                                    android:layout_marginTop="@dimen/_4sdp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp">
+
                                     <ImageView
-                                        android:layout_gravity="center_vertical"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/calendar"/>
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/calendar" />
+
                                     <TextView
-                                        android:layout_marginLeft="@dimen/_6sdp"
-                                        android:layout_gravity="center_vertical"
+                                        android:id="@+id/textView_1_rejectedDate"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/booking_date"
-                                        android:textColor="@color/gray"
-                                        android:id="@+id/textView_1_rejectedDate"/>
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="@dimen/_6sdp"
+                                        android:text=""
+                                        android:textColor="@color/gray" />
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_marginTop="@dimen/_5sdp"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_4sdp">
+
                                     <ImageView
-                                        android:layout_gravity="center_vertical"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:src="@drawable/watch"
+                                        android:layout_gravity="center_vertical"
                                         android:layout_marginBottom="@dimen/dp_4"
-                                        />
-
+                                        android:src="@drawable/watch" />
 
 
                                     <TextView
-                                        android:layout_marginLeft="@dimen/_6sdp"
-                                        android:layout_gravity="center_vertical"
                                         android:id="@+id/textView_1_rejectedTime"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginBottom="@dimen/dp_5"
+                                        android:layout_marginLeft="@dimen/_6sdp"
                                         android:text="@string/booking_time"
-                                        android:textColor="@color/gray"
-                                        android:layout_marginBottom="@dimen/dp_5"/>
+                                        android:textColor="@color/gray" />
                                 </LinearLayout>
                             </LinearLayout>
+
                             <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="@dimen/_14sdp"
-                                android:layout_marginLeft="@dimen/_2sdp"
-                                android:layout_alignParentRight="true"
+                                android:id="@+id/imageView_1_rejectedRightArrow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_marginRight="@dimen/_14sdp"
                                 android:src="@drawable/right_arrow_myjob_order"
-                                android:tint="@color/black"
-                                android:id="@+id/imageView_1_rejectedRightArrow"/>
+                                android:tint="@color/black" />
                         </RelativeLayout>
 
 
@@ -141,7 +151,6 @@
 
 
                 </LinearLayout>
-
 
 
                 <!--Card Buttons-->
@@ -152,16 +161,14 @@
                     android:layout_height="wrap_content"
                     android:background="@color/booking_pending_color"
                     android:gravity="start"
-                    android:paddingLeft="@dimen/_16sdp"
                     android:padding="@dimen/dp_7"
+                    android:paddingLeft="@dimen/_16sdp"
                     android:text="@string/rejected_quote_request"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_16"/>
+                    android:textSize="@dimen/sp_16" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
-
 
 
     </LinearLayout>

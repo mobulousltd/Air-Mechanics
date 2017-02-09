@@ -238,7 +238,7 @@ public class HomeActivity extends AppCompatActivity
             ll_serviceProLogin.setOnClickListener(this);
         }
 
-
+//  PUSH NOTIFICATION FUNCTIONALITY
         if (getIntent().getStringExtra("notify") != null) {
             String notifi = getIntent().getStringExtra("notify");
             if (notifi.equalsIgnoreCase("priceupdate")) {
@@ -249,6 +249,7 @@ public class HomeActivity extends AppCompatActivity
             } else if (notifi.equalsIgnoreCase("billgenerate")) {
                 BookingBean bean = new BookingBean();
                 bean.setBookingid(getIntent().getStringExtra("requestid"));
+                bean.setStatus(getIntent().getStringExtra("status"));
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("bookingBean", bean);
                 BillPaymentFragment paymentFragment = new BillPaymentFragment();
@@ -260,10 +261,14 @@ public class HomeActivity extends AppCompatActivity
             }
         }
 
-        if(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.PROFILEUPDATED).equalsIgnoreCase("0"))
+//        Check if End-User (Customer) has updated the profile when sign in through Social login
+        if(SharedPreferenceWriter.getInstance(getApplicationContext()).getBoolean(SPreferenceKey.LOGINKEY) )
         {
-            Toast.makeText(HomeActivity.this, "Please update your Profile to continue ...", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyProfileFragment(), "myProfileFragment").addToBackStack("profile").commit();
+            if((SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.PROFILEUPDATED)).equalsIgnoreCase("0"))
+            {
+                Toast.makeText(HomeActivity.this, "Please update your Profile to continue ...", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyProfileFragment(), "myProfileFragment").addToBackStack("profile").commit();
+            }
         }
 
 

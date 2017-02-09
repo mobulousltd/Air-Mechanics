@@ -30,25 +30,7 @@ public class NotificationsRecyclerAdapter extends RecyclerView.Adapter<Notificat
         this.jsonArray=jsonArray;
         inflater = LayoutInflater.from(context);
     }
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
-        TextView textView_content_notificationScreen;
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            textView_content_notificationScreen=(TextView)itemView.findViewById(R.id.textView_content_notificationScreen);
-        }
 
-        @Override
-        public void onClick(View v) {
-            switch (v.getId())
-            {
-                default:
-                    listener.onItemClick(getPosition(), v);
-                    break;
-            }
-        }
-    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         NotificationScreenCardBinding binding= DataBindingUtil.inflate(inflater, R.layout.notification_screen_card, parent, false);
@@ -61,6 +43,7 @@ public class NotificationsRecyclerAdapter extends RecyclerView.Adapter<Notificat
         try {
             JSONObject jsonObject=jsonArray.getJSONObject(position);
             holder.textView_content_notificationScreen.setText(jsonObject.getString("message"));
+            holder.notify_time.setText(jsonObject.getString("createdDate"));
         }
         catch (Exception e)
         {
@@ -73,11 +56,36 @@ public class NotificationsRecyclerAdapter extends RecyclerView.Adapter<Notificat
         return jsonArray.length();
     }
 
+//   VIEW HOLDER CLASS
 
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
+        TextView textView_content_notificationScreen;
+        private TextView notify_time;
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            textView_content_notificationScreen=(TextView)itemView.findViewById(R.id.textView_content_notificationScreen);
+            notify_time=(TextView)itemView.findViewById(R.id.textView_time_notificationScreen);
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId())
+            {
+                default:
+                    listener.onItemClick(getPosition(), v);
+                    break;
+            }
+        }
+    }
+
+//  LISTENER FUNCTIONALITY
     public void onItemClickListener(MyClickListener listener) {
         this.listener = listener;
     }
 
+//    INTERFACE TO ACT AS ONCLICKLISTENER
     public interface MyClickListener
     {
         public void onItemClick(int position, View v);
