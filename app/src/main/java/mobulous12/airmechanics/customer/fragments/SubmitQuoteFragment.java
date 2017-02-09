@@ -33,7 +33,12 @@ public class SubmitQuoteFragment extends DialogFragment implements View.OnClickL
         setStyle(STYLE_NO_TITLE, 0);
     }
 
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getDialog().getWindow()
+                .getAttributes().windowAnimations = R.style.DialogAnimation_Enter;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
