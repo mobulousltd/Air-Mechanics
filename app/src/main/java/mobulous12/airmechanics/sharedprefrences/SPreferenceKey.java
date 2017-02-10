@@ -25,6 +25,7 @@ public class SPreferenceKey {
     public static final String MINCHARGE="mincharge";
     public static final String WORKDAYS="workdays";
     public static final String PROFILEUPDATED="profileupdated";
+    public static final String CURRENCY = "currency";
 
     public static final String ISPUSHON="ispushon";
 }

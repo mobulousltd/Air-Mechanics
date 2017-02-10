@@ -512,6 +512,15 @@
                         android:textColor="@color/text_gray"
                         android:textSize="@dimen/sp_13" />
 
+                    <Spinner
+                        android:id="@+id/spinner_profileFragmentSp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        />
+
                     <EditText
                         android:id="@+id/et_minCharge_profileSP"
                         android:layout_width="match_parent"

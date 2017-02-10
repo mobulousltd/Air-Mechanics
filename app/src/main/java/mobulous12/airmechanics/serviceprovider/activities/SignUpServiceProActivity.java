@@ -16,10 +16,13 @@ import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -55,8 +58,7 @@ import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 public class SignUpServiceProActivity extends AppCompatActivity implements View.OnClickListener, ApiListener,
-        MyDialogListenerInterface
-{
+        MyDialogListenerInterface, AdapterView.OnItemSelectedListener {
 
     private ProfileBean profileBean;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -78,6 +80,9 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
     private EditText editText_employees_sp;
     Calendar calendar;
     private int hour,minute;
+
+    private Spinner spinnerMoney;
+    private String selectedDollarOrKes="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +156,14 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         calendar = Calendar.getInstance();
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute= calendar.get(Calendar.MINUTE);
+
+        spinnerMoney = (Spinner) findViewById(R.id.spinner_money);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options_money, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerMoney.setAdapter(adapter);
+        spinnerMoney.setOnItemSelectedListener(this);
     } //onCreate() Ends Here
 
 
@@ -190,9 +203,8 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                     profileBean.setWorking_days(workdays);
                     profileBean.setCategory(categories);
                     profileBean.setSpeciality(speciality);
-                    profileBean.setMnCharg(et_minchrge_sp.getText().toString());
+                    profileBean.setMnCharg(selectedDollarOrKes);
                     profileBean.setImagesAttach(arrayList);
-
 
                     senCodeServiceHit();
                 }
@@ -365,6 +377,11 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             return false;
         } else if (textview_close_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter closing time");
+            return false;
+        }
+        else if (selectedDollarOrKes.trim().equals(""))
+        {
+            showToast("Please select Currency");
             return false;
         }
         else if(et_minchrge_sp.getText().toString().trim().isEmpty())
@@ -848,4 +865,23 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
     }
 
+//    SPINNER LISTENER
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if (et_minchrge_sp != null)
+        {
+            String minCharge = et_minchrge_sp.getText().toString().trim();
+            if (!minCharge.isEmpty() && !minCharge.equalsIgnoreCase("Select Currency"))
+            {
+                selectedDollarOrKes = parent.getItemAtPosition(position).toString() + et_minchrge_sp.getText().toString().trim();
+            }
+        }
+
+
+    }
+    //    SPINNER LISTENER
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 }
