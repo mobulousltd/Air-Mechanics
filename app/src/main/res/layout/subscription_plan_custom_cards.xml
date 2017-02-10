@@ -3,7 +3,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -15,7 +15,90 @@
             android:orientation="vertical"
             >
 
+            <!--customer plan-->
             <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/customerplan"
+                android:layout_marginBottom="@dimen/_15sdp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bg"
+                    android:background="@color/annual_pink_color"
+                    android:layout_marginLeft="@dimen/_1sdp"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:paddingTop="@dimen/_2sdp"
+                    android:paddingBottom="@dimen/_2sdp"
+                    >
+
+                    <!--Card Buttons-->
+                    <TextView
+                        app:font="@{`roboto`}"
+                        android:id="@+id/tv_custPlanName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:paddingTop="@dimen/dp_7"
+                        android:paddingBottom="@dimen/dp_7"
+                        android:paddingRight="@dimen/dp_7"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+
+                        />
+
+
+                    <TextView
+                        app:font="@{`roboto`}"
+                        android:id="@+id/tv_planprice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text="$"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_20"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:background="@drawable/box"
+                    android:id="@+id/rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_63sdp"
+                    android:layout_below="@+id/rl_bg"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    >
+
+                    <Button
+                        app:font="@{`semibold`}"
+                        android:id="@+id/bt_customerplan"
+                        android:text="@string/buy_now_subscription"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_16"
+                        android:textAllCaps="false"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_70sdp"
+                        android:layout_marginRight="@dimen/_70sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/buy_now" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+<!--SP Plans-->
+            <RelativeLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/relative_upper_monthlySubscriptionPlan"
@@ -76,41 +159,57 @@
                     android:background="@drawable/box"
                     android:id="@+id/relative_upper_allDetailsSubscriptionPlan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_63sdp"
                     android:layout_below="@+id/relativelayout_headingMonthlySubscriptionPlan"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     >
 
-                    <TextView
-                        app:font="@{`roboto`}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/benefits_myplan"
-                        android:textSize="@dimen/sp_17"
-                        android:padding="@dimen/_2sdp"
-                        android:textColor="@color/benifits_gray"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:id="@+id/textView1_benefitsHeadingSubcriptionPlan"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
+                    <!--<TextView-->
+                        <!--app:font="@{`roboto`}"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/benefits_myplan"-->
+                        <!--android:textSize="@dimen/sp_17"-->
+                        <!--android:padding="@dimen/_2sdp"-->
+                        <!--android:textColor="@color/benifits_gray"-->
+                        <!--android:layout_marginTop="@dimen/_7sdp"-->
+                        <!--android:id="@+id/textView1_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true" />-->
 
-                    <TextView
-                        app:font="@{`light`}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="@dimen/sp_15"
-                        android:padding="@dimen/_1sdp"
-                        android:textColor="@color/gray"
-                        android:layout_marginBottom="@dimen/_4sdp"
-                        android:paddingBottom="@dimen/_10sdp"
-                        android:layout_alignLeft="@+id/textView1_benefitsHeadingSubcriptionPlan"
-                        android:layout_below="@+id/textView1_benefitsHeadingSubcriptionPlan"
-                        android:id="@+id/textView_upper_descriptionSubscriptionPlan"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        />
+                    <!--<TextView-->
+                        <!--app:font="@{`light`}"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="@dimen/sp_15"-->
+                        <!--android:padding="@dimen/_1sdp"-->
+                        <!--android:textColor="@color/gray"-->
+                        <!--android:layout_marginBottom="@dimen/_4sdp"-->
+                        <!--android:paddingBottom="@dimen/_10sdp"-->
+                        <!--android:layout_alignLeft="@+id/textView1_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:layout_below="@+id/textView1_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:id="@+id/textView_upper_descriptionSubscriptionPlan"-->
+                        <!--android:layout_marginTop="@dimen/_5sdp"-->
+                        <!--/>-->
 
+                    <!--<Button-->
+                        <!--app:font="@{`semibold`}"-->
+                        <!--android:id="@+id/button_buyNow_monthlysubscription"-->
+                        <!--android:text="@string/buy_now_subscription"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="@dimen/_35sdp"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:textAllCaps="false"-->
+                        <!--android:layout_below="@+id/textView_upper_descriptionSubscriptionPlan"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:layout_marginLeft="@dimen/_70sdp"-->
+                        <!--android:layout_marginRight="@dimen/_70sdp"-->
+                        <!--android:layout_marginBottom="@dimen/_20sdp"-->
+                        <!--android:background="@drawable/buy_now" />-->
                     <Button
                         app:font="@{`semibold`}"
                         android:id="@+id/button_buyNow_monthlysubscription"
@@ -120,7 +219,6 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_16"
                         android:textAllCaps="false"
-                        android:layout_below="@+id/textView_upper_descriptionSubscriptionPlan"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_70sdp"
@@ -196,38 +294,38 @@
                     android:background="@drawable/box"
                     android:id="@+id/relative_lower_allDetailsSubscriptionPlan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_63sdp"
                     android:layout_below="@+id/relativelayout_headingAnnualSubscriptionPlan"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     >
 
-                    <TextView
-                        app:font="@{`roboto`}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/benefits_myplan"
-                        android:textSize="@dimen/sp_17"
-                        android:textColor="@color/benifits_gray"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:id="@+id/textView2_benefitsHeadingSubcriptionPlan"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true" />
+                    <!--<TextView-->
+                        <!--app:font="@{`roboto`}"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/benefits_myplan"-->
+                        <!--android:textSize="@dimen/sp_17"-->
+                        <!--android:textColor="@color/benifits_gray"-->
+                        <!--android:layout_marginTop="@dimen/_7sdp"-->
+                        <!--android:id="@+id/textView2_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_alignParentEnd="true" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="@dimen/sp_15"
-                        android:textColor="@color/gray"
-                        android:layout_marginBottom="@dimen/_4sdp"
-                        android:paddingBottom="@dimen/_10sdp"
-                        android:layout_alignStart="@+id/textView2_benefitsHeadingSubcriptionPlan"
-                        android:layout_alignLeft="@+id/textView2_benefitsHeadingSubcriptionPlan"
-                        android:layout_below="@+id/textView2_benefitsHeadingSubcriptionPlan"
-                        android:id="@+id/textView_lower_descriptionSubscriptionPlan"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text=""-->
+                        <!--android:textSize="@dimen/sp_15"-->
+                        <!--android:textColor="@color/gray"-->
+                        <!--android:layout_marginBottom="@dimen/_4sdp"-->
+                        <!--android:paddingBottom="@dimen/_10sdp"-->
+                        <!--android:layout_alignStart="@+id/textView2_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:layout_alignLeft="@+id/textView2_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:layout_below="@+id/textView2_benefitsHeadingSubcriptionPlan"-->
+                        <!--android:id="@+id/textView_lower_descriptionSubscriptionPlan"-->
+                        <!--android:layout_marginTop="@dimen/_5sdp"-->
+                        <!--/>-->
 
                     <Button
                         app:font="@{`semibold`}"
@@ -238,16 +336,42 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_16"
                         android:textAllCaps="false"
-                        android:layout_below="@+id/textView_lower_descriptionSubscriptionPlan"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="@dimen/_70sdp"
                         android:layout_marginRight="@dimen/_70sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:background="@drawable/buy_now" />
+                    <!--<Button-->
+                        <!--app:font="@{`semibold`}"-->
+                        <!--android:id="@+id/button_buyNow_annualSubscription"-->
+                        <!--android:text="@string/buy_now_subscription"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="@dimen/_35sdp"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="@dimen/sp_16"-->
+                        <!--android:textAllCaps="false"-->
+                        <!--android:layout_below="@+id/textView_lower_descriptionSubscriptionPlan"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:layout_marginLeft="@dimen/_70sdp"-->
+                        <!--android:layout_marginRight="@dimen/_70sdp"-->
+                        <!--android:layout_marginBottom="@dimen/_20sdp"-->
+                        <!--android:background="@drawable/buy_now" />-->
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_noplan"
+            android:padding="@dimen/_5sdp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:text="@string/nofreePlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </layout>

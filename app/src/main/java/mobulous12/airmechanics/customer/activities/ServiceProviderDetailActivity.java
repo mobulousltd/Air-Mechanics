@@ -507,7 +507,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                         serviceProviderName.setText(response.getString("name"));
                         serviceProviderBean.setStart(response.getString("start_time"));
                         serviceProviderBean.setEnd(response.getString("end_time"));
-                        tv_minchrge.setText(response.getString("st_charge"));
+                        tv_minchrge.setText("$"+response.getString("st_charge"));
                         textViewWorkHoursDynamic.setText(response.getString("start_time")+" to "+response.getString("end_time"));
                         km.setText(response.getString("distance")+" KM");
                         aQuery=new AQuery(circularImageView_profile_pic_serviceProviderDetail);

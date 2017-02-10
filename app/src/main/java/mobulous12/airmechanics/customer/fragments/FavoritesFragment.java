@@ -64,6 +64,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
     private String filter="";
     private ArrayList<ServiceProviderBean> serviceProviderArrayList;
     private TextView tv_newFavourites;
+    private int counterForList = 0;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -284,14 +285,21 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
         switch (id)
         {
             case R.id.textView_sortingFavorites:
-                showSortDialog();
+                if (counterForList > 0)
+                {
+                    showSortDialog();
+                }
                 break;
 
             case R.id.textView_filterFavorites:
-                showFilterDialog();
+                if (counterForList > 0)
+                {
+                    showFilterDialog();
+                }
                 break;
+
             case R.id.back_favoritesFrag:
-                getActivity().getSupportFragmentManager().popBackStack();
+                    getActivity().getSupportFragmentManager().popBackStack();
                 break;
 
 
@@ -366,6 +374,11 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
                             serviceProviderArrayList.add(serviceproviderbean);
 
                         }
+                        if (jsonArray.length() > 0)
+                        {
+                             ++counterForList;
+                        }
+
                         /*Recycler view*/
                             favoritesRecyclerAdapter = new FavoritesRecyclerAdapter(getActivity(), serviceProviderArrayList);
                             recyclerView_myFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));

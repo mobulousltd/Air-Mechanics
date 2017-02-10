@@ -469,6 +469,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         {
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+            multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
             multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE));
             multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
             multipartbuilder.addTextBody("category_id", "");
@@ -496,7 +497,19 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             {
                 if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("list_serviceprovider"))
                 {
-                    setMarkers(responseObj.getJSONArray("response"));
+                    JSONArray jsonArray = responseObj.getJSONArray("response");
+
+                    if(jsonArray.length() == 0)
+                    {
+                        Log.w("SP_LIST", ""+responseObj.toString());
+                        String msg = responseObj.getString("message");
+                        Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                        setMarkers(jsonArray);
+                    }
+                    else {
+                        setMarkers(jsonArray);
+                    }
+
                 }
                 else if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("searchbytext"))
                 {

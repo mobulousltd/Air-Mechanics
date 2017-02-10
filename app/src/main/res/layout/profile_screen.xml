@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -37,6 +39,7 @@
                     android:layout_marginTop="@dimen/_7sdp"
                     android:text="@string/dummy_name"
                     android:textColor="@color/white"
+                    android:freezesText="true"
                     android:textSize="@dimen/sp_16" />
             </RelativeLayout>
 
@@ -83,6 +86,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
+                        android:freezesText="true"
                         android:theme="@style/MyEditTextTheme"
                         android:maxLength="35"
                         />
@@ -158,6 +162,7 @@
                             android:layout_gravity="center_vertical"
                             android:gravity="end"
                             android:hint="@string/not_available"
+                            android:freezesText="true"
                             android:textColor="@color/text_gray"
                             android:textSize="@dimen/sp_13" />
 
@@ -236,6 +241,7 @@
                         android:background="@null"
                         android:gravity="end"
                         android:hint="@string/dummy_email"
+                        android:freezesText="true"
                         android:imeOptions="actionDone"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
@@ -313,6 +319,7 @@
                         android:background="@null"
                         android:gravity="end"
                         android:hint="@string/dummy_address"
+                        android:freezesText="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13" />
@@ -407,3 +414,4 @@
     <!--</RelativeLayout>-->
 
 </RelativeLayout>
+</layout>

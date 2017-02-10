@@ -104,10 +104,14 @@ public class MyPlanFragment extends Fragment implements ApiListener {
 
     @Override
     public void myServerResponse(JSONObject jsonObject) {
+
         try {
-            if (jsonObject != null) {
-                if (jsonObject.getString("status").equalsIgnoreCase("SUCCESS")) {
-                    if (jsonObject.getString("requestKey").equalsIgnoreCase("myplan")) {
+            if (jsonObject != null)
+            {
+                if (jsonObject.getString("status").equalsIgnoreCase("SUCCESS"))
+                {
+                    if (jsonObject.getString("requestKey").equalsIgnoreCase("myplan"))
+                    {
                         JSONObject jsonObject1 = jsonObject.getJSONObject("response");
                         String doIhavePlan = jsonObject1.getString("plan");
                         if (!doIhavePlan.equalsIgnoreCase("no"))
@@ -118,7 +122,9 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                         planBean.setPlanId(jsonObject1.getString("palnid"));
                         planBean.setPlanAmount(jsonObject1.getString("rate"));
                         planBean.setExpiryDate(jsonObject1.getString("expiryDate"));
-                        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN)) {
+//                       CUSTOMER
+                        if (SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+                        {
                             if (jsonObject1.getString("validity").equalsIgnoreCase("1 months")) {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_myplan));
                             } else {
@@ -126,8 +132,11 @@ public class MyPlanFragment extends Fragment implements ApiListener {
                             }
                             planBean.setRemainingPoints(jsonObject1.getString("remainingpoin"));
                             planBean.setDescription("You have " + planBean.getRemainingPoints() + " credits.");
-                        } else {
-                            if (jsonObject1.getString("planname").equalsIgnoreCase("Yearly")) {
+                        }
+                        else    // SERVICE PROVIDER
+                        {
+                            if (jsonObject1.getString("planname").equalsIgnoreCase("Yearly"))
+                            {
                                 planBean.setPlanName(getActivity().getString(R.string.duration_annual_subscription));
                             } else {
                                 planBean.setPlanName(jsonObject1.getString("planname"));

@@ -495,7 +495,7 @@ public class HomeActivityServicePro extends AppCompatActivity
                 close_SPHomeNavigationDrawer();
                 break;
             case R.id.linearlayout_shareServicePro:
-                String shareBody = "Install Airmechaniks to know about near by garage and their services.";
+                String shareBody = "Download Airmechaniks App to know about nearby garages and their services.";
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share");

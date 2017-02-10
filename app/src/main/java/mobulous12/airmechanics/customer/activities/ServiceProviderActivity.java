@@ -58,6 +58,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
     private SwipeRefreshLayout swipeRefresh;
     private boolean isListEmpty = false;
     private int counterForList = 0;
+    private TextView tv_noListSp;
 
 
     @Override
@@ -66,6 +67,10 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
         DataBindingUtil.setContentView(this, R.layout.activity_service_provider);
 
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
+        tv_noListSp = (TextView) findViewById(R.id.tv_noListSp);
+        if (tv_noListSp != null) {
+            tv_noListSp.setVisibility(View.GONE);
+        }
 
         recyclerView_ServiceProvider = (RecyclerView) findViewById(R.id.recyclerView_ServiceProvider);
         textView_Sorting = (TextView) findViewById(R.id.textView_Sorting);
@@ -254,6 +259,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
         {
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+            multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.TOKEN));
             multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LATITUDE));
             multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
             multipartbuilder.addTextBody("category_id",filter);
@@ -283,6 +289,18 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                 if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("list_serviceprovider"))
                 {
                     JSONArray jsonArray=responseObj.getJSONArray("response");
+
+                    if(jsonArray.length() == 0)
+                    {
+                        Log.w("SP_LIST", ""+responseObj.toString());
+                        String msg = responseObj.getString("message");
+                        tv_noListSp.setVisibility(View.VISIBLE);
+                        tv_noListSp.setText(msg);
+
+                    }
+                    else {
+                        tv_noListSp.setVisibility(View.GONE);
+                    }
 
                     serviceProviderArrayList=new ArrayList<ServiceProviderBean>();
                     for (int i=0;i<jsonArray.length();i++)
@@ -367,9 +385,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.back_ServiceProviderActivity:
-            {
-                finish();
-            }
+                     finish();
                 break;
         }
 

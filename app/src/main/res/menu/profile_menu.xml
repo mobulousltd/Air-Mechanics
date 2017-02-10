@@ -5,6 +5,7 @@
         android:id="@+id/edit_profile"
         android:orderInCategory="100"
         android:icon="@drawable/edit"
+        android:visible="false"
         android:title="@string/edit_profile"
         app:showAsAction="ifRoom" />
 

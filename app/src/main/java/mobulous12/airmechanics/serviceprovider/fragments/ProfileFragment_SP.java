@@ -89,6 +89,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     private LinearLayout linear_setContactSP,ll_ContactSP;
     private TextView tv_contactNumSP;
     private EditText et_minCharge_profileSP;
+    private boolean isEditing = false;
 
 
     public ProfileFragment_SP() {
@@ -106,79 +107,99 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-
-        FragmentProfileSpBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_profile_sp, container, false);
-        view=binding.getRoot();
         ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.headername_profile));
         ((HomeActivityServicePro)getActivity()).toolbarVisibleSP();
         ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
 
-        //Views
-        profileImage=(CircularImageView)view.findViewById(R.id.circularImageView_profileSP);
 
-        textView_userName_ProfileSP = (TextView) view.findViewById(R.id.textView_userName_ProfileSP);
-        textView_openText_profileSP = (TextView) view.findViewById(R.id.textView_openText_profileSP);
-        textView_closeText_profileSP = (TextView) view.findViewById(R.id.textView_closeText_profileSP);
-        tv_serviceArea_spProfile = (TextView) view.findViewById(R.id.tv_serviceArea_spProfile);
-        tv_workdays_spProfile = (TextView) view.findViewById(R.id.tv_workdays_spProfile);
+        if(view==null)
+        {
+            FragmentProfileSpBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_sp, container, false);
+            view = binding.getRoot();
+            //Views
+            profileImage = (CircularImageView) view.findViewById(R.id.circularImageView_profileSP);
+            textView_userName_ProfileSP = (TextView) view.findViewById(R.id.textView_userName_ProfileSP);
+            textView_openText_profileSP = (TextView) view.findViewById(R.id.textView_openText_profileSP);
+            textView_closeText_profileSP = (TextView) view.findViewById(R.id.textView_closeText_profileSP);
+            tv_serviceArea_spProfile = (TextView) view.findViewById(R.id.tv_serviceArea_spProfile);
+            tv_workdays_spProfile = (TextView) view.findViewById(R.id.tv_workdays_spProfile);
 
-        editText_name_profileSP = (EditText) view.findViewById(R.id.editText_name_profileSP);
+            editText_name_profileSP = (EditText) view.findViewById(R.id.editText_name_profileSP);
 //        editText_contactNumber_profileSP = (TextView) view.findViewById(R.id.editText_contactNumber_profileSP);
-        editText_companyNameSP = (EditText) view.findViewById(R.id.editText_companyNameSP);
-        editText_email_profileSP = (EditText) view.findViewById(R.id.editText_email_profileSP);
-        tv_address_profileSP = (TextView) view.findViewById(R.id.tv_address_profileSP);
-        editText_employees_profileSP = (EditText) view.findViewById(R.id.editText_employees_profileSP);
+            editText_companyNameSP = (EditText) view.findViewById(R.id.editText_companyNameSP);
+            editText_email_profileSP = (EditText) view.findViewById(R.id.editText_email_profileSP);
+            tv_address_profileSP = (TextView) view.findViewById(R.id.tv_address_profileSP);
+            editText_employees_profileSP = (EditText) view.findViewById(R.id.editText_employees_profileSP);
 
-        et_minCharge_profileSP = (EditText) view.findViewById(R.id.et_minCharge_profileSP);
+            et_minCharge_profileSP = (EditText) view.findViewById(R.id.et_minCharge_profileSP);
 //        et_companyname=(EditText)view.findViewById(R.id.et_companyname);
-        tv_categoriesSP = (TextView) view.findViewById(R.id.tv_categoriesSP);
-        tv_specialitySP = (TextView) view.findViewById(R.id.tv_specialitySP);
+            tv_categoriesSP = (TextView) view.findViewById(R.id.tv_categoriesSP);
+            tv_specialitySP = (TextView) view.findViewById(R.id.tv_specialitySP);
 
         /*change Contact views*/
-        textView_contactTextProfileSP = (TextView) view.findViewById(R.id.textView_contactTextProfileSP);
-        linear_setContactSP = (LinearLayout) view.findViewById(R.id.linear_setContactSP);
-        tv_contactNumSP = (TextView) view.findViewById(R.id.tv_contactNumSP);
-        ll_ContactSP = (LinearLayout) view.findViewById(R.id.ll_ContactSP);
+            textView_contactTextProfileSP = (TextView) view.findViewById(R.id.textView_contactTextProfileSP);
+            linear_setContactSP = (LinearLayout) view.findViewById(R.id.linear_setContactSP);
+            tv_contactNumSP = (TextView) view.findViewById(R.id.tv_contactNumSP);
+            ll_ContactSP = (LinearLayout) view.findViewById(R.id.ll_ContactSP);
 
 
-        tv_contactNumSP.setVisibility(View.VISIBLE);
-        ll_ContactSP.setVisibility(View.GONE);
+            tv_contactNumSP.setVisibility(View.VISIBLE);
+            ll_ContactSP.setVisibility(View.GONE);
 
-        view.findViewById(R.id.ll_changepasssp).setOnClickListener(this);
-        textView_openText_profileSP.setOnClickListener(this);
-        textView_closeText_profileSP.setOnClickListener(this);
-        tv_serviceArea_spProfile.setOnClickListener(this);
-        tv_workdays_spProfile.setOnClickListener(this);
-        profileImage.setOnClickListener(this);
-        tv_address_profileSP.setOnClickListener(this);
-        tv_categoriesSP.setOnClickListener(this);
-        tv_specialitySP.setOnClickListener(this);
+            view.findViewById(R.id.ll_changepasssp).setOnClickListener(this);
+            textView_openText_profileSP.setOnClickListener(this);
+            textView_closeText_profileSP.setOnClickListener(this);
+            tv_serviceArea_spProfile.setOnClickListener(this);
+            tv_workdays_spProfile.setOnClickListener(this);
+            profileImage.setOnClickListener(this);
+            tv_address_profileSP.setOnClickListener(this);
+            tv_categoriesSP.setOnClickListener(this);
+            tv_specialitySP.setOnClickListener(this);
 
 
 //        editText_contactNumber_profileSP.setOnClickListener(this);
-        linear_setContactSP.setOnClickListener(this);
+            linear_setContactSP.setOnClickListener(this);
 
 
-         /*make views Non - Editable*/
-        profileImage.setEnabled(false);
-        editText_name_profileSP.setEnabled(false);
+//         /*make views Non - Editable*/
+            profileImage.setEnabled(false);
+            editText_name_profileSP.setEnabled(false);
 //        editText_contactNumber_profileSP.setEnabled(false);
-        editText_companyNameSP.setEnabled(false);
-        editText_email_profileSP.setEnabled(false);
-
-        linear_setContactSP.setEnabled(false);
-        et_minCharge_profileSP.setEnabled(false);
+            editText_companyNameSP.setEnabled(false);
+            editText_email_profileSP.setEnabled(false);
+            linear_setContactSP.setEnabled(false);
+            et_minCharge_profileSP.setEnabled(false);
 //        et_companyname.setEnabled(false);
-        tv_categoriesSP.setEnabled(false);
-        tv_specialitySP.setEnabled(false);
+            tv_categoriesSP.setEnabled(false);
+            tv_specialitySP.setEnabled(false);
+            tv_address_profileSP.setEnabled(false);
+            editText_employees_profileSP.setEnabled(false);
+            textView_openText_profileSP.setEnabled(false);
+            textView_closeText_profileSP.setEnabled(false);
+            tv_serviceArea_spProfile.setEnabled(false);
+            tv_workdays_spProfile.setEnabled(false);
+            view.findViewById(R.id.ll_changepasssp).setEnabled(false);
 
-        tv_address_profileSP.setEnabled(false);
-        editText_employees_profileSP.setEnabled(false);
-        textView_openText_profileSP.setEnabled(false);
-        textView_closeText_profileSP.setEnabled(false);
-        tv_serviceArea_spProfile.setEnabled(false);
-        tv_workdays_spProfile.setEnabled(false);
-        view.findViewById(R.id.ll_changepasssp).setEnabled(false);
+            if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("social"))
+            {
+                view.findViewById(R.id.ll_changepasssp).setVisibility(View.GONE);
+            }
+
+            lat=SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LATITUDE);
+            lng=SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LONGITUDE);
+            calendar = Calendar.getInstance();
+            hour = calendar.get(Calendar.HOUR_OF_DAY);
+            minute= calendar.get(Calendar.MINUTE);
+
+            viewProfileServiceHit();
+        }
+        else
+        {
+            if(savedInstanceState != null) {
+                isEditing = savedInstanceState.getBoolean("isEditing");
+            }
+
+        }
 //        view.findViewById(R.id.ll_changeContactsp).setVisibility(View.GONE);
 
 //        //setting data
@@ -197,40 +218,12 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //        {
 //            profileImage.setImageResource(R.drawable.default_profile_pic);
 //        }
-        if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("social"))
-        {
-            view.findViewById(R.id.ll_changepasssp).setVisibility(View.GONE);
-        }
-
-        lat=SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LATITUDE);
-        lng=SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LONGITUDE);
-        calendar = Calendar.getInstance();
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-        minute= calendar.get(Calendar.MINUTE);
-
-
-        if(savedInstanceState != null)
-        {
-            editText_name_profileSP.setText(savedInstanceState.getString("name"));
-            editText_companyNameSP.setText(savedInstanceState.getString("companyName"));
-            editText_email_profileSP.setText(savedInstanceState.getString("email"));
-            tv_address_profileSP.setText(savedInstanceState.getString("address"));
-            tv_categoriesSP.setText(savedInstanceState.getString("categories"));
-            textView_openText_profileSP.setText(savedInstanceState.getString("opentime"));
-            textView_closeText_profileSP.setText(savedInstanceState.getString("closetime"));
-            et_minCharge_profileSP.setText(savedInstanceState.getString("mcharge"));
-            tv_specialitySP.setText(savedInstanceState.getString("speciality"));
-            tv_serviceArea_spProfile.setText(savedInstanceState.getString("radius"));
-            editText_employees_profileSP.setText(savedInstanceState.getString("employees"));
-            tv_workdays_spProfile.setText(savedInstanceState.getString("workdays"));
-        }
-        else {
-            viewProfileServiceHit();
-        }
 
         return view;
-    }
+    }  // onCreateView Ends Here
 
+
+    //validation name
     private boolean validateName(EditText editText)
     {
         final String regex = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$";
@@ -340,7 +333,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             return true;
     }
 
-    //Dialogs
+//    /*  Dialogs */
+
     private void showTimer(final TextView tv)
     {
         TimePickerDialog mTimePicker;
@@ -367,7 +361,6 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         mTimePicker.show();
     }
 
-    /*Dialogs */
     private void showCategoriesDialog()
     {
         CategoriesDialogFragment categoriesFragment = new CategoriesDialogFragment();
@@ -473,7 +466,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     }
 
 
-    //override methods
+//    OnclickListeners callback
     @Override
     public void onClick(View view) {
         switch (view.getId())
@@ -515,15 +508,56 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 break;
         }
     }
+
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.profile_menu,menu);
         myMenu = menu;
-
+//      Retrieve menuItems
         save = menu.findItem(R.id.save_profile);
         editing = menu.findItem(R.id.edit_profile);
+
+//        Checking to keep editing state Intact
+        if(isEditing)
+        {
+            save.setVisible(true);
+            editing.setVisible(false);
+
+            profileImage.setEnabled(true);
+            editText_name_profileSP.setEnabled(true);
+            editText_companyNameSP.setEnabled(true);
+            tv_address_profileSP.setEnabled(true);
+            editText_employees_profileSP.setEnabled(true);
+            textView_openText_profileSP.setEnabled(true);
+            textView_closeText_profileSP.setEnabled(true);
+            tv_serviceArea_spProfile.setEnabled(true);
+            tv_workdays_spProfile.setEnabled(true);
+            linear_setContactSP.setEnabled(true);
+            ll_ContactSP.setVisibility(View.VISIBLE);
+            ll_ContactSP.setEnabled(true);
+            et_minCharge_profileSP.setEnabled(true);
+            tv_categoriesSP.setEnabled(true);
+            tv_specialitySP.setEnabled(true);
+
+            if (SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal")) {
+                editText_email_profileSP.setEnabled(true);
+                view.findViewById(R.id.ll_changepasssp).setEnabled(true);
+            }
+
+            // Update contact field with New Number
+            tv_contactNumSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
+
+        }
+        else
+        {
+            save.setVisible(false);
+            editing.setVisible(true);
+        }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -532,6 +566,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         {
             case R.id.edit_profile:
               /*make view Editable*/
+                isEditing = true;   // Editing is Enabled
                 save.setVisible(true);
                 editing.setVisible(false);
 
@@ -562,6 +597,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
             case R.id.save_profile:
               /*make view non-Editable*/
+                isEditing = false;  // Editing is Disabled
                 save.setVisible(false);
                 editing.setVisible(true);
 
@@ -602,7 +638,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     }
 
 
-    //services
+//    SERVICES
     private void viewProfileServiceHit() {
 
         MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
@@ -661,40 +697,9 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         customHandler.makeMultipartRequest(multipartbuilder);
 
     }
-    /*{
-  "status": "SUCCESS",
-  "message": "User Details.",
-  "requestKey": "viewProfile",
-  "response": {
-    "id": "2",
-    "full_name": "Service Provider One",
-    "fb_id": "",
-    "twitter_id": "",
-    "email": "service1@gmail.com",
-    "password": "123456",
-    "contact_no": "8584858411",
-    "address": "H35, H Block, Sector 63, Noida, Uttar Pradesh 201301",
-    "profile": "http:\/\/mobulous.co.in\/airMechanics\/app\/webroot\/files\/original\/Image-4000161205033820.jpg",
-    "profile_thumb": "http:\/\/mobulous.co.in\/airMechanics\/app\/webroot\/files\/thumb\/Image-4000161205033820.jpg",
-    "lat": "28.6289659",
-    "long": "77.3790517",
-    "user_type": "service_provider",
-    "categories": "two,light,heavy",
-    "category": "two,light,heavy",
-    "start_time": "07:00",
-    "end_time": "20:00",
-    "workingDays": "0,2,3,4,5,6",
-    "radius": "20",
-    "no_employe": "8453",
-    "plan_id": "1",
-    "description": "",
-    "min_charge": "2509",
-    "specilityName": "heavy"
-  }
-}
-*/
 
 
+//  API-RESPONSES
     @Override
     public void myServerResponse(JSONObject responseObj) {
 
@@ -959,6 +964,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             e.printStackTrace();
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -994,10 +1000,12 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
     }
 
+//    MYDIALOG LISTENER INTERFACE CALLBACK
     @Override
     public void onFinishDialog(String inputText, String type)
     {
-        if(type.equals("radius"))//        Radius
+//        Radius
+        if(type.equals("radius"))
         {
             radius=inputText;
 
@@ -1015,7 +1023,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             }
 
         }
-        //        Categories
+//      Categories
 
         if(type.equals("categories"))
         {
@@ -1057,7 +1065,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             categories=category;
         }
 
-        /*speciality*/
+//        /*speciality*/
         if(type.equals("speciality"))
         {
             speciality=inputText;
@@ -1077,8 +1085,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 }
             }
         }
-
-        if(type.equals("workdays"))//        Working Days
+//        Working Days
+        if(type.equals("workdays"))
         {
             workdays = inputText;
 
@@ -1165,22 +1173,13 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     }
 
 
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("name",editText_name_profileSP.getText().toString().trim());
-        outState.putString("companyName",editText_companyNameSP.getText().toString().trim());
-        outState.putString("email",editText_email_profileSP.getText().toString().trim());
-        outState.putString("address",tv_address_profileSP.getText().toString().trim());
-        outState.putString("categories",tv_categoriesSP.getText().toString().trim());
-        outState.putString("opentime",textView_openText_profileSP.getText().toString().trim());
-        outState.putString("closetime",textView_closeText_profileSP.getText().toString().trim());
-        outState.putString("mcharge",et_minCharge_profileSP.getText().toString().trim());
-        outState.putString("speciality",tv_specialitySP.getText().toString().trim());
-        outState.putString("radius",tv_serviceArea_spProfile.getText().toString().trim());
-        outState.putString("employees",editText_employees_profileSP.getText().toString().trim());
-        outState.putString("workdays",tv_workdays_spProfile.getText().toString().trim());
+        outState.putBoolean("isEditing",isEditing); // to save the state of Editing
+
 
     }
 }

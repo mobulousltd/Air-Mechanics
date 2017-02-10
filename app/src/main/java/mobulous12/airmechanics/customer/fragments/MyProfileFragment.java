@@ -4,6 +4,7 @@ package mobulous12.airmechanics.customer.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.customer.activities.LoginActivity;
+import mobulous12.airmechanics.databinding.ProfileScreenBinding;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
@@ -51,6 +53,7 @@ import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 import static android.app.Activity.RESULT_OK;
+import static android.databinding.DataBindingUtil.inflate;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +62,6 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 
 
     private Menu myMenu;
-    private boolean isEditable = false;
     private TextView textView_userName_Profile, textView_nameText_profile,
             textView_name_profile, textView_contact_numberText_profile,tv_setContact,
             textView_contact_number_profile, textView_emailText_profile, textView_email_profile,
@@ -83,6 +85,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
     private String lat="", lng="";
     private  View view;
     private TextView tv_contactNum;
+    private boolean isEditing = false;
 
 
     public MyProfileFragment() {
@@ -97,93 +100,105 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.profile_screen, container, false);
-
-        regular_font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf");
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         ((HomeActivity) getActivity()).setToolbarTitle(getResources().getString(R.string.headername_profile));
         ((HomeActivity) getActivity()).toolbarVisible();
         ((HomeActivity) getActivity()).setNavigationIcon();
 
-        Font.setFontHeader(HomeActivity.toolbar_title, getActivity());
+        if(view==null)
+        {
+
+            ProfileScreenBinding binding =  DataBindingUtil.inflate(inflater,R.layout.profile_screen,container,false);
+            view = binding.getRoot();
+
+            regular_font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Raleway-Regular.ttf");
+
+
+            Font.setFontHeader(HomeActivity.toolbar_title, getActivity());
 
 
         /*views*/
-        textView_userName_Profile = (TextView) view.findViewById(R.id.textView_userName_Profile);
+            textView_userName_Profile = (TextView) view.findViewById(R.id.textView_userName_Profile);
 
-        textView_nameText_profile = (TextView) view.findViewById(R.id.textView_nameText_profile);
-        editText_name_profile = (EditText) view.findViewById(R.id.editText_name_profile);
+            textView_nameText_profile = (TextView) view.findViewById(R.id.textView_nameText_profile);
+            editText_name_profile = (EditText) view.findViewById(R.id.editText_name_profile);
 
-        textView_contact_numberText_profile = (TextView) view.findViewById(R.id.textView_contact_numberText_profile);
+            textView_contact_numberText_profile = (TextView) view.findViewById(R.id.textView_contact_numberText_profile);
 //        tv_setContact = (TextView) view.findViewById(R.id.tv_setContact);
-        tv_contactNum = (TextView) view.findViewById(R.id.tv_contactNum);
+            tv_contactNum = (TextView) view.findViewById(R.id.tv_contactNum);
 //        editText_contact_number_profile = (EditText) view.findViewById(R.id.editText_contact_number_profile);
 
-        textView_emailText_profile = (TextView) view.findViewById(R.id.textView_emailText_profile);
-        editText_email_profile = (EditText) view.findViewById(R.id.editText_email_profile);
+            textView_emailText_profile = (TextView) view.findViewById(R.id.textView_emailText_profile);
+            editText_email_profile = (EditText) view.findViewById(R.id.editText_email_profile);
 
 
-        textView_addressText_profile = (TextView) view.findViewById(R.id.textView_addressText_profile);
-        tv_address_profile = (TextView) view.findViewById(R.id.tv_address_profile);
+            textView_addressText_profile = (TextView) view.findViewById(R.id.textView_addressText_profile);
+            tv_address_profile = (TextView) view.findViewById(R.id.tv_address_profile);
 
 //        editText_address_profile = (EditText) view.findViewById(R.id.editText_address_profile);
 
-        textView_change_password_profile = (TextView) view.findViewById(R.id.textView_change_password_profile);
+            textView_change_password_profile = (TextView) view.findViewById(R.id.textView_change_password_profile);
 //        textView_app_notification_profile = (TextView) view.findViewById(R.id.textView_app_notification_profile);
-        root_changePassword = (RelativeLayout) view.findViewById(R.id.root_changePassword);
-        linear_setContact = (LinearLayout) view.findViewById(R.id.linear_setContact);
-        profile_image = (CircularImageView) view.findViewById(R.id.circularImageView_profileScreen);
-        profile_name = (TextView) view.findViewById(R.id.textView_userName_Profile);
+            root_changePassword = (RelativeLayout) view.findViewById(R.id.root_changePassword);
+            linear_setContact = (LinearLayout) view.findViewById(R.id.linear_setContact);
+            profile_image = (CircularImageView) view.findViewById(R.id.circularImageView_profileScreen);
+            profile_name = (TextView) view.findViewById(R.id.textView_userName_Profile);
 
 
 //        tv_setContact.setVisibility(View.GONE);
-        tv_contactNum.setVisibility(View.VISIBLE);
+            tv_contactNum.setVisibility(View.VISIBLE);
 
         /*make edit texts Non - Editable*/
 
-        editText_name_profile.setEnabled(false);
-        linear_setContact.setEnabled(false);
+            editText_name_profile.setEnabled(false);
+            linear_setContact.setEnabled(false);
 //        tv_setContact.setEnabled(false);
 //        editText_contact_number_profile.setEnabled(false);
-        editText_email_profile.setEnabled(false);
+            editText_email_profile.setEnabled(false);
 //        editText_address_profile.setEnabled(false);
 
-        profile_image.setEnabled(false);
-        tv_address_profile.setEnabled(false);
-        root_changePassword.setEnabled(false);
+            profile_image.setEnabled(false);
+            tv_address_profile.setEnabled(false);
+            root_changePassword.setEnabled(false);
 
 
         /*set Fonts*/
-        Font.setFontTextView(textView_userName_Profile, getActivity());
-        Font.setFontTextView(textView_nameText_profile, getActivity());
-        editText_name_profile.setTypeface(regular_font);
-        Font.setFontTextView(textView_contact_numberText_profile, getActivity());
+            Font.setFontTextView(textView_userName_Profile, getActivity());
+            Font.setFontTextView(textView_nameText_profile, getActivity());
+            editText_name_profile.setTypeface(regular_font);
+            Font.setFontTextView(textView_contact_numberText_profile, getActivity());
 //        Font.setFontTextView(tv_setContact, getActivity());
 //        editText_contact_number_profile.setTypeface(regular_font);
-        Font.setFontTextView(textView_emailText_profile, getActivity());
-        editText_email_profile.setTypeface(regular_font);
-        Font.setFontTextView(textView_addressText_profile, getActivity());
-        Font.setFontTextView(tv_address_profile, getActivity());
+            Font.setFontTextView(textView_emailText_profile, getActivity());
+            editText_email_profile.setTypeface(regular_font);
+            Font.setFontTextView(textView_addressText_profile, getActivity());
+            Font.setFontTextView(tv_address_profile, getActivity());
 //        editText_address_profile.setTypeface(regular_font);
 
-        Font.setFontTextView(textView_change_password_profile, getActivity());
+            Font.setFontTextView(textView_change_password_profile, getActivity());
 //        Font.setFontTextView(textView_app_notification_profile, getActivity());
 
 
-        view.findViewById(R.id.ll_Contact).setVisibility(View.GONE);
+            view.findViewById(R.id.ll_Contact).setVisibility(View.GONE);
 
-        profile_image.setOnClickListener(this);
-        linear_setContact.setOnClickListener(this);
-        tv_address_profile.setOnClickListener(this);
-        root_changePassword.setOnClickListener(this);
+            profile_image.setOnClickListener(this);
+            linear_setContact.setOnClickListener(this);
+            tv_address_profile.setOnClickListener(this);
+            root_changePassword.setOnClickListener(this);
 
-        if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("social"))
-        {
-            view.findViewById(R.id.ll_changepasssp).setVisibility(View.GONE);
+            if (SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("social")) {
+                view.findViewById(R.id.ll_changepasssp).setVisibility(View.GONE);
+            }
+            viewProfileServiceHit();
         }
-        viewProfileServiceHit();
+        else
+        {
+            if(savedInstanceState != null) {
+                isEditing = savedInstanceState.getBoolean("isEditing");
+            }
+
+        }
 
         return view;
     }
@@ -249,6 +264,31 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 //            editing.setVisible(true);
 //        }
 
+        //        Checking to keep editing state Intact
+        if (isEditing)
+        {
+            save.setVisible(true);
+            editing.setVisible(false);
+
+                /*make edit texts Editable*/
+            profile_image.setEnabled(true);
+            editText_name_profile.setEnabled(true);
+            linear_setContact.setEnabled(true);
+            tv_address_profile.setEnabled(true);
+            root_changePassword.setEnabled(true);
+            view.findViewById(R.id.ll_Contact).setVisibility(View.VISIBLE);
+            if (SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal")) {
+                editText_email_profile.setEnabled(true);
+            }
+
+            // Update contact field with New Number
+            tv_contactNum.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.PhoneNumber));
+        }
+        else
+        {
+            save.setVisible(false);
+            editing.setVisible(true);
+        }
 
     }
 
@@ -260,7 +300,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
               /*make edit texts Editable*/
             case R.id.edit_profile:
 
-                isEditable = true;
+                isEditing = true;   // Editing is Enabled
                 save.setVisible(true);
                 editing.setVisible(false);
 
@@ -279,7 +319,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 
             case R.id.save_profile:
 
-                isEditable = false;
+                isEditing = false;  // Editing is Disabled
                 save.setVisible(false);
                 editing.setVisible(true);
 
@@ -600,6 +640,15 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
             }
 
         }
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean("isEditing",isEditing); // to save the state of Editing
+
 
     }
 

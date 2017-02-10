@@ -40,6 +40,7 @@
                         android:layout_marginTop="@dimen/_7sdp"
                         android:text="@string/dummy_name"
                         android:textColor="@color/white"
+                        android:freezesText="true"
                         android:textSize="@dimen/sp_16" />
                 </LinearLayout>
 
@@ -71,7 +72,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
-                        android:maxLength="35"
+                        android:freezesText="true"
                         android:theme="@style/MyEditTextTheme" />
 
                 </LinearLayout>
@@ -164,6 +165,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:gravity="end"
                                 android:hint="@string/not_available"
+                                android:freezesText="true"
                                 android:textColor="@color/text_gray"
                                 android:textColorHint="@color/line_gray"
                                 android:textSize="@dimen/sp_13" />
@@ -231,6 +233,7 @@
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
                         android:maxLength="35"
+                        android:freezesText="true"
                         android:theme="@style/MyEditTextTheme" />
 
 
@@ -270,6 +273,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13"
+                        android:freezesText="true"
                         android:theme="@style/MyEditTextTheme" />
 
 
@@ -304,6 +308,7 @@
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
+                        android:freezesText="true"
                         android:textSize="@dimen/sp_13" />
 
                 </LinearLayout>
@@ -405,6 +410,7 @@
                         android:hint="@string/dummy_address"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
+                        android:freezesText="true"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13" />
 
@@ -449,7 +455,8 @@
                             android:paddingBottom="@dimen/_10sdp"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingTop="@dimen/_10sdp"
-                            android:text="10:00"
+                            android:text="09:00"
+                            android:freezesText="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/line_gray"
                             android:textSize="@dimen/sp_13" />
@@ -476,7 +483,8 @@
                             android:paddingBottom="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
                             android:paddingTop="@dimen/_10sdp"
-                            android:text="10:00"
+                            android:text="18:00"
+                            android:freezesText="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/line_gray"
                             android:textSize="@dimen/sp_13" />
@@ -517,6 +525,7 @@
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
+                        android:freezesText="true"
                         android:textSize="@dimen/sp_13"
                         android:theme="@style/MyEditTextTheme" />
 
@@ -549,6 +558,7 @@
                         android:hint="@string/dummy_address"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
+                        android:freezesText="true"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13" />
 
@@ -583,6 +593,7 @@
                         android:hint="@string/not_available"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
+                        android:freezesText="true"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13" />
                 </LinearLayout>
@@ -620,6 +631,7 @@
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/line_gray"
+                        android:freezesText="true"
                         android:textSize="@dimen/sp_13"
                         android:theme="@style/MyEditTextTheme" />
 
@@ -653,6 +665,7 @@
                         android:hint="@string/not_available"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/black"
+                        android:freezesText="true"
                         android:textColorHint="@color/line_gray"
                         android:textSize="@dimen/sp_13" />
 

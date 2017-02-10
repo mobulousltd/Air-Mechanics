@@ -245,6 +245,10 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                     }
                     if(responseObj.getString("requestKey").equals("change_contact"))
                     {
+
+                        JSONObject response = responseObj.getJSONObject("response");
+                        String updatedContact = response.getString("contact_no");
+                        SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.PhoneNumber, updatedContact);
                         setResult(RESULT_OK);
                         finish();
                     }
@@ -281,7 +285,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                 }
                 else
                 {
-                    Toast.makeText(VerificationActivity.this, "Please enter correct verification code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerificationActivity.this, "Please enter correct verification code.", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
