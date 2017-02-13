@@ -32,6 +32,7 @@ public class MyApplication extends MultiDexApplication
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     Activity activity;
+    private String money="";
 
     public enum enIsComingFrom
     {
@@ -121,4 +122,33 @@ public class MyApplication extends MultiDexApplication
         BitmapAjaxCallback.clearCache();
     }
 
+
+    /* PAYMENT RELATED METHODS*/
+    public String getCurrencyFromMoney(String money)
+    {
+
+        String currency = money.substring(0,3);
+        return currency;
+    }
+
+    public String getPriceFromMoney(String money)
+    {
+        int l = money.length();
+        String price = money.substring(3,l);
+        return price;
+    }
+
+    public void setMoney(String currency, String price)
+    {
+        money = currency+price;
+    }
+    public void setJustMoney(String amount)
+    {
+        this.money = amount;
+    }
+
+    public String getMoney()
+    {
+        return money;
+    }
 }

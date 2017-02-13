@@ -1,11 +1,13 @@
 package mobulous12.airmechanics.customer.fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,8 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,11 +37,14 @@ import java.util.Random;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.PlanBean;
+import mobulous12.airmechanics.beans.SubscriptionPlanBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.customer.activities.PaymentActivity;
 //import mobulous12.airmechanics.customer.adapters.SubscriptionPlanRecyclerAdapter;
+import mobulous12.airmechanics.customer.adapters.SubscriptionPlanRecyclerAdapter;
 import mobulous12.airmechanics.databinding.FragmentSubscriptionPlanBinding;
 import mobulous12.airmechanics.databinding.SubscriptionPlanCustomCardsBinding;
+import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
@@ -56,9 +63,9 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 
 
     private static final int PAY_REQCODE = 1012;
-    ArrayList<PlanBean> arrayList;
-    RecyclerView recyclerView_subscriptionPlan;
-//    SubscriptionPlanRecyclerAdapter subsPlanRecyclerAdapter;
+    private ArrayList<SubscriptionPlanBean> arrayList;
+    private RecyclerView recyclerView_subscriptionPlan;
+    private SubscriptionPlanRecyclerAdapter subsPlanAdapter;
     private View view;
 
     ///////////////////////
@@ -77,6 +84,11 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     private String id = "", annualid="", monthlyid="";
     private String monthlyPayAmount="",annualPayAmount="",transactionId="",payamount="";
     RelativeLayout customerplan;
+    private String selectedCurrency = "",price_usd = "",price_kes = "";
+    private String money = "";
+    private Spinner spinner;
+    private SubscriptionPlanBean planBean;
+
     //////////////////////
 
 
@@ -95,24 +107,24 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        SubscriptionPlanCustomCardsBinding binding=DataBindingUtil.inflate(inflater,R.layout.subscription_plan_custom_cards, container, false);
+        FragmentSubscriptionPlanBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_subscription_plan,container,false);
         view=binding.getRoot();
 
-            monthlySubscriptionTitle = (TextView) view.findViewById(R.id.textView_durationMonthlySubscriptionPlan);
-            monthlySubscriptionAmount = (TextView) view.findViewById(R.id.textView_monthlyAmountSubscriptionPlan);
-//            monthlySubscription_benefit = (TextView) view.findViewById(R.id.textView1_benefitsHeadingSubcriptionPlan);
-//            monthlySubscription_description = (TextView) view.findViewById(R.id.textView_upper_descriptionSubscriptionPlan);
-        btn_MonthlySubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_monthlysubscription);
-        bt_customerplan = (Button) view.findViewById(R.id.bt_customerplan);
-            annualSubscriptionTitle = (TextView) view.findViewById(R.id.textView_durationAnnualSubscriptionPlan);
-            annualSubscriptionAmount = (TextView) view.findViewById(R.id.textView_annualyAmountSubscriptionPlan);
-//            annualSubscription_benefit = (TextView) view.findViewById(R.id.textView2_benefitsHeadingSubcriptionPlan);
-//            annualSubscription_description = (TextView) view.findViewById(R.id.textView_lower_descriptionSubscriptionPlan);
-        btn_AnnualSubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_annualSubscription);
+//            monthlySubscriptionTitle = (TextView) view.findViewById(R.id.textView_durationMonthlySubscriptionPlan);
+//            monthlySubscriptionAmount = (TextView) view.findViewById(R.id.textView_monthlyAmountSubscriptionPlan);
+////            monthlySubscription_benefit = (TextView) view.findViewById(R.id.textView1_benefitsHeadingSubcriptionPlan);
+////            monthlySubscription_description = (TextView) view.findViewById(R.id.textView_upper_descriptionSubscriptionPlan);
+//        btn_MonthlySubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_monthlysubscription);
+//        bt_customerplan = (Button) view.findViewById(R.id.bt_customerplan);
+//            annualSubscriptionTitle = (TextView) view.findViewById(R.id.textView_durationAnnualSubscriptionPlan);
+//            annualSubscriptionAmount = (TextView) view.findViewById(R.id.textView_annualyAmountSubscriptionPlan);
+////            annualSubscription_benefit = (TextView) view.findViewById(R.id.textView2_benefitsHeadingSubcriptionPlan);
+////            annualSubscription_description = (TextView) view.findViewById(R.id.textView_lower_descriptionSubscriptionPlan);
+//        btn_AnnualSubscription_BuyNow = (Button) view.findViewById(R.id.button_buyNow_annualSubscription);
 
-        view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.GONE);
-        view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.GONE);
-        view.findViewById(R.id.customerplan).setVisibility(View.GONE);
+//        view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.GONE);
+//        view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.GONE);
+//        view.findViewById(R.id.customerplan).setVisibility(View.GONE);
         generateTransId();
         subscriptionPlanListServicehit();
         if(SharedPreferenceWriter.getInstance(getActivity()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
@@ -125,12 +137,6 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             ((HomeActivityServicePro)getActivity()).setToolbarTitleSP(getResources().getString(R.string.headername_subscriptionplan));
             ((HomeActivityServicePro)getActivity()).setNavigationIconSP();
         }
-//
-//        recyclerView_subscriptionPlan = (RecyclerView) view.findViewById(R.id.recyclerView_subscriptionPlan);
-//        subsPlanRecyclerAdapter = new SubscriptionPlanRecyclerAdapter(getActivity());
-//        recyclerView_subscriptionPlan.setAdapter(subsPlanRecyclerAdapter);
-//        recyclerView_subscriptionPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
 
         return view;
@@ -148,6 +154,81 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                 + r.nextInt(10000);
         Log.i("TRANS_ID",transId);
      }
+
+    private void showMeCurrencyAlert()
+    {
+
+        AlertDialog.Builder currencyBuilder =  new AlertDialog.Builder(getActivity());
+        currencyBuilder.setCancelable(false);
+        currencyBuilder.setTitle("Select Currency");
+        currencyBuilder.setIcon(R.drawable.logo);
+
+        LayoutInflater li = LayoutInflater.from(getActivity());
+        View alertView = li.inflate(R.layout.select_currency_pop_up, null);
+        currencyBuilder.setView(alertView);
+
+
+        spinner = (Spinner) alertView.findViewById(R.id.spinner_currency);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.currency_array, android.R.layout.simple_spinner_item);
+        spinner.setPrompt("Currency");
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+
+        spinner.setAdapter(adapter);
+
+
+
+        currencyBuilder.setPositiveButton("DONE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                selectedCurrency = String.valueOf(spinner.getSelectedItem());
+
+                if(!selectedCurrency.equalsIgnoreCase("Currency"))
+                {
+                    Log.w("Currency:",selectedCurrency);
+
+                    if(selectedCurrency.equalsIgnoreCase("USD"))
+                    {
+                        payamount = selectedCurrency+planBean.getPlanPayAmountUSD();
+                    }
+                    else {
+                        payamount = selectedCurrency+planBean.getPlanPayAmountKES();
+                    }
+
+                    planPurchaseServiceHit();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Please select a currency.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        currencyBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = currencyBuilder.create();
+        alertDialog.show();
+
+        //Buttons
+        Button positive_button =  alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        Button negative_button =  alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        setPositiveNegativeButtonColor(positive_button,negative_button);
+    }
+
+    private void setPositiveNegativeButtonColor(Button positive,Button negative)
+    {
+//        Font.setFontButton(positive,this);
+        positive.setTextColor(getResources().getColor(R.color.blue));
+//        Font.setFontButton(negative,this);
+        negative.setTextColor(getResources().getColor(R.color.black));
+    }
+
 
 /*  Services*/
     private void subscriptionPlanListServicehit()
@@ -177,7 +258,7 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
-        multipartEntityBuilder.addTextBody("planId", id);
+        multipartEntityBuilder.addTextBody("planId", planBean.getId());
         multipartEntityBuilder.addTextBody("transactionId", transactionId);
         multipartEntityBuilder.addTextBody("payamount", payamount);
 
@@ -214,23 +295,54 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                         if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
                         {
 
-                            view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.GONE);
-                            view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.GONE);
-                            view.findViewById(R.id.customerplan).setVisibility(View.VISIBLE);
-                            arrayList=new ArrayList<PlanBean>();
+//                            view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.GONE);
+//                            view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.GONE);
+//                            view.findViewById(R.id.customerplan).setVisibility(View.VISIBLE);
+
                             if(responseArr.length()==0)
                             {
                                 view.findViewById(R.id.tv_noplan).setVisibility(View.VISIBLE);
                             }
-                            for(int i = 0;i<responseArr.length();i++)
-                            {
+                            else {
+                                view.findViewById(R.id.tv_noplan).setVisibility(View.GONE);
+                            }
+
+                            arrayList=new ArrayList<SubscriptionPlanBean>();
+
+                            for(int i = 0;i<responseArr.length();i++) {
                                 JSONObject j_obj = responseArr.getJSONObject(i);
-                                payamount=j_obj.getString("payamount");
-                                id=j_obj.getString("id");
-                                TextView tv_custPlanName = (TextView) view.findViewById(R.id.tv_custPlanName);
-                                tv_custPlanName.setText(j_obj.getString("plan_name"));
-                                ((TextView)view.findViewById(R.id.tv_planprice)).setText("$"+payamount);
-                                bt_customerplan.setOnClickListener(this);
+                                SubscriptionPlanBean bean = new SubscriptionPlanBean();
+                                bean.setId(j_obj.getString("id"));
+                                bean.setUserType("customer");
+                                bean.setPlanName(j_obj.getString("plan_name"));
+                                bean.setPlanPayAmountKES(j_obj.getString("price_kes"));
+                                bean.setPlanPayAmountUSD(j_obj.getString("price_usd"));
+                                bean.setTransactionId(j_obj.getString("transaction_id"));
+
+                                arrayList.add(bean);
+                            }
+
+                                /*RECYCLER VIEW and adapter functionality*/
+                                recyclerView_subscriptionPlan = (RecyclerView) view.findViewById(R.id.recyclerView_subscriptionPlan);
+                                subsPlanAdapter = new SubscriptionPlanRecyclerAdapter(getActivity(),arrayList);
+                                recyclerView_subscriptionPlan.setAdapter(subsPlanAdapter);
+                                recyclerView_subscriptionPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+//                               Adapter listener
+                                subsPlanAdapter.onItemClickListener(new SubscriptionPlanRecyclerAdapter.MyClickListener() {
+                                    @Override
+                                    public void onItemClick(View v, int position)
+                                    {
+                                        planBean = arrayList.get(position);
+                                        showMeCurrencyAlert();
+                                    }
+                                });
+
+
+//                                TextView tv_custPlanName = (TextView) view.findViewById(R.id.tv_custPlanName);
+//                                tv_custPlanName.setText(j_obj.getString("plan_name"));
+//                                ((TextView)view.findViewById(R.id.tv_planprice)).setText("$"+payamount);
+//                                bt_customerplan.setOnClickListener(this);
 //
 //                                if(j_obj.getString("validity").equalsIgnoreCase("1 months"))
 //                                {
@@ -250,41 +362,87 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 //                                    btn_AnnualSubscription_BuyNow.setOnClickListener(this);
 //                                    annualSubscription_description.setText("Annual credits will be "+j_obj.getString("creadits")+" points.");
 //                                }
-                            }
+
                         }
 
 //                   //  service provider
-                        else {
+                        else
+                        {
 
-                            view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.VISIBLE);
-                            view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.VISIBLE);
-                            view.findViewById(R.id.customerplan).setVisibility(View.GONE);
-                                for (int i = 0; i < responseArr.length(); i++)
+                            if(responseArr.length()==0)
+                            {
+                                view.findViewById(R.id.tv_noplan).setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                view.findViewById(R.id.tv_noplan).setVisibility(View.GONE);
+                            }
+
+                            arrayList=new ArrayList<SubscriptionPlanBean>();
+
+                            for(int i = 0;i<responseArr.length();i++)
+                            {
+                                JSONObject j_obj = responseArr.getJSONObject(i);
+                                SubscriptionPlanBean bean = new SubscriptionPlanBean();
+                                bean.setId(j_obj.getString("id"));
+                                bean.setUserType(j_obj.getString("user_type"));
+                                bean.setPlanName(j_obj.getString("plan_type"));
+                                bean.setPlanPayAmountKES(j_obj.getString("price_kes"));
+                                bean.setPlanPayAmountUSD(j_obj.getString("price_usd"));
+                                bean.setTransactionId(j_obj.getString("transaction_id"));
+
+                                arrayList.add(bean);
+                            }
+
+                                /*RECYCLER VIEW and adapter functionality*/
+                            recyclerView_subscriptionPlan = (RecyclerView) view.findViewById(R.id.recyclerView_subscriptionPlan);
+                            subsPlanAdapter = new SubscriptionPlanRecyclerAdapter(getActivity(),arrayList);
+                            recyclerView_subscriptionPlan.setAdapter(subsPlanAdapter);
+                            recyclerView_subscriptionPlan.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+//                               Adapter listener
+                            subsPlanAdapter.onItemClickListener(new SubscriptionPlanRecyclerAdapter.MyClickListener() {
+                                @Override
+                                public void onItemClick(View v, int position)
                                 {
-                                    JSONObject object = responseArr.getJSONObject(i);
-                                    String planType = object.getString("plan_type");
-                                    String rate = object.getString("rate");
-                                    String description = object.getString("description");
-                                    String id = object.getString("id");
-                                    if (id.equalsIgnoreCase("1"))
-                                    {
-                                        monthlyid=object.getString("id");
-                                        monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
-                                        monthlyPayAmount = rate;
-                                        monthlySubscriptionAmount.setText("$"+monthlyPayAmount);
-//                                        monthlySubscription_description.setText(description);
-                                        btn_MonthlySubscription_BuyNow.setOnClickListener(this);
-                                    }
-                                    if (id.equalsIgnoreCase("4"))
-                                    {
-                                        annualid=object.getString("id");
-                                        annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
-                                        annualPayAmount = rate;
-                                        annualSubscriptionAmount.setText("$"+annualPayAmount);
-//                                        annualSubscription_description.setText(description);
-                                        btn_AnnualSubscription_BuyNow.setOnClickListener(this);
-                                    }
+                                    planBean = arrayList.get(position);
+                                    showMeCurrencyAlert();
                                 }
+                            });
+
+
+//                            arrayList=new ArrayList<SubscriptionPlanBean>();
+//                            view.findViewById(R.id.relative_upper_monthlySubscriptionPlan).setVisibility(View.VISIBLE);
+//                            view.findViewById(R.id.relative_lower_annualSubscriptionPlan).setVisibility(View.VISIBLE);
+//                            view.findViewById(R.id.customerplan).setVisibility(View.GONE);
+//                                for (int i = 0; i < responseArr.length(); i++)
+//                                {
+//                                    JSONObject object = responseArr.getJSONObject(i);
+//                                    String planType = object.getString("plan_type");
+//                                    String rate = object.getString("rate");
+//                                    String description = object.getString("description");
+//                                    String id = object.getString("id");
+//                                    if (id.equalsIgnoreCase("1"))
+//                                    {
+//                                        monthlyid=object.getString("id");
+//                                        monthlySubscriptionTitle.setText(getString(R.string.duration_myplan));
+//                                        monthlyPayAmount = rate;
+//                                        monthlySubscriptionAmount.setText("$"+monthlyPayAmount);
+////                                        monthlySubscription_description.setText(description);
+//                                        btn_MonthlySubscription_BuyNow.setOnClickListener(this);
+//                                    }
+//                                    if (id.equalsIgnoreCase("4"))
+//                                    {
+//                                        annualid=object.getString("id");
+//                                        annualSubscriptionTitle.setText(getString(R.string.duration_annual_subscription));
+//                                        annualPayAmount = rate;
+//                                        annualSubscriptionAmount.setText("$"+annualPayAmount);
+////                                        annualSubscription_description.setText(description);
+//                                        btn_AnnualSubscription_BuyNow.setOnClickListener(this);
+//                                    }
+//                                }
+
+
                              }
                     }
 //                    /*  PURCHASE SERVICE RESPONSE  */
@@ -296,6 +454,8 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 //                   customer
                         if(SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
                         {
+
+                            Log.w("Subscrip_Money:",payamount);
                             Toast.makeText(getActivity(), "Subscription Plan purchased Successfully.", Toast.LENGTH_SHORT).show();
 //                            if(planId.equalsIgnoreCase("1"))
 //                            {
@@ -311,11 +471,15 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
 //                service provider
                         else
                         {
-                            if(planId.equalsIgnoreCase("1"))
+                            if(planBean.getId().equalsIgnoreCase("1"))
                             {
+                                Log.w("Monthly_Money:",payamount);
                                 Toast.makeText(getActivity(), "Monthly Plan purchased Successfully.", Toast.LENGTH_SHORT).show();
                             }
-                            else {
+                            if(planBean.getId().equalsIgnoreCase("4"))
+                            {
+
+                                Log.w("Annual_Money:",payamount);
                                 Toast.makeText(getActivity(), "Annual Plan purchased Successfully.", Toast.LENGTH_SHORT).show();
                             }
 

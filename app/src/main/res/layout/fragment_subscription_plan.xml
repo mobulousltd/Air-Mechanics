@@ -3,16 +3,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_noplan"
+            android:padding="@dimen/_5sdp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:text="@string/nofreePlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
         <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:scrollIndicators="end"
+            android:scrollbarThumbVertical="@color/scrollbar_color"
+            android:scrollbarSize="@dimen/_2sdp"
             android:id="@+id/recyclerView_subscriptionPlan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"/>
+            android:layout_marginTop="@dimen/_3sdp"
+            />
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </layout>
