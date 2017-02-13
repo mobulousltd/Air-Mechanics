@@ -29,6 +29,16 @@ public class ProfileBean implements Parcelable {
     private String employees="";
     private String speciality="";
     private String mnCharg="";
+    private String dollarOrKes;
+
+    public String getDollarOrKes() {
+        return dollarOrKes;
+    }
+
+    public void setDollarOrKes(String dollarOrKes) {
+        this.dollarOrKes = dollarOrKes;
+    }
+
     private ArrayList<String> imagesAttach=new ArrayList<>();
 
     public ArrayList<String> getImagesAttach() {
@@ -59,8 +69,8 @@ public class ProfileBean implements Parcelable {
         employees = in.readString();
         speciality = in.readString();
         mnCharg = in.readString();
+        dollarOrKes = in.readString();
         imagesAttach =in.createStringArrayList();
-
     }
 
     public static final Creator<ProfileBean> CREATOR = new Creator<ProfileBean>() {
@@ -258,6 +268,7 @@ public class ProfileBean implements Parcelable {
         dest.writeString(employees);
         dest.writeString(speciality);
         dest.writeString(mnCharg);
+        dest.writeString(dollarOrKes);
        dest.writeStringList(imagesAttach);
     }
 }

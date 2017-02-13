@@ -20,11 +20,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -64,8 +67,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment_SP extends Fragment implements View.OnClickListener, MyDialogListenerInterface, ApiListener
-{
+public class ProfileFragment_SP extends Fragment implements View.OnClickListener, MyDialogListenerInterface, ApiListener, AdapterView.OnItemSelectedListener {
 
     private View view;
     private MenuItem save, editing;
@@ -91,11 +93,13 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     private EditText et_minCharge_profileSP;
     private boolean isEditing = false;
 
+    private Spinner spinner;
 
     public ProfileFragment_SP() {
         // Required empty public constructor
     }
     private CircularImageView profileImage;
+    private String selectedDollarOrKes = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -219,6 +223,13 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //            profileImage.setImageResource(R.drawable.default_profile_pic);
 //        }
 
+        spinner = (Spinner) view.findViewById(R.id.spinner_profileFragmentSp);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.options_money, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        spinner.setEnabled(false);
         return view;
     }  // onCreateView Ends Here
 
@@ -587,6 +598,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //                et_companyname.setEnabled(true);
                 tv_categoriesSP.setEnabled(true);
                 tv_specialitySP.setEnabled(true);
+                spinner.setEnabled(true);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.VISIBLE);
                 if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal"))
                 {
@@ -619,6 +631,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //                et_companyname.setEnabled(false);
                 tv_categoriesSP.setEnabled(false);
                 tv_specialitySP.setEnabled(false);
+                spinner.setEnabled(false);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.GONE);
                 view.findViewById(R.id.ll_changepasssp).setEnabled(false);
                 if(validate())
@@ -676,7 +689,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         multipartbuilder.addTextBody("radius", radius);
         multipartbuilder.addTextBody("working_days", workdays);
         multipartbuilder.addTextBody("employees", editText_employees_profileSP.getText().toString());
-        multipartbuilder.addTextBody("min_charges", et_minCharge_profileSP.getText().toString());
+        multipartbuilder.addTextBody("min_charges", selectedDollarOrKes+et_minCharge_profileSP.getText().toString());
 //        multipartbuilder.addTextBody("companyName", et_companyname.getText().toString());
 
 
@@ -1180,6 +1193,19 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
         outState.putBoolean("isEditing",isEditing); // to save the state of Editing
 
+
+    }
+
+    //    SPINNER LISTENER
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        selectedDollarOrKes = parent.getItemAtPosition(position).toString();
+    }
+
+//    SPINNER LISTENER
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }
