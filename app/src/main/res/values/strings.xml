@@ -316,4 +316,15 @@
     <string name="current_balance_is">Current balance is</string>
 
 
+
+
+
+
+
+    <string name="currency">Currency</string>
+    <string-array name="currency_array">
+        <item>Currency</item>
+        <item>KES</item>
+        <item>USD</item>
+    </string-array>
 </resources>
