@@ -455,9 +455,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_7sdp"
-                        android:prompt="@string/email"
+                        android:backgroundTint="@android:color/transparent"
                         />
 
                     <EditText

@@ -53,6 +53,7 @@ import mobulous12.airmechanics.databinding.FragmentProfileSpBinding;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.serviceprovider.adapters.CustomSpinnerAdapter;
 import mobulous12.airmechanics.serviceprovider.dialogs.CategoriesDialogFragment;
 import mobulous12.airmechanics.serviceprovider.dialogs.ServiceRadiusDialogFrag;
 import mobulous12.airmechanics.serviceprovider.dialogs.SpecialityDialogFrag;
@@ -79,6 +80,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     private TextView textView_userName_ProfileSP, textView_openText_profileSP, textView_closeText_profileSP,
             tv_serviceArea_spProfile,tv_workdays_spProfile, tv_address_profileSP,tv_categoriesSP,tv_specialitySP,
             editText_contactNumber_profileSP,tv_minCharge_profileSP,editText_companyNameSP;
+
 
     private int hour,minute;
 
@@ -224,10 +226,19 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //        }
 
         spinner = (Spinner) view.findViewById(R.id.spinner_profileFragmentSp);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.currency_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getActivity(), R.layout.custom_spinner_layout, getActivity().getResources().getStringArray(R.array.options_money));
         spinner.setAdapter(adapter);
+//        if (currencyType != null)
+//        {
+//            if (currencyType.equals("KES"))
+//            {
+//                spinner.setSelection(0);
+//            }
+//            else if (currencyType.equals("USD"))
+//            {
+//                spinner.setSelection(1);
+//            }
+//        }
         spinner.setOnItemSelectedListener(this);
         spinner.setEnabled(false);
         return view;
@@ -253,7 +264,6 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         }
 
             return false;
-
     }
 
     //validations
@@ -318,6 +328,11 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         else if(et_minCharge_profileSP.getText().toString().isEmpty())
         {
             Toast.makeText(getActivity(), "Please enter Minimum Charge.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (selectedDollarOrKes.equals("Currency"))
+        {
+            Toast.makeText(getActivity(), "Please Select Currency", Toast.LENGTH_SHORT).show();
             return false;
         }
 //        else if(et_companyname.getText().toString().isEmpty())
@@ -599,6 +614,17 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 tv_categoriesSP.setEnabled(true);
                 tv_specialitySP.setEnabled(true);
                 spinner.setEnabled(true);
+
+
+                if (selectedDollarOrKes.equals("KES"))
+                {
+                    spinner.setSelection(0);
+                }
+                else if(selectedDollarOrKes.equals("USD"))
+                {
+                    spinner.setSelection(1);
+                }
+
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.VISIBLE);
                 if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal"))
                 {
@@ -631,7 +657,9 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //                et_companyname.setEnabled(false);
                 tv_categoriesSP.setEnabled(false);
                 tv_specialitySP.setEnabled(false);
+
                 spinner.setEnabled(false);
+
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.GONE);
                 view.findViewById(R.id.ll_changepasssp).setEnabled(false);
                 if(validate())
@@ -689,7 +717,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         multipartbuilder.addTextBody("radius", radius);
         multipartbuilder.addTextBody("working_days", workdays);
         multipartbuilder.addTextBody("employees", editText_employees_profileSP.getText().toString());
-        multipartbuilder.addTextBody("min_charges", selectedDollarOrKes+et_minCharge_profileSP.getText().toString());
+        multipartbuilder.addTextBody("min_charges", selectedDollarOrKes + et_minCharge_profileSP.getText().toString());
 //        multipartbuilder.addTextBody("companyName", et_companyname.getText().toString());
 
 
@@ -763,11 +791,29 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         textView_closeText_profileSP.setText(response.getString("end_time"));
                         editText_employees_profileSP.setText(response.getString("no_employe"));
 
-                        et_minCharge_profileSP.setText(response.getString("min_charge"));
+                        String minCharge = response.getString("min_charge");
+                        String currencyType = minCharge.substring(0, 3);
+                        String currency = minCharge.substring(3, minCharge.length());
+
+
+                        et_minCharge_profileSP.setText(currency);
+
+
+
+
+
+
+
+//                        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), , R.layout.custom_spinner_layout);
+
+//                        et_minCharge_profileSP.setText(response.getString("min_charge"));
+
+
 
                         categories=response.getString("categories");
                         speciality = response.getString("specilityName");
                         workdays=response.getString("workingDays");
+
 //                        et_companyname.setText(response.getString("companyName"));
 
 
@@ -960,6 +1006,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //                        et_minCharge_profileSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.MINCHARGE));
 //                        tv_workdays_spProfile.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.WORKDAYS));
 
+//                        SETTING ADAPTER FOR SPINNER
 
                         getActivity().getSupportFragmentManager().popBackStack();
                         Toast.makeText(getActivity(),"Profile Updated Successfully.",Toast.LENGTH_SHORT).show();

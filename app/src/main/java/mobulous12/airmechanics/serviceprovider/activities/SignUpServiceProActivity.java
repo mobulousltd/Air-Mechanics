@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ import android.widget.Toast;
 
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -44,6 +42,7 @@ import mobulous12.airmechanics.airinterfaces.MyDialogListenerInterface;
 import mobulous12.airmechanics.beans.ProfileBean;
 import mobulous12.airmechanics.customer.activities.VerificationActivity;
 import mobulous12.airmechanics.fonts.FontBinding;
+import mobulous12.airmechanics.serviceprovider.adapters.CustomSpinnerAdapter;
 import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
 import mobulous12.airmechanics.serviceprovider.dialogs.CategoriesDialogFragment;
 import mobulous12.airmechanics.serviceprovider.dialogs.ServiceRadiusDialogFrag;
@@ -159,14 +158,12 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
         spinnerMoney = (Spinner) findViewById(R.id.spinner_money);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options_money,R.layout.custom_spinner_layout);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMoney.setAdapter(adapter);
         spinnerMoney.setOnItemSelectedListener(this);
     } //onCreate() Ends Here
-
-
 
     @Override
     public void onClick(View view) {
@@ -379,7 +376,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             showToast("Please enter closing time");
             return false;
         }
-        else if (selectedDollarOrKes.trim().equals(""))
+        else if (selectedDollarOrKes.trim().equals("") || selectedDollarOrKes.equals("Currency"))
         {
             showToast("Please select Currency");
             return false;
@@ -872,9 +869,9 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         if (et_minchrge_sp != null)
         {
             String minCharge = et_minchrge_sp.getText().toString().trim();
-            if (!minCharge.isEmpty() && !minCharge.equalsIgnoreCase("Select Currency"))
+            if (!minCharge.isEmpty() && !minCharge.equalsIgnoreCase("Currency"))
             {
-                selectedDollarOrKes = parent.getItemAtPosition(position).toString() + et_minchrge_sp.getText().toString().trim();
+                selectedDollarOrKes = parent.getItemAtPosition(position).toString() + minCharge;
             }
         }
 

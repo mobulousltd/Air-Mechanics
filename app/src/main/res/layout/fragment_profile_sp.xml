@@ -514,11 +514,13 @@
 
                     <Spinner
                         android:id="@+id/spinner_profileFragmentSp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/dp_30"
+                        android:layout_height="@dimen/dp_30"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_horizontal"
                         />
 
                     <EditText
