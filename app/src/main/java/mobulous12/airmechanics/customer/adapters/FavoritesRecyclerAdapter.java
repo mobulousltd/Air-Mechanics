@@ -167,7 +167,7 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
         }
 
 
-        holder.tv_price.setText("Price $"+providerBean.getMin_charge());
+        holder.tv_price.setText("Price "+providerBean.getMin_charge());
 
     }
 

@@ -50,7 +50,7 @@ public class InProgressRecyclerAdapter extends RecyclerView.Adapter<InProgressRe
 
         BookingBean bean = beanArrayList.get(position);
         holder.jobOrderName_1_inProg.setText(bean.getUserName());
-        holder.jobOrderAmount_1_inProg.setText("$"+bean.getMinCharge());
+        holder.jobOrderAmount_1_inProg.setText(bean.getMinCharge());
         holder.jobOrderDate_1_inProg.setText(bean.getRequestDate());
         holder.jobOrderTime_1_inProg.setText(bean.getOpenTime()+" - "+bean.getCloseTime());
 

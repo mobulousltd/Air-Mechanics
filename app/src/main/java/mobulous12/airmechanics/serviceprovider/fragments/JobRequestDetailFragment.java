@@ -35,6 +35,7 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 public class JobRequestDetailFragment extends Fragment implements ApiListener{
 
+    FragmentJobRequestDetailBinding binding;
     String custid, reqid;
     View view;
     RecyclerView requestimg_rv;
@@ -64,7 +65,7 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        FragmentJobRequestDetailBinding binding=DataBindingUtil.inflate(inflater, R.layout.fragment_job_request_detail, container, false);
+        binding=DataBindingUtil.inflate(inflater, R.layout.fragment_job_request_detail, container, false);
         view=binding.getRoot();
         requestimg_rv=(RecyclerView)view.findViewById(R.id.requestimg_rv);
         et_price = (EditText) view.findViewById(R.id.editText_price_dynamic_job_request_detail);
@@ -127,7 +128,7 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
         multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipartEntityBuilder.addTextBody("token",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.TOKEN));
         multipartEntityBuilder.addTextBody("requestId",reqid);
-        multipartEntityBuilder.addTextBody("price",et_price.getText().toString().trim());
+        multipartEntityBuilder.addTextBody("price",binding.tvCurr.getText().toString()+et_price.getText().toString().trim());
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setActivity(getActivity());
@@ -161,7 +162,17 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
                         textView_custName.setText(jsonObject1.getString("userName"));
                         ((TextView)view.findViewById(R.id.textView_title_job_request_detail)).setText("Title: "+jsonObject1.getString("request_Title"));
                         ((TextView)view.findViewById(R.id.textView_description_job_request_detail)).setText("Description: "+jsonObject1.getString("request_description"));
-                        minCharge = Long.parseLong(jsonObject1.getString("minCharge"));
+//                        minCharge = Long.parseLong();
+                        String chrge=jsonObject1.getString("minCharge");
+                        if(chrge.contains("KES"))
+                        {
+                            binding.tvCurr.setText("KES");
+                        }
+                        else
+                        {
+                            binding.tvCurr.setText("USD");
+                        }
+                        minCharge=Long.parseLong(chrge.substring(3, chrge.length()));
                         et_price.setText(String.valueOf(minCharge));
                         ((TextView)view.findViewById(R.id.textView_date_job_request_detail)).setText(jsonObject1.getString("requestDate"));
                         view.findViewById(R.id.ll_jobrequestdetail).setVisibility(View.VISIBLE);

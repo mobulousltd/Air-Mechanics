@@ -186,7 +186,7 @@ private void setFields()
     }
 // type
     textViewServiceTypeDynamic.setText(cat);
-    textViewServiceTypeDynamic2.setText("Minimum Charges : $"+bookingBean.getMinCharge());
+    textViewServiceTypeDynamic2.setText("Minimum Charges : "+bookingBean.getMinCharge());
 //address
     textViewServiceProviderAddressDynamic.setText(bookingBean.getUseraddress());
 //    title , description and profile

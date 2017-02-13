@@ -57,7 +57,7 @@ public class MyPlanRecyclerAdapter extends RecyclerView.Adapter<MyPlanRecyclerAd
 //        }
 
         holder.myPlanDuration.setText("Subscription Plan");
-        holder.myPlanAmount.setText("$"+planBean.getPlanAmount());
+        holder.myPlanAmount.setText(planBean.getPlanAmount());
         holder.expiryDate.setText(planBean.getExpiryDate());
 //        holder.descriptionMyPlan.setText(planBean.getDescription());
 

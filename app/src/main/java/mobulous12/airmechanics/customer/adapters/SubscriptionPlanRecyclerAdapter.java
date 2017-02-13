@@ -58,8 +58,8 @@ public class SubscriptionPlanRecyclerAdapter extends RecyclerView.Adapter<Subscr
             holder.root_heading1.setBackgroundColor(context.getResources().getColor(R.color.annual_pink_color));
             holder.root_heading2.setBackgroundColor(context.getResources().getColor(R.color.annual_pink_color));
 
-            holder.tv_durationPlan1.setText(bean.getPlanName());
-            holder.tv_durationPlan2.setText(bean.getPlanName());
+            holder.tv_durationPlan1.setText("One Off");
+            holder.tv_durationPlan2.setText("One Off");
 
             holder.tv_amountPlan1.setText("KES "+bean.getPlanPayAmountKES());
             holder.tv_amountPlan2.setText("$ "+bean.getPlanPayAmountUSD());

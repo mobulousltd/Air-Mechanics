@@ -53,7 +53,7 @@ public class CompletedRecyclerAdapter extends RecyclerView.Adapter<CompletedRecy
     {
         BookingBean bean = beanArrayList.get(position);
         holder.jobOrderName_1_Comp.setText(bean.getUserName());
-        holder.jobOrderAmount_1_Comp.setText("$"+bean.getMinCharge());
+        holder.jobOrderAmount_1_Comp.setText(bean.getMinCharge());
         holder.jobOrderDate_1_Comp.setText(bean.getRequestDate());
         holder.jobOrderTime_1_Comp.setText(bean.getOpenTime()+" - "+bean.getCloseTime());
 

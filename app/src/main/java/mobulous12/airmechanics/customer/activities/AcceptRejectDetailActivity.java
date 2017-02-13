@@ -83,7 +83,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
             public void onFinish()
             {
                 //Action for when the timer has finished.
-                Toast.makeText(getApplicationContext(), "Timer finished", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Timer finished", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onTick(long millisUntilFinished)
@@ -91,7 +91,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
                 timeCalculate(millisUntilFinished/1000);
                 binding.tvMin.setText(String.format("%2d", minutes));
                 binding.tvSec.setText(String.format("%2d", seconds));
-                Log.i("Timer", ""+String.format("%2d", minutes)+" : "+String.format("%2d", seconds));
+//                Log.i("Timer", ""+String.format("%2d", minutes)+" : "+String.format("%2d", seconds));
             }
         }.start();
     }
@@ -198,7 +198,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
                         tv_descrip.setText(j_object.getString("request_description"));
                         String date=j_object.getString("requestDate");
                         tv_Date.setText(date);
-                        tv_minchrge.setText("$"+j_object.getString("minCharge"));
+                        tv_minchrge.setText(j_object.getString("minCharge"));
                         tv_jobtitle.setText(j_object.getString("request_Title"));
                         textView_AcceptRejectTime.setText(j_object.getString("open_time")+" - "+j_object.getString("close_time"));
                         AQuery aQuery = new AQuery(image_AcceptRej);

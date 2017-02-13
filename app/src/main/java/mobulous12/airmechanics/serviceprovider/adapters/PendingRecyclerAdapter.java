@@ -52,7 +52,7 @@ public class PendingRecyclerAdapter extends RecyclerView.Adapter<PendingRecycler
 
         BookingBean bean = beanArrayList.get(position);
         holder.jobOrderName_1.setText(bean.getUserName());
-        holder.jobOrderAmount_1.setText("$"+bean.getMinCharge());
+        holder.jobOrderAmount_1.setText(bean.getMinCharge());
         holder.jobOrderDate_1.setText(bean.getRequestDate());
         holder.jobOrderTime_1.setText(bean.getOpenTime()+" - "+bean.getCloseTime());
 

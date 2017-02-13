@@ -102,7 +102,16 @@
                     android:background="@color/price_job_request_detail"
                     android:gravity="center_horizontal"
                     />
-
+                <TextView
+                    android:id="@+id/tv_curr"
+                    android:text="KES"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:gravity="center_horizontal"
+                    />
                 <EditText
                     android:id="@+id/editText_price_dynamic_job_request_detail"
                     android:layout_width="wrap_content"

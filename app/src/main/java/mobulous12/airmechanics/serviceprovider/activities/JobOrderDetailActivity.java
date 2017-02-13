@@ -132,7 +132,7 @@ public class JobOrderDetailActivity extends AppCompatActivity implements View.On
 
         textViewCustomerDetailsDynamic.setText("Customer Name : "+bean.getUserName()+ "\nCustomer Number : " +bean.getUsernumber());
         textViewCustomerAddressDynamic.setText(bean.getUseraddress());
-        textViewRequestDetailDynamic.setText("Title : "+bean.getRequestname() +"\nDescription : "+ bean.getRequestdesc() +"\nMinimum Charge : $"+ bean.getMinCharge());
+        textViewRequestDetailDynamic.setText("Title : "+bean.getRequestname() +"\nDescription : "+ bean.getRequestdesc() +"\nMinimum Charge : "+ bean.getMinCharge());
         AQuery aQuery=new AQuery(request_img);
         if(bean.getRequestImgArr().length>0)
         {

@@ -53,7 +53,7 @@ public class RejectedRecyclerAapter extends RecyclerView.Adapter<RejectedRecycle
             BookingBean bean = bookingBeanArrayList.get(position);
             holder.tv_nameSp.setText(bean.getUserName());
             holder.textView_1_rejectedName.setText(bean.getRequestname());
-            holder.textView_1_rejectedAmount.setText("$"+bean.getMinCharge());
+            holder.textView_1_rejectedAmount.setText(bean.getMinCharge());
             holder.textView_1_rejectedDate.setText(bean.getRequestDate());
             holder.textView_1_rejectedTime.setText(bean.getOpenTime()+" to "+bean.getCloseTime());
 

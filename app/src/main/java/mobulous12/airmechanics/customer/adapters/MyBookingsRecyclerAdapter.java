@@ -73,7 +73,7 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
         }
 
         holder.myBookingName.setText(bookingBean.getRequestname());
-        holder.bookingAmount.setText("$"+bookingBean.getMinCharge());
+        holder.bookingAmount.setText(bookingBean.getMinCharge());
         holder.bookingDate.setText(bookingBean.getRequestDate());
         holder.bookingTime.setText(bookingBean.getOpenTime()+" - "+bookingBean.getCloseTime());
         holder.tv_sp_name_my_booking.setText(bookingBean.getUserName());

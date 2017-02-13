@@ -224,7 +224,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //        }
 
         spinner = (Spinner) view.findViewById(R.id.spinner_profileFragmentSp);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.options_money, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.currency_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);

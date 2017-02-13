@@ -159,7 +159,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
         spinnerMoney = (Spinner) findViewById(R.id.spinner_money);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options_money, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinnerMoney.setAdapter(adapter);
