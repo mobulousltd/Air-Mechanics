@@ -313,7 +313,7 @@
     <string name="noplan">You haven\'t  purchased any Plans yet.</string>
     <string name="message">Message</string>
     <string name="no_rating_to_show">No Rating To Show</string>
-    <string name="current_balance_is">Current balance is</string>
+    <string name="current_balance_is">Current balance is 0</string>
     <string name="currency">Currency</string>
     <string-array name="currency_array">
         <item>Currency</item>

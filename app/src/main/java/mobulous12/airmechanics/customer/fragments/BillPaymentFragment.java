@@ -50,7 +50,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BillPaymentFragment extends Fragment implements View.OnClickListener, ApiListener, CompoundButton.OnCheckedChangeListener {
+public class BillPaymentFragment extends Fragment implements View.OnClickListener, ApiListener {
 
 
     private RelativeLayout rootTypeOfService;
@@ -125,7 +125,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootDescription.setOnClickListener(this);
         rootTotalPrice.setOnClickListener(this);
         buttonPayNow.setOnClickListener(this);
-        chBox_wallet.setOnCheckedChangeListener(this);
+//        chBox_wallet.setOnCheckedChangeListener(this);
+        chBox_wallet.setEnabled(false);
 
         imgTypeOfService = (ImageView) view.findViewById(R.id.imageView_type_of_vechile_billPayment);
         imgDescription = (ImageView) view.findViewById(R.id.imageView_rightArrow_description_billPayment);
@@ -203,14 +204,14 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         }
 //        categories/ type of vehicle and price
         textViewTypeOfServiceDynamic.setText(cat);
-        payAmount = Double.parseDouble(bookingBean.getMinCharge());
-        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
-        textViewTotalPriceDynamic.setText("$"+bookingBean.getMinCharge());
+//        payAmount = Double.parseDouble(bookingBean.getMinCharge());
+//        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
+        textViewTotalPriceDynamic.setText(bookingBean.getMinCharge());
 
-        if(!bookingBean.getWalletAmount().isEmpty())
-        { tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+bookingBean.getWalletAmount()+")"); }
-        else
-        {  tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ 0"+")"); }
+//        if(!bookingBean.getWalletAmount().isEmpty())
+//        { tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+bookingBean.getWalletAmount()+")"); }
+//        else
+//        {  tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ 0"+")"); }
         //    title , description and profile
         title.setText("Title: "+bookingBean.getRequestname());
         descrip.setText("Description: "+bookingBean.getRequestdesc());
@@ -303,8 +304,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 break;
 
             case R.id.button_pay:
-                bookingBean.setUsedWalletAmount(String.valueOf(usedWalletAmount));
-                bookingBean.setPayAmount(String.valueOf(payAmount));
+                bookingBean.setUsedWalletAmount("0");
+                bookingBean.setPayAmount(bookingBean.getMinCharge());
                 bookingBean.setPaymentId(paymentId);
 
                 Bundle bundle=new Bundle();
@@ -320,61 +321,61 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-        try {
-
-            if (isChecked) {
-                if(!bookingBean.getWalletAmount().isEmpty())
-                {
-                    totalAmount = Double.parseDouble(bookingBean.getMinCharge());
-
-                    if( Double.parseDouble(bookingBean.getWalletAmount()) > Double.parseDouble(bookingBean.getMinCharge() ) )
-                    {
-
-                        usedWalletAmount =Double.parseDouble(bookingBean.getMinCharge()) ;
-                        payAmount = totalAmount - usedWalletAmount;
-
-                    }
-                    else {
-
-                        usedWalletAmount = Double.parseDouble(bookingBean.getWalletAmount());
-                        payAmount = totalAmount - usedWalletAmount;
-                    }
-
-                textViewTotalPriceDynamic.setText("$" + payAmount);
-
-                tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
-
-
-                }
-                else {
-//                    Toast.makeText(getActivity(), "Your AirMechaniks Wallet is Empty.", Toast.LENGTH_SHORT).show();
-                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
-                }
-            }
-            if (!isChecked) {
-
-                usedWalletAmount = 0;
-                payAmount = Double.parseDouble(bookingBean.getMinCharge());
-
-
-                textViewTotalPriceDynamic.setText("$" + payAmount);
-                if(!bookingBean.getWalletAmount().isEmpty())
-                {
-                    tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
-                }
-                else {
-                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
-                }
-
-            }
-        }
-        catch (Exception e)
-        {e.printStackTrace();}
-
-    }
+//    @Override
+//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//        try {
+//
+//            if (isChecked) {
+//                if(!bookingBean.getWalletAmount().isEmpty())
+//                {
+//                    totalAmount = Double.parseDouble(bookingBean.getMinCharge());
+//
+//                    if( Double.parseDouble(bookingBean.getWalletAmount()) > Double.parseDouble(bookingBean.getMinCharge() ) )
+//                    {
+//
+//                        usedWalletAmount =Double.parseDouble(bookingBean.getMinCharge()) ;
+//                        payAmount = totalAmount - usedWalletAmount;
+//
+//                    }
+//                    else {
+//
+//                        usedWalletAmount = Double.parseDouble(bookingBean.getWalletAmount());
+//                        payAmount = totalAmount - usedWalletAmount;
+//                    }
+//
+//                textViewTotalPriceDynamic.setText("$" + payAmount);
+//
+//                tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
+//
+//
+//                }
+//                else {
+////                    Toast.makeText(getActivity(), "Your AirMechaniks Wallet is Empty.", Toast.LENGTH_SHORT).show();
+//                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
+//                }
+//            }
+//            if (!isChecked) {
+//
+//                usedWalletAmount = 0;
+//                payAmount = Double.parseDouble(bookingBean.getMinCharge());
+//
+//
+//                textViewTotalPriceDynamic.setText("$" + payAmount);
+//                if(!bookingBean.getWalletAmount().isEmpty())
+//                {
+//                    tv_walletBalance.setText("("+getString(R.string.current_balance_is)+" $ "+(Double.parseDouble(bookingBean.getWalletAmount()) - usedWalletAmount)+")");
+//                }
+//                else {
+//                    tv_walletBalance.setText("(" + getString(R.string.current_balance_is) + " $ 0" + ")");
+//                }
+//
+//            }
+//        }
+//        catch (Exception e)
+//        {e.printStackTrace();}
+//
+//    }
 
 
     @Override
@@ -440,10 +441,10 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
 
         builder.addTextBody("request_id", bookingBean.getBookingid());
         builder.addTextBody("paymentId", paymentId);
-        builder.addTextBody("totalamount", String.valueOf(totalAmount));
-        builder.addTextBody("walletamount", String.valueOf(usedWalletAmount));
+        builder.addTextBody("totalamount", bookingBean.getMinCharge());
+        builder.addTextBody("walletamount", "0");
         builder.addTextBody("serviceprovider_id", bookingBean.getServiceproviderid());
-        builder.addTextBody("payamount", String.valueOf(payAmount));
+        builder.addTextBody("payamount", bookingBean.getMinCharge());
 
         ServiceBean bean = new ServiceBean();
         bean.setApilistener(this);
@@ -488,7 +489,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         bookingBean.setWalletAmount(j_object.getString("Wallet_amount"));
                         bookingBean.setMinCharge(j_object.getString("minCharge"));
 
-                        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
+//                        totalAmount = Double.parseDouble(bookingBean.getMinCharge());
 
 
                         JSONArray reqImgJsonArray=j_object.getJSONArray("request_image");

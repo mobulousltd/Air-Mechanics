@@ -82,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             app:cardElevation="@dimen/_3sdp">
 
             <LinearLayout
@@ -102,16 +103,7 @@
                     android:background="@color/price_job_request_detail"
                     android:gravity="center_horizontal"
                     />
-                <TextView
-                    android:id="@+id/tv_curr"
-                    android:text="KES"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_16"
-                    android:paddingLeft="@dimen/_5sdp"
-                    android:gravity="center_horizontal"
-                    />
+
                 <EditText
                     android:id="@+id/editText_price_dynamic_job_request_detail"
                     android:layout_width="wrap_content"
@@ -120,10 +112,20 @@
                     android:padding="@dimen/_10sdp"
                     android:background="@null"
                     android:inputType="numberDecimal"
-                    android:maxLength="5"
                     android:hint="@string/price"
                     />
-
+                <TextView
+                    android:id="@+id/tv_curr"
+                    android:text="@string/currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:layout_weight="0.3"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@color/price_job_request_detail"
+                    android:gravity="center_horizontal"
+                    />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>

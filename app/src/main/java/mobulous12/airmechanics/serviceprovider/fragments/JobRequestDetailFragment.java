@@ -76,29 +76,31 @@ public class JobRequestDetailFragment extends Fragment implements ApiListener{
 
         view.findViewById(R.id.btn_send_job_request_detail).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(Long.parseLong(et_price.getText().toString().trim() ) >= minCharge)
+            public void onClick(View v)
+            {
+                if(!(et_price.getText().toString().trim().isEmpty()))
                 {
-                    if(isPriceSent)
+                    if(Long.parseLong(et_price.getText().toString().trim() ) >= minCharge)
                     {
-                        Toast.makeText(getActivity(),"You've already set the Price.",Toast.LENGTH_SHORT).show();
-                        view.findViewById(R.id.btn_send_job_request_detail).setVisibility(View.GONE);
-                    }
-                    else
-                    {
-                        if(et_price.getText().toString().trim().isEmpty())
+                        if(isPriceSent)
                         {
-                            Toast.makeText(getActivity(), "Please enter price for this job request.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"You've already set the Price.",Toast.LENGTH_SHORT).show();
+                            view.findViewById(R.id.btn_send_job_request_detail).setVisibility(View.GONE);
                         }
                         else
                         {
                             updatePriceServiceHit();
+
                         }
+                    }
+                    else {
+                        Toast.makeText(getActivity()," Price can't be less than "+minCharge+".", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    Toast.makeText(getActivity()," Price can't be less than "+minCharge+".", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Price can't be blank.", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });

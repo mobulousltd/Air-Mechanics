@@ -17,10 +17,14 @@ import com.androidquery.AQuery;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
+import mobulous12.airmechanics.databinding.BillPaymentSpBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
@@ -59,6 +63,9 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
     private ImageView profile;
     private EditText et_totalPriceBill;
     private LinearLayout ll_editBillPrice;
+    private String amount = "",curr = "";
+    private TextView tv_currency;
+
 
 
     @Override
@@ -75,6 +82,8 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
         rootTypeOfService = (RelativeLayout) findViewById(R.id.root_type_of_vechile_sp);
         rootDescription = (RelativeLayout) findViewById(R.id.root_description_bill_payment_sp);
         rootTotalPrice = (RelativeLayout) findViewById(R.id.root_total_price_sp);
+        tv_currency = (TextView)findViewById(R.id.tv_currency);
+
         button_send = (Button) findViewById(R.id.button_send_billPayment_sp);
 
         rootTypeOfService.setOnClickListener(this);
@@ -139,7 +148,12 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
 //        categories/ type of vehicle and price
             textViewTypeOfServiceDynamic.setText(cat);
-            et_totalPriceBill.setText(bookingBean.getMinCharge());
+
+            amount =  MyApplication.getInstance().getPriceFromMoney(bookingBean.getMinCharge());
+            curr = MyApplication.getInstance().getCurrencyFromMoney(bookingBean.getMinCharge());
+            tv_currency.setText(curr);
+            et_totalPriceBill.setText(amount);
+
 //            textViewDescriptionDynamic.setText("Title : "+title+"\n"+"Description : "+desc);
 //            textViewTotalPriceDynamic.setText("$ "+price);
 
@@ -239,7 +253,30 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
             case R.id.button_send_billPayment_sp:
                 if(bookingBean.getStatus().equalsIgnoreCase("complete"))
                 {
-                    sendBillServiceHit();
+                    if(!(et_totalPriceBill.getText().toString().trim().isEmpty()))
+                    {
+                        try {
+                            double value = Double.parseDouble(et_totalPriceBill.getText().toString().trim());
+                            double charge = Double.parseDouble(amount);
+                            if(value >= charge )
+                            {
+                                sendBillServiceHit();
+                            }
+                            else {
+                                Toast.makeText(this, "Total Price can't be less than "+bookingBean.getMinCharge()+".", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    else {
+                        Toast.makeText(this, "Total Price can't be blank.", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
                 break;
@@ -258,7 +295,7 @@ public class BillPaymentActivitySp extends AppCompatActivity implements View.OnC
 
         multipartEntityBuilder.addTextBody("token", SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN));
         multipartEntityBuilder.addTextBody("request_id", bookingBean.getBookingid());
-        multipartEntityBuilder.addTextBody("price", et_totalPriceBill.getText().toString().trim());
+        multipartEntityBuilder.addTextBody("price", curr+et_totalPriceBill.getText().toString().trim());
 
         ServiceBean bean = new ServiceBean();
         bean.setActivity(this);
