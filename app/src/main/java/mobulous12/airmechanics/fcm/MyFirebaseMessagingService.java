@@ -79,17 +79,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 else
                                 {
                                     requestid=jsonObject.getString("request_id");
-                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider");
+                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
                                 }
                             }
                             else
                             {
-                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider");
+                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
                             }
                         }
                         else
                         {
-                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider");
+                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
                         }
                     }
                     else
@@ -106,7 +106,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 else
                                 {
                                     requestid=jsonObject.getString("request_id");
-                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", jsonObject.getString("request_id"));
                                 }
                             }
                             else if(jsonObject.getString("status").equals("billgenerate"))
@@ -114,7 +114,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 /*Message data payload: {status=billgenerate, type=billgenerate, request_id=395, price=600, message=Your bill recieved from Anil Sharma New.}*/
                                 requestid=jsonObject.getString("request_id");
                                 status=jsonObject.getString("status");
-                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer",jsonObject.getString("request_id"));
 //                                if(NewJobRequest.jobRequest)
 //                                {
 //                                    Intent intent = new Intent("NOTIFYCUST");
@@ -135,13 +135,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 }
                                 else
                                 {
-                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", "");
                                 }
                             }
                         }
                         else
                         {
-                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer");
+                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", jsonObject.getString("request_id"));
                         }
                     }
                 }
@@ -160,7 +160,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
     }
 
-    private void sendNotification(String message, String type, String login)
+    private void sendNotification(String message, String type, String login, String id)
     {
 
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
@@ -173,8 +173,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         {
             intent = new Intent(this, HomeActivityServicePro.class);
         }
-        intent.putExtra("requestid", requestid);
-        intent.putExtra("status", status);
+        intent.putExtra("requestid", id);
+        intent.putExtra("status", type);
         intent.putExtra("type", "notify");
         intent.putExtra("notify", type);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
