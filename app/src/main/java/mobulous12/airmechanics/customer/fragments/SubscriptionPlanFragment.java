@@ -197,8 +197,12 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
                     else {
                         payamount = selectedCurrency+planBean.getPlanPayAmountKES();
                     }
-
-                    planPurchaseServiceHit();
+                    Intent intent2 = new Intent(getActivity(), PaymentActivity.class);
+                    intent2.putExtra("plan_id",planBean.getId());
+                    intent2.putExtra("payamount", payamount);
+                    intent2.putExtra("isComingFrom", MyApplication.enIsComingFrom.eeSubscriptionPlan);
+                    startActivityForResult(intent2,PAY_REQCODE);
+//                    planPurchaseServiceHit();
                 }
                 else {
                     Toast.makeText(getActivity(), "Please select a currency.", Toast.LENGTH_SHORT).show();
@@ -507,12 +511,12 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
         {
             case R.id.bt_customerplan:
 
-                planPurchaseServiceHit();
-//                Intent intent2 = new Intent(getActivity(), PaymentActivity.class);
-//                intent2.putExtra("plan_id",id);
-//                intent2.putExtra("payamount", payamount);
-//                intent2.putExtra("isComingFrom", MyApplication.enIsComingFrom.eeSubscriptionPlan);
-//                startActivityForResult(intent2,PAY_REQCODE);
+//                planPurchaseServiceHit();
+                Intent intent2 = new Intent(getActivity(), PaymentActivity.class);
+                intent2.putExtra("plan_id",id);
+                intent2.putExtra("payamount", payamount);
+                intent2.putExtra("isComingFrom", MyApplication.enIsComingFrom.eeSubscriptionPlan);
+                startActivityForResult(intent2,PAY_REQCODE);
                 break;
             case R.id.button_buyNow_monthlysubscription:
 

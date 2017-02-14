@@ -42,7 +42,6 @@ import mobulous12.airmechanics.airinterfaces.MyDialogListenerInterface;
 import mobulous12.airmechanics.beans.ProfileBean;
 import mobulous12.airmechanics.customer.activities.VerificationActivity;
 import mobulous12.airmechanics.fonts.FontBinding;
-import mobulous12.airmechanics.serviceprovider.adapters.CustomSpinnerAdapter;
 import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
 import mobulous12.airmechanics.serviceprovider.dialogs.CategoriesDialogFragment;
 import mobulous12.airmechanics.serviceprovider.dialogs.ServiceRadiusDialogFrag;
@@ -159,7 +158,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         spinnerMoney = (Spinner) findViewById(R.id.spinner_money);
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.options_money,R.layout.custom_spinner_layout);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency_array,R.layout.custom_spinner_layout);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMoney.setAdapter(adapter);
         spinnerMoney.setOnItemSelectedListener(this);
