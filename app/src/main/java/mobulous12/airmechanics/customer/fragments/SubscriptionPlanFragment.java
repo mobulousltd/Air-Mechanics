@@ -292,7 +292,8 @@ public class SubscriptionPlanFragment extends Fragment implements ApiListener, V
             {
                 if(jsonObject.getString("status").equalsIgnoreCase("SUCCESS"))
                 {
-                    if(jsonObject.getString("requestKey").equalsIgnoreCase("plans_list"))       // LISTING OF PLANS SERVICE
+//                    /*LISTING OF PLANS SERVICE RESPONSE*/
+                    if(jsonObject.getString("requestKey").equalsIgnoreCase("plans_list"))
                     {
                         JSONArray responseArr = jsonObject.getJSONArray("response");
 //                     //   customer

@@ -60,6 +60,7 @@ import mobulous12.airmechanics.serviceprovider.dialogs.WorkingDaysDialogFrag;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.utils.TakeImage;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
@@ -94,6 +95,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     private boolean isEditing = false;
 
     private Spinner spinner;
+    private int spinnerPos = 0;
 
     public ProfileFragment_SP() {
         // Required empty public constructor
@@ -195,12 +197,18 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             hour = calendar.get(Calendar.HOUR_OF_DAY);
             minute= calendar.get(Calendar.MINUTE);
 
+//            SPINNER
+            spinner = (Spinner) view.findViewById(R.id.spinner_profileFragmentSp);
+            spinner.setOnItemSelectedListener(this);
+            spinner.setEnabled(false);
+
             viewProfileServiceHit();
         }
         else
         {
             if(savedInstanceState != null) {
                 isEditing = savedInstanceState.getBoolean("isEditing");
+                spinnerPos = savedInstanceState.getInt("spinnerPosition");
             }
 
         }
@@ -223,10 +231,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 //            profileImage.setImageResource(R.drawable.default_profile_pic);
 //        }
 
-        spinner = (Spinner) view.findViewById(R.id.spinner_profileFragmentSp);
 
-//        spinner.setOnItemSelectedListener(this);
-        spinner.setEnabled(false);
         return view;
     }  // onCreateView Ends Here
 
@@ -554,6 +559,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             et_minCharge_profileSP.setEnabled(true);
             tv_categoriesSP.setEnabled(true);
             tv_specialitySP.setEnabled(true);
+            spinner.setEnabled(true);
+            spinner.setSelection(spinnerPos);
 
             if (SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal")) {
                 editText_email_profileSP.setEnabled(true);
@@ -724,7 +731,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             {
                 if (responseObj.getString("status").equalsIgnoreCase("SUCCESS"))
                 {
-
+//          VIEW PROFILE SERVICE RESPONSE
                     if (responseObj.getString("requestKey").equalsIgnoreCase("viewProfile"))
                     {
                         JSONObject response = responseObj.getJSONObject("response");
@@ -777,8 +784,11 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         spinner.setAdapter(adapter);
                         if(!response.getString("min_charge").isEmpty())
                         {
-                            et_minCharge_profileSP.setText(response.getString("min_charge").substring(3, response.getString("min_charge").length()));
-                            if(response.getString("min_charge").substring(0, 3).equals("USD"))
+
+                            String priceOnly  = MyApplication.getInstance().getPriceFromMoney(response.getString("min_charge"));
+                            String currency = MyApplication.getInstance().getCurrencyFromMoney(response.getString("min_charge"));
+                            et_minCharge_profileSP.setText(priceOnly);
+                            if(currency.equals("USD"))
                             {
                                 spinner.setSelection(2);
                             }
@@ -934,6 +944,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
 
 
                     }
+//                   EDIT PROFILE SERVICE RESPONSE
                     if (responseObj.getString("requestKey").equalsIgnoreCase("editProfile"))
                     {
                         SharedPreferenceWriter.getInstance(getActivity()).writeStringValue(SPreferenceKey.PROFILEUPDATED,"1");
@@ -1209,6 +1220,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         super.onSaveInstanceState(outState);
 
         outState.putBoolean("isEditing",isEditing); // to save the state of Editing
+        outState.putInt("spinnerPosition",spinnerPos);
 
 
     }
@@ -1217,6 +1229,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+        spinnerPos = position;
         selectedDollarOrKes = parent.getItemAtPosition(position).toString();
     }
 

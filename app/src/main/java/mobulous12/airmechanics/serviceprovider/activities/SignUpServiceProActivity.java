@@ -375,9 +375,9 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             showToast("Please enter closing time");
             return false;
         }
-        else if (selectedDollarOrKes.trim().equals("") || selectedDollarOrKes.equals("Currency"))
+        else if(spinnerMoney.getSelectedItemPosition()==0)
         {
-            showToast("Please select Currency");
+            showToast("Please select Currency.");
             return false;
         }
         else if(et_minchrge_sp.getText().toString().trim().isEmpty())
@@ -868,7 +868,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         if (et_minchrge_sp != null)
         {
             String minCharge = et_minchrge_sp.getText().toString().trim();
-            if (!minCharge.isEmpty() && !minCharge.equalsIgnoreCase("Currency"))
+            if (!minCharge.isEmpty())
             {
                 selectedDollarOrKes = parent.getItemAtPosition(position).toString() + minCharge;
             }
