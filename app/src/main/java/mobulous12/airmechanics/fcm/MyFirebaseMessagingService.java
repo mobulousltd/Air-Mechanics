@@ -79,20 +79,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 else
                                 {
                                     requestid=jsonObject.getString("request_id");
-                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
+                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", jsonObject.getString("request_id"));
                                 }
                             }
                             else
                             {
-                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
+                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", jsonObject.getString("request_id"));
                             }
                         }
                         else
                         {
-                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider", "");
+                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "serviceprovider",  jsonObject.getString("request_id"));
                         }
                     }
-                    else
+                    else            //  CUSTOMER
                     {
                         if(HomeActivity.homeact)
                         {
@@ -135,7 +135,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 }
                                 else
                                 {
-                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", "");
+                                    sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer",  jsonObject.getString("request_id"));
                                 }
                             }
                         }
@@ -163,7 +163,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String message, String type, String login, String id)
     {
 
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
         Intent intent;
         if(login.equals("customer"))
         {

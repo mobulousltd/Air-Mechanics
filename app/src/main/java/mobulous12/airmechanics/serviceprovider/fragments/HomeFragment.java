@@ -166,14 +166,15 @@ public class HomeFragment extends Fragment implements ApiListener {
             }
         });
 
-        // HITTING HOME SERVICE
-        homeScreenServiceHit();
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        // HITTING HOME SERVICE
+        homeScreenServiceHit();
         //profile username and address
         textView_name_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.COMPANYNAME));
         textView_address_homeSP.setText(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.ADDRESS));

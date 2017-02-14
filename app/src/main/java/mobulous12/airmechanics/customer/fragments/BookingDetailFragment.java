@@ -345,7 +345,7 @@ private void setFields()
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") )
+        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") || bookingBean.getStatus().equalsIgnoreCase("payment") )
         {
             inflater.inflate(R.menu.booking_detail_menu,menu);
         }

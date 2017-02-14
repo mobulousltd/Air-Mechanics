@@ -116,10 +116,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         chBox_wallet = (CheckBox) view.findViewById(R.id.chBox_wallet);
         tv_walletBalance = (TextView) view.findViewById(R.id.tv_walletBalance);
 
-        if(bookingBean.getStatus().equalsIgnoreCase("payment"))
-        {
-            buttonPayNow.setText("Paid");
-        }
+
 
         rootTypeOfService.setOnClickListener(this);
         rootDescription.setOnClickListener(this);
@@ -506,6 +503,15 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                         }
 
                         setFields();
+
+                        if(bookingBean.getStatus().equalsIgnoreCase("payment"))
+                        {
+                            buttonPayNow.setText("Paid");
+                            buttonPayNow.setEnabled(false);
+                        }
+                        else {
+                            buttonPayNow.setText("Pay Now");
+                        }
 
                     }
 

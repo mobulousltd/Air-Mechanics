@@ -239,14 +239,18 @@ public class HomeActivity extends AppCompatActivity
         }
 
 //  PUSH NOTIFICATION FUNCTIONALITY
-        if (getIntent().getStringExtra("notify") != null) {
+        if (getIntent().getStringExtra("notify") != null)
+        {
             String notifi = getIntent().getStringExtra("notify");
-            if (notifi.equalsIgnoreCase("priceupdate")) {
+            if (notifi.equalsIgnoreCase("priceupdate"))
+            {
                 Intent intent = new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
                 intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
                 startActivity(intent);
 //                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
-            } else if (notifi.equalsIgnoreCase("billgenerate")) {
+            }
+            else if (notifi.equalsIgnoreCase("billgenerate"))
+            {
                 BookingBean bean = new BookingBean();
                 bean.setBookingid(getIntent().getStringExtra("requestid"));
                 bean.setStatus(getIntent().getStringExtra("status"));
@@ -256,7 +260,9 @@ public class HomeActivity extends AppCompatActivity
                 paymentFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, paymentFragment, "billPaymentFragment").addToBackStack("payment").commit();
 
-            } else {
+            }
+            else
+            {
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyBookingsFragment(), "myBookingsFragment").addToBackStack("mybookings").commit();
             }
         }
