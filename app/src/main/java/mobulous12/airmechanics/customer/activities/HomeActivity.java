@@ -244,9 +244,24 @@ public class HomeActivity extends AppCompatActivity
             String notifi = getIntent().getStringExtra("notify");
             if (notifi.equalsIgnoreCase("priceupdate"))
             {
-                Intent intent = new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
-                intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
-                startActivity(intent);
+
+//                To check if Alert Pop-Up came for PriceUpdate type notification
+//                if we  came from Alert pop up of type AccetReject
+                if(getIntent().getStringExtra("fromKey") != null)
+                {
+                    String from = getIntent().getStringExtra("fromKey");
+                    if(from.equalsIgnoreCase("acceptPopUp"))
+                    {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new MyBookingsFragment(), "myBookingsFragment").addToBackStack("mybookings").commit();
+                    }
+                }
+                else        // if we don't came from Alert pop up of type AccetReject
+                {
+                    Intent intent = new Intent(HomeActivity.this, AcceptRejectDetailActivity.class);
+                    intent.putExtra("requestid", getIntent().getStringExtra("requestid"));
+                    startActivity(intent);
+                }
+
 //                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, new NewJobRequest(), "newJobRequestFragment").addToBackStack("newJobRequest").commit();
             }
             else if (notifi.equalsIgnoreCase("billgenerate"))

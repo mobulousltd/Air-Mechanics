@@ -9,9 +9,10 @@
         android:id="@+id/cardView_1_completedFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_7sdp"
         android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_7sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_3sdp">
 

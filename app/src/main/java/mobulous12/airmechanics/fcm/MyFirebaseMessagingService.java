@@ -141,7 +141,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                         else
                         {
-                            sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", jsonObject.getString("request_id"));
+                            if(jsonObject.getString("status").equalsIgnoreCase("priceupdate"))
+                            {
+                                Intent i = new Intent("mobulous12.airmechanics.ACCEPT");
+                                i.putExtra("requestid", jsonObject.getString("request_id"));
+                                i.putExtra("status",  jsonObject.getString("status"));
+                                i.putExtra("notify", jsonObject.getString("status"));
+                                i.putExtra("spName", jsonObject.getString("service_provider_name"));
+                                i.putExtra("address", jsonObject.getString("address"));
+                                i.putExtra("exdate", jsonObject.getString("date"));
+                                i.putExtra("title", jsonObject.getString("title"));
+                                i.putExtra("minCh1", jsonObject.getString("minimum_charge"));
+                                i.putExtra("minCh2", jsonObject.getString("minCharge"));
+                                i.putExtra("message", jsonObject.getString("message"));
+                                i.putExtra("login_type", "customer");
+                                sendBroadcast(i);
+                            }
+                            else {
+                                sendNotification(jsonObject.getString("message"), jsonObject.getString("status"), "customer", jsonObject.getString("request_id"));
+                            }
+
                         }
                     }
                 }

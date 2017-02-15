@@ -19,6 +19,7 @@
 
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".utils.MyApplication"
@@ -135,7 +136,23 @@
 
         <activity android:name=".SplashActivity" />
         <activity android:name=".customer.activities.RatingScreenListingActivity" />
-        <activity android:name=".customer.activities.PaymentActivity"></activity>
+        <activity android:name=".customer.activities.PaymentActivity"/>
+        <activity
+            android:name=".customer.activities.AcceptDialogAct"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <receiver android:name=".receivers.AcceptRejectReceiver" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="mobulous12.airmechanics.ACCEPT"/>
+            </intent-filter>
+        </receiver>
+        <!--<service android:name=".services.IntentServiceForAccept" android:exported="true" android:enabled="true"></service>-->
+
+
     </application>
 
 </manifest>

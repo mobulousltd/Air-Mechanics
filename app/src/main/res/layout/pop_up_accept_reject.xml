@@ -1,6 +1,181 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_accept_reject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="@dimen/_8sdp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true">
 
-</LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/relative_InsideCardViewAcceptReject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:id="@+id/linearlayout_circularImages">
+
+
+
+                    <ImageView
+                        android:contentDescription="@string/accepttitle"
+                        android:layout_gravity="center"
+                        android:id="@+id/circularImageView2_AcceptReject"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/logo"/>
+                </LinearLayout>
+
+                <!--Service provider details layout-->
+
+                <LinearLayout
+                    android:paddingRight="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:id="@+id/relative_allDetailsAcceptReject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text=""
+                        android:gravity="center_horizontal"
+                        android:id="@+id/tv_msg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"/>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:id="@+id/tv_Name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text=""
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="@dimen/_11sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:src="@drawable/myplan_calendar"
+                            android:tint="@color/black"/>
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_gray"
+                            android:id="@+id/tv_Date"/>
+                    </LinearLayout>
+
+                     <TextView
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:text=""
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray" />
+                    <TextView
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:text=""
+                        android:id="@+id/tv_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"/>
+
+                    <TextView
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:id="@+id/tv_minchrge"
+                        android:text=""
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_gray"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <!--Card Buttons-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Accept And Reject-->
+
+                <TextView
+                    android:id="@+id/tv_accept_Quote"
+                    style="@style/Base.Widget.AppCompat.ButtonBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/review1_color"
+                    android:gravity="center"
+                    android:padding="@dimen/dp_7"
+                    android:text="@string/accept_quote"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"/>
+
+
+                <TextView
+                    android:id="@+id/tv_reject_Quote"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/reject_quote"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    android:background="@color/booking_pending_color"/>
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
