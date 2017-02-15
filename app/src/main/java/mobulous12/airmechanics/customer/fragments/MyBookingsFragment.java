@@ -161,6 +161,11 @@ public class MyBookingsFragment extends Fragment implements ApiListener {
                         bean.setCategory(jsonobject.getString("category"));
                         bean.setOpenTime(jsonobject.getString("open_time"));
                         bean.setCloseTime(jsonobject.getString("close_time"));
+                        bean.setRating(jsonobject.getString("rating"));
+                        if(!bean.getRating().isEmpty())
+                        {
+                            bean.setRating(""+Math.round(Float.parseFloat(bean.getRating())));
+                        }
                         bean.setServiceproviderid(jsonobject.getString("service_id"));
                         JSONArray reqImgJsonArray = jsonobject.getJSONArray("request_image");
                         String array[]=new String[reqImgJsonArray.length()];

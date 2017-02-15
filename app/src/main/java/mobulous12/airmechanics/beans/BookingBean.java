@@ -14,7 +14,97 @@ public class BookingBean implements Parcelable
     private String openTime = "", closeTime = "";
     private String createdOn = "", categoryId = "", category = "", serviceproviderid="", walletAmount="";
     private String payAmount = "";
-    private String usedWalletAmount="";
+    private String usedWalletAmount="", rating="";
+
+    protected BookingBean(Parcel in) {
+        status = in.readString();
+        userName = in.readString();
+        userImage = in.readString();
+        profile_thumb = in.readString();
+        minCharge = in.readString();
+        requestDate = in.readString();
+        requestTime = in.readString();
+        usernumber = in.readString();
+        useraddress = in.readString();
+        bookingid = in.readString();
+        requestdesc = in.readString();
+        requestname = in.readString();
+        requestcategory = in.readString();
+        requestImage = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        serviceType = in.readString();
+        openTime = in.readString();
+        closeTime = in.readString();
+        createdOn = in.readString();
+        categoryId = in.readString();
+        category = in.readString();
+        serviceproviderid = in.readString();
+        walletAmount = in.readString();
+        payAmount = in.readString();
+        usedWalletAmount = in.readString();
+        rating = in.readString();
+        paymentId = in.readString();
+        requestImgArr = in.createStringArray();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(status);
+        dest.writeString(userName);
+        dest.writeString(userImage);
+        dest.writeString(profile_thumb);
+        dest.writeString(minCharge);
+        dest.writeString(requestDate);
+        dest.writeString(requestTime);
+        dest.writeString(usernumber);
+        dest.writeString(useraddress);
+        dest.writeString(bookingid);
+        dest.writeString(requestdesc);
+        dest.writeString(requestname);
+        dest.writeString(requestcategory);
+        dest.writeString(requestImage);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        dest.writeString(serviceType);
+        dest.writeString(openTime);
+        dest.writeString(closeTime);
+        dest.writeString(createdOn);
+        dest.writeString(categoryId);
+        dest.writeString(category);
+        dest.writeString(serviceproviderid);
+        dest.writeString(walletAmount);
+        dest.writeString(payAmount);
+        dest.writeString(usedWalletAmount);
+        dest.writeString(rating);
+        dest.writeString(paymentId);
+        dest.writeStringArray(requestImgArr);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<BookingBean> CREATOR = new Creator<BookingBean>() {
+        @Override
+        public BookingBean createFromParcel(Parcel in) {
+            return new BookingBean(in);
+        }
+
+        @Override
+        public BookingBean[] newArray(int size) {
+            return new BookingBean[size];
+        }
+    };
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 
     public String getPaymentId() {
         return paymentId;
@@ -52,85 +142,6 @@ public class BookingBean implements Parcelable
         this.walletAmount = walletAmount;
     }
 
-    protected BookingBean(Parcel in) {
-        status = in.readString();
-        userName = in.readString();
-        userImage = in.readString();
-        profile_thumb = in.readString();
-        minCharge = in.readString();
-        requestDate = in.readString();
-        requestTime = in.readString();
-        usernumber = in.readString();
-        useraddress = in.readString();
-        bookingid = in.readString();
-        requestdesc = in.readString();
-        requestname = in.readString();
-        requestcategory = in.readString();
-        requestImage = in.readString();
-        latitude = in.readString();
-        longitude = in.readString();
-        serviceType = in.readString();
-        openTime = in.readString();
-        closeTime = in.readString();
-        createdOn = in.readString();
-        categoryId = in.readString();
-        category = in.readString();
-        serviceproviderid = in.readString();
-        walletAmount = in.readString();
-        usedWalletAmount = in.readString();
-        payAmount = in.readString();
-        paymentId = in.readString();
-        requestImgArr = in.createStringArray();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(status);
-        dest.writeString(userName);
-        dest.writeString(userImage);
-        dest.writeString(profile_thumb);
-        dest.writeString(minCharge);
-        dest.writeString(requestDate);
-        dest.writeString(requestTime);
-        dest.writeString(usernumber);
-        dest.writeString(useraddress);
-        dest.writeString(bookingid);
-        dest.writeString(requestdesc);
-        dest.writeString(requestname);
-        dest.writeString(requestcategory);
-        dest.writeString(requestImage);
-        dest.writeString(latitude);
-        dest.writeString(longitude);
-        dest.writeString(serviceType);
-        dest.writeString(openTime);
-        dest.writeString(closeTime);
-        dest.writeString(createdOn);
-        dest.writeString(categoryId);
-        dest.writeString(category);
-        dest.writeString(serviceproviderid);
-        dest.writeString(walletAmount);
-        dest.writeString(usedWalletAmount);
-        dest.writeString(payAmount);
-        dest.writeString(paymentId);
-        dest.writeStringArray(requestImgArr);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<BookingBean> CREATOR = new Creator<BookingBean>() {
-        @Override
-        public BookingBean createFromParcel(Parcel in) {
-            return new BookingBean(in);
-        }
-
-        @Override
-        public BookingBean[] newArray(int size) {
-            return new BookingBean[size];
-        }
-    };
 
     public String getRequestImage() {
         return requestImage;

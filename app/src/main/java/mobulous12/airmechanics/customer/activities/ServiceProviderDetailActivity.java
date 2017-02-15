@@ -474,6 +474,10 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                         }
 
                         serviceProviderBean.setRating(response.getString("rating"));
+                        if(!serviceProviderBean.getRating().isEmpty())
+                        {
+                            serviceProviderBean.setRating(""+Math.round(Float.parseFloat(serviceProviderBean.getRating())));
+                        }
                         switch (serviceProviderBean.getRating())
                         {
                             case "1":
@@ -510,6 +514,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                         tv_minchrge.setText(response.getString("st_charge"));
                         textViewWorkHoursDynamic.setText(response.getString("start_time")+" to "+response.getString("end_time"));
                         km.setText(response.getString("distance")+" KM");
+
                         aQuery=new AQuery(circularImageView_profile_pic_serviceProviderDetail);
                         if(response.getString("profile").isEmpty())
                         {

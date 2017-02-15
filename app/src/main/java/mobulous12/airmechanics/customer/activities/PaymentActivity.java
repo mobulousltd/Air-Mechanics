@@ -1,5 +1,7 @@
 package mobulous12.airmechanics.customer.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -10,6 +12,12 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import org.apache.http.util.EncodingUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.ActivityPaymentBinding;
@@ -25,10 +33,11 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     private WebView webView_payment;
     private BookingBean bookingBean;
     private String baseUrl = "";
-    private String resultUrl = "http://mobulous.co.in/airMechanics/admin/admins/success";
+    private String resultUrl = "http://airmechaniks.com/admin/admins/success";
     private String errorUrl = "https://www.jambopay.com/ErrorPage.htm";
     private Toolbar toolbar_payment;
 
+    String userId,paymentType,paymentId,payAmount,type,myUrl = "http://airmechaniks.com/admin/admins/testpay";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +56,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         isComingFrom = (MyApplication.enIsComingFrom) this.getIntent().getSerializableExtra("isComingFrom");
 
-
+        baseUrl = myUrl.trim();
         if(isComingFrom  == MyApplication.enIsComingFrom.eeBillPayment)
         {
             final Bundle beanBundle = this.getIntent().getBundleExtra("beanBundle");
@@ -55,61 +64,75 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
             if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
             {
-                String userId = SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN);
-                String paymentType = "2";
-                String paymentId = bookingBean.getServiceproviderid();
-                String payAmount = bookingBean.getPayAmount();
-                String myUrl = "http://mobulous.co.in/airMechanics/admin/admins/testpay/" + userId + "/" + paymentType + "/" + paymentId + "/" + payAmount + "";
-                baseUrl = myUrl.trim();
-
-                webView_payment.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-                webView_payment.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public void onPageFinished(WebView view, String url) {
-                        super.onPageFinished(view, url);
-
-                        if (url.equalsIgnoreCase(resultUrl))
-                        {
-                            Intent returnIntent = new Intent();
-                            returnIntent.putExtra("beanBundle",beanBundle);
-                            returnIntent.putExtra("bookingBean",bookingBean);
-                            setResult(RESULT_OK,returnIntent);
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                        super.onPageStarted(view, url, favicon);
-                    }
-
-
-                });
-                WebSettings webSettings = webView_payment.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webView_payment.loadUrl(baseUrl);
-                webView_payment.requestFocus();
-
+                userId = SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN);
+                paymentType = "1";
+                paymentId = bookingBean.getServiceproviderid();
+                payAmount = bookingBean.getPayAmount();
+                type="Customer";
+//                String myUrl = "http://mobulous.co.in/airMechanics/admin/admins/testpay/" + userId + "/" + paymentType + "/" + paymentId + "/" + payAmount + "";
             }
         }
         if (isComingFrom == MyApplication.enIsComingFrom.eeSubscriptionPlan)
         {
-            String userId =  SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN);
-            String paymentType = "1";
-//            CUSTOMER
-            if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))
+            userId =  SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.TOKEN);
+            paymentType = "2";
+            if (SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.CUSTOMER_LOGIN))//            CUSTOMER
             {
-                String paymentId = getIntent().getStringExtra("plan_id");
-                String paymentAmount = getIntent().getStringExtra("payamount");
-                subscriptionPayment(userId, paymentType, paymentId, paymentAmount);
+                type="Customer";
+                paymentId = getIntent().getStringExtra("plan_id");
+                payAmount = getIntent().getStringExtra("payamount");
             }
             else // SERVICE PROVIDER
             {
-                String paymentId = getIntent().getStringExtra("plan_id");
-                String paymentAmount = getIntent().getStringExtra("payamount");
-                subscriptionPayment(userId, paymentType, paymentId, paymentAmount);
+                type="Service";
+                paymentId = getIntent().getStringExtra("plan_id");
+                payAmount = getIntent().getStringExtra("payamount");
             }
         }
+        webView_payment.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView_payment.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                if (url.equalsIgnoreCase(resultUrl))
+                {
+                    if(isComingFrom  == MyApplication.enIsComingFrom.eeBillPayment)
+                    {
+                        final Bundle beanBundle = PaymentActivity.this.getIntent().getBundleExtra("beanBundle");
+                        bookingBean = beanBundle.getParcelable("bookingBean"); Intent returnIntent = new Intent();
+                        returnIntent.putExtra("beanBundle",beanBundle);
+                        returnIntent.putExtra("bookingBean",bookingBean);
+                        setResult(RESULT_OK,returnIntent);
+                        finish();
+                    }
+                    else
+                    {
+                        setResult(RESULT_OK,new Intent());
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+        });
+        Map<String, String> mapParams = new HashMap<>();
+//                Key :token, request_id, totalamount, type(1,2), service ( Customer, Service)
+        mapParams.put("token", userId);
+        mapParams.put("request_id", paymentId);
+        mapParams.put("totalamount", payAmount);
+        mapParams.put("type", paymentType);
+        mapParams.put("service", type);
+        WebSettings webSettings = webView_payment.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+//                webView_payment.loadUrl(baseUrl);
+        String postData = "token="+userId+"&request_id="+paymentId+"&totalamount="+payAmount+"&type="+paymentType+"&service"+type;
+        webView_payment.postUrl(baseUrl, EncodingUtils.getBytes(postData, "BASE64"));
+        webView_payment.requestFocus();
 
     }
 
@@ -122,9 +145,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         webView_payment.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         webView_payment.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageFinished(WebView view, String url) {
+            public void onPageFinished(WebView view, String url)
+            {
                 super.onPageFinished(view, url);
-
                 if (url.equalsIgnoreCase(resultUrl))
                 {
                     setResult(RESULT_OK,new Intent());
@@ -136,8 +159,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
             }
-
-
         });
         WebSettings webSettings = webView_payment.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -146,10 +167,24 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    public void onBackPressed()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(PaymentActivity.this);
+        alertDialog.setTitle(getResources().getString(R.string.app_name));
+        alertDialog.setMessage("Do you want to cancel this transaction?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which)
+            {
+                finish();
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
-
     // toolbar back navigation icon listener
     @Override
     public void onClick(View v) {

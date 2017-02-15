@@ -66,7 +66,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     private ImageView img_Descrip,profile;
     View view;
     private  BookingBean  bookingBean;
-
+    BookingDetailBinding binding;
     public BookingDetailFragment() {
         // Required empty public constructor
     }
@@ -83,7 +83,7 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState)
     {
-        BookingDetailBinding binding=DataBindingUtil.inflate(inflater, R.layout.booking_detail, container, false);
+        binding=DataBindingUtil.inflate(inflater, R.layout.booking_detail, container, false);
         view=binding.getRoot();
         ((HomeActivity)getActivity()).setToolbarTitle(getResources().getString(R.string.headername_booking_detail));
         ((HomeActivity)getActivity()).setNavigationIcon();
@@ -184,6 +184,7 @@ private void setFields()
             cat+=", "+getString(R.string.heavy_weight_vehicle);
         }
     }
+
 // type
     textViewServiceTypeDynamic.setText(cat);
     textViewServiceTypeDynamic2.setText("Minimum Charges : "+bookingBean.getMinCharge());
@@ -221,7 +222,36 @@ private void setFields()
                                                 "Contact No. : "+bookingBean.getUsernumber()+"\n"+
                                                 "Timing : "+bookingBean.getOpenTime()+" to "+bookingBean.getCloseTime());
 
+//rating
+    switch (bookingBean.getRating())
+    {
+        case "1":
+            binding.bookingStar1.setImageResource(R.drawable.star_rate);
+            break;
+        case "2":
+            binding.bookingStar1.setImageResource(R.drawable.star_rate);
+            binding.bookingStar2.setImageResource(R.drawable.star_rate);
+            break;
+        case "3":
+            binding.bookingStar1.setImageResource(R.drawable.star_rate);
+            binding.bookingStar2.setImageResource(R.drawable.star_rate);
+            binding.bookingStar3.setImageResource(R.drawable.star_rate);
+            break;
+        case "4":
+            binding.bookingStar1.setImageResource(R.drawable.star_rate);
+            binding.bookingStar2.setImageResource(R.drawable.star_rate);
+            binding.bookingStar3.setImageResource(R.drawable.star_rate);
+            binding.bookingStar4.setImageResource(R.drawable.star_rate);
+            break;
+        case "5":
+            binding.bookingStar1.setImageResource(R.drawable.star_rate);
+            binding.bookingStar2.setImageResource(R.drawable.star_rate);
+            binding.bookingStar3.setImageResource(R.drawable.star_rate);
+            binding.bookingStar4.setImageResource(R.drawable.star_rate);
+            binding.bookingStar5.setImageResource(R.drawable.star_rate);
+            break;
 
+    }
 }
 
 
