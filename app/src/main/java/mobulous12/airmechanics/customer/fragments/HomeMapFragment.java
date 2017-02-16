@@ -77,6 +77,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     private boolean noSpFound = false;
     private RelativeLayout rootLayout;
     private EditText editText;
+    private JSONArray jsonArrayListing;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -171,7 +172,16 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             public boolean onQueryTextSubmit(String query) {
                 if(!query.isEmpty())
                 {
-                    searchByTextService();
+                    if(jsonArrayListing.length() == 0)
+                    {
+                        searchView_Home.setEnabled(false);
+                        Toast.makeText(getActivity(), "Searching is only available when you buy Subscription Plan", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        searchByTextService();
+                    }
+
+
                 }
 
                 return true;
@@ -181,7 +191,14 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             public boolean onQueryTextChange(String newText) {
                 if(!newText.isEmpty())
                 {
-                    searchByTextService();
+                    if(jsonArrayListing.length() == 0)
+                    {
+                        searchView_Home.setEnabled(false);
+                        Toast.makeText(getActivity(), "Searching is only available when you buy Subscription Plan", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        searchByTextService();
+                    }
                 }
                 else
                 {
@@ -447,6 +464,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
 
         MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
         multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
         multipartbuilder.addTextBody("serviceName",searchView_Home.getQuery().toString().trim());
         multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE));
         multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
@@ -498,6 +516,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 if(responseObj.getString("status").equalsIgnoreCase("SUCCESS") && responseObj.getString("requestKey").equalsIgnoreCase("list_serviceprovider"))
                 {
                     JSONArray jsonArray = responseObj.getJSONArray("response");
+                    jsonArrayListing = jsonArray;
 
                     if(jsonArray.length() == 0)
                     {
