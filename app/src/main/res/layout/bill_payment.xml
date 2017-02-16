@@ -188,23 +188,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/chBox_wallet"
-                    android:layout_marginLeft="@dimen/_7sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:textSize="@dimen/_12sdp"
-                    android:button="@drawable/selector_check_uncheck"
-                    android:text="Use AirMechaniks Wallet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-                    <TextView
-                        android:id="@+id/tv_walletBalance"
-                        android:layout_marginLeft="@dimen/_33sdp"
-                        android:layout_gravity="left"
-                        android:text="@string/current_balance_is"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                <!--<CheckBox-->
+                    <!--android:id="@+id/chBox_wallet"-->
+                    <!--android:layout_marginLeft="@dimen/_7sdp"-->
+                    <!--android:padding="@dimen/_10sdp"-->
+                    <!--android:textSize="@dimen/_12sdp"-->
+                    <!--android:button="@drawable/selector_check_uncheck"-->
+                    <!--android:text="Use AirMechaniks Wallet"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--/>-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_walletBalance"-->
+                        <!--android:layout_marginLeft="@dimen/_33sdp"-->
+                        <!--android:layout_gravity="left"-->
+                        <!--android:text="@string/current_balance_is"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
 
                     <TextView
                         android:id="@+id/textView_total_price_dynamic"

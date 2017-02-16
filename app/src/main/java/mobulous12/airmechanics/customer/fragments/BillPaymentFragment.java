@@ -80,8 +80,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
     private ImageView profile;
     private TextView title, descrip;
     private LinearLayout ll_price;
-    private CheckBox chBox_wallet;
-    private TextView tv_walletBalance;
+//    private CheckBox chBox_wallet;
+//    private TextView tv_walletBalance;
     private double payAmount=0,usedWalletAmount=0,totalAmount=0;
     private String paymentId = "";
     private static final int PAY_REQCODE=902;
@@ -113,8 +113,8 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootTotalPrice = (RelativeLayout) view.findViewById(R.id.root_total_price);
         buttonPayNow = (Button) view.findViewById(R.id.button_pay);
         ll_price = (LinearLayout) view.findViewById(R.id.ll_price);
-        chBox_wallet = (CheckBox) view.findViewById(R.id.chBox_wallet);
-        tv_walletBalance = (TextView) view.findViewById(R.id.tv_walletBalance);
+//        chBox_wallet = (CheckBox) view.findViewById(R.id.chBox_wallet);
+//        tv_walletBalance = (TextView) view.findViewById(R.id.tv_walletBalance);
 
 
 
@@ -123,7 +123,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
         rootTotalPrice.setOnClickListener(this);
         buttonPayNow.setOnClickListener(this);
 //        chBox_wallet.setOnCheckedChangeListener(this);
-        chBox_wallet.setEnabled(false);
+//        chBox_wallet.setEnabled(false);
 
         imgTypeOfService = (ImageView) view.findViewById(R.id.imageView_type_of_vechile_billPayment);
         imgDescription = (ImageView) view.findViewById(R.id.imageView_rightArrow_description_billPayment);

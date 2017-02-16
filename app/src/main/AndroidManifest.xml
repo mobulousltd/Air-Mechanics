@@ -137,6 +137,8 @@
         <activity android:name=".SplashActivity" />
         <activity android:name=".customer.activities.RatingScreenListingActivity" />
         <activity android:name=".customer.activities.PaymentActivity"/>
+
+        <!--for accept -reject popup dialog-->
         <activity
             android:name=".customer.activities.AcceptDialogAct"
             android:label="@string/app_name"
@@ -150,7 +152,6 @@
                 <action android:name="mobulous12.airmechanics.ACCEPT"/>
             </intent-filter>
         </receiver>
-        <!--<service android:name=".services.IntentServiceForAccept" android:exported="true" android:enabled="true"></service>-->
 
 
     </application>

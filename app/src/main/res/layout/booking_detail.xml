@@ -293,19 +293,19 @@
 
                     <ImageView
                         android:id="@+id/booking_star1"
-                        android:src="@drawable/star_rate"
+                        android:src="@drawable/gray_star"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>
                     <ImageView
                         android:id="@+id/booking_star2"
-                        android:src="@drawable/star_rate"
+                        android:src="@drawable/gray_star"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>
                     <ImageView
                         android:id="@+id/booking_star3"
-                        android:src="@drawable/star_rate"
+                        android:src="@drawable/gray_star"
                         android:padding="@dimen/dp_3"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"/>

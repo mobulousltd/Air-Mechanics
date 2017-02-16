@@ -226,6 +226,7 @@ private void setFields()
     switch (bookingBean.getRating())
     {
         case "1":
+
             binding.bookingStar1.setImageResource(R.drawable.star_rate);
             break;
         case "2":

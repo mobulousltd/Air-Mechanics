@@ -100,7 +100,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     if(isComingFrom  == MyApplication.enIsComingFrom.eeBillPayment)
                     {
                         final Bundle beanBundle = PaymentActivity.this.getIntent().getBundleExtra("beanBundle");
-                        bookingBean = beanBundle.getParcelable("bookingBean"); Intent returnIntent = new Intent();
+                        bookingBean = beanBundle.getParcelable("bookingBean");
+                        Intent returnIntent = new Intent();
                         returnIntent.putExtra("beanBundle",beanBundle);
                         returnIntent.putExtra("bookingBean",bookingBean);
                         setResult(RESULT_OK,returnIntent);
