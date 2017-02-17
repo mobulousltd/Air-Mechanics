@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "327670184042-bntpvhuus2mj36f1uk3sbpmcgl04np93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "8ED028EE9B79107EC71B83247A06F4515B658096"
+          }
+        },
+        {
           "client_id": "327670184042-tfmb370oajssl3f0rgnjdtdckkn075sg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
