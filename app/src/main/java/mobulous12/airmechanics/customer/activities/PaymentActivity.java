@@ -1,6 +1,7 @@
 package mobulous12.airmechanics.customer.activities;
 
-import android.app.AlertDialog;
+
+import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -172,9 +173,10 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     public void onBackPressed()
     {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(PaymentActivity.this);
+        alertDialog.setCancelable(false);
         alertDialog.setTitle(getResources().getString(R.string.app_name));
         alertDialog.setIcon(R.drawable.logo);
-        alertDialog.setMessage("Do you want to cancel this transaction?");
+        alertDialog.setMessage("Do you want to cancel this transaction ?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which)
             {
