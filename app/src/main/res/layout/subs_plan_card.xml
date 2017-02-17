@@ -17,8 +17,8 @@
             android:background="@color/monthly_orange_color"
             android:layout_marginStart="@dimen/_1sdp"
             android:layout_marginEnd="@dimen/_2sdp"
-            android:paddingTop="@dimen/_2sdp"
-            android:paddingBottom="@dimen/_2sdp"
+            android:paddingTop="@dimen/_1sdp"
+            android:paddingBottom="@dimen/_1sdp"
             >
 
             <!--Card Buttons-->
@@ -28,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:paddingTop="@dimen/dp_7"
-                android:paddingBottom="@dimen/dp_7"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
                 android:paddingStart="@dimen/dp_8"
                 android:paddingEnd="@dimen/dp_8"
                 android:layout_marginStart="@dimen/_4sdp"
@@ -49,6 +49,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:text=""
+                android:gravity="center"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_20"
                 android:layout_alignParentEnd="true" />
@@ -70,8 +73,8 @@
             android:background="@color/monthly_orange_color"
             android:layout_marginStart="@dimen/_1sdp"
             android:layout_marginEnd="@dimen/_2sdp"
-            android:paddingTop="@dimen/_2sdp"
-            android:paddingBottom="@dimen/_2sdp"
+            android:paddingTop="@dimen/_1sdp"
+            android:paddingBottom="@dimen/_1sdp"
             >
 
             <!--Card Buttons-->
@@ -81,8 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:paddingTop="@dimen/dp_7"
-                android:paddingBottom="@dimen/dp_7"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
                 android:paddingStart="@dimen/dp_8"
                 android:paddingEnd="@dimen/dp_8"
                 android:layout_marginStart="@dimen/_4sdp"
@@ -104,6 +107,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:text=""
+                android:gravity="center"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_5"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_20"
                 android:layout_alignParentEnd="true" />

@@ -12,6 +12,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import org.apache.http.util.EncodingUtils;
 
@@ -172,6 +173,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(PaymentActivity.this);
         alertDialog.setTitle(getResources().getString(R.string.app_name));
+        alertDialog.setIcon(R.drawable.logo);
         alertDialog.setMessage("Do you want to cancel this transaction?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which)
@@ -184,7 +186,21 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 dialog.dismiss();
             }
         });
-        alertDialog.show();
+        AlertDialog dialog =  alertDialog.create();
+
+        dialog.show();
+        //Buttons
+        Button positive_button =  dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+        Button negative_button =  dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        setPositiveNegativeButtonColor(positive_button,negative_button);
+    }
+
+    private void setPositiveNegativeButtonColor(Button positive,Button negative)
+    {
+//        Font.setFontButton(positive,this);
+        positive.setTextColor(getResources().getColor(R.color.blue));
+//        Font.setFontButton(negative,this);
+        negative.setTextColor(getResources().getColor(R.color.black));
     }
     // toolbar back navigation icon listener
     @Override
