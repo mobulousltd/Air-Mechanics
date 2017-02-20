@@ -56,7 +56,7 @@ import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 public class SignUpServiceProActivity extends AppCompatActivity implements View.OnClickListener, ApiListener,
-        MyDialogListenerInterface, AdapterView.OnItemSelectedListener {
+        MyDialogListenerInterface {
 
     private ProfileBean profileBean;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -161,7 +161,6 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currency_array,R.layout.custom_spinner_layout);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMoney.setAdapter(adapter);
-        spinnerMoney.setOnItemSelectedListener(this);
     } //onCreate() Ends Here
 
     @Override
@@ -199,7 +198,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                     profileBean.setWorking_days(workdays);
                     profileBean.setCategory(categories);
                     profileBean.setSpeciality(speciality);
-                    profileBean.setMnCharg(selectedDollarOrKes);
+                    profileBean.setMnCharg(spinnerMoney.getSelectedItem().toString()+et_minchrge_sp.getText().toString());
                     profileBean.setImagesAttach(arrayList);
 
                     senCodeServiceHit();
@@ -861,23 +860,23 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
     }
 
-//    SPINNER LISTENER
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        if (et_minchrge_sp != null)
-        {
-            String minCharge = et_minchrge_sp.getText().toString().trim();
-            if (!minCharge.isEmpty())
-            {
-                selectedDollarOrKes = parent.getItemAtPosition(position).toString() + minCharge;
-            }
-        }
-
-
-    }
-    //    SPINNER LISTENER
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-    }
+////    SPINNER LISTENER
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//        if (et_minchrge_sp != null)
+//        {
+//            String minCharge = et_minchrge_sp.getText().toString().trim();
+//            if (!minCharge.isEmpty())
+//            {
+//                selectedDollarOrKes = parent.getItemAtPosition(position).toString() + minCharge;
+//            }
+//        }
+//
+//
+//    }
+//    //    SPINNER LISTENER
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//    }
 }

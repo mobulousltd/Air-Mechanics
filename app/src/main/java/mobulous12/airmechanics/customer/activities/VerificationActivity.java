@@ -130,6 +130,14 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
         {
 //            ,,email,password,country_code,contact_no,address,device_type,device_token,lat,long,category,from,to,working_days,employees,description,min_charges,specility
 
+                        
+            Toast.makeText(VerificationActivity.this, ""+bean.getFullname()+", "+bean.getCompanyname()
+                    +", "+bean.getEmail()+", "+bean.getPassword()+", +91"+", "+bean.getContactno()+", "+bean.getAddress()
+                    +", noida"+" "+bean.getCategory()+", "+bean.getFrom()+", "+bean.getTo()+", "+bean.getRadius()
+                    +", " +bean.getWorking_days()+", "+bean.getEmployees()+",<MinChrge> "+bean.getMnCharg()+", "+bean.getSpeciality()
+                    +", "+bean.getLat()+", "+ bean.getLng()+", "+SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.DEVICETOKEN)
+                    +", "+"android"
+            , Toast.LENGTH_SHORT).show();
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("fullname", bean.getFullname());
