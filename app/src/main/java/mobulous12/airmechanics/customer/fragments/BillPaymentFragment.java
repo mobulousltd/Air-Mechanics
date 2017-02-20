@@ -312,6 +312,7 @@ public class BillPaymentFragment extends Fragment implements View.OnClickListene
                 intent.putExtra("beanBundle",bundle);
                 intent.putExtra("isComingFrom",MyApplication.enIsComingFrom.eeBillPayment);
                 startActivityForResult(intent,PAY_REQCODE);
+//                onlinePaymentServiceHit();
 
                 break;
         }

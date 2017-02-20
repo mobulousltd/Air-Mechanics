@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/root_myEarnings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_2sdp" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_myEarnings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_7sdp"
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_noEarnings"
+            android:padding="@dimen/_4sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="@string/no_earnings"/>
+    </RelativeLayout>
+</layout>
