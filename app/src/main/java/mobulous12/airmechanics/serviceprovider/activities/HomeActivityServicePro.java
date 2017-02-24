@@ -498,10 +498,10 @@ public class HomeActivityServicePro extends AppCompatActivity
                 close_SPHomeNavigationDrawer();
                 break;
             case R.id.linearlayout_shareServicePro:
-                String shareBody = "Download Airmechaniks App to know about nearby garages and their services.";
+                String shareBody = "Download Airmechaniks App to know about nearby garages and their services."+"\n\n Check it out here :\n"+"https://play.google.com/store/apps/details?id=mobulous12.airmechanics&hl=en";
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Share");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Airmechaniks");
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Invite your Friends"));
                 break;
