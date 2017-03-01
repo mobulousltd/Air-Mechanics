@@ -620,6 +620,7 @@
                         android:textColor="@color/black"
                         android:background="@color/white"
                         android:hint="@string/dummy_address"
+                        android:scrollbars="vertical"
                         android:padding="@dimen/_7sdp"
                         android:textSize="@dimen/sp_16"
                         />

@@ -683,8 +683,54 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_1"
+                    android:background="@color/line_gray" />
+
+                <!--DESCRIPTION-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:text="@string/description"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/sp_13" />
+
+                    <EditText
+                        android:id="@+id/editText_descripSP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="end"
+                        android:hint="@string/dummy_name"
+                        android:maxLines="5"
+
+                        android:inputType="textMultiLine"
+                        android:overScrollMode="always"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical"
+
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/line_gray"
+                        android:textSize="@dimen/sp_13"
+                        android:theme="@style/MyEditTextTheme" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
                     android:layout_marginBottom="@dimen/_30sdp"
                     android:background="@color/line_gray" />
+
+
             </LinearLayout>
 
         </ScrollView>

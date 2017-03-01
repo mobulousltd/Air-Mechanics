@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -157,6 +158,9 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         textViewSpecialityDynamic = (TextView) findViewById(R.id.textView_speciality_dynamic);
         textViewDescriptionDynamic = (TextView) findViewById(R.id.textView_description_dynamic);
         textViewReviewsDynamic = (TextView) findViewById(R.id.textView_reviews_dynamic);
+
+        textViewDescriptionDynamic.setMovementMethod(new ScrollingMovementMethod());
+
 
         textViewCategoriesDynamic.setVisibility(View.GONE);
         textViewAddressDynamic.setVisibility(View.GONE);
@@ -557,6 +561,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
                         // Code for new field i.e. Contact Number
                         textViewContactNumberDynamic.setText(response.getString("contact_no"));
                         textViewReviewsDynamic.setText(response.getString("last_review"));
+                        textViewDescriptionDynamic.setText(response.getString("description"));
 
                     }
 

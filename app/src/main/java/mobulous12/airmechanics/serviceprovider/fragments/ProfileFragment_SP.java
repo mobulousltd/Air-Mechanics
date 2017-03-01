@@ -12,12 +12,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -68,14 +70,14 @@ import mobulous12.airmechanics.volley.ServiceBean;
 
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment_SP extends Fragment implements View.OnClickListener, MyDialogListenerInterface, ApiListener, AdapterView.OnItemSelectedListener {
+public class ProfileFragment_SP extends Fragment implements View.OnClickListener, MyDialogListenerInterface, ApiListener, AdapterView.OnItemSelectedListener, View.OnTouchListener {
 
     private View view;
     private MenuItem save, editing;
     private Menu myMenu;
     Calendar calendar;
     private EditText editText_name_profileSP, editText_email_profileSP,
-            editText_employees_profileSP;
+            editText_employees_profileSP,et_descripSP;
 //    private EditText et_companyname;
     private TextView textView_userName_ProfileSP, textView_openText_profileSP, textView_closeText_profileSP,
             tv_serviceArea_spProfile,tv_workdays_spProfile, tv_address_profileSP,tv_categoriesSP,tv_specialitySP,
@@ -149,6 +151,12 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             ll_ContactSP = (LinearLayout) view.findViewById(R.id.ll_ContactSP);
 
 
+//            Description views
+            et_descripSP = (EditText) view.findViewById(R.id.editText_descripSP);
+            et_descripSP.setMovementMethod(new ScrollingMovementMethod());
+            et_descripSP.setOnTouchListener(this);
+
+
             tv_contactNumSP.setVisibility(View.VISIBLE);
             ll_ContactSP.setVisibility(View.GONE);
 
@@ -185,6 +193,10 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             tv_serviceArea_spProfile.setEnabled(false);
             tv_workdays_spProfile.setEnabled(false);
             view.findViewById(R.id.ll_changepasssp).setEnabled(false);
+
+//            description
+            et_descripSP.setEnabled(false);
+
 
             if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("social"))
             {
@@ -345,6 +357,11 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         else if(workdays.isEmpty())
         {
             Toast.makeText(getActivity(), "Please select working days.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if(et_descripSP.getText().toString().trim().isEmpty())
+        {
+            Toast.makeText(getActivity(), "Please enter Description.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -562,6 +579,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             spinner.setEnabled(true);
             spinner.setSelection(spinnerPos);
 
+            et_descripSP.setEnabled(true);
+
             if (SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal")) {
                 editText_email_profileSP.setEnabled(true);
                 view.findViewById(R.id.ll_changepasssp).setEnabled(true);
@@ -608,6 +627,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 tv_categoriesSP.setEnabled(true);
                 tv_specialitySP.setEnabled(true);
                 spinner.setEnabled(true);
+
+                et_descripSP.setEnabled(true);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.VISIBLE);
                 if(SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.LOGINTYPE).equals("normal"))
                 {
@@ -643,6 +664,8 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                 spinner.setEnabled(false);
 //                view.findViewById(R.id.ll_changeContactsp).setVisibility(View.GONE);
                 view.findViewById(R.id.ll_changepasssp).setEnabled(false);
+                et_descripSP.setEnabled(false);
+
                 if(validate())
                 {
                     editProfileServiceHit();
@@ -690,7 +713,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
         multipartbuilder.addTextBody("contact_no",  tv_contactNumSP.getText().toString());
         multipartbuilder.addTextBody("address",  tv_address_profileSP.getText().toString());
         multipartbuilder.addTextBody("city", "noida");
-        multipartbuilder.addTextBody("description", "");
+        multipartbuilder.addTextBody("description", et_descripSP.getText().toString().trim());
         multipartbuilder.addTextBody("category", categories);
         multipartbuilder.addTextBody("speciality", speciality);
         multipartbuilder.addTextBody("from", textView_openText_profileSP.getText().toString());
@@ -777,6 +800,9 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
                         categories=response.getString("categories");
                         speciality = response.getString("specilityName");
                         workdays=response.getString("workingDays");
+
+                        et_descripSP.setText(response.getString("description"));
+
 //                        et_companyname.setText(response.getString("companyName"));
 
                         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.currency_array, android.R.layout.simple_spinner_item);
@@ -1238,4 +1264,19 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+//    EDIT TEXT TOUCH LISTENER FOR SCROLLING BEHAVIOUR INSIDE SCROLLVIEW
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if(view.getId() == R.id.editText_descripSP){
+            view.getParent().requestDisallowInterceptTouchEvent(true);
+            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_UP:
+                    view.getParent().requestDisallowInterceptTouchEvent(false);
+                    break;
+            }
+        }
+        return false;
+    }
+
 }

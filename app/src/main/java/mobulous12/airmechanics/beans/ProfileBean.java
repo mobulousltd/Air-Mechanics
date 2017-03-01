@@ -30,6 +30,15 @@ public class ProfileBean implements Parcelable {
     private String speciality="";
     private String mnCharg="";
     private String dollarOrKes;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getDollarOrKes() {
         return dollarOrKes;
@@ -71,6 +80,7 @@ public class ProfileBean implements Parcelable {
         mnCharg = in.readString();
         dollarOrKes = in.readString();
         imagesAttach =in.createStringArrayList();
+        description = in.readString();
     }
 
     public static final Creator<ProfileBean> CREATOR = new Creator<ProfileBean>() {
@@ -270,5 +280,6 @@ public class ProfileBean implements Parcelable {
         dest.writeString(mnCharg);
         dest.writeString(dollarOrKes);
        dest.writeStringList(imagesAttach);
+        dest.writeString(description);
     }
 }

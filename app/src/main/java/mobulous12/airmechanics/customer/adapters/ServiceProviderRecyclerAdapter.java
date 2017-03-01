@@ -239,12 +239,12 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
         }
     }
     public void onItemClickListener(MyClickListener listener) {
-        this.listener = listener;
+        ServiceProviderRecyclerAdapter.listener = listener;
     }
 
     public interface MyClickListener
     {
-        public void onItemClick(int position, View v);
+        void onItemClick(int position, View v);
     }
 
 

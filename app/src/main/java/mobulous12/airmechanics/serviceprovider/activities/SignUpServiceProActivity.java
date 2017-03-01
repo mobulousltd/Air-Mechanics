@@ -10,9 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -41,6 +43,7 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.airinterfaces.MyDialogListenerInterface;
 import mobulous12.airmechanics.beans.ProfileBean;
 import mobulous12.airmechanics.customer.activities.VerificationActivity;
+import mobulous12.airmechanics.databinding.ActivitySignUpServicepro1Binding;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
 import mobulous12.airmechanics.serviceprovider.dialogs.CategoriesDialogFragment;
@@ -56,7 +59,7 @@ import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 public class SignUpServiceProActivity extends AppCompatActivity implements View.OnClickListener, ApiListener,
-        MyDialogListenerInterface {
+        MyDialogListenerInterface, View.OnTouchListener {
 
     private ProfileBean profileBean;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -81,11 +84,12 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
     private Spinner spinnerMoney;
     private String selectedDollarOrKes="";
+    private ActivitySignUpServicepro1Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.activity_sign_up_servicepro1);
+       binding =  DataBindingUtil.setContentView(this, R.layout.activity_sign_up_servicepro1);
         /*views*/
         root_activity_sign_up_servicepro = (LinearLayout) findViewById(R.id.root_activity_sign_up_servicepro);
         et_minchrge_sp=(EditText)findViewById(R.id.et_minchrge_sp);
@@ -104,6 +108,9 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
         textview_workdays_sp = (TextView) findViewById(R.id.textview_workdays_sp);
         textView_attachDocs_servicePro = (TextView) findViewById(R.id.textView_attachDocs_servicePro);
+
+        binding.editTextDescripSp.setMovementMethod(new ScrollingMovementMethod());
+        binding.editTextDescripSp.setOnTouchListener(this);
 
         textview_speciality_sp = (TextView) findViewById(R.id.textview_speciality_sp);
         textview_address_servicePro.setText(SharedPreferenceWriter.getInstance(SignUpServiceProActivity.this).getString(SPreferenceKey.ADDRESS));
@@ -200,6 +207,8 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                     profileBean.setSpeciality(speciality);
                     profileBean.setMnCharg(spinnerMoney.getSelectedItem().toString()+et_minchrge_sp.getText().toString());
                     profileBean.setImagesAttach(arrayList);
+                    profileBean.setDescription(binding.editTextDescripSp.getText().toString().trim());
+
 
                     senCodeServiceHit();
                 }
@@ -389,7 +398,6 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
             showToast("Please select Speciality");
             return false;
         }
-
         else if (textview_serviceArea_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter service area radius");
             return false;
@@ -401,6 +409,10 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (textview_workdays_sp.getText().toString().trim().isEmpty()) {
             showToast("Please enter working days");
+            return false;
+        }
+        else if (binding.editTextDescripSp.getText().toString().trim().isEmpty()) {
+            showToast("Please enter Description");
             return false;
         }
         else
@@ -859,6 +871,21 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
 
     }
+
+    //    EDIT TEXT TOUCH LISTENER FOR SCROLLING BEHAVIOUR INSIDE SCROLLVIEW
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if(view.getId() == R.id.editText_descrip_sp){
+            view.getParent().requestDisallowInterceptTouchEvent(true);
+            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_UP:
+                    view.getParent().requestDisallowInterceptTouchEvent(false);
+                    break;
+            }
+        }
+        return false;
+    }
+
 
 ////    SPINNER LISTENER
 //    @Override

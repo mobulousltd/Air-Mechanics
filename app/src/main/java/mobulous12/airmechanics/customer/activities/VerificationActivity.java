@@ -133,7 +133,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                     Log.i("SignUpData",""+bean.getFullname()+", "+bean.getCompanyname()
                     +", "+bean.getEmail()+", "+bean.getPassword()+", +91"+", "+bean.getContactno()+", "+bean.getAddress()
                     +", noida"+" "+bean.getCategory()+", "+bean.getFrom()+", "+bean.getTo()+", "+bean.getRadius()
-                    +", " +bean.getWorking_days()+", "+bean.getEmployees()+",<MinChrge> "+bean.getMnCharg()+", "+bean.getSpeciality()
+                    +", " +bean.getWorking_days()+", "+bean.getEmployees()+",<MinChrge> "+bean.getMnCharg()+", "+bean.getSpeciality()+",Description: "+bean.getDescription()
                     +", "+bean.getLat()+", "+ bean.getLng()+", "+SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.DEVICETOKEN)
                     +", "+"android");
             MultipartEntityBuilder multipartbuilder = MultipartEntityBuilder.create();
@@ -161,7 +161,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                 multipartbuilder.addBinaryBody("image["+i+"]" , new File(bean.getImagesAttach().get(i)));
             }
 
-            multipartbuilder.addTextBody("description", "");
+            multipartbuilder.addTextBody("description", bean.getDescription());
 
             if(bean.getImagePath().isEmpty())
             {
