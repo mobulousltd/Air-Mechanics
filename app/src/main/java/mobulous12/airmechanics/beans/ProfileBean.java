@@ -29,8 +29,8 @@ public class ProfileBean implements Parcelable {
     private String employees="";
     private String speciality="";
     private String mnCharg="";
-    private String dollarOrKes;
-    private String description;
+    private String dollarOrKes="";
+    private String description="";
 
     public String getDescription() {
         return description;
