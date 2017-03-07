@@ -1,7 +1,9 @@
 package mobulous12.airmechanics.customer.fragments;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -201,6 +203,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
                         SharedPreferenceWriter.getInstance(getActivity()).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                         SharedPreferenceWriter.getInstance(getActivity()).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                         SharedPreferenceWriter.getInstance(getActivity()).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, false);
+                        SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).writeStringValue(SPreferenceKey.PROFILEUPDATED, "");
                         startActivity(intent);
                         getActivity().finish();
                     }

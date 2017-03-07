@@ -205,6 +205,7 @@ public class VerificationActivity extends AppCompatActivity implements View.OnCl
                     if(responseObj.getString("requestKey").equals("Signup"))
                     {
                         JSONObject response=responseObj.getJSONObject("response");
+                        SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.PROFILEUPDATED, "1");
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.LOGINTYPE, "normal");
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.LOGINKEY, true);
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.TOKEN, response.getString("token"));

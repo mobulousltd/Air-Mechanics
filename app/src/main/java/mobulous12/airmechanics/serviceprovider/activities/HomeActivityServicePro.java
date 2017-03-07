@@ -622,6 +622,7 @@ public class HomeActivityServicePro extends AppCompatActivity
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.LOGINKEY, false);
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.CUSTOMER_LOGIN, false);
                         SharedPreferenceWriter.getInstance(getApplicationContext()).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, false);
+                        SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.PROFILEUPDATED, "");
                         startActivity(intent);
                         finish();
 
