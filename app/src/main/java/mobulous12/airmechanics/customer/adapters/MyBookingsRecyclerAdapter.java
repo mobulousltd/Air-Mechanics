@@ -20,7 +20,8 @@ import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.customer.fragments.BookingDetailFragment;
 import mobulous12.airmechanics.databinding.MyBookingCardBinding;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 6/10/16.
@@ -97,7 +98,7 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
 
     class BookingsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private final CircularImageView circularImageView_myBooking;
+        private final CircleImageView circularImageView_myBooking;
         private TextView myBookingName;
         private TextView bookingAmount;
         private TextView bookingDate;
@@ -110,7 +111,7 @@ public class MyBookingsRecyclerAdapter extends RecyclerView.Adapter<MyBookingsRe
             super(itemView);
 
             imageView_myBookingRightArrow = (ImageView) itemView.findViewById(R.id.imageView_myBookingRightArrow);
-            circularImageView_myBooking = (CircularImageView) itemView.findViewById(R.id.circularImageView_myBooking);
+            circularImageView_myBooking = (CircleImageView) itemView.findViewById(R.id.circularImageView_myBooking);
 
             myBookingName = (TextView) itemView.findViewById(R.id.textView_myBookingName);
             bookingAmount = (TextView) itemView.findViewById(R.id.textView_myBookingAmount);

@@ -29,7 +29,7 @@ import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.ServiceProviderDetailBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
@@ -76,7 +76,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
     private View view;
     private TextView mon, tue, wed, thur, fri, sat, sun;
     ServiceProviderBean serviceProviderBean;
-    CircularImageView circularImageView_profile_pic_serviceProviderDetail;
+    CircleImageView circularImageView_profile_pic_serviceProviderDetail;
 
     public static ServiceProviderDetailActivity serviceProviderDetailActivity;
     private static final int CALL_REQ_CODE = 125;
@@ -89,7 +89,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
         serviceProviderDetailActivity = this;
         serviceProviderBean = getIntent().getParcelableExtra("bean");
 
-        circularImageView_profile_pic_serviceProviderDetail = (CircularImageView) findViewById(R.id.circularImageView_profile_pic_serviceProviderDetail);
+        circularImageView_profile_pic_serviceProviderDetail = (CircleImageView) findViewById(R.id.circularImageView_profile_pic_serviceProviderDetail);
         serviceProviderDetail_title = (TextView) findViewById(R.id.textView_serviceProviderDetail);
         serviceProviderName = (TextView) findViewById(R.id.textView_raj_auto_garage_serviceProviderDetail);
         km = (TextView) findViewById(R.id.textView_km_serviceProviderDetail);

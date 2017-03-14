@@ -21,7 +21,7 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.HomeScreenInfoWindowBinding;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 
 /**
  * Created by mobulous11 on 6/10/16.
@@ -51,7 +51,7 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         TextView title = (TextView) customWindow.findViewById(R.id.title_customInfoWindow);
         TextView content = (TextView) customWindow.findViewById(R.id.tv_category);
         TextView location = (TextView) customWindow.findViewById(R.id.tv_location);
-        CircularImageView profileimage=(CircularImageView)customWindow.findViewById(R.id.circularImageView_profile_pic_info_window);
+        CircleImageView profileimage=(CircleImageView)customWindow.findViewById(R.id.circularImageView_profile_pic_info_window);
         AQuery aquery=new AQuery(profileimage);
         if(bean.getProfile_thumb().isEmpty())
         {

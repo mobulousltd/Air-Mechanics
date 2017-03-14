@@ -19,7 +19,8 @@ import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.activities.ServiceProviderActivity;
 import mobulous12.airmechanics.databinding.FavoritesCardBinding;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 6/10/16.
@@ -189,7 +190,7 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
         private TextView tv_price;
         private TextView review;
         private TextView reviewRating;
-        private CircularImageView circImage_Favorites;
+        private CircleImageView circImage_Favorites;
 
 
         public FavoritesViewHolder(View itemView)
@@ -199,7 +200,7 @@ public class FavoritesRecyclerAdapter  extends RecyclerView.Adapter<FavoritesRec
             serviceProviderName = (TextView) itemView.findViewById(R.id.textView_serviceProviderName_favorites);
 //            Font.setFontTextView(serviceProviderName, (AppCompatActivity)context);
 //
-            circImage_Favorites = (CircularImageView) itemView.findViewById(R.id.circularImageView_Favorites);
+            circImage_Favorites = (CircleImageView) itemView.findViewById(R.id.circularImageView_Favorites);
             star1 = (ImageView) itemView.findViewById(R.id.imageView_star1);
             star2 = (ImageView) itemView.findViewById(R.id.imageView_star2);
             star3 = (ImageView) itemView.findViewById(R.id.imageView_star3);

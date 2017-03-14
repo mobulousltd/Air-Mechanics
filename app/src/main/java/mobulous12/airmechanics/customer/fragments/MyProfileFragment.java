@@ -46,7 +46,7 @@ import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.utils.TakeImage;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
@@ -71,7 +71,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
     EditText editText_name_profile, editText_contact_number_profile, editText_email_profile, editText_address_profile;
     private MenuItem save;
     private MenuItem editing;
-    private CircularImageView profile_image;
+    private CircleImageView profile_image;
     private TextView profile_name;
     private Typeface regular_font;
     private RelativeLayout root_changePassword;
@@ -142,7 +142,7 @@ public class MyProfileFragment extends Fragment implements View.OnClickListener,
 //        textView_app_notification_profile = (TextView) view.findViewById(R.id.textView_app_notification_profile);
             root_changePassword = (RelativeLayout) view.findViewById(R.id.root_changePassword);
             linear_setContact = (LinearLayout) view.findViewById(R.id.linear_setContact);
-            profile_image = (CircularImageView) view.findViewById(R.id.circularImageView_profileScreen);
+            profile_image = (CircleImageView) view.findViewById(R.id.circularImageView_profileScreen);
             profile_name = (TextView) view.findViewById(R.id.textView_userName_Profile);
 
 

@@ -54,6 +54,7 @@ import mobulous12.airmechanics.serviceprovider.fragments.ProfileFragment_SP;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.utils.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -65,7 +66,7 @@ public class HomeActivity extends AppCompatActivity
     public Toolbar toolbar;
     public static TextView toolbar_title;
     TextView profile_name;
-    ImageView profile_image;
+    CircleImageView profile_image;
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -119,7 +120,7 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
         profile_name = (TextView) header.findViewById(R.id.textView_userName_Home);
-        profile_image = (ImageView) header.findViewById(R.id.circularImageView_profilePic_Home);
+        profile_image = (CircleImageView) header.findViewById(R.id.circularImageView_profilePic_Home);
 
         if (!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY)) {
             profile_name.setText("Welcome Guest");

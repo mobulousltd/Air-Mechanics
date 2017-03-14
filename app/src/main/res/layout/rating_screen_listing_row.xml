@@ -20,12 +20,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <mobulous12.airmechanics.utils.CircularImageView
+                <!--PROFILE IMAGE-->
+                <mobulous12.airmechanics.utils.CircleImageView
+                    app:civ_border_color="@color/circle_image_border"
+                    app:civ_border_width="@dimen/_1sdp"
+                    app:civ_fill_color="@color/circle_image_border"
                     android:id="@+id/image_rating_screen_listing"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:src="@drawable/profile_pic"
-                    android:layout_margin="@dimen/_5sdp"/>
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"/>
+
+
+                <!--<mobulous12.airmechanics.utils.CircularImageView-->
+                    <!--android:id="@+id/image_rating_screen_listing"-->
+                    <!--android:layout_width="@dimen/_70sdp"-->
+                    <!--android:layout_height="@dimen/_70sdp"-->
+                    <!--android:src="@drawable/profile_pic"-->
+                    <!--android:layout_margin="@dimen/_5sdp"/>-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"

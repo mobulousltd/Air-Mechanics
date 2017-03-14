@@ -18,15 +18,12 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import mobulous12.airmechanics.MapActivityToPickAddress;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ProfileBean;
@@ -34,7 +31,7 @@ import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.fonts.FontBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.utils.TakeImage;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
@@ -54,7 +51,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private static int RESULT_LOAD_IMAGE = 1;
     private static int ADDRESSFETCH=011;
     private static final int CAMERA_REQUEST = 1888;
-    CircularImageView circularImageView_profile_pic;ProfileBean profileBean;
+    CircleImageView circularImageView_profile_pic;
+    ProfileBean profileBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         button_SignIn_SignUpActivity = (Button) findViewById(R.id.button_SignIn_SignUpActivity);
         textView_back_signUp = (TextView) findViewById(R.id.textView_back_signUp);
         root_back_sign_up_activity = (RelativeLayout) findViewById(R.id.root_back_sign_up_activity);
-        circularImageView_profile_pic = (CircularImageView) findViewById(R.id.circularImageView_profile_pic);
+        circularImageView_profile_pic = (CircleImageView) findViewById(R.id.circularImageView_profile_pic);
         circularImageView_profile_pic.setOnClickListener(this);
 
         profileBean = new ProfileBean();

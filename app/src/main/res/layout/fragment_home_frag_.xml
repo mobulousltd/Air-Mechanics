@@ -11,13 +11,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <mobulous12.airmechanics.utils.CircularImageView
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/garage_image"
+            <!--PROFILE IMAGE-->
+            <mobulous12.airmechanics.utils.CircleImageView
+                app:civ_border_color="@color/circle_image_border"
+                app:civ_border_width="@dimen/_1sdp"
+                app:civ_fill_color="@color/circle_image_border"
+                android:id="@+id/circleImageView"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:id="@+id/circleImageView" />
+                android:src="@drawable/garage_image"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"/>
+
+            <!--<mobulous12.airmechanics.utils.CircularImageView-->
+                <!--android:layout_width="@dimen/_80sdp"-->
+                <!--android:layout_height="@dimen/_80sdp"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:src="@drawable/garage_image"-->
+                <!--android:layout_marginTop="@dimen/_15sdp"-->
+                <!--android:id="@+id/circleImageView" />-->
             <TextView
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"

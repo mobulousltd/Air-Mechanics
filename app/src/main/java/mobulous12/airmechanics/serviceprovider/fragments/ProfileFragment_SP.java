@@ -61,7 +61,7 @@ import mobulous12.airmechanics.serviceprovider.dialogs.SpecialityDialogFrag;
 import mobulous12.airmechanics.serviceprovider.dialogs.WorkingDaysDialogFrag;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.utils.TakeImage;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -102,7 +102,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
     public ProfileFragment_SP() {
         // Required empty public constructor
     }
-    private CircularImageView profileImage;
+    private CircleImageView profileImage;
     private String selectedDollarOrKes = "";
 
     @Override
@@ -125,7 +125,7 @@ public class ProfileFragment_SP extends Fragment implements View.OnClickListener
             FragmentProfileSpBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_sp, container, false);
             view = binding.getRoot();
             //Views
-            profileImage = (CircularImageView) view.findViewById(R.id.circularImageView_profileSP);
+            profileImage = (CircleImageView) view.findViewById(R.id.circularImageView_profileSP);
             textView_userName_ProfileSP = (TextView) view.findViewById(R.id.textView_userName_ProfileSP);
             textView_openText_profileSP = (TextView) view.findViewById(R.id.textView_openText_profileSP);
             textView_closeText_profileSP = (TextView) view.findViewById(R.id.textView_closeText_profileSP);

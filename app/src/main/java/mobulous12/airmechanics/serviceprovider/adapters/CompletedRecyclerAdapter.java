@@ -19,7 +19,8 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.CompletedFragCardsBinding;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 18/10/16.
@@ -81,11 +82,11 @@ public class CompletedRecyclerAdapter extends RecyclerView.Adapter<CompletedRecy
         private TextView jobOrderDate_1_Comp;
         private TextView jobOrderTime_1_Comp;
         private TextView jobOrderStatus_1_Comp;
-        CircularImageView circularImageView_1_completedFrag;
+        CircleImageView circularImageView_1_completedFrag;
 
         public CompletedViewHolder(View itemView) {
             super(itemView);
-            circularImageView_1_completedFrag = (CircularImageView) itemView.findViewById(R.id.circularImageView_1_completedFrag);
+            circularImageView_1_completedFrag = (CircleImageView) itemView.findViewById(R.id.circularImageView_1_completedFrag);
 
             jobOrderName_1_Comp = (TextView) itemView.findViewById(R.id.textView_jobOrderName_1_completed);
 

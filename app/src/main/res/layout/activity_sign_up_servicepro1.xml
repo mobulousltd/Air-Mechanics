@@ -58,13 +58,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <mobulous12.airmechanics.utils.CircularImageView
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/circularImageView_profile_pic_signUp_servicePro"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                <!--PROFILE IMAGE-->
+                <mobulous12.airmechanics.utils.CircleImageView
+                    app:civ_border_color="@color/circle_image_border"
+                    app:civ_border_width="@dimen/_1sdp"
                     android:src="@drawable/default_profile_pic"
-                    android:layout_marginTop="@dimen/_4sdp"/>
+                    android:id="@+id/circularImageView_profile_pic_signUp_servicePro"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"/>
+
+
+                <!--<mobulous12.airmechanics.utils.CircularImageView-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:id="@+id/circularImageView_profile_pic_signUp_servicePro"-->
+                    <!--android:layout_width="@dimen/_80sdp"-->
+                    <!--android:layout_height="@dimen/_80sdp"-->
+                    <!--android:src="@drawable/default_profile_pic"-->
+                    <!--android:layout_marginTop="@dimen/_4sdp"/>-->
 
                 <!--FULL NAME-->
                 <LinearLayout

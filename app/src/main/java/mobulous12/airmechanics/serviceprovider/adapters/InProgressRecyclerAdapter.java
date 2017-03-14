@@ -18,7 +18,8 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.InProgressFragCardsBinding;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 18/10/16.
@@ -79,12 +80,12 @@ public class InProgressRecyclerAdapter extends RecyclerView.Adapter<InProgressRe
         private TextView jobOrderDate_1_inProg;
         private TextView jobOrderTime_1_inProg;
         private TextView jobOrderStatus_1_inProg;
-        CircularImageView circularImageView_1_inProgressFrag;
+        CircleImageView circularImageView_1_inProgressFrag;
 
 
         public InProgressViewHolder(View itemView) {
             super(itemView);
-            circularImageView_1_inProgressFrag = (CircularImageView) itemView.findViewById(R.id.circularImageView_1_inProgressFrag);
+            circularImageView_1_inProgressFrag = (CircleImageView) itemView.findViewById(R.id.circularImageView_1_inProgressFrag);
             jobOrderName_1_inProg = (TextView) itemView.findViewById(R.id.textView_jobOrderName_1_inProgress);
             jobOrderAmount_1_inProg = (TextView) itemView.findViewById(R.id.textView_jobOrderAmount_1_inProgress);
             jobOrderDate_1_inProg= (TextView) itemView.findViewById(R.id.textView_jobOrderDate_1_inProgress);

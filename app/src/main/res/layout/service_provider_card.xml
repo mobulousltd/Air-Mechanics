@@ -22,12 +22,7 @@
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content">-->
 
-            <!--<mobulous12.airmechanics.utils.CircularImageView-->
-                <!--android:id="@+id/circularImageView_ServiceProvider"-->
-                <!--android:layout_width="@dimen/_70sdp"-->
-                <!--android:layout_height="@dimen/_70sdp"-->
-                <!--android:layout_margin="@dimen/_8sdp"-->
-                <!--android:src="@drawable/default_profile_pic" />-->
+
 
             <!--&lt;!&ndash;Service provider details layout&ndash;&gt;-->
 
@@ -339,13 +334,19 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <mobulous12.airmechanics.utils.CircularImageView
-                        android:layout_gravity="center_vertical"
+                    <!--PROFILE IMAGE-->
+
+                    <mobulous12.airmechanics.utils.CircleImageView
+                        app:civ_border_color="@color/circle_image_border"
+                        app:civ_border_width="@dimen/sp_0.5"
+                        app:civ_fill_color="@color/circle_image_border"
+                        android:src="@drawable/default_profile_pic"
                         android:id="@+id/circularImageView_ServiceProvider"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_70sdp"
                         android:layout_margin="@dimen/_8sdp"
-                        android:src="@drawable/default_profile_pic" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"/>
+
 
                     <!--Service provider details layout-->
                     <LinearLayout

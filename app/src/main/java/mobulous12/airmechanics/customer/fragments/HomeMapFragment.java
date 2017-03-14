@@ -417,8 +417,8 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 serviceproviderbean.setAddress(jsonobject.getString("address"));
                 serviceproviderbean.setId(jsonobject.getString("id"));
                 serviceproviderbean.setName(jsonobject.getString("name"));
-                serviceproviderbean.setProfile_thumb(jsonobject.getString("profile"));
-                serviceproviderbean.setProfile(jsonobject.getString("profile_thumb"));
+                serviceproviderbean.setProfile(jsonobject.getString("profile"));
+                serviceproviderbean.setProfile_thumb(jsonobject.getString("profile_thumb"));
                 serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));
                 serviceproviderbean.setEmail(jsonobject.getString("email"));
                 serviceproviderbean.setCategory(jsonobject.getString("work_category"));

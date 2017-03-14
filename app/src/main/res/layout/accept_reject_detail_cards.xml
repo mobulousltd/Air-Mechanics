@@ -66,11 +66,19 @@
                             android:padding="@dimen/_5sdp"
                             android:layout_margin="@dimen/_5sdp"
                             android:id="@+id/linearlayout_circularImages">
-
-                            <mobulous12.airmechanics.utils.CircularImageView
+                            <!--PROFILE IMAGE-->
+                            <mobulous12.airmechanics.utils.CircleImageView
+                                app:civ_border_color="@color/circle_image_border"
+                                app:civ_border_width="@dimen/sp_0.5"
+                                app:civ_fill_color="@color/circle_image_border"
                                 android:id="@+id/circularImageView1_AcceptReject"
                                 android:layout_width="@dimen/_55sdp"
                                 android:layout_height="@dimen/_55sdp"/>
+
+                            <!--<mobulous12.airmechanics.utils.CircularImageView-->
+                                <!--android:id="@+id/circularImageView1_AcceptReject"-->
+                                <!--android:layout_width="@dimen/_55sdp"-->
+                                <!--android:layout_height="@dimen/_55sdp"/>-->
 
                             <ImageView
                                 android:contentDescription="@string/accepttitle"

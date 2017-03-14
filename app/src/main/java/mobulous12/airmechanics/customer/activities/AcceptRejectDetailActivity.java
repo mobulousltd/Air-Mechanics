@@ -24,7 +24,7 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.databinding.AcceptRejectDetailCardsBinding;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
@@ -34,7 +34,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
     AcceptRejectDetailCardsBinding binding;
     private TextView tv_minchrge,tv_ServiceProName,tv_Date,tv_descrip,textView_AcceptRejectTime, tv_jobtitle;
     private String reqid, expiredtime;
-    private CircularImageView image_AcceptRej;
+    private CircleImageView image_AcceptRej;
 
     long days, hours, minutes, seconds;
 
@@ -51,7 +51,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
         tv_ServiceProName = (TextView) findViewById(R.id.textView_AcceptRejectServiceProName);
         tv_Date = (TextView) findViewById(R.id.textView_AcceptRejectDate);
         tv_descrip = (TextView) findViewById(R.id.textView_description_accept_reject);
-        image_AcceptRej = (CircularImageView) findViewById(R.id.circularImageView1_AcceptReject);
+        image_AcceptRej = (CircleImageView) findViewById(R.id.circularImageView1_AcceptReject);
         tv_jobtitle=(TextView)findViewById(R.id.tv_jobtitle);
         binding.imgBack.setOnClickListener(this);
         binding.textViewAcceptQuote.setOnClickListener(this);

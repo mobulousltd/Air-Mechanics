@@ -843,7 +843,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     public  void removedocspopup(final int position) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CalenderActivity.this);
         alertDialogBuilder.setTitle(getString(R.string.app_name));
-        alertDialogBuilder.setMessage("Do you want to delete this image?");
+        alertDialogBuilder.setIcon(R.drawable.logo);
+        alertDialogBuilder.setMessage("Do you want to delete this image ?");
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

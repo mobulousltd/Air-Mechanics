@@ -8,6 +8,8 @@
     <color name="black">#000000</color>
     <color name="blue">#2773EC</color>
 
+    <color name="circle_image_border">#c2c2c2</color>
+
     <color name="q_submit_button">#4768f3</color>
     <color name="quote_bluecolor">#6583ff</color>
 

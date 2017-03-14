@@ -26,7 +26,6 @@ import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.FragmentPendingBinding;
 import mobulous12.airmechanics.serviceprovider.activities.JobOrderDetailActivity;
 import mobulous12.airmechanics.serviceprovider.adapters.PendingInProgressCompletedAdapter;
-import mobulous12.airmechanics.serviceprovider.adapters.PendingRecyclerAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;

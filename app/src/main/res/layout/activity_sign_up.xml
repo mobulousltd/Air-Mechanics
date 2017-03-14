@@ -63,14 +63,12 @@
 
         <!--PROFILE IMAGE-->
             <mobulous12.airmechanics.utils.CircleImageView
-                app:civ_border_color="#dbdbdb"
-                app:civ_border_width="@dimen/_2sdp"
+                app:civ_border_color="@color/circle_image_border"
+                app:civ_border_width="@dimen/_1sdp"
                 android:src="@drawable/default_profile_pic"
                 android:id="@+id/circularImageView_profile_pic"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_below="@+id/root_back_sign_up_activity"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"/>
 

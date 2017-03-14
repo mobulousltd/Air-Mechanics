@@ -21,7 +21,8 @@ import mobulous12.airmechanics.databinding.PendingFragCardsBinding;
 import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 18/10/16.
@@ -77,7 +78,7 @@ public class PendingRecyclerAdapter extends RecyclerView.Adapter<PendingRecycler
 
     class PendingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private CircularImageView circularImageView;
+        private CircleImageView circularImageView;
         private TextView jobOrderName_1;
         private TextView jobOrderAmount_1;
         private TextView jobOrderDate_1;
@@ -88,7 +89,7 @@ public class PendingRecyclerAdapter extends RecyclerView.Adapter<PendingRecycler
             super(itemView);
             itemView.setOnClickListener(this);
 
-            circularImageView = (CircularImageView) itemView.findViewById(R.id.circularImageView_1_pendingFrag);
+            circularImageView = (CircleImageView) itemView.findViewById(R.id.circularImageView_1_pendingFrag);
             jobOrderName_1 = (TextView) itemView.findViewById(R.id.textView_jobOrderName_1);
             jobOrderAmount_1 = (TextView) itemView.findViewById(R.id.textView_jobOrderAmount_1);
             jobOrderDate_1 = (TextView) itemView.findViewById(R.id.textView_jobOrderDate_1);

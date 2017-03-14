@@ -17,7 +17,8 @@ import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.serviceprovider.fragments.CompletedFragment;
 import mobulous12.airmechanics.serviceprovider.fragments.InProgressFragment;
 import mobulous12.airmechanics.serviceprovider.fragments.PendingFragment;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous11 on 6/2/17.
@@ -89,17 +90,18 @@ public class PendingInProgressCompletedAdapter extends RecyclerView.Adapter<Pend
         return beanArrayList.size();
     }
 
+//    VIEWHOLDER CLASS
 protected class PendingInProgressCompletedHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView jobOrderName_1_inProg;
         private TextView jobOrderAmount_1_inProg;
         private TextView jobOrderDate_1_inProg;
         private TextView jobOrderTime_1_inProg;
         private TextView jobOrderStatus_1_inProg;
-        CircularImageView circularImageView_1_inProgressFrag;
+        CircleImageView circularImageView_1_inProgressFrag;
 
         public PendingInProgressCompletedHolder(View itemView) {
             super(itemView);
-            circularImageView_1_inProgressFrag = (CircularImageView) itemView.findViewById(R.id.circularImageView_1_inProgressFrag);
+            circularImageView_1_inProgressFrag = (CircleImageView) itemView.findViewById(R.id.circularImageView_1_inProgressFrag);
             jobOrderName_1_inProg = (TextView) itemView.findViewById(R.id.textView_jobOrderName_1_inProgress);
             jobOrderAmount_1_inProg = (TextView) itemView.findViewById(R.id.textView_jobOrderAmount_1_inProgress);
             jobOrderDate_1_inProg= (TextView) itemView.findViewById(R.id.textView_jobOrderDate_1_inProgress);

@@ -1,11 +1,12 @@
 package mobulous12.airmechanics.serviceprovider.activities;
 
-import android.app.AlertDialog;
+
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,7 +53,7 @@ import mobulous12.airmechanics.serviceprovider.dialogs.SpecialityDialogFrag;
 import mobulous12.airmechanics.serviceprovider.dialogs.WorkingDaysDialogFrag;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.utils.TakeImage;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
@@ -72,7 +73,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
     private TextView textView_back_signUp_servicePro,textView_attachDocs_servicePro, textview_address_servicePro,textview_speciality_sp;;
     private EditText editText_fullName_SP,editText_companyName_SP, et_minchrge_sp, editText_email_SP,editText_password_SP,
             editText_confirmPassword_SP,editText_contactNumber_SP;
-    CircularImageView circularImageView_profile_pic_signUp_servicePro;
+    CircleImageView circularImageView_profile_pic_signUp_servicePro;
     String profilepic="", docpic="", type="", radius="5", categories="",workdays="", speciality="";
     RecyclerView attched_docs;
     ArrayList<String> arrayList=new ArrayList<String>();
@@ -118,7 +119,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         root_back_signUp_servicePro = (RelativeLayout) findViewById(R.id.root_back_signUp_servicePro);
         textView_back_signUp_servicePro = (TextView) findViewById(R.id.textView_back_signUp_servicePro);
 
-        circularImageView_profile_pic_signUp_servicePro=(CircularImageView)findViewById(R.id.circularImageView_profile_pic_signUp_servicePro);
+        circularImageView_profile_pic_signUp_servicePro=(CircleImageView)findViewById(R.id.circularImageView_profile_pic_signUp_servicePro);
 
         circularImageView_profile_pic_signUp_servicePro.setOnClickListener(this);
         attched_docs=(RecyclerView)findViewById(R.id.attched_docs);
@@ -220,7 +221,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
                 }
                 else {
                     type="docs";
-                    showDialogForUpload("Upload your Documents");
+                    showDialogForUpload("Upload your documents");
                 }
 
                 break;
@@ -565,9 +566,11 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
 
 
     public  void removedocspopup(final int position) {
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUpServiceProActivity.this);
         alertDialogBuilder.setTitle(getString(R.string.app_name));
-        alertDialogBuilder.setMessage("Do you want to delete this image?");
+        alertDialogBuilder.setIcon(R.drawable.logo);
+        alertDialogBuilder.setMessage("Do you want to delete this image ?");
 
         alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {

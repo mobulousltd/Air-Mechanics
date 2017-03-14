@@ -17,6 +17,7 @@
             android:padding="@dimen/_7sdp">
 
             <ImageView
+                android:contentDescription="@string/notifications_home"
                 android:id="@+id/imageView_notificationScreen"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_30sdp"

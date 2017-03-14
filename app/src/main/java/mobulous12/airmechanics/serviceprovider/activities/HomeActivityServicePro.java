@@ -54,6 +54,7 @@ import mobulous12.airmechanics.serviceprovider.fragments.ProfileFragment_SP;
 import mobulous12.airmechanics.serviceprovider.fragments.YourJobsFragment_SP;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.utils.MyApplication;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
@@ -67,7 +68,8 @@ public class HomeActivityServicePro extends AppCompatActivity
 
     /*variables*/
 
-    TextView profile_name;ImageView profile_image;
+    TextView profile_name;
+    CircleImageView profile_image;
     public static TextView toolbar_titleSP;
     public  Toolbar toolbarSP;
     private     DrawerLayout drawerSP;
@@ -122,7 +124,7 @@ public class HomeActivityServicePro extends AppCompatActivity
         navigationViewSP.setNavigationItemSelectedListener(this);
         profile_name=(TextView)headerSP.findViewById(R.id.textView_userName_HomeServicePro);
         profile_name.setText(SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.FullName));
-        profile_image=(ImageView)headerSP.findViewById(R.id.circularImageView_profilePic_HomeServicePro);
+        profile_image=(CircleImageView) headerSP.findViewById(R.id.circularImageView_profilePic_HomeServicePro);
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

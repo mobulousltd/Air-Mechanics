@@ -33,7 +33,7 @@ import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.utils.CalendarView;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment implements ApiListener {
     HashMap<Date, String>counts;
     private View view;
     private TextView textView_name_homeSP,textView_address_homeSP;
-    private CircularImageView profileImage;
+    private CircleImageView profileImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment implements ApiListener {
 
         textView_name_homeSP=(TextView)view.findViewById(R.id.textView_name_homeSP);
         textView_address_homeSP=(TextView)view.findViewById(R.id.textView_address_homeSP);
-        profileImage = (CircularImageView) view.findViewById(R.id.circleImageView);
+        profileImage = (CircleImageView) view.findViewById(R.id.circleImageView);
 //        calendar_date_display=(TextView)view.findViewById(R.id.calendar_date_display);
 
         //profile username and address

@@ -17,12 +17,23 @@
                 android:background="@drawable/profile"
                 android:gravity="center" >
 
-                <mobulous12.airmechanics.utils.CircularImageView
+                <!--PROFILE IMAGE-->
+                <mobulous12.airmechanics.utils.CircleImageView
+                    app:civ_border_color="@color/circle_image_border"
+                    app:civ_border_width="@dimen/_1sdp"
+                    android:src="@drawable/default_profile_pic"
                     android:id="@+id/circularImageView_rate_screen"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_5sdp"/>
+                    android:layout_height="@dimen/_100sdp"/>
+
+                <!--<mobulous12.airmechanics.utils.CircularImageView-->
+                    <!--android:id="@+id/circularImageView_rate_screen"-->
+                    <!--android:layout_width="@dimen/_100sdp"-->
+                    <!--android:layout_height="@dimen/_100sdp"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_marginTop="@dimen/_5sdp"/>-->
 
                 <TextView
                     android:gravity="center"
@@ -42,8 +53,8 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_16"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
                     />
 
             </LinearLayout>

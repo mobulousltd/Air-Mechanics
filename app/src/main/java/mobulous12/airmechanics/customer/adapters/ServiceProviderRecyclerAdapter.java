@@ -29,7 +29,7 @@ import mobulous12.airmechanics.databinding.ServiceProviderCardBinding;
 import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 /**
@@ -201,7 +201,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
 
     class ServiceProviderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        CircularImageView circularImageView_ServiceProvider;
+        CircleImageView circularImageView_ServiceProvider;
         RelativeLayout  relative_ReviewAndRating;
         TextView serviceProviderName,ratingServiceProvider,mon,tue,wed,thur,fri,sat,sun,
                 sp_owner,textView_ServiceProviderLocation,askForQuote,review,reviewRating, sp_rating;
@@ -211,7 +211,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
             super(itemView);
             sp_rating=(TextView)itemView.findViewById(R.id.sp_rating);
             relative_ReviewAndRating=(RelativeLayout)itemView.findViewById(R.id.relative_ReviewAndRating);
-            circularImageView_ServiceProvider=(CircularImageView)itemView.findViewById(R.id.circularImageView_ServiceProvider);
+            circularImageView_ServiceProvider=(CircleImageView)itemView.findViewById(R.id.circularImageView_ServiceProvider);
             serviceProviderName = (TextView) itemView.findViewById(R.id.textView_ServiceProviderName);
             mon = (TextView) itemView.findViewById(R.id.textView_mon_serviceProviderDetail);
             tue = (TextView) itemView.findViewById(R.id.textView_tue_serviceProviderDetail);

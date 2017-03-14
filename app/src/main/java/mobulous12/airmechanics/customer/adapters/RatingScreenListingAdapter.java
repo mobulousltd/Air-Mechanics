@@ -17,7 +17,8 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.MyBookingCardBinding;
 import mobulous12.airmechanics.databinding.RatingScreenListingRowBinding;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous11 on 22/12/16.
@@ -91,14 +92,14 @@ public class RatingScreenListingAdapter extends RecyclerView.Adapter<RatingScree
 
     class MyViewHolder extends RecyclerView.ViewHolder
     {
-        private CircularImageView image;
+        private CircleImageView image;
         private TextView name;
         private TextView review;
         private ImageView star1, star2, star3, star4, star5;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            image = (CircularImageView) itemView.findViewById(R.id.image_rating_screen_listing);
+            image = (CircleImageView) itemView.findViewById(R.id.image_rating_screen_listing);
             name = (TextView) itemView.findViewById(R.id.title_rating_screen_listing);
             review = (TextView) itemView.findViewById(R.id.review_rating_screen_listing);
             star1 = (ImageView) itemView.findViewById(R.id.imageView_star1_rating_screen_listing);

@@ -18,7 +18,8 @@ import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.BookingBean;
 import mobulous12.airmechanics.databinding.RejectedScreenCardsBinding;
 import mobulous12.airmechanics.fonts.Font;
-import mobulous12.airmechanics.utils.CircularImageView;
+import mobulous12.airmechanics.utils.CircleImageView;
+
 
 /**
  * Created by mobulous12 on 12/10/16.
@@ -78,14 +79,14 @@ public class RejectedRecyclerAapter extends RecyclerView.Adapter<RejectedRecycle
 
         private TextView textView_1_rejectedName,textView_1_rejectedAmount,
                 textView_1_rejectedDate,textView_1_rejectedTime,textView_1_rejectedStatus,tv_nameSp;
-        private CircularImageView circularImageView_1_rejected;
+        private CircleImageView circularImageView_1_rejected;
 
 
         public RejectedViewHolder(View itemView) {
             super(itemView);
 
             tv_nameSp = (TextView) itemView.findViewById(R.id.tv_nameSp);
-            circularImageView_1_rejected = (CircularImageView) itemView.findViewById(R.id.circularImageView_1_rejected);
+            circularImageView_1_rejected = (CircleImageView) itemView.findViewById(R.id.circularImageView_1_rejected);
             textView_1_rejectedName = (TextView) itemView.findViewById(R.id.textView_1_rejectedName);
             textView_1_rejectedAmount = (TextView) itemView.findViewById(R.id.textView_1_rejectedAmount);
             textView_1_rejectedDate = (TextView) itemView.findViewById(R.id.textView_1_rejectedDate);
