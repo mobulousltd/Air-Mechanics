@@ -134,9 +134,12 @@
             android:name=".addressfetcher.GeocodeAddressIntentService"
             android:exported="false" />
 
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".customer.activities.RatingScreenListingActivity" />
-        <activity android:name=".customer.activities.PaymentActivity"/>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".customer.activities.RatingScreenListingActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".customer.activities.PaymentActivity"/>
 
         <!--for accept -reject popup dialog-->
         <activity
