@@ -511,6 +511,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                             else
                             {
+                                SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.COMPANYIMAGE, "");
                                 SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.COMPANYNAME, response.getString("companyName"));
                                 SharedPreferenceWriter.getInstance(this).writeStringValue(SPreferenceKey.PROFILEUPDATED, response.getString("profile_updated"));
                                 SharedPreferenceWriter.getInstance(this).writeBooleanValue(SPreferenceKey.SERVICE_PROVIDER_LOGIN, true);
