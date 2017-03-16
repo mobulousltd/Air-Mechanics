@@ -302,7 +302,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
     {
         if (editText_fullName_SP.getText().toString().trim().isEmpty())
         {
-            showToast("Please Enter Full Name");
+            showToast("Please enter Full Name");
             return false;
         }
         else if(!validateName(editText_fullName_SP))
@@ -356,7 +356,7 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (editText_contactNumber_SP.getText().toString().trim().isEmpty())
         {
-            showToast( "Please Enter Contact Number");
+            showToast( "Please enter Contact Number");
             return false;
         }
         else if(editText_contactNumber_SP.getText().toString().length()<8 || editText_contactNumber_SP.getText().toString().length()>15)
@@ -366,11 +366,11 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (!Patterns.PHONE.matcher(editText_contactNumber_SP.getText().toString()).matches())
         {
-            showToast("Please Enter valid Contact Number");
+            showToast("Please enter valid Contact Number");
             return false;
         }
         else if (textview_address_servicePro.getText().toString().trim().isEmpty()) {
-            showToast("Please Enter valid Address");
+            showToast("Please enter valid Address");
             return false;
         }
         else if (textview_categories_sp.getText().toString().trim().isEmpty()) {
@@ -414,6 +414,10 @@ public class SignUpServiceProActivity extends AppCompatActivity implements View.
         }
         else if (binding.editTextDescripSp.getText().toString().trim().isEmpty()) {
             showToast("Please enter Description");
+            return false;
+        }
+        else if (arrayList.size() <= 0) {
+            showToast("Please attach at least one document");
             return false;
         }
         else
