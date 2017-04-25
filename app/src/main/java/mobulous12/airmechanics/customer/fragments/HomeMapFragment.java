@@ -74,6 +74,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     ArrayList<ServiceProviderBean> arrayList;
     private RecyclerView recView_SPList;
     private SearchListAdapter searchListAdapter;
+    
     private boolean noSpFound = false;
     private RelativeLayout rootLayout;
     private EditText editText;
