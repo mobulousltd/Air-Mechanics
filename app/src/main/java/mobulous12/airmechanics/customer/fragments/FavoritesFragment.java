@@ -360,6 +360,7 @@ public class FavoritesFragment extends Fragment  implements View.OnClickListener
                             serviceproviderbean.setCategory(jsonobject.getString("work_category"));
                             serviceproviderbean.setId(jsonobject.getString("id"));
                             serviceproviderbean.setName(jsonobject.getString("name"));
+                            serviceproviderbean.setCompanyName(jsonobject.getString("name"));
                             serviceproviderbean.setAddress(jsonobject.getString("address"));
                             serviceproviderbean.setEmail(jsonobject.getString("email"));
                             serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));

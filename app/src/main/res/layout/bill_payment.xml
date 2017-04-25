@@ -9,6 +9,7 @@
         >
 
         <ImageView
+            android:contentDescription="@string/app_name"
             android:id="@+id/imageView_bill_payment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
@@ -28,12 +29,11 @@
             android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:id="@+id/linear_bill_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_below="@+id/imageView_bill_payment"
               >
 
                 <RelativeLayout

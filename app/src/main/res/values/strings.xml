@@ -335,4 +335,5 @@
     </string-array>
 
     <string name="pay_bill">PAY BILL</string>
+    <string name="bill">BILL</string>
 </resources>

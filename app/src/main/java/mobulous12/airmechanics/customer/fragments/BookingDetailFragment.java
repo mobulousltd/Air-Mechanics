@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -67,6 +68,9 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
     View view;
     private  BookingBean  bookingBean;
     BookingDetailBinding binding;
+
+    protected Button btn_bill;
+
     public BookingDetailFragment() {
         // Required empty public constructor
     }
@@ -98,6 +102,24 @@ public class BookingDetailFragment extends Fragment implements View.OnClickListe
         rootServiceProviderDetail = (RelativeLayout) view.findViewById(R.id.root_service_provider_detail);
         rootServiceProviderAddress = (RelativeLayout) view.findViewById(R.id.root_service_provider_address);
         rootRating = (RelativeLayout) view.findViewById(R.id.root_booking_detail_rating);
+//      SET BOOLEAN VARIABLES VALUES
+        isServiceTypeOpen = true;
+        isServiceProviderDetailOpen = true;
+        isServiceProviderAddressOpen = true;
+        isRatingOpen = true;
+        isDescpOpen = true;
+
+//      BILL BUTTON
+        btn_bill = (Button)view.findViewById(R.id.btn_bill);
+        btn_bill.setOnClickListener(this);
+
+        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") || bookingBean.getStatus().equalsIgnoreCase("payment") )
+        {
+            btn_bill.setVisibility(View.VISIBLE);
+        }
+        else {
+            btn_bill.setVisibility(View.GONE);
+        }
 
         rootServiceType.setOnClickListener(this);
         rootServiceProviderDetail.setOnClickListener(this);
@@ -368,6 +390,16 @@ private void setFields()
                 }
 
                 break;
+
+            case R.id.btn_bill:
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("bookingBean", bookingBean);
+                    BillPaymentFragment paymentFragment = new BillPaymentFragment();
+                    paymentFragment.setArguments(bundle);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer, paymentFragment, "billPaymentFragment").addToBackStack("payment").commit();
+
+                break;
         }
 
     }
@@ -376,33 +408,35 @@ private void setFields()
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") || bookingBean.getStatus().equalsIgnoreCase("payment") )
-        {
-            inflater.inflate(R.menu.booking_detail_menu,menu);
-        }
-        else {
-            inflater.inflate(R.menu.blank_at_right_menu,menu);
-        }
+        inflater.inflate(R.menu.blank_at_right_menu,menu);
+
+//        if(bookingBean.getStatus().equalsIgnoreCase("billgenerate") || bookingBean.getStatus().equalsIgnoreCase("payment") )
+//        {
+//            inflater.inflate(R.menu.booking_detail_menu,menu);
+//        }
+//        else {
+//            inflater.inflate(R.menu.blank_at_right_menu,menu);
+//        }
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId())
-        {
-            case R.id.payment:
-
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("bookingBean",bookingBean);
-                BillPaymentFragment paymentFragment = new BillPaymentFragment();
-                paymentFragment.setArguments(bundle);
-              getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,paymentFragment,"billPaymentFragment").addToBackStack("payment").commit();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId())
+//        {
+//            case R.id.payment:
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putParcelable("bookingBean",bookingBean);
+//                BillPaymentFragment paymentFragment = new BillPaymentFragment();
+//                paymentFragment.setArguments(bundle);
+//              getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_homeContainer,paymentFragment,"billPaymentFragment").addToBackStack("payment").commit();
+//                break;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
     @Override
