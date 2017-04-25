@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.androidquery.AQuery;
+
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.ServiceProviderDetailBinding;
@@ -84,7 +86,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ServiceProviderDetailBinding  binding = DataBindingUtil.setContentView(this, R.layout.service_provider_detail);
+        ServiceProviderDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.service_provider_detail);
         view = binding.getRoot();
         serviceProviderDetailActivity = this;
         serviceProviderBean = getIntent().getParcelableExtra("bean");
@@ -311,7 +313,7 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
             case R.id.button_ask_for_quote_serviceProviderDetail:
                 if(!SharedPreferenceWriter.getInstance(this).getBoolean(SPreferenceKey.LOGINKEY))
                 {
-                    Snackbar snackbar = Snackbar.make(view,"You must SignIn to avail exciting services!",Snackbar.LENGTH_LONG)
+                    Snackbar snackbar = Snackbar.make(view,"You must SignIn to avail exciting services!", Snackbar.LENGTH_LONG)
                             .setAction("SIGN IN", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -512,7 +514,8 @@ public class ServiceProviderDetailActivity extends AppCompatActivity implements 
 
                         }
                         textViewAddressDynamic.setText(response.getString("address"));
-                        serviceProviderName.setText(response.getString("name"));
+//                        serviceProviderName.setText(response.getString("name"));
+                        serviceProviderName.setText(serviceProviderBean.getCompanyName());
                         serviceProviderBean.setStart(response.getString("start_time"));
                         serviceProviderBean.setEnd(response.getString("end_time"));
                         tv_minchrge.setText(response.getString("st_charge"));

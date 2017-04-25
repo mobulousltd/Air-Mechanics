@@ -29,6 +29,15 @@ public class ServiceProviderBean implements Parcelable
     String min_charge;
     String speciality;
     String requestCount;
+    String companyName;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public String getNoSpFound() {
         return noSpFound;
@@ -96,6 +105,7 @@ public class ServiceProviderBean implements Parcelable
         speciality = in.readString();
         requestCount = in.readString();
         noSpFound = in.readString();
+        companyName = in.readString();
     }
 
     @Override
@@ -120,6 +130,7 @@ public class ServiceProviderBean implements Parcelable
         dest.writeString(speciality);
         dest.writeString(requestCount);
         dest.writeString(noSpFound);
+        dest.writeString(companyName);
     }
 
     @Override

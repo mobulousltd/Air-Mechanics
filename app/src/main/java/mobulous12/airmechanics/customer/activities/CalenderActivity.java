@@ -4,19 +4,16 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,7 +28,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,7 +42,6 @@ import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.fragments.SubmitQuoteFragment;
 import mobulous12.airmechanics.databinding.ActivityCalenderBinding;
 import mobulous12.airmechanics.fonts.FontBinding;
-import mobulous12.airmechanics.serviceprovider.activities.SignUpServiceProActivity;
 import mobulous12.airmechanics.serviceprovider.adapters.DocumentsAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
@@ -83,7 +78,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        binding=DataBindingUtil.setContentView(this, R.layout.activity_calender);
+        binding= DataBindingUtil.setContentView(this, R.layout.activity_calender);
 
         bean=getIntent().getParcelableExtra("bean");
 
@@ -252,7 +247,7 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                         reqdate="";
                         String[] weekdays = new DateFormatSymbols().getWeekdays();
                         quote_calview.removeSelection();
-                        Toast.makeText(CalenderActivity.this,bean.getName()+" don't work on "+weekdays[date.getDay()+1]+"s",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CalenderActivity.this,bean.getCompanyName()+" don't work on "+weekdays[date.getDay()+1]+"s",Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {
@@ -278,8 +273,8 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
-        lat=SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.LATITUDE);
-        lng=SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.LONGITUDE);
+        lat= SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.LATITUDE);
+        lng= SharedPreferenceWriter.getInstance(this).getString(SPreferenceKey.LONGITUDE);
     }
 
     @Override
@@ -429,12 +424,12 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                     }
                     else
                     {
-                        Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CalenderActivity.this, bean.getCompanyName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
                     }
                 }
                 else
                 {
-                    Toast.makeText(CalenderActivity.this, bean.getName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CalenderActivity.this, bean.getCompanyName()+" works from "+bean.getStart()+" to "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
                 }
             }
             else
@@ -478,12 +473,12 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                     }
                     else
                     {
-                        Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getCompanyName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
                     }
                 }
                 else
                 {
-                    Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CalenderActivity.this, "Please select valid start time, "+bean.getCompanyName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
                 }
             }
             else
@@ -523,12 +518,12 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
                 }
                 else
                 {
-                    Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getCompanyName()+" works till "+bean.getEnd()+".", Toast.LENGTH_LONG).show();
                 }
             }
             else
             {
-                Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
+                Toast.makeText(CalenderActivity.this, "Please select valid end time, "+bean.getCompanyName()+" works from "+bean.getStart()+".", Toast.LENGTH_LONG).show();
             }
         }
         else

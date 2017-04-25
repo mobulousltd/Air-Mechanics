@@ -1,12 +1,9 @@
 package mobulous12.airmechanics.customer.adapters;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +21,10 @@ import mobulous12.airmechanics.customer.activities.CalenderActivity;
 import mobulous12.airmechanics.customer.activities.LoginActivity;
 import mobulous12.airmechanics.customer.activities.RatingScreenListingActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderActivity;
-import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
 import mobulous12.airmechanics.databinding.ServiceProviderCardBinding;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.utils.CircleImageView;
-import mobulous12.airmechanics.volley.ServiceBean;
 
 /**
  * Created by mobulous12 on 4/10/16.
@@ -65,7 +59,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
     public void onBindViewHolder(ServiceProviderViewHolder holder, final int position) {
 
         final ServiceProviderBean providerBean = serviceProviderArrayList.get(position);
-        holder.serviceProviderName.setText(providerBean.getName());
+        holder.serviceProviderName.setText(providerBean.getCompanyName());
         holder.sp_rating.setText(providerBean.getRating());
         String cat="";
         if(providerBean.getCategory().contains("two"))
@@ -158,7 +152,7 @@ public class ServiceProviderRecyclerAdapter extends RecyclerView.Adapter<Service
             public void onClick(View v) {
                 if(!SharedPreferenceWriter.getInstance(activity).getBoolean(SPreferenceKey.LOGINKEY))
                 {
-                    Snackbar snackbar = Snackbar.make(v,"You must SignIn to avail exciting services!",Snackbar.LENGTH_LONG)
+                    Snackbar snackbar = Snackbar.make(v,"You must SignIn to avail exciting services!", Snackbar.LENGTH_LONG)
                             .setAction("SIGN IN", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

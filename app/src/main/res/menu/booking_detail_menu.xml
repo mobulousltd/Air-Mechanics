@@ -4,7 +4,6 @@
     <item
         android:id="@+id/payment"
         android:orderInCategory="100"
-        android:icon="@drawable/bill"
-        android:title="@string/payment"
+        android:title="@string/pay_bill"
         app:showAsAction="always" />
 </menu>

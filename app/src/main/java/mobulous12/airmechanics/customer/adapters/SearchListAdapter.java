@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
-import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
-import mobulous12.airmechanics.databinding.*;
 
 /**
  * Created by mobulous12 on 14/12/16.
@@ -52,7 +52,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SP
             if (serviceProviderBean.getNoSpFound().equalsIgnoreCase("true"))
             { holder.rightArrow.setVisibility(View.GONE);}
         }
-        holder.tv_spName.setText(serviceProviderBean.getName());
+        holder.tv_spName.setText(serviceProviderBean.getCompanyName());
 
     }
 
@@ -97,6 +97,6 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SP
 
    public interface MyListener
     {
-        void onItemClick(int position , View view);
+        void onItemClick(int position, View view);
     }
 }

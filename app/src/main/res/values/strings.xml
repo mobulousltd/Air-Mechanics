@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Air Mechaniks</string>
     <string name="facebook_app_id">351818138542893</string>
-    <!--<string name="google_map_api_key_debug">AIzaSyDL-ZmfUYiNqTEigGOCbpYrN3n2riM19Sk</string>-->
+
+    <string name="google_map_api_key_debug">AIzaSyDL-ZmfUYiNqTEigGOCbpYrN3n2riM19Sk</string>
     <string name="google_map_api_key">AIzaSyADHH0P_H_w_iwGs_0aGCDX0b2N6CuALug</string>
+    <string name="google_map_api_key_debug_2">AIzaSyAueIODs_PnL5t_J0z3MGR9B5xF81fdM9Q</string>
+
+    <!--<string name="google_map_api_key">AIzaSyCoY2j3qox9P9Np34fTN3tublxIS1DfLgc</string>-->
+
+    <!--<string name="google_map_api_key_debug">AIzaSyDL-ZmfUYiNqTEigGOCbpYrN3n2riM19Sk</string>-->
+    <!--<string name="google_map_api_key">AIzaSyADHH0P_H_w_iwGs_0aGCDX0b2N6CuALug</string>-->
 
     <!--<string name="google_map_api_key">AIzaSyCoY2j3qox9P9Np34fTN3tublxIS1DfLgc</string>-->
 
@@ -320,9 +327,12 @@
     <string name="current_balance_is">Current balance is 0</string>
     <string name="currency">Currency</string>
     <string name="date">Date</string>
+
     <string-array name="currency_array">
         <item>Currency</item>
         <item>KES</item>
         <item>USD</item>
     </string-array>
+
+    <string name="pay_bill">PAY BILL</string>
 </resources>

@@ -2,14 +2,10 @@ package mobulous12.airmechanics.customer.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +16,6 @@ import java.util.HashMap;
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.databinding.HomeScreenInfoWindowBinding;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.utils.CircleImageView;
 
 /**
@@ -44,7 +39,7 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     @Override
     public View getInfoWindow(Marker marker)
     {
-        HomeScreenInfoWindowBinding binding=DataBindingUtil.inflate(layoutInflater, R.layout.home_screen_info_window, null, false);
+        HomeScreenInfoWindowBinding binding= DataBindingUtil.inflate(layoutInflater, R.layout.home_screen_info_window, null, false);
         customWindow=binding.getRoot();
 
         ServiceProviderBean bean=sphashmap.get(marker);
@@ -62,7 +57,7 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
             aquery.id(profileimage).image(bean.getProfile_thumb());
         }
 
-        title.setText(bean.getName());
+        title.setText(bean.getCompanyName());
         location.setText(bean.getAddress());
 
         String cat="";

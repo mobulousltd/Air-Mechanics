@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "327670184042-thn6md0pvsg3al6irceaqidl9r923k1s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "23218f2fc554274c56327579c3e8be56d0333dab"
+          }
+        },
+        {
           "client_id": "327670184042-bntpvhuus2mj36f1uk3sbpmcgl04np93.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "mobulous12.airmechanics",
-            "certificate_hash": "8ED028EE9B79107EC71B83247A06F4515B658096"
+            "certificate_hash": "8ed028ee9b79107ec71b83247a06f4515b658096"
           }
         },
         {
@@ -27,7 +35,7 @@
           "client_type": 1,
           "android_info": {
             "package_name": "mobulous12.airmechanics",
-            "certificate_hash": "D4CA3B9500483CF3CABA7CF0F098BDDD7E926F36"
+            "certificate_hash": "d4ca3b9500483cf3caba7cf0f098bddd7e926f36"
           }
         },
         {
@@ -35,15 +43,7 @@
           "client_type": 1,
           "android_info": {
             "package_name": "mobulous12.airmechanics",
-            "certificate_hash": "344905515302EC7512C2AAC05562DD3D7B183494"
-          }
-        },
-        {
-          "client_id": "327670184042-geehth4s6rjn1jhatt3h4i9najr9c9t5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "mobulous12.airmechanics",
-            "certificate_hash": "C1EA600B16F2D0F51A95C570BC1AEA86773058D0"
+            "certificate_hash": "344905515302ec7512c2aac05562dd3d7b183494"
           }
         },
         {
@@ -53,6 +53,14 @@
         {
           "client_id": "327670184042-jq0u6prkt56v0r6p6ci30llrsijq6ktl.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "327670184042-geehth4s6rjn1jhatt3h4i9najr9c9t5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobulous12.airmechanics",
+            "certificate_hash": "c1ea600b16f2d0f51a95c570bc1aea86773058d0"
+          }
         }
       ],
       "api_key": [

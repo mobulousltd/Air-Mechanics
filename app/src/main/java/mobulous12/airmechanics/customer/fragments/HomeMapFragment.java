@@ -2,19 +2,15 @@ package mobulous12.airmechanics.customer.fragments;
 
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,16 +18,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -52,11 +46,9 @@ import mobulous12.airmechanics.beans.ServiceProviderBean;
 import mobulous12.airmechanics.customer.activities.HomeActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderActivity;
 import mobulous12.airmechanics.customer.activities.ServiceProviderDetailActivity;
-import mobulous12.airmechanics.customer.activities.VerificationActivity;
 import mobulous12.airmechanics.customer.adapters.MyInfoWindowAdapter;
 import mobulous12.airmechanics.customer.adapters.SearchListAdapter;
 import mobulous12.airmechanics.databinding.HomeMapFragmentBinding;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
@@ -64,7 +56,7 @@ import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
 
-public class HomeMapFragment extends Fragment implements OnMapReadyCallback , ApiListener, GoogleMap.InfoWindowAdapter{
+public class HomeMapFragment extends Fragment implements OnMapReadyCallback, ApiListener, GoogleMap.InfoWindowAdapter{
     GoogleMap googlemap;
     boolean search=false;
     HashMap<Marker, ServiceProviderBean> sphashmap=new HashMap<Marker, ServiceProviderBean>( );
@@ -74,7 +66,6 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
     ArrayList<ServiceProviderBean> arrayList;
     private RecyclerView recView_SPList;
     private SearchListAdapter searchListAdapter;
-    
     private boolean noSpFound = false;
     private RelativeLayout rootLayout;
     private EditText editText;
@@ -88,7 +79,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         {
             try
             {
-                HomeMapFragmentBinding binding=DataBindingUtil.inflate(inflater, R.layout.home_map_fragment, container, false);
+                HomeMapFragmentBinding binding= DataBindingUtil.inflate(inflater, R.layout.home_map_fragment, container, false);
                 view = binding.getRoot();
             }
             catch (Exception e)
@@ -102,7 +93,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             {
                 ViewGroup parent = (ViewGroup) view.getParent();
                 if (parent != null) parent.removeView(view);
-                HomeMapFragmentBinding binding=DataBindingUtil.inflate(inflater, R.layout.home_map_fragment, container, false);
+                HomeMapFragmentBinding binding= DataBindingUtil.inflate(inflater, R.layout.home_map_fragment, container, false);
                 view = binding.getRoot();
             }
             catch (Exception e)
@@ -286,15 +277,15 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         arrayList = new ArrayList<ServiceProviderBean>();
         spArrayList=arrayList;
         ServiceProviderBean serviceproviderbean=new ServiceProviderBean();
-        serviceproviderbean.setName("Looking for Light Weight Vehicle Services");
+        serviceproviderbean.setCompanyName("Looking for Light Weight Vehicle Services");
         serviceproviderbean.setCategory("light");
         serviceproviderbean.setId("");
         ServiceProviderBean serviceproviderbean1=new ServiceProviderBean();
         serviceproviderbean1.setCategory("two");
         serviceproviderbean1.setId("");
-        serviceproviderbean1.setName("Looking for Two Wheeler Vehicle Services");
+        serviceproviderbean1.setCompanyName("Looking for Two Wheeler Vehicle Services");
         ServiceProviderBean serviceproviderbean2=new ServiceProviderBean();
-        serviceproviderbean2.setName("Looking for Heavy Weight Vehicle Services");
+        serviceproviderbean2.setCompanyName("Looking for Heavy Weight Vehicle Services");
         serviceproviderbean2.setCategory("heavy");
         serviceproviderbean2.setId("");
         arrayList.add(serviceproviderbean);
@@ -418,6 +409,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                 serviceproviderbean.setAddress(jsonobject.getString("address"));
                 serviceproviderbean.setId(jsonobject.getString("id"));
                 serviceproviderbean.setName(jsonobject.getString("name"));
+                serviceproviderbean.setCompanyName(jsonobject.getString("companyName"));
                 serviceproviderbean.setProfile(jsonobject.getString("profile"));
                 serviceproviderbean.setProfile_thumb(jsonobject.getString("profile_thumb"));
                 serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));
@@ -468,7 +460,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
         multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
         multipartbuilder.addTextBody("serviceName",searchView_Home.getQuery().toString().trim());
         multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE));
-        multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
+        multipartbuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
 
         ServiceBean serviceBean = new ServiceBean();
         serviceBean.setIsLoader(false);
@@ -490,7 +482,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getActivity()).getString(SPreferenceKey.TOKEN));
             multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LATITUDE));
-            multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
+            multipartbuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getActivity().getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
             multipartbuilder.addTextBody("category_id", "");
             multipartbuilder.addTextBody("distance", "0");
             multipartbuilder.addTextBody("price", "0");
@@ -564,6 +556,7 @@ public class HomeMapFragment extends Fragment implements OnMapReadyCallback , Ap
                             JSONObject myObj = responseArr.getJSONObject(i);
 
                             serviceproviderbean.setName(myObj.getString("name"));
+                            serviceproviderbean.setCompanyName(myObj.getString("companyName"));
                             serviceproviderbean.setId(myObj.getString("id"));
                             serviceproviderbean.setAddress(myObj.getString("address"));
                             serviceproviderbean.setEmail(myObj.getString("email"));

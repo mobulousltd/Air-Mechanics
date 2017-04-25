@@ -3,11 +3,10 @@ package mobulous12.airmechanics.customer.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,11 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
@@ -35,7 +29,6 @@ import java.util.ArrayList;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.beans.ServiceProviderBean;
-import mobulous12.airmechanics.fonts.Font;
 import mobulous12.airmechanics.customer.adapters.ServiceProviderRecyclerAdapter;
 import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
 import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
@@ -43,7 +36,7 @@ import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
 
-public class ServiceProviderActivity extends AppCompatActivity implements View.OnClickListener, ApiListener{
+public class ServiceProviderActivity extends AppCompatActivity implements View.OnClickListener, ApiListener {
 
     ArrayList<ServiceProviderBean> serviceProviderArrayList;
 
@@ -261,7 +254,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
             multipartbuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             multipartbuilder.addTextBody("token", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.TOKEN));
             multipartbuilder.addTextBody("lat", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LATITUDE));
-            multipartbuilder.addTextBody("long",SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
+            multipartbuilder.addTextBody("long", SharedPreferenceWriter.getInstance(getApplicationContext()).getString(SPreferenceKey.LONGITUDE));
             multipartbuilder.addTextBody("category_id",filter);
             multipartbuilder.addTextBody("distance",String.valueOf(d));
             multipartbuilder.addTextBody("rating",String.valueOf(r));
@@ -312,6 +305,7 @@ public class ServiceProviderActivity extends AppCompatActivity implements View.O
                         serviceproviderbean.setAddress(jsonobject.getString("address"));
                         serviceproviderbean.setId(jsonobject.getString("id"));
                         serviceproviderbean.setName(jsonobject.getString("name"));
+                        serviceproviderbean.setCompanyName(jsonobject.getString("companyName"));
                         serviceproviderbean.setProfile_thumb(jsonobject.getString("profile_thumb"));
                         serviceproviderbean.setProfile(jsonobject.getString("profile"));
                         serviceproviderbean.setContact_no(jsonobject.getString("contact_no"));
