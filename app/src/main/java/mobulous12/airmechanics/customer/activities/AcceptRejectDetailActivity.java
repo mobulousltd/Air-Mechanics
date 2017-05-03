@@ -3,9 +3,9 @@ package mobulous12.airmechanics.customer.activities;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +17,6 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import mobulous12.airmechanics.R;
@@ -73,9 +72,12 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
         long m=Long.parseLong(expiredtime.substring(0, index));
         long s=Long.parseLong(expiredtime.substring(index+1, expiredtime.length()));
         long minuts= TimeUnit.MINUTES.toMillis(m);
-        long hour=TimeUnit.HOURS.toMillis(h);
+        final long hour=TimeUnit.HOURS.toMillis(h);
         long secnd=TimeUnit.SECONDS.toMillis(s);
         long timemilli=hour+minuts+secnd;
+//        long durationSeconds=TimeUnit.HOURS.toSeconds(h)+TimeUnit.MINUTES.toSeconds(m)+TimeUnit.SECONDS.toSeconds(s);
+//        Toast.makeText(AcceptRejectDetailActivity.this, ""+String.format("%02d:%02d:%02d", durationSeconds / 3600,
+//                (durationSeconds % 3600) / 60, (durationSeconds % 60)), Toast.LENGTH_SHORT).show();
 
         new CountDownTimer(timemilli, 1000)
         {
@@ -89,8 +91,10 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
             public void onTick(long millisUntilFinished)
             {
                 timeCalculate(millisUntilFinished/1000);
-                binding.tvMin.setText(String.format("%2d", minutes));
-                binding.tvSec.setText(String.format("%2d", seconds));
+                binding.tvDay.setText(String.format("%02d", days));
+                binding.tvHr.setText(String.format("%02d", hours));
+                binding.tvMin.setText(String.format("%02d", minutes));
+                binding.tvSec.setText(String.format("%02d", seconds));
 //                Log.i("Timer", ""+String.format("%2d", minutes)+" : "+String.format("%2d", seconds));
             }
         }.start();
@@ -99,7 +103,7 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
     public String timeCalculate(long ttime)
     {
         String daysT = "", restT = "";
-        days = (Math.round(ttime) / 86400);
+        days = (Math.round(ttime) /( 86400));
         hours = (Math.round(ttime) / 3600) - (days * 24);
         minutes = (Math.round(ttime) / 60) - (days * 1440) - (hours * 60);
         seconds = Math.round(ttime) % 60;

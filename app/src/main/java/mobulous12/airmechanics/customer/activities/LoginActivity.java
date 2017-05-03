@@ -6,15 +6,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.databinding.DataBindingUtil;
-import android.graphics.Typeface;
-import android.location.Address;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Environment;
-import android.os.Looper;
+import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
@@ -25,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -52,24 +46,18 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.logging.Handler;
 
 import mobulous12.airmechanics.R;
 import mobulous12.airmechanics.RoleSelectionActivity;
 import mobulous12.airmechanics.addressfetcher.Constants;
 import mobulous12.airmechanics.addressfetcher.GeocodeAddressIntentService;
-import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
-import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.serviceprovider.activities.HomeActivityServicePro;
 import mobulous12.airmechanics.serviceprovider.activities.SignUpServiceProActivity;
-import mobulous12.airmechanics.fonts.Font;
+import mobulous12.airmechanics.sharedprefrences.SPreferenceKey;
+import mobulous12.airmechanics.sharedprefrences.SharedPreferenceWriter;
 import mobulous12.airmechanics.volley.ApiListener;
 import mobulous12.airmechanics.volley.CustomHandler;
 import mobulous12.airmechanics.volley.ServiceBean;
@@ -473,6 +461,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             else
                             {
                                 JSONArray jsonArray=response.getJSONArray("documentImages");
+                                SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYIMAGE, "");
                                 if(jsonArray.length()>0)
                                 {
                                     SharedPreferenceWriter.getInstance(getApplicationContext()).writeStringValue(SPreferenceKey.COMPANYIMAGE, jsonArray.getString(0));

@@ -206,15 +206,41 @@
                             android:textSize="@dimen/_13sdp"
                             android:textColor="@color/black"
                             android:text="@string/jobtimer_accept_reject_quote"/>
-
+                        <TextView
+                            android:id="@+id/tv_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/black"
+                            android:text=":"/>
+                        <TextView
+                            android:id="@+id/tv_hr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="@dimen/_13sdp"
+                            android:textColor="@color/black"
+                            android:text=":"/>
                         <TextView
                             android:id="@+id/tv_min"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textSize="@dimen/_13sdp"
-                            android:textColor="@color/black"
-                            android:text="55"/>
+                            android:textColor="@color/black"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -229,8 +255,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:textSize="@dimen/_13sdp"
-                            android:textColor="@color/black"
-                            android:text="15"/>
+                            android:textColor="@color/black"/>
                     </LinearLayout>
 
 
