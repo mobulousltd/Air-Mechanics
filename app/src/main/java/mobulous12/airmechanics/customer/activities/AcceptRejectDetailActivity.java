@@ -90,7 +90,12 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
             @Override
             public void onTick(long millisUntilFinished)
             {
-                timeCalculate(millisUntilFinished/1000);
+//                timeCalculate(millisUntilFinished/1000);
+                long time=millisUntilFinished/1000;
+                days = (Math.round(time) /( 86400));
+                hours = (Math.round(time) / 3600) - (days * 24);
+                minutes = (Math.round(time) / 60) - (days * 1440) - (hours * 60);
+                seconds = Math.round(time) % 60;
                 binding.tvDay.setText(String.format("%02d", days));
                 binding.tvHr.setText(String.format("%02d", hours));
                 binding.tvMin.setText(String.format("%02d", minutes));
@@ -108,10 +113,10 @@ public class AcceptRejectDetailActivity extends AppCompatActivity implements Vie
         minutes = (Math.round(ttime) / 60) - (days * 1440) - (hours * 60);
         seconds = Math.round(ttime) % 60;
 
-        if(days==1) daysT = String.format("%d day ", days);
-        if(days>1) daysT = String.format("%d days ", days);
-
-        restT = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+//        if(days==1) daysT = String.format("%d day ", days);
+//        if(days>1) daysT = String.format("%d days ", days);
+//
+//        restT = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
         return daysT + restT;
     }
